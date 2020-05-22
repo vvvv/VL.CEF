@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2020.1.0.53" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2020.1.0" />
+  <Patch Id="BZs5A6rRdrDOhDYS793S2G">
+    <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
+      <!--
+
+    ************************ WebRenderer (Reactive) ************************
+
+-->
+      <Node Name="WebRenderer (Reactive)" Bounds="359,210" Id="PZIAFLtzoOxLQsrX7odXe3">
+        <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="builtin">
+          <Choice Kind="ContainerDefinition" Name="Process" />
+        </p:NodeReference>
+        <Patch Id="R7Ipy6LLtGMQW7ZyVZMPF7">
+          <Canvas Id="HHbAx81KXZWP5csdbMtKUW" CanvasType="Group">
+            <Node Bounds="474,195,64,26" Id="GkRcD3RaW9EPYkIIzkNr1Q">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
+                <Choice Kind="OperationCallFlag" Name="Create" />
+              </p:NodeReference>
+              <Pin Id="DITqnoiW7hxM7FSZzdSK0i" Name="Frame Rate" Kind="InputPin" DefaultValue="60">
+                <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                  <Choice Kind="TypeFlag" Name="Integer32" />
+                </p:TypeAnnotation>
+              </Pin>
+              <Pin Id="IHj3z7KpleyQV6Rw9NwoEH" Name="Output" Kind="StateOutputPin" />
+            </Node>
+            <Pad Id="V5HEl8VYO4pPKHDxwTbYyJ" SlotId="FTNSG1QbyavNdINiLvxWKF" Bounds="476,270" />
+            <Node Bounds="472,495,64,26" Id="GRi6VCS4w2QLcnOtb5uL6J">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
+                <Choice Kind="OperationCallFlag" Name="Dispose" />
+              </p:NodeReference>
+              <Pin Id="LxxPh8xr3GAO5SDssbLTUe" Name="Input" Kind="StateInputPin" />
+              <Pin Id="DGKHKOCvNuGNWrRPHYkBKT" Name="Output" Kind="StateOutputPin" />
+            </Node>
+            <Node Bounds="766,557,64,26" Id="PjhIeyeqYldMj05mq145df">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
+                <Choice Kind="OperationCallFlag" Name="Images" />
+              </p:NodeReference>
+              <Pin Id="GELWoQKiMrXND6XUABdNx0" Name="Input" Kind="StateInputPin" />
+              <Pin Id="A9bT4NUwtk3Mkv5AcojgQy" Name="Output" Kind="StateOutputPin" />
+              <Pin Id="Ke9b68XTM0qOMfzbrKjwnc" Name="Images" Kind="OutputPin" />
+            </Node>
+            <ControlPoint Id="RUopFDMSBf0MEspaU3oZRi" Bounds="632,268" />
+            <Node Bounds="558,319,88,86" Id="HqdhociXfaaO6nLxPL7qRR">
+              <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
+                <Choice Kind="ProcessStatefulRegion" Name="Cache" />
+                <FullNameCategoryReference ID="Primitive" />
+              </p:NodeReference>
+              <Pin Id="BoNsNshEcAmLxJnPIXf9BF" Name="Force" Kind="InputPin" />
+              <Pin Id="V7xInmMZz3qLDSdfX2vlXX" Name="Dispose Cached Outputs" Kind="InputPin" />
+              <Pin Id="TPiirvkralfPrv327v7ThP" Name="Has Changed" Kind="OutputPin" />
+              <ControlPoint Id="HPXvuiR4sSzMHqesE5QWwF" Bounds="631,325" Alignment="Top" />
+              <Patch Id="PNxDTIZTk70PJMx2ibTPae" ManuallySortedPins="true">
+                <Patch Id="HJlkJN91e99Lm8uyCtT7xE" Name="Create" ManuallySortedPins="true" />
+                <Patch Id="UezkIup2IxkOB6lSPv0mPR" Name="Then" ManuallySortedPins="true" />
+                <Node Bounds="570,347,64,26" Id="ShnpbF2UZviL6Habs7mVR5">
+                  <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                    <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                    <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
+                    <Choice Kind="OperationCallFlag" Name="LoadUrl" />
+                    <PinReference Kind="InputPin" Name="Size" />
+                  </p:NodeReference>
+                  <Pin Id="Ijb6LDBB0QxN2SNz6sFipZ" Name="Input" Kind="StateInputPin" />
+                  <Pin Id="M1WOqqlDzIaMMtIz17klNj" Name="Size" Kind="InputPin" />
+                  <Pin Id="J2COetiD0KpOHCfAF7H7Ns" Name="Url" Kind="InputPin" />
+                  <Pin Id="FGofXAPCBpxNH1X9E6xlNI" Name="Output" Kind="StateOutputPin" />
+                </Node>
+              </Patch>
+            </Node>
+            <Pad Id="GH6nhJd8RzbLHjJLZN2Q4z" SlotId="FTNSG1QbyavNdINiLvxWKF" Bounds="768,501" />
+            <ControlPoint Id="JLm5yuOzfueMnXBYPpyVUq" Bounds="828,723" />
+            <Node Bounds="967,559,64,26" Id="D1R1TN2dornQd8OyCLeyjR">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
+                <Choice Kind="OperationCallFlag" Name="IsLoading" />
+              </p:NodeReference>
+              <Pin Id="JfVYgQLmSGRQRoEjAg4zcv" Name="Input" Kind="StateInputPin" />
+              <Pin Id="HhwsddY2ZF3PccgWyiuxbu" Name="Output" Kind="StateOutputPin" />
+              <Pin Id="IAPta47qWGhNLbFhE0CUwj" Name="Is Loading" Kind="OutputPin" />
+            </Node>
+            <ControlPoint Id="BnVn21ZbUP3NIe0d0xf9Oc" Bounds="1024,705" />
+            <Node Bounds="1161,560,64,26" Id="JGSqlJlC7g4QJIOz3xG0hz">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
+                <Choice Kind="OperationCallFlag" Name="Loaded" />
+              </p:NodeReference>
+              <Pin Id="K4JhMdmBQ9DOh5FuDN8Rla" Name="Input" Kind="StateInputPin" />
+              <Pin Id="EJI6X7zmWKgOkezSXoSFmB" Name="Output" Kind="StateOutputPin" />
+              <Pin Id="BCfvEYeUeAPPAUBsEtxYVZ" Name="Loaded" Kind="OutputPin" />
+            </Node>
+            <ControlPoint Id="HghAG3MVOqkLewRX2cB91q" Bounds="1221,705" />
+            <ControlPoint Id="AvZMkSXp7rEPbwpkkaJwPi" Bounds="863,266" />
+            <Node Bounds="801,371" Id="Ubxa5CH9lNCM4hRKThrr8K">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
+                <Choice Kind="OperationCallFlag" Name="SetSize" />
+              </p:NodeReference>
+              <Pin Id="P8TEtgXkpVDOCueRQrQy9O" Name="Input" Kind="StateInputPin" />
+              <Pin Id="Tnp2JgFPE2MOtoXtzFv3vb" Name="Value" Kind="InputPin" />
+              <Pin Id="RHhTd8p4LlYOwk9Y6E2ZI0" Name="Output" Kind="StateOutputPin" />
+            </Node>
+            <Pad Id="A0gFdMLno1TP9cx0bLtGvA" SlotId="FTNSG1QbyavNdINiLvxWKF" Bounds="804,346" />
+            <Pad Id="HyrjuUBszqnOBEZQshGyjM" SlotId="FTNSG1QbyavNdINiLvxWKF" Bounds="986,337" />
+            <Node Bounds="985,382,64,26" Id="TlU9fRdNtxpNeXEX77Xuur">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <Choice Kind="OperationCallFlag" Name="SetMouseEvents" />
+              </p:NodeReference>
+              <Pin Id="UiaWR6k8uNHLrrsdcoHMHq" Name="Input" Kind="StateInputPin" />
+              <Pin Id="INZkyDrll55O0QCJyKMUdw" Name="Value" Kind="InputPin" />
+              <Pin Id="K0nWJfzobzrNGue1DZCGId" Name="Output" Kind="StateOutputPin" />
+            </Node>
+            <ControlPoint Id="R0xby5eW3eTNZjBZ44AyIn" Bounds="1071,294" />
+            <Pad Id="TXWhXnaOqMoPICjOQ0o0M1" SlotId="FTNSG1QbyavNdINiLvxWKF" Bounds="1254,337" />
+            <Node Bounds="1254,378,64,26" Id="BxRLk0EpewyOSgIClpJfcj">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <Choice Kind="OperationCallFlag" Name="SetKeyboardEvents" />
+              </p:NodeReference>
+              <Pin Id="N11KxVR6T6PNHjCorxyrNA" Name="Input" Kind="StateInputPin" />
+              <Pin Id="FsU7YocuvbyMBPyb4GXs5w" Name="Value" Kind="InputPin" />
+              <Pin Id="O1s20kBTo0RQAn5iQzdC0z" Name="Output" Kind="StateOutputPin" />
+            </Node>
+            <ControlPoint Id="G0kFhAhckb5LeN4bCfVprU" Bounds="1353,300" />
+          </Canvas>
+          <Patch Id="GYIfqgL9eEKLittmsSTN5E" Name="Create" ParticipatingElements="GkRcD3RaW9EPYkIIzkNr1Q" />
+          <Patch Id="OWaCsjsq47MLNE2b6vTMUG" Name="Update">
+            <Pin Id="AXRjF18e0OnM8Z4hlqZZP7" Name="Url" Kind="InputPin" Bounds="646,268" DefaultValue="vvvv.org">
+              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                <Choice Kind="TypeFlag" Name="String" />
+              </p:TypeAnnotation>
+            </Pin>
+            <Pin Id="BqXaJhKBrUMMETCqh6oKCg" Name="Images" Kind="OutputPin" Bounds="836,530" />
+            <Pin Id="FJLO2TgWG8zOUntyPEd72S" Name="Is Loading" Kind="OutputPin" Bounds="1041,507" />
+            <Pin Id="LreTobMtzEIMzmbl0STZpn" Name="Loaded" Kind="OutputPin" Bounds="1229,512" />
+            <Pin Id="JAMhy6qTRZvMAfVCshn1K3" Name="Size" Kind="InputPin" Bounds="921,235" DefaultValue="800, 600">
+              <p:TypeAnnotation LastCategoryFullName="2D" LastSymbolSource="CoreLibBasics.vl">
+                <Choice Kind="TypeFlag" Name="Vector2" />
+              </p:TypeAnnotation>
+            </Pin>
+            <Pin Id="TP2Yve2cICnOvMkWutyCqv" Name="Mouse Events" Kind="InputPin" Bounds="1069,277" />
+            <Pin Id="JoKWs6SxnBPPDQwpRjMYPl" Name="Key Events" Kind="InputPin" Bounds="1351,286" />
+          </Patch>
+          <ProcessDefinition Id="Lc3UHoEBTUmPakCsBeCXNh">
+            <Fragment Id="KD7a37bmmHjPduJ5Ief1Ln" Patch="GYIfqgL9eEKLittmsSTN5E" Enabled="true" />
+            <Fragment Id="Ucw5VpA6moyLtGKovssvL8" Patch="OWaCsjsq47MLNE2b6vTMUG" Enabled="true" />
+          </ProcessDefinition>
+          <Slot Id="FTNSG1QbyavNdINiLvxWKF" Name="Renderer" />
+          <Link Id="H8ABsFiYNcEOSNOqmoVTUu" Ids="IHj3z7KpleyQV6Rw9NwoEH,V5HEl8VYO4pPKHDxwTbYyJ" />
+          <Link Id="TnEyG8PHlYzQWYQUYCWSmn" Ids="V5HEl8VYO4pPKHDxwTbYyJ,LxxPh8xr3GAO5SDssbLTUe" />
+          <Patch Id="AmdKGy0GbraPXpKXaVGlYP" Name="Dispose" ParticipatingElements="GRi6VCS4w2QLcnOtb5uL6J" />
+          <Link Id="APb619nANc0LjxpnI3tzBV" Ids="V5HEl8VYO4pPKHDxwTbYyJ,Ijb6LDBB0QxN2SNz6sFipZ" />
+          <Link Id="OSxCJUATvqzMqMc9Wl47Tf" Ids="AXRjF18e0OnM8Z4hlqZZP7,RUopFDMSBf0MEspaU3oZRi" IsHidden="true" />
+          <Link Id="TtoDytBQTlUNme7vazTbux" Ids="RUopFDMSBf0MEspaU3oZRi,HPXvuiR4sSzMHqesE5QWwF" />
+          <Link Id="O6d1G1kUZDvLydQxWLigvl" Ids="HPXvuiR4sSzMHqesE5QWwF,J2COetiD0KpOHCfAF7H7Ns" />
+          <Link Id="IgqIXB0tCgALUKfi8PX0xw" Ids="GH6nhJd8RzbLHjJLZN2Q4z,GELWoQKiMrXND6XUABdNx0" />
+          <Link Id="Pgw0wdwn3FNOGkxOcjNBap" Ids="Ke9b68XTM0qOMfzbrKjwnc,JLm5yuOzfueMnXBYPpyVUq" />
+          <Link Id="SoanRBKPMmcNKytjORR6TN" Ids="JLm5yuOzfueMnXBYPpyVUq,BqXaJhKBrUMMETCqh6oKCg" IsHidden="true" />
+          <Link Id="DLmRmyJULFwOQjHX2N3L5t" Ids="GH6nhJd8RzbLHjJLZN2Q4z,JfVYgQLmSGRQRoEjAg4zcv" />
+          <Link Id="I75wWDCkL9wMkwsGHVjT2U" Ids="IAPta47qWGhNLbFhE0CUwj,BnVn21ZbUP3NIe0d0xf9Oc" />
+          <Link Id="NqqxEI6BK54NmCJe5BZh63" Ids="BnVn21ZbUP3NIe0d0xf9Oc,FJLO2TgWG8zOUntyPEd72S" IsHidden="true" />
+          <Link Id="OtuQTAKCWbZQNmHEkC9mYL" Ids="GH6nhJd8RzbLHjJLZN2Q4z,K4JhMdmBQ9DOh5FuDN8Rla" />
+          <Link Id="ByhYdzKCwpiMrMObYm3ci0" Ids="BCfvEYeUeAPPAUBsEtxYVZ,HghAG3MVOqkLewRX2cB91q" />
+          <Link Id="MWkt3y85N6JMZ2QkpjpFA9" Ids="HghAG3MVOqkLewRX2cB91q,LreTobMtzEIMzmbl0STZpn" IsHidden="true" />
+          <Link Id="LvA5geXnGA1NVspwffKoge" Ids="JAMhy6qTRZvMAfVCshn1K3,AvZMkSXp7rEPbwpkkaJwPi" IsHidden="true" />
+          <Link Id="IHqqTe6TqXCL013yFFkqch" Ids="AvZMkSXp7rEPbwpkkaJwPi,Tnp2JgFPE2MOtoXtzFv3vb" />
+          <Link Id="PR5HN47sGM8LKD6tMSITeX" Ids="AvZMkSXp7rEPbwpkkaJwPi,M1WOqqlDzIaMMtIz17klNj" />
+          <Link Id="PQ4u2JXWc8rPSO2YtNWnys" Ids="A0gFdMLno1TP9cx0bLtGvA,P8TEtgXkpVDOCueRQrQy9O" />
+          <Link Id="NDjFXUoIWxULuSZ40ZJyfN" Ids="HyrjuUBszqnOBEZQshGyjM,UiaWR6k8uNHLrrsdcoHMHq" />
+          <Link Id="VES9xZgBXuwPnQYbNkXrtc" Ids="R0xby5eW3eTNZjBZ44AyIn,INZkyDrll55O0QCJyKMUdw" />
+          <Link Id="QX5DJ2oWkL2LyGGDkQI2Fb" Ids="TP2Yve2cICnOvMkWutyCqv,R0xby5eW3eTNZjBZ44AyIn" IsHidden="true" />
+          <Link Id="FWXVnArw5g6QDB0iFLhYfC" Ids="TXWhXnaOqMoPICjOQ0o0M1,N11KxVR6T6PNHjCorxyrNA" />
+          <Link Id="DJRc3oSaBNVNJRqk5PYq8Z" Ids="G0kFhAhckb5LeN4bCfVprU,FsU7YocuvbyMBPyb4GXs5w" />
+          <Link Id="Tp3RR21homyNkHm31aiqX4" Ids="JoKWs6SxnBPPDQwpRjMYPl,G0kFhAhckb5LeN4bCfVprU" IsHidden="true" />
+        </Patch>
+      </Node>
+      <Canvas Id="LExcKlxWHxGNgr0910MhlK" Name="Input" Position="582,210">
+        <!--
+
+    ************************ CefMouseEvent ************************
+
+-->
+        <Node Name="CefMouseEvent" Bounds="319,261" Id="DML7IvMrEuEPxoViuH4vRO">
+          <p:NodeReference>
+            <Choice Kind="ForwardDefinition" Name="Forward" />
+            <FullNameCategoryReference ID="Primitive" />
+          </p:NodeReference>
+          <p:TypeAnnotation LastCategoryFullName="Xilium.CefGlue" LastSymbolSource="Xilium.CefGlue.dll">
+            <Choice Kind="TypeFlag" Name="CefMouseEvent" />
+          </p:TypeAnnotation>
+          <Patch Id="JONXHNEjrgZLpVOki58gq4">
+            <Canvas Id="RfhEXqvkSXdQVDHnD4x5vt" BordersChecked="false" CanvasType="Group" />
+            <ProcessDefinition Id="Av1RMvpcAg6L0e531HGTY0" IsHidden="true" />
+          </Patch>
+        </Node>
+        <!--
+
+    ************************ CefKeyEvent ************************
+
+-->
+        <Node Name="CefKeyEvent" Bounds="314,409" Id="REuXeBKfzQRPg4JgF2xm59">
+          <p:NodeReference>
+            <Choice Kind="ForwardDefinition" Name="Forward" />
+            <FullNameCategoryReference ID="Primitive" />
+          </p:NodeReference>
+          <p:TypeAnnotation LastCategoryFullName="Xilium.CefGlue" LastSymbolSource="Xilium.CefGlue.dll">
+            <Choice Kind="TypeFlag" Name="CefKeyEvent" />
+          </p:TypeAnnotation>
+          <Patch Id="MFHEyyTslwDMKlKvJqtc7b">
+            <Canvas Id="EJLh3Mmgq78QYIsdlQGnZa" BordersChecked="false" CanvasType="Group" />
+            <ProcessDefinition Id="C4bObQqjMT6QXqj0HbijC1" IsHidden="true" />
+          </Patch>
+        </Node>
+        <!--
+
+    ************************ CefKeyEventType ************************
+
+-->
+        <Node Name="CefKeyEventType" Bounds="507,410" Id="DZssBZLhPBFMxkbhlcxh4W">
+          <p:NodeReference>
+            <Choice Kind="ForwardRecordDefinition" Name="Immutable Forward" />
+            <FullNameCategoryReference ID="Primitive" />
+          </p:NodeReference>
+          <p:TypeAnnotation LastCategoryFullName="Xilium.CefGlue" LastSymbolSource="Xilium.CefGlue.dll">
+            <Choice Kind="TypeFlag" Name="CefKeyEventType" />
+          </p:TypeAnnotation>
+          <Patch Id="LVxDgeITFrlQZ1vnoELJCm">
+            <Canvas Id="CQhJ6wJLnnBMqPcKvbqHjc" BordersChecked="false" CanvasType="Group" />
+            <ProcessDefinition Id="KvJo1w5fn9KMmtTKGoJcTF" IsHidden="true" />
+          </Patch>
+        </Node>
+        <!--
+
+    ************************ CefMouseButtonType ************************
+
+-->
+        <Node Name="CefMouseButtonType" Bounds="499,264" Id="S3cR24fXHDzQV6FEqvwXBn">
+          <p:NodeReference>
+            <Choice Kind="ForwardRecordDefinition" Name="Immutable Forward" />
+            <FullNameCategoryReference ID="Primitive" />
+          </p:NodeReference>
+          <p:TypeAnnotation LastCategoryFullName="Xilium.CefGlue" LastSymbolSource="Xilium.CefGlue.dll">
+            <Choice Kind="TypeFlag" Name="CefMouseButtonType" />
+          </p:TypeAnnotation>
+          <Patch Id="D6RtMCEyWQdP5T4Bwf3s7p">
+            <Canvas Id="Oc9xaxNvzZ3PdFq8rDeVum" BordersChecked="false" CanvasType="Group" />
+            <ProcessDefinition Id="QD48dxbFDnoL3LpyU74Cdh" IsHidden="true" />
+          </Patch>
+        </Node>
+      </Canvas>
+    </Canvas>
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="TtxZZJUEAGbOsL1PBGD3vj">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <FullNameCategoryReference ID="Primitive" />
+      </p:NodeReference>
+      <Patch Id="EhPIHoRIRvUNVykuBmu5Rb">
+        <Canvas Id="F5oGTRFbagFOIbIlKDJp1Z" CanvasType="Group" />
+        <Patch Id="O4uq9wbTMb6OOThRKHyui2" Name="Create" />
+        <Patch Id="H72fEPhIvIoL1SSXPbdYYQ" Name="Update" />
+        <ProcessDefinition Id="JzIyWEpgt97OmPji74yRRN">
+          <Fragment Id="Phlob7FM4AXPMrRqiPZ4ld" Patch="O4uq9wbTMb6OOThRKHyui2" Enabled="true" />
+          <Fragment Id="OqTjc1DwaaENi8GSioyIwF" Patch="H72fEPhIvIoL1SSXPbdYYQ" Enabled="true" />
+        </ProcessDefinition>
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="DPI4tlEmYAyLLILPPUkSTl" Location="VL.Skia" Version="2020.1.0" />
+  <PlatformDependency Id="UEg695aV6JdOmhDK4DFcMP" Location="./src/bin/VL.CEF.exe" />
+  <PlatformDependency Id="IhtJTPQFyJfNdlzEkhQGYm" Location="./src/bin/Xilium.CefGlue.dll" />
+</Document>
