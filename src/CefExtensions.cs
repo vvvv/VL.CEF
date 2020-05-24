@@ -34,8 +34,6 @@ namespace VL.CEF
                     //cefSettings.NoSandbox = true;
 #if DEBUG
                     cefSettings.LogSeverity = CefLogSeverity.Error;
-                    // Set to true to debug DOM / JavaScript
-                    cefSettings.SingleProcess = false;
 #else
             cefSettings.LogSeverity = CefLogSeverity.Disable;
 #endif

@@ -18,30 +18,27 @@
           <Node Bounds="367,233,16,19" Id="KmdU0jMH4FFOo4nmOu1eqA">
             <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessAppFlag" Name="WebRenderer (Reactive)" />
+              <Choice Kind="ProcessAppFlag" Name="WebRenderer (Image)" />
             </p:NodeReference>
-            <Pin Id="THNw0crF2J9OUYjXN2Z1q7" Name="Url" Kind="InputPin">
-              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-                <Choice Kind="TypeFlag" Name="String" />
-              </p:TypeAnnotation>
-            </Pin>
-            <Pin Id="ISCSNOQWDaiQLfoKHs6npJ" Name="Size" Kind="InputPin" DefaultValue="800, 0">
+            <Pin Id="VjKONXgA9YcMjsqJ7OWjkE" Name="Frame Rate" Kind="InputPin" />
+            <Pin Id="FLGPwjxF0zcLr7EZjiVfKD" Name="Url" Kind="InputPin" />
+            <Pin Id="ISCSNOQWDaiQLfoKHs6npJ" Name="Size" Kind="InputPin">
               <p:TypeAnnotation LastCategoryFullName="2D" LastSymbolSource="CoreLibBasics.vl">
                 <Choice Kind="TypeFlag" Name="Vector2" />
               </p:TypeAnnotation>
             </Pin>
-            <Pin Id="VLOzbC4dtQgL4Pvi1Wngme" Name="Mouse Events" Kind="InputPin" />
-            <Pin Id="Hh9gdOaha44QTcobbzatAC" Name="Key Events" Kind="InputPin" />
-            <Pin Id="A5Kj6DdrUkkMKtggOmKt4O" Name="Images" Kind="OutputPin" />
-            <Pin Id="NbzUeaOx25HP9I5OkDOsmF" Name="Is Loading" Kind="OutputPin" />
-            <Pin Id="MypCWUyG6i3LbslBTNzru5" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="OrtnkmVYVjnOeZ5xQhI73Y" Name="Mouse Events" Kind="InputPin" />
+            <Pin Id="A1PAWykQHp6O6HlULb0Nw6" Name="Key Events" Kind="InputPin" />
+            <Pin Id="AZW0Pnet894NzChysDGTgv" Name="Frame" Kind="OutputPin" />
+            <Pin Id="Af38CWHdtJZNNZAjk2Xn56" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="UpksFIduVRuNsRh5LwKaZE" Name="Loaded" Kind="OutputPin" />
           </Node>
           <Node Bounds="349,495,145,19" Id="U6e2tK3rdsYPgkzJMBOPVI">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
             </p:NodeReference>
-            <Pin Id="OKZLuz7dqmEMIYsuptsEza" Name="Bounds" Kind="InputPin" DefaultValue="1156, 24, 600, 1000">
+            <Pin Id="OKZLuz7dqmEMIYsuptsEza" Name="Bounds" Kind="InputPin" DefaultValue="1011, 69, 737, 1000">
               <p:TypeAnnotation LastCategoryFullName="System.Drawing" LastSymbolSource="System.Drawing.dll">
                 <Choice Kind="TypeFlag" Name="Rectangle" />
               </p:TypeAnnotation>
@@ -60,21 +57,6 @@
             <Pin Id="VA2uoDn9e8mPTRruqG9xPZ" Name="Form" Kind="OutputPin" />
             <Pin Id="G9AN2x6uuGLOOOoTVX7i23" Name="ClientBounds" Kind="OutputPin" />
             <Pin Id="DDODvOi9rxAP2tGpx4tltJ" Name="Render Time" Kind="OutputPin" />
-          </Node>
-          <Node Bounds="367,283,88,19" Id="QUm1YwIlI24OWvTNwmMoNS">
-            <p:NodeReference LastCategoryFullName="Graphics.Imaging" LastSymbolSource="VL.Imaging.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessAppFlag" Name="HoldLatestCopy" />
-              <CategoryReference Kind="Category" Name="Imaging" NeedsToBeDirectParent="true">
-                <p:OuterCategoryReference Kind="Category" Name="Graphics" NeedsToBeDirectParent="true" />
-              </CategoryReference>
-            </p:NodeReference>
-            <Pin Id="JrUCh2pzHfyL90TqdJ9DNy" Name="Async Notifications" Kind="InputPin" />
-            <Pin Id="I0imGOZpIprPqwreOF3jpW" Name="Timeout" Kind="InputPin" />
-            <Pin Id="PoTmSVhTdKRQFaumCNukQT" Name="Reset" Kind="InputPin" />
-            <Pin Id="K2dGsFXrNXLOJsGkFFxnPS" Name="Result" Kind="OutputPin" />
-            <Pin Id="M5BL2ZG54gsMGhaulQmbhz" Name="Swap Count" Kind="OutputPin" />
-            <Pin Id="C37sf7HhwHTNuQP3HQ3ahF" Name="Drop Count" Kind="OutputPin" />
           </Node>
           <Node Bounds="369,413,125,19" Id="CxT906uJ5jXO4oAj7f63Up">
             <p:NodeReference LastCategoryFullName="Graphics.Skia.Layers" LastSymbolSource="VL.Skia.vl">
@@ -109,11 +91,6 @@
             <Pin Id="ON0ayMN7EViNvAVvH49NP3" Name="Discard Higher Bits" Kind="InputPin" />
             <Pin Id="BrpnGAVLwCWPUUW8Xuw3jr" Name="Result" Kind="OutputPin" />
           </Node>
-          <Pad Id="BEeIpV1JOzKLaXl9mYs7c5" Comment="Size" Bounds="393,149,53,31" ShowValueBox="true" isIOBox="true" Value="600, 1000">
-            <p:TypeAnnotation LastCategoryFullName="2D" LastSymbolSource="CoreLibBasics.vl">
-              <Choice Kind="TypeFlag" Name="Vector2" />
-            </p:TypeAnnotation>
-          </Pad>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -121,11 +98,9 @@
           <Fragment Id="Ccrp0QpGYEKPqBSB8xuGew" Patch="Vnymg3KwFcqPuuJT3crEKr" Enabled="true" />
           <Fragment Id="FS8SLTMVNnnMxuHsD4JK5c" Patch="T5DV0xifO78P27haBv56J1" Enabled="true" />
         </ProcessDefinition>
-        <Link Id="CgrPry3Ma5DNDYlBVfsGxT" Ids="A5Kj6DdrUkkMKtggOmKt4O,JrUCh2pzHfyL90TqdJ9DNy" />
-        <Link Id="OqIOmmiMhVzOe3hKceplCl" Ids="K2dGsFXrNXLOJsGkFFxnPS,DQGK5oDfhNnOm1YzdzVDJR" />
         <Link Id="RNsPyyXtGvMMZi6CGCe5x6" Ids="BrpnGAVLwCWPUUW8Xuw3jr,Pb8ehWNEiz5PErrAnLtpFM" />
-        <Link Id="MOZZfyNFpMNMX2YIxLKtQw" Ids="BEeIpV1JOzKLaXl9mYs7c5,ISCSNOQWDaiQLfoKHs6npJ" />
         <Link Id="NtKjpFQDrO0OqpIJ9wuBo6" Ids="RDc9PxgiOhJOtmmXh6xX2K,BYoCNKXrtzaN3xZnODf2VZ" />
+        <Link Id="DqQQBcWBOtMND3dGMCqwOy" Ids="AZW0Pnet894NzChysDGTgv,DQGK5oDfhNnOm1YzdzVDJR" />
       </Patch>
     </Node>
   </Patch>

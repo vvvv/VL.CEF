@@ -12,7 +12,7 @@ namespace VL.CEF
     {
         public class RequestContextHandler : CefRequestContextHandler
         {
-            protected override CefCookieManager GetCookieManager()
+            protected override CefResourceRequestHandler GetResourceRequestHandler(CefBrowser browser, CefFrame frame, CefRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
             {
                 return null;
             }
@@ -40,12 +40,11 @@ namespace VL.CEF
                 return false;
             }
 
-            protected override bool GetViewRect(CefBrowser browser, ref CefRectangle rect)
+            protected override void GetViewRect(CefBrowser browser, out CefRectangle rect)
             {
-                rect.X = rect.Y = 0;
-                rect.Width = (int)FRenderer.Size.X;
-                rect.Height = (int)FRenderer.Size.Y;
-                return true;
+                var width = Math.Max(1, (int)FRenderer.Size.X);
+                var height = Math.Max(1, (int)FRenderer.Size.Y);
+                rect = new CefRectangle(0, 0, width, height);
             }
 
             protected override bool GetScreenPoint(CefBrowser browser, int viewX, int viewY, ref int screenX, ref int screenY)
@@ -68,15 +67,14 @@ namespace VL.CEF
 
             }
 
+            protected override void OnAcceleratedPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+            {
+                FRenderer.OnAcceleratedPain(browser, type, dirtyRects, sharedHandle);
+            }
+
             protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr buffer, int width, int height)
             {
-                switch (type) {
-                    case CefPaintElementType.View:
-                        FRenderer.Paint(dirtyRects, buffer, width * 4, width, height);
-                        break;
-                    case CefPaintElementType.Popup:
-                        break;
-                }
+                FRenderer.OnPaint(browser, type, dirtyRects, buffer, width, height);
             }
 
             protected override bool GetScreenInfo(CefBrowser browser, CefScreenInfo screenInfo)
@@ -102,95 +100,95 @@ namespace VL.CEF
             }
         }
 
-        class RequestHandler : CefRequestHandler
-        {
-            class HtmlStringResourceHandler : CefResourceHandler
-            {
-                private readonly Stream FStream;
-                private readonly byte[] FBuffer = new byte[1024];
+        //class RequestHandler : CefRequestHandler
+        //{
+        //    class HtmlStringResourceHandler : CefResourceHandler
+        //    {
+        //        private readonly Stream FStream;
+        //        private readonly byte[] FBuffer = new byte[1024];
 
-                public HtmlStringResourceHandler(string text)
-                {
-                    FStream = new MemoryStream(Encoding.UTF8.GetBytes(text));
-                }
+        //        public HtmlStringResourceHandler(string text)
+        //        {
+        //            FStream = new MemoryStream(Encoding.UTF8.GetBytes(text));
+        //        }
 
-                protected override void Dispose(bool disposing)
-                {
-                    FStream.Dispose();
-                    base.Dispose(disposing);
-                }
+        //        protected override void Dispose(bool disposing)
+        //        {
+        //            FStream.Dispose();
+        //            base.Dispose(disposing);
+        //        }
 
-                protected override bool CanGetCookie(CefCookie cookie)
-                {
-                    return true;
-                }
+        //        protected override bool CanGetCookie(CefCookie cookie)
+        //        {
+        //            return true;
+        //        }
 
-                protected override bool CanSetCookie(CefCookie cookie)
-                {
-                    return true;
-                }
+        //        protected override bool CanSetCookie(CefCookie cookie)
+        //        {
+        //            return true;
+        //        }
 
-                protected override void Cancel()
-                {
+        //        protected override void Cancel()
+        //        {
                     
-                }
+        //        }
 
-                protected override void GetResponseHeaders(CefResponse response, out long responseLength, out string redirectUrl)
-                {
-                    response.MimeType = "text/html";
-                    response.Status = 200;
-                    response.StatusText = "OK";
+        //        protected override void GetResponseHeaders(CefResponse response, out long responseLength, out string redirectUrl)
+        //        {
+        //            response.MimeType = "text/html";
+        //            response.Status = 200;
+        //            response.StatusText = "OK";
 
-                    var headers = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
-                    headers.Add("Cache-Control", "private");
-                    response.SetHeaderMap(headers);
+        //            var headers = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
+        //            headers.Add("Cache-Control", "private");
+        //            response.SetHeaderMap(headers);
 
-                    responseLength = FStream.Length;
-                    redirectUrl = null;
-                }
+        //            responseLength = FStream.Length;
+        //            redirectUrl = null;
+        //        }
 
-                protected override bool ProcessRequest(CefRequest request, CefCallback callback)
-                {
-                    callback.Continue();
-                    return true;
-                }
+        //        protected override bool ProcessRequest(CefRequest request, CefCallback callback)
+        //        {
+        //            callback.Continue();
+        //            return true;
+        //        }
 
-                protected override bool ReadResponse(Stream response, int bytesToRead, out int bytesRead, CefCallback callback)
-                {
-                    bytesRead = 0;
-                    while (bytesRead < bytesToRead)
-                    {
-                        var readCount = FStream.Read(FBuffer, 0, Math.Min(FBuffer.Length, bytesToRead));
-                        response.Write(FBuffer, 0, readCount);
-                        bytesRead += readCount;
-                    }
-                    return true;
-                }
-            }
+        //        protected override bool ReadResponse(Stream response, int bytesToRead, out int bytesRead, CefCallback callback)
+        //        {
+        //            bytesRead = 0;
+        //            while (bytesRead < bytesToRead)
+        //            {
+        //                var readCount = FStream.Read(FBuffer, 0, Math.Min(FBuffer.Length, bytesToRead));
+        //                response.Write(FBuffer, 0, readCount);
+        //                bytesRead += readCount;
+        //            }
+        //            return true;
+        //        }
+        //    }
 
-            private readonly WebClient FWebClient;
-            private readonly WebRenderer FRenderer;
+        //    private readonly WebClient FWebClient;
+        //    private readonly WebRenderer FRenderer;
 
-            public RequestHandler(WebClient webClient, WebRenderer renderer)
-            {
-                FWebClient = webClient;
-                FRenderer = renderer;
-            }
+        //    public RequestHandler(WebClient webClient, WebRenderer renderer)
+        //    {
+        //        FWebClient = webClient;
+        //        FRenderer = renderer;
+        //    }
 
-            protected override CefResourceHandler GetResourceHandler(CefBrowser browser, CefFrame frame, CefRequest request)
-            {
-                if (frame.IsMain && 
-                    request.Method == "GET" && 
-                    request.ResourceType == CefResourceType.MainFrame &&
-                    (request.TransitionType == CefTransitionType.Explicit || request.TransitionType == CefTransitionType.Reload))
-                {
-                    var html = FRenderer.CurrentHTML;
-                    if (html != null)
-                        return new HtmlStringResourceHandler(html);
-                }
-                return base.GetResourceHandler(browser, frame, request);
-            }
-        }
+        //    protected override CefResourceHandler GetResourceHandler(CefBrowser browser, CefFrame frame, CefRequest request)
+        //    {
+        //        if (frame.IsMain && 
+        //            request.Method == "GET" && 
+        //            request.ResourceType == CefResourceType.MainFrame &&
+        //            (request.TransitionType == CefTransitionType.Explicit || request.TransitionType == CefTransitionType.Reload))
+        //        {
+        //            var html = FRenderer.CurrentHTML;
+        //            if (html != null)
+        //                return new HtmlStringResourceHandler(html);
+        //        }
+        //        return base.GetResourceHandler(browser, frame, request);
+        //    }
+        //}
         
         class LifeSpanHandler : CefLifeSpanHandler
         {
@@ -203,7 +201,7 @@ namespace VL.CEF
                 FRenderer = renderer;
             }
 
-            protected override bool OnBeforePopup(CefBrowser browser, CefFrame frame, string targetUrl, string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture, CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings, ref bool noJavascriptAccess)
+            protected override bool OnBeforePopup(CefBrowser browser, CefFrame frame, string targetUrl, string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture, CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings, ref CefDictionaryValue extraInfo, ref bool noJavascriptAccess)
             {
                 FRenderer.LoadUrl(targetUrl);
                 return true;
@@ -280,7 +278,7 @@ namespace VL.CEF
                         Trace.TraceWarning(m);
                         break;
                     case CefLogSeverity.Error:
-                    case CefLogSeverity.ErrorReport:
+                    case CefLogSeverity.Fatal:
                         Trace.TraceError(m);
                         break;
                 }
@@ -301,7 +299,7 @@ namespace VL.CEF
         {
             FRenderer = renderer;
             FRenderHandler = new RenderHandler(renderer);
-            FRequestHandler = new RequestHandler(this, renderer);
+            //FRequestHandler = new RequestHandler(this, renderer);
             FLifeSpanHandler = new LifeSpanHandler(this, renderer);
             FLoadHandler = new LoadHandler(renderer);
             FKeyboardHandler = new KeyboardHandler();
@@ -354,15 +352,11 @@ namespace VL.CEF
             return FRenderHandler;
         }
 
-        protected override bool OnProcessMessageReceived(CefBrowser browser, CefProcessId sourceProcess, CefProcessMessage message)
+        protected override bool OnProcessMessageReceived(CefBrowser browser, CefFrame frame, CefProcessId sourceProcess, CefProcessMessage message)
         {
-            long identifier;
-            CefFrame frame;
             switch (message.Name)
             {
                 case "dom-response":
-                    identifier = message.GetFrameIdentifier();
-                    frame = browser.GetFrame(identifier);
                     if (frame != null)
                     {
                         var arguments = message.Arguments;
@@ -378,8 +372,6 @@ namespace VL.CEF
                     }
                     return true;
                 case "document-size-response":
-                    identifier = message.GetFrameIdentifier();
-                    frame = browser.GetFrame(identifier);
                     if (frame != null)
                     {
                         var arguments = message.Arguments;
@@ -389,8 +381,6 @@ namespace VL.CEF
                     }
                     return true;
                 case "receive-data":
-                    identifier = message.GetFrameIdentifier();
-                    frame = browser.GetFrame(identifier);
                     if (frame != null)
                     {
                         var arguments = message.Arguments;
@@ -404,7 +394,7 @@ namespace VL.CEF
                 default:
                     break;
             }
-            return base.OnProcessMessageReceived(browser, sourceProcess, message);
+            return base.OnProcessMessageReceived(browser, frame, sourceProcess, message);
         }
     }
 }

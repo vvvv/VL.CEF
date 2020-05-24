@@ -9,6 +9,9 @@ using System.Reactive.Subjects;
 using VL.Lib.Basics.Imaging;
 using Xenko.Core.Mathematics;
 using VL.Core;
+using SharpDX.Direct3D11;
+using VL.Lib.Basics.Resources;
+using MapMode = VL.Core.MapMode;
 
 namespace VL.CEF
 {
@@ -25,6 +28,8 @@ namespace VL.CEF
         private readonly IDisposable FRuntimeHandle;
         private readonly WebClient FWebClient;
         private readonly Subject<IImage> FImages = new Subject<IImage>();
+        private readonly Subject<Texture2D> FTextures = new Subject<Texture2D>();
+        private readonly IResourceHandle<Device> FDeviceHandle;
         private CefBrowser FBrowser;
         private CefRequestContext FRequestContext;
         private CefBrowserHost FBrowserHost;
@@ -49,9 +54,15 @@ namespace VL.CEF
         /// cannot generate frames at the requested rate. The minimum value is 1 and the 
         /// maximum value is 60 (default 30).
         /// </param>
-        public WebRenderer(int frameRate = 30)
+        public WebRenderer(NodeContext nodeContext, bool sharedTextureEnabled = false, int frameRate = 30)
         {
             FRuntimeHandle = CefExtensions.GetRuntimeProvider().GetHandle();
+
+            if (sharedTextureEnabled)
+            {
+                var deviceProvider = nodeContext.Factory.CreateService<IResourceProvider<Device>>(nodeContext);
+                FDeviceHandle = deviceProvider.GetHandle();
+            }
 
             FrameRate = VLMath.Clamp(frameRate, MIN_FRAME_RATE, MAX_FRAME_RATE);
 
@@ -67,6 +78,7 @@ namespace VL.CEF
             settings.WindowlessFrameRate = VLMath.Clamp(frameRate, MIN_FRAME_RATE, MAX_FRAME_RATE);
 
             var windowInfo = CefWindowInfo.Create();
+            windowInfo.SharedTextureEnabled = sharedTextureEnabled;
             windowInfo.SetAsWindowless(IntPtr.Zero, true);
 
             FWebClient = new WebClient(this);
@@ -78,12 +90,14 @@ namespace VL.CEF
                 IgnoreCertificateErrors = true
             };
             FRequestContext = CefRequestContext.CreateContext(rcSettings, new WebClient.RequestContextHandler());
-            CefBrowserHost.CreateBrowser(windowInfo, FWebClient, settings, FRequestContext);
+            CefBrowserHost.CreateBrowser(windowInfo, FWebClient, settings, "about:blank", requestContext: FRequestContext);
             // Block until browser is created
             FBrowserAttachedEvent.WaitOne();
         }
 
         public int FrameRate { get; private set; }
+
+        public IObservable<Texture2D> Textures => FTextures;
 
         public IObservable<IImage> Images => FImages;
 
@@ -111,6 +125,7 @@ namespace VL.CEF
             FMouseSubscription?.Dispose();
             FKeyboardSubscription?.Dispose();
             FRuntimeHandle.Dispose();
+            FDeviceHandle?.Dispose();
         }
 
         public void LoadUrl(string url)
@@ -192,7 +207,7 @@ namespace VL.CEF
         {
             var request = CefProcessMessage.Create("dom-request");
             request.SetFrameIdentifier(frame.Identifier);
-            FBrowser.SendProcessMessage(CefProcessId.Renderer, request);
+            frame.SendProcessMessage(CefProcessId.Renderer, request);
         }
 
         internal void OnUpdateDom(XDocument dom)
@@ -215,7 +230,7 @@ namespace VL.CEF
             {
                 var request = CefProcessMessage.Create("document-size-request");
                 request.SetFrameIdentifier(frame.Identifier);
-                FBrowser.SendProcessMessage(CefProcessId.Renderer, request);
+                frame.SendProcessMessage(CefProcessId.Renderer, request);
             }
         }
 
@@ -538,14 +553,40 @@ namespace VL.CEF
                 Reset();
         }
 
-        internal void Paint(CefRectangle[] cefRects, IntPtr buffer, int stride, int width, int height)
+        internal void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
         {
             // Do nothing if disabled
-            if (!FEnabled) return;
+            if (!FEnabled) 
+                return;
+
             // If auto size is enabled ignore paint calls as long as document size is invalid
-            if (IsAutoSize && !FDocumentSizeIsValid) return;
-            var image = buffer.ToImage(stride * height, width, height, PixelFormat.B8G8R8A8);
-            FImages.OnNext(image);
+            if (IsAutoSize && !FDocumentSizeIsValid) 
+                return;
+
+            if (type == CefPaintElementType.View)
+            {
+                using var image = buffer.ToImage(4 * width * height, width, height, PixelFormat.B8G8R8A8);
+                FImages.OnNext(image);
+            }
+        }
+
+        internal void OnAcceleratedPain(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+        {
+            // Do nothing if disabled
+            if (!FEnabled)
+                return;
+
+            // If auto size is enabled ignore paint calls as long as document size is invalid
+            if (IsAutoSize && !FDocumentSizeIsValid) 
+                return;
+
+            if (type == CefPaintElementType.View)
+            {
+                var device = FDeviceHandle.Resource;
+
+                using var texture = device.OpenSharedResource<Texture2D>(sharedHandle);
+                FTextures.OnNext(texture);
+            }
         }
     }
 }

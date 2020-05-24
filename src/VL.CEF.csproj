@@ -10,6 +10,7 @@
     <PackageRepositories>$(MsBuildThisFileDirectory)..\..\</PackageRepositories>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Platforms>x64;x86</Platforms>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Platform)' == 'x86'">
@@ -21,12 +22,22 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.1.91">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
     <PackageReference Include="VL.Core" Version="2020.1.0" />
-    <PackageReference Include="VVVV.Cef.Binaries" Version="3.3359.1772" />
-    <PackageReference Include="VVVV.Cef.Xilium.CefGlue" Version="3.3359.1772" GeneratePathProperty="true" />
   </ItemGroup>
+
+  <Target Name="CopyPackageContent" AfterTargets="Build">
+    <ItemGroup>
+      <CefBinaries Include="$(PkgCefGlue_Common)\lib\net472\x64\**" />
+      <CefBinaries Include="$(Pkgcef_redist_x64)\CEF\**" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(CefBinaries)" DestinationFiles="@(CefBinaries->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
 </Project>

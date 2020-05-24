@@ -181,7 +181,7 @@ namespace VL.CEF
                                 {
                                     args.SetInt(2, arguments[0].GetIntValue());
                                     args.SetInt(3, arguments[1].GetIntValue());
-                                    Browser.SendProcessMessage(CefProcessId.Browser, message);
+                                    Frame.SendProcessMessage(CefProcessId.Browser, message);
                                 }
                                 returnValue = null;
                                 exception = null;
@@ -217,7 +217,7 @@ namespace VL.CEF
                                         args.SetString(2, "dict");
                                         args.SetDictionary(3, value);
                                     }
-                                    Browser.SendProcessMessage(CefProcessId.Browser, message);
+                                    Frame.SendProcessMessage(CefProcessId.Browser, message);
                                 }
                                 returnValue = null;
                                 exception = null;
@@ -295,21 +295,19 @@ namespace VL.CEF
                 base.OnRenderThreadCreated(extraInfo);
             }
 
-            protected override bool OnProcessMessageReceived(CefBrowser browser, CefProcessId sourceProcess, CefProcessMessage message)
+            protected override bool OnProcessMessageReceived(CefBrowser browser, CefFrame frame, CefProcessId sourceProcess, CefProcessMessage message)
             {
                 long identifier;
                 switch (message.Name)
                 {
                     case "dom-request":
-                        identifier = message.GetFrameIdentifier();
-                        HandleDomRequest(browser, sourceProcess, identifier);
+                        HandleDomRequest(browser, sourceProcess, frame);
                         return true;
                     case "document-size-request":
-                        identifier = message.GetFrameIdentifier();
-                        HandleDocumentSizeRequest(browser, sourceProcess, identifier);
+                        HandleDocumentSizeRequest(browser, sourceProcess, frame);
                         return true;
                     default:
-                        return base.OnProcessMessageReceived(browser, sourceProcess, message);
+                        return base.OnProcessMessageReceived(browser, frame, sourceProcess, message);
                 }
             }
 
@@ -332,34 +330,30 @@ namespace VL.CEF
                 base.OnContextCreated(browser, frame, context);
             }
 
-            private void HandleDomRequest(CefBrowser browser, CefProcessId sourceProcess, long frameIdentifier)
+            private void HandleDomRequest(CefBrowser browser, CefProcessId sourceProcess, CefFrame frame)
             {
                 var scheduler = GetTaskScheduler(CefThreadId.Renderer);
                 Task.Factory.StartNew(
                     () =>
                     {
-                        var frame = browser.GetFrame(frameIdentifier);
-                        if (frame != null)
+                        var visitor = new DomVisitor();
+                        frame.VisitDom(visitor);
+                        using (var response = CefProcessMessage.Create("dom-response"))
                         {
-                            var visitor = new DomVisitor();
-                            frame.VisitDom(visitor);
-                            using (var response = CefProcessMessage.Create("dom-response"))
+                            response.SetFrameIdentifier(frame.Identifier);
+                            using (var args = response.Arguments)
                             {
-                                response.SetFrameIdentifier(frame.Identifier);
-                                using (var args = response.Arguments)
+                                if (visitor.Result != null)
                                 {
-                                    if (visitor.Result != null)
-                                    {
-                                        args.SetBool(2, true);
-                                        args.SetString(3, visitor.Result.ToString());
-                                    }
-                                    else
-                                    {
-                                        args.SetBool(2, false);
-                                        args.SetString(3, visitor.Exception.ToString());
-                                    }
-                                    browser.SendProcessMessage(sourceProcess, response);
+                                    args.SetBool(2, true);
+                                    args.SetString(3, visitor.Result.ToString());
                                 }
+                                else
+                                {
+                                    args.SetBool(2, false);
+                                    args.SetString(3, visitor.Exception.ToString());
+                                }
+                                frame.SendProcessMessage(sourceProcess, response);
                             }
                         }
                     },
@@ -368,22 +362,18 @@ namespace VL.CEF
                     scheduler);
             }
 
-            private void HandleDocumentSizeRequest(CefBrowser browser, CefProcessId sourceProcess, long frameIdentifier)
+            private void HandleDocumentSizeRequest(CefBrowser browser, CefProcessId sourceProcess, CefFrame frame)
             {
                 var scheduler = GetTaskScheduler(CefThreadId.Renderer);
                 Task.Factory.StartNew(
                     () =>
                     {
-                        var frame = browser.GetFrame(frameIdentifier);
-                        if (frame != null)
-                        {
-                            var js = new StringBuilder();
-                            js.AppendLine("var body = document.body;");
-                            js.AppendLine("var width = body.scrollWidth;");
-                            js.AppendLine("var height = body.scrollHeight;");
-                            js.AppendLine(string.Format("window.{0}(width, height);", CustomCallbackHandler.ReportDocumentSize));
-                            frame.ExecuteJavaScript(js.ToString(), string.Empty, 0);
-                        }
+                        var js = new StringBuilder();
+                        js.AppendLine("var body = document.body;");
+                        js.AppendLine("var width = body.scrollWidth;");
+                        js.AppendLine("var height = body.scrollHeight;");
+                        js.AppendLine(string.Format("window.{0}(width, height);", CustomCallbackHandler.ReportDocumentSize));
+                        frame.ExecuteJavaScript(js.ToString(), string.Empty, 0);
                     },
                     CancellationToken.None,
                     TaskCreationOptions.None,
@@ -391,11 +381,11 @@ namespace VL.CEF
             }
         }
 
-        protected override void OnRegisterCustomSchemes(CefSchemeRegistrar registrar)
-        {
-            registrar.AddCustomScheme(SchemeHandlerFactory.SCHEME_NAME, false, true, false, false, false, true);
-            base.OnRegisterCustomSchemes(registrar);
-        }
+        //protected override void OnRegisterCustomSchemes(CefSchemeRegistrar registrar)
+        //{
+        //    registrar.AddCustomScheme(SchemeHandlerFactory.SCHEME_NAME, CefSchemeOptions.Local | CefSchemeOptions.CspBypassing);
+        //    base.OnRegisterCustomSchemes(registrar);
+        //}
 
         protected override void OnBeforeCommandLineProcessing(string processType, CefCommandLine commandLine)
         {

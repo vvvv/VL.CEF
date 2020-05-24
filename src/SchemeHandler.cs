@@ -52,6 +52,15 @@ namespace VL.CEF
             base.Dispose(disposing);
         }
 
+        protected override bool Open(CefRequest request, out bool handleRequest, CefCallback callback)
+        {
+            // Backwards compatibility. ProcessRequest will be called.
+            callback.Dispose();
+            handleRequest = false;
+            return false;
+        }
+
+        [Obsolete]
         protected override bool ProcessRequest(CefRequest request, CefCallback callback)
         {
             var urlString = request.Url;
@@ -121,6 +130,12 @@ namespace VL.CEF
             this.Close();
         }
 
+        protected override bool Skip(long bytesToSkip, out long bytesSkipped, CefResourceSkipCallback callback)
+        {
+            bytesSkipped = (long)CefErrorCode.Failed;
+            return false;
+        }
+
         protected override void GetResponseHeaders(CefResponse response, out long responseLength, out string redirectUrl)
         {
             responseLength = this.responseLength;
@@ -138,6 +153,15 @@ namespace VL.CEF
             response.MimeType = this.mimeType;
         }
 
+        protected override bool Read(Stream response, int bytesToRead, out int bytesRead, CefResourceReadCallback callback)
+        {
+            // Backwards compatibility. ReadResponse will be called.
+            callback.Dispose();
+            bytesRead = -1;
+            return false;
+        }
+
+        [Obsolete]
         protected override bool ReadResponse(Stream stream, int bytesToRead, out int bytesRead, CefCallback callback)
         {
             byte[] buffer = new byte[bytesToRead];
@@ -154,16 +178,6 @@ namespace VL.CEF
                 bytesRead = 0;
                 return false;
             }
-        }
-
-        protected override bool CanGetCookie(CefCookie cookie)
-        {
-            return false;
-        }
-
-        protected override bool CanSetCookie(CefCookie cookie)
-        {
-            return false;
         }
     }
 }
