@@ -8,9 +8,12 @@
     <OutputPath>bin\</OutputPath>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <PackageRepositories>$(MsBuildThisFileDirectory)..\..\</PackageRepositories>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Platforms>x64;x86</Platforms>
     <LangVersion>8.0</LangVersion>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    
+    <!-- We need the GenerateBuildDependencyFile target-->
+    <GenerateDependencyFile>true</GenerateDependencyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Platform)' == 'x86'">
@@ -22,17 +25,46 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" />
-    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.1.91">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" PrivateAssets="all" />
     <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
-    <PackageReference Include="VL.Core" Version="2020.1.0" />
+    <PackageReference Include="VL.Core" Version="2020.1.0" PrivateAssets="all" />
   </ItemGroup>
 
-  <Target Name="CopyPackageContent" AfterTargets="Build">
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetCustomLibPackageFiles</TargetsForTfmSpecificBuildOutput>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="GetCustomLibPackageFiles">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(PkgCefGlue_Common)\lib\net472\x64\**" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="GetCustomContentPackageFiles" DependsOnTargets="BuiltProjectOutputGroup;GenerateBuildDependencyFile">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(Pkgcef_redist_x64)\CEF\**">
+        <PackagePath>runtimes/win-x64/native</PackagePath>
+      </TfmSpecificPackageFile>
+      <!-- The browser subprocess needs all dlls -->
+      <TfmSpecificPackageFile Include="$(PkgCefGlue_Common)\lib\net472\x64\**">
+        <PackagePath>runtimes/win-x64/native</PackagePath>
+      </TfmSpecificPackageFile>
+      <TfmSpecificPackageFile Include="@(BuiltProjectOutputGroupOutput)">
+        <PackagePath>runtimes/win-x64/native</PackagePath>
+      </TfmSpecificPackageFile>
+      <TfmSpecificPackageFile Include="@(RuntimeCopyLocalItems)">
+        <PackagePath>runtimes/win-x64/native</PackagePath>
+      </TfmSpecificPackageFile>
+      <!-- VL files -->
+      <TfmSpecificPackageFile Include="..\**\*.vl">
+        <PackagePath></PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="CopyCustomPackageFiles" AfterTargets="Build">
     <ItemGroup>
       <CefBinaries Include="$(PkgCefGlue_Common)\lib\net472\x64\**" />
       <CefBinaries Include="$(Pkgcef_redist_x64)\CEF\**" />

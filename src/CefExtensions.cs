@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reflection;
@@ -37,6 +38,14 @@ namespace VL.CEF
 #else
             cefSettings.LogSeverity = CefLogSeverity.Disable;
 #endif
+
+                    // Check if we're in package (different folder layout)
+                    var filename = Path.GetFileName(cefSettings.BrowserSubprocessPath);
+                    var toolsPath = Path.Combine(Path.GetDirectoryName(cefSettings.BrowserSubprocessPath), "..", "..", "runtimes", "win-x64", "native", filename);
+                    if (File.Exists(toolsPath))
+                    {
+                        cefSettings.BrowserSubprocessPath = toolsPath;
+                    }
 
                     var args = Environment.GetCommandLineArgs();
                     var mainArgs = new CefMainArgs(args);
