@@ -25,10 +25,22 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" PrivateAssets="all" />
-    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" PrivateAssets="all" />
-    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
     <PackageReference Include="VL.Core" Version="2020.1.0" PrivateAssets="all" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+  </ItemGroup>
+  
+  <!-- Manual fix for Cef packages -->
+  <ItemGroup>
+    <Reference Include="Xilium.CefGlue">
+      <HintPath>$(PkgCefGlue_Common)\lib\net472\x64\Xilium.CefGlue.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Xilium.CefGlue.Common">
+      <HintPath>$(PkgCefGlue_Common)\lib\net472\x64\Xilium.CefGlue.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
 
   <PropertyGroup>
