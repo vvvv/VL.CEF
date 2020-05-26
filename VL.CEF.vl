@@ -37,6 +37,7 @@
               <Pin Id="HgJkpKqacIVMAR4ooGHDxV" Name="Size" Kind="InputPin" />
               <Pin Id="Du0MPlvXc3rK9qsTTZmLZ5" Name="Mouse Events" Kind="InputPin" />
               <Pin Id="VkBte4U4Dj6OMmKo9yFboQ" Name="Key Events" Kind="InputPin" />
+              <Pin Id="H6CDW1z86j2OncXrFGxnf6" Name="Touch Events" Kind="InputPin" />
               <Pin Id="H9UD7a05AsnQWsMCwxBkMM" Name="Renderer" Kind="OutputPin" />
               <Pin Id="U4czRDeINMyPGCziFmCDwY" Name="Is Loading" Kind="OutputPin" />
               <Pin Id="HzXfNESIRs4LV9zLgvrI0s" Name="Loaded" Kind="OutputPin" />
@@ -63,6 +64,7 @@
             <Pin Id="DFMGt6rZLdoMNQmaNZtDYv" Name="Size" Kind="InputPin" />
             <Pin Id="StNbCbtL47GNhn3CUGfPIV" Name="Mouse Events" Kind="InputPin" />
             <Pin Id="GtVK8YBx9PxOnOMfdVeqOP" Name="Key Events" Kind="InputPin" />
+            <Pin Id="R27N1wtodrTPhEODw91L9L" Name="Touch Events" Kind="InputPin" />
             <Pin Id="BqXaJhKBrUMMETCqh6oKCg" Name="Frames" Kind="OutputPin" Bounds="836,530" />
             <Pin Id="MBUIopNyE2EL3gHCCNxSX4" Name="Is Loading" Kind="OutputPin" />
             <Pin Id="Fvf5E1863z7NU35raMIGWo" Name="Loaded" Kind="OutputPin" />
@@ -165,6 +167,7 @@
               <Pin Id="EH0kcef495PL2NBygRr98R" Name="Size" Kind="InputPin" />
               <Pin Id="NgpijX4OynjOmB7bfNwolM" Name="Mouse Events" Kind="InputPin" />
               <Pin Id="DFta8NsqktJQdsuArGFGFJ" Name="Key Events" Kind="InputPin" />
+              <Pin Id="VUVHLIitEZ3N6dMXLtBSnT" Name="Touch Events" Kind="InputPin" />
               <Pin Id="S17oZlNhYSiNRxsaJyGfs2" Name="Frames" Kind="OutputPin" />
               <Pin Id="CnZkN5RwZNPLHbWAnYzJUw" Name="Is Loading" Kind="OutputPin" />
               <Pin Id="GrDAtBcWRgQOowUkYqHkwy" Name="Loaded" Kind="OutputPin" />
@@ -201,6 +204,7 @@
             <Pin Id="SZyvggfgyhRK9xnaoe4sha" Name="Size" Kind="InputPin" />
             <Pin Id="OkRZwIWyS8lPykQg3JG6Kn" Name="Mouse Events" Kind="InputPin" />
             <Pin Id="OM4kVc8jzdQPzesYrA1MZA" Name="Key Events" Kind="InputPin" />
+            <Pin Id="OpZgGHFR8UXOR7iiha7lus" Name="Touch Events" Kind="InputPin" />
             <Pin Id="GwQAqg1M7glOBC7pLvbYyz" Name="Frame" Kind="OutputPin" Bounds="428,490" />
             <Pin Id="Af0dwlSeOg5Mm0DTNSEOFU" Name="Is Loading" Kind="OutputPin" />
             <Pin Id="LF9P7MZt7KEMifYlUTF6NQ" Name="Loaded" Kind="OutputPin" />
@@ -331,6 +335,17 @@
             <ControlPoint Id="TDHp2wc7KVdPcHSilPIYDr" Bounds="760,711" />
             <ControlPoint Id="E86BA9yueVtNWYFCx4tKXH" Bounds="506,130" />
             <ControlPoint Id="FUhX1u768WhNg7iPuwVzJj" Bounds="664,133" />
+            <Pad Id="E2CaqstpY7dLowD86VGKMK" SlotId="H8CrvFEZvBvM8H0IXDIQgu" Bounds="1479,347" />
+            <Node Bounds="1479,388,64,26" Id="ISawh4HEoAYMutnAMSv63N">
+              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <Choice Kind="OperationCallFlag" Name="SetTouchEvents" />
+              </p:NodeReference>
+              <Pin Id="UqHi8OLygJ8Ojp4NmVijqX" Name="Input" Kind="StateInputPin" />
+              <Pin Id="HxknNgVTE9BOcmlKgOzmCo" Name="Value" Kind="InputPin" />
+              <Pin Id="GiNXKztS0nsLzvdyCBhfSj" Name="Output" Kind="StateOutputPin" />
+            </Node>
+            <ControlPoint Id="Q1yRSzKy9GxN7mZLqY0e19" Bounds="1587,305" />
           </Canvas>
           <Patch Id="K1Rm678fXEQNwgkwO8TeGg" Name="Create" ParticipatingElements="US7uwqfQCQ3NKQdSQFPDXI">
             <Pin Id="SqujQNoMa9WLZXbzB0aUsL" Name="Shared Texture Enabled" Kind="InputPin" Bounds="506,130" />
@@ -352,6 +367,7 @@
             <Pin Id="SYGNGo1LLpvN6MPweJEtqR" Name="Mouse Events" Kind="InputPin" Bounds="1069,277" />
             <Pin Id="C5Z3ynAhk4MMLKK0hg8Wut" Name="Key Events" Kind="InputPin" Bounds="1351,286" />
             <Pin Id="AridIl3QNuZP0r1UqgK4rO" Name="Renderer" Kind="OutputPin" Bounds="643,706" />
+            <Pin Id="TxybQJouvAjOn1iFkRQUah" Name="Touch Events" Kind="InputPin" Bounds="1587,305" />
           </Patch>
           <ProcessDefinition Id="CY72iJBNXouNXUJeR9Dhvb">
             <Fragment Id="DCeQvTb5oaPLJBx16K7umD" Patch="K1Rm678fXEQNwgkwO8TeGg" Enabled="true" />
@@ -387,6 +403,9 @@
           <Link Id="Gv76iigBIo5NHkK2JnFj3J" Ids="SqujQNoMa9WLZXbzB0aUsL,E86BA9yueVtNWYFCx4tKXH" IsHidden="true" />
           <Link Id="LAoK4Sl5UwRPbDI8YByU2s" Ids="FUhX1u768WhNg7iPuwVzJj,FjUKtbpOJl0MxRKHj4quW2" />
           <Link Id="POFKqAgy2WpOcj7RlbWxb7" Ids="Hbhe5iurs6KQGPcX3cdedx,FUhX1u768WhNg7iPuwVzJj" IsHidden="true" />
+          <Link Id="ESfAq5Lrr9YMcnZp6ZOxSq" Ids="E2CaqstpY7dLowD86VGKMK,UqHi8OLygJ8Ojp4NmVijqX" />
+          <Link Id="I2sCvVMEeU1LoKzbt9DfB2" Ids="Q1yRSzKy9GxN7mZLqY0e19,HxknNgVTE9BOcmlKgOzmCo" />
+          <Link Id="PAHsa0E9jWIQOnoAMaoAjg" Ids="TxybQJouvAjOn1iFkRQUah,Q1yRSzKy9GxN7mZLqY0e19" IsHidden="true" />
         </Patch>
       </Node>
       <!--
@@ -423,6 +442,7 @@
               <Pin Id="AYVdtCJydNoLIbGrr9ivQQ" Name="Size" Kind="InputPin" />
               <Pin Id="LJ8w5q3f151Mu3xyRBLu9M" Name="Mouse Events" Kind="InputPin" />
               <Pin Id="FcuL5nPstEzOLqUMdyERtJ" Name="Key Events" Kind="InputPin" />
+              <Pin Id="VoHrusOWoxUOrarxNmup5d" Name="Touch Events" Kind="InputPin" />
               <Pin Id="JY1pQm85vkaPRWQwi4RYOF" Name="Renderer" Kind="OutputPin" />
               <Pin Id="JiIfSr7e4ACLKyfOhg9aW9" Name="Is Loading" Kind="OutputPin" />
               <Pin Id="F3KtDY08pQiOoFmk7KGVzD" Name="Loaded" Kind="OutputPin" />

@@ -12,6 +12,9 @@ using VL.Core;
 using SharpDX.Direct3D11;
 using VL.Lib.Basics.Resources;
 using MapMode = VL.Core.MapMode;
+using VL.Lib.IO.Notifications;
+using VL.Lib.IO;
+using System.Reactive.Linq;
 
 namespace VL.CEF
 {
@@ -124,6 +127,7 @@ namespace VL.CEF
             FRequestContext.Dispose();
             FMouseSubscription?.Dispose();
             FKeyboardSubscription?.Dispose();
+            FTouchSubscription?.Dispose();
             FRuntimeHandle.Dispose();
             FDeviceHandle?.Dispose();
         }
@@ -458,33 +462,181 @@ namespace VL.CEF
             }
         }
 
-        public IObservable<CefMouseEvent> MouseEvents
+        public IObservable<MouseNotification> MouseEvents
         {
             set
             {
                 if (value != FMouseEvents)
                 {
                     FMouseEvents = value;
-                    FMouseSubscription = value.Subscribe(mouseEvent => FBrowserHost.SendMouseMoveEvent(mouseEvent, false));
+                    var mouse = new Mouse(value, injectMouseClicks: false);
+                    FMouseSubscription = value.Subscribe(n =>
+                    {
+                        var mouseEvent = new CefMouseEvent((int)n.Position.X, (int)n.Position.Y, GetMouseModifiers(mouse, n));
+                        switch (n.Kind)
+                        {
+                            case MouseNotificationKind.MouseDown:
+                                var mouseDown = n as MouseDownNotification;
+                                FBrowserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseDown.Buttons), mouseUp: false, clickCount: 1);
+                                break;
+                            case MouseNotificationKind.MouseUp:
+                                var mouseUp = n as MouseUpNotification;
+                                FBrowserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseUp.Buttons), mouseUp: true, clickCount: 1);
+                                break;
+                            case MouseNotificationKind.MouseMove:
+                                FBrowserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: false);
+                                break;
+                            case MouseNotificationKind.MouseWheel:
+                                var mouseWheel = n as MouseWheelNotification;
+                                FBrowserHost.SendMouseWheelEvent(mouseEvent, 0, mouseWheel.WheelDelta);
+                                break;
+                            case MouseNotificationKind.MouseHorizontalWheel:
+                                var mouseHWheel = n as MouseHorizontalWheelNotification;
+                                FBrowserHost.SendMouseWheelEvent(mouseEvent, mouseHWheel.WheelDelta, 0);
+                                break;
+                            case MouseNotificationKind.MouseClick:
+                                var mouseClick = n as MouseClickNotification;
+                                FBrowserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseClick.Buttons), mouseUp: false, clickCount: mouseClick.ClickCount);
+                                break;
+                            case MouseNotificationKind.DeviceLost:
+                                FBrowserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: true);
+                                break;
+                            default:
+                                throw new NotImplementedException();
+                        }
+                    });
+                }
+
+                CefEventFlags GetMouseModifiers(Mouse mouse, MouseNotification n)
+                {
+                    var result = CefEventFlags.None;
+
+                    var buttons = mouse.PressedButtons;
+                    if ((buttons & MouseButtons.Left) != 0)
+                        result |= CefEventFlags.LeftMouseButton;
+                    if ((buttons & MouseButtons.Middle) != 0)
+                        result |= CefEventFlags.MiddleMouseButton;
+                    if ((buttons & MouseButtons.Right) != 0)
+                        result |= CefEventFlags.RightMouseButton;
+
+                    if (n.AltKey)
+                        result |= CefEventFlags.AltDown;
+                    if (n.CtrlKey)
+                        result |= CefEventFlags.ControlDown;
+                    if (n.ShiftKey)
+                        result |= CefEventFlags.ShiftDown;
+
+                    return result;
+                }
+
+                CefMouseButtonType GetMouseButtonType(MouseButtons buttons)
+                {
+                    if ((buttons & MouseButtons.Left) != 0)
+                        return CefMouseButtonType.Left;
+                    if ((buttons & MouseButtons.Middle) != 0)
+                        return CefMouseButtonType.Middle;
+                    if ((buttons & MouseButtons.Right) != 0)
+                        return CefMouseButtonType.Right;
+                    return default;
                 }
             }
         }
-        IObservable<CefMouseEvent> FMouseEvents;
+        IObservable<MouseNotification> FMouseEvents;
         IDisposable FMouseSubscription;
 
-        public IObservable<CefKeyEvent> KeyboardEvents
+        public IObservable<KeyNotification> KeyboardEvents
         {
             set
             {
                 if (value != FKeyboardEvents)
                 {
                     FKeyboardEvents = value;
-                    FKeyboardSubscription = value.Subscribe(keyEvent => FBrowserHost.SendKeyEvent(keyEvent));
+                    FKeyboard = new Keyboard(value);
+                    FKeyboardSubscription = FKeyboard.Notifications.Subscribe(n =>
+                    {
+                        var keyEvent = new CefKeyEvent()
+                        {
+                            Modifiers = (CefEventFlags)((int)(FKeyboard.Modifiers) >> 15)
+                        };
+                        switch (n.Kind)
+                        {
+                            case KeyNotificationKind.KeyDown:
+                                var keyDown = n as KeyDownNotification;
+                                keyEvent.EventType = CefKeyEventType.KeyDown;
+                                keyEvent.WindowsKeyCode = (int)keyDown.KeyCode;
+                                keyEvent.NativeKeyCode = (int)keyDown.KeyCode;
+                                break;
+                            case KeyNotificationKind.KeyPress:
+                                var keyPress = n as KeyPressNotification;
+                                keyEvent.EventType = CefKeyEventType.Char;
+                                keyEvent.Character = keyPress.KeyChar;
+                                keyEvent.UnmodifiedCharacter = keyPress.KeyChar;
+                                keyEvent.WindowsKeyCode = (int)keyPress.KeyChar;
+                                keyEvent.NativeKeyCode = (int)keyPress.KeyChar;
+                                break;
+                            case KeyNotificationKind.KeyUp:
+                                var keyUp = n as KeyUpNotification;
+                                keyEvent.EventType = CefKeyEventType.KeyUp;
+                                keyEvent.WindowsKeyCode = (int)keyUp.KeyCode;
+                                keyEvent.NativeKeyCode = (int)keyUp.KeyCode;
+                                break;
+                            default:
+                                break;
+                        }
+                        FBrowserHost.SendKeyEvent(keyEvent);
+                    });
                 }
             }
         }
-        IObservable<CefKeyEvent> FKeyboardEvents;
+        IObservable<KeyNotification> FKeyboardEvents;
+        Keyboard FKeyboard = new Keyboard(Observable.Empty<KeyNotification>());
         IDisposable FKeyboardSubscription;
+
+        public IObservable<TouchNotification> TouchEvents
+        {
+            set
+            {
+                if (value != FTouchEvents)
+                {
+                    FTouchEvents = value;
+                    var touchDevice = new TouchDevice(value);
+                    FTouchSubscription = touchDevice.Notifications.Subscribe(n =>
+                    {
+                        var touchEvent = new CefTouchEvent()
+                        {
+                            Id = n.Id,
+                            Modifiers = (CefEventFlags)((int)(FKeyboard.Modifiers) >> 15),
+                            PointerType = CefPointerType.Touch,
+                            Pressure = 1f,
+                            RadiusX = n.ContactArea.X,
+                            RadiusY = n.ContactArea.Y,
+                            RotationAngle = 0,
+                            Type = GetTouchType(n.Kind),
+                            X = n.Position.X,
+                            Y = n.Position.Y
+                        };
+                        FBrowserHost.SendTouchEvent(touchEvent);
+                    });
+
+                    CefTouchEventType GetTouchType(TouchNotificationKind kind)
+                    {
+                        switch (kind)
+                        {
+                            case TouchNotificationKind.TouchDown:
+                                return CefTouchEventType.Pressed;
+                            case TouchNotificationKind.TouchUp:
+                                return CefTouchEventType.Released;
+                            case TouchNotificationKind.TouchMove:
+                                return CefTouchEventType.Moved;
+                            default:
+                                return CefTouchEventType.Cancelled;
+                        }
+                    }
+                }
+            }
+        }
+        IObservable<TouchNotification> FTouchEvents;
+        IDisposable FTouchSubscription;
 
         private bool FIsLoading;
         public bool IsLoading

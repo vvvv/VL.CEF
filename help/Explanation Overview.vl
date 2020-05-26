@@ -29,11 +29,12 @@
             </Pin>
             <Pin Id="OrtnkmVYVjnOeZ5xQhI73Y" Name="Mouse Events" Kind="InputPin" />
             <Pin Id="A1PAWykQHp6O6HlULb0Nw6" Name="Key Events" Kind="InputPin" />
+            <Pin Id="FsTJKA2a6ssPcOTKHOKsg6" Name="Touch Events" Kind="InputPin" />
             <Pin Id="AZW0Pnet894NzChysDGTgv" Name="Frame" Kind="OutputPin" />
             <Pin Id="Af38CWHdtJZNNZAjk2Xn56" Name="Is Loading" Kind="OutputPin" />
             <Pin Id="UpksFIduVRuNsRh5LwKaZE" Name="Loaded" Kind="OutputPin" />
           </Node>
-          <Node Bounds="349,495,145,19" Id="U6e2tK3rdsYPgkzJMBOPVI">
+          <Node Bounds="348,532,145,19" Id="U6e2tK3rdsYPgkzJMBOPVI">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
@@ -58,7 +59,7 @@
             <Pin Id="G9AN2x6uuGLOOOoTVX7i23" Name="ClientBounds" Kind="OutputPin" />
             <Pin Id="DDODvOi9rxAP2tGpx4tltJ" Name="Render Time" Kind="OutputPin" />
           </Node>
-          <Node Bounds="369,413,125,19" Id="CxT906uJ5jXO4oAj7f63Up">
+          <Node Bounds="369,408,125,19" Id="CxT906uJ5jXO4oAj7f63Up">
             <p:NodeReference LastCategoryFullName="Graphics.Skia.Layers" LastSymbolSource="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="DrawImage" />
@@ -91,6 +92,34 @@
             <Pin Id="ON0ayMN7EViNvAVvH49NP3" Name="Discard Higher Bits" Kind="InputPin" />
             <Pin Id="BrpnGAVLwCWPUUW8Xuw3jr" Name="Result" Kind="OutputPin" />
           </Node>
+          <Node Bounds="371,463" Id="UN00yNZpy3EPzui4PlLcRo">
+            <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Group" />
+            </p:NodeReference>
+            <Pin Id="GJV7MwLqX56Ox9BCyH4BLE" Name="Input" Kind="InputPin" />
+            <Pin Id="QRHrqJ9T8NcOPQWhwzy9h5" Name="Input 2" Kind="InputPin" />
+            <Pin Id="L6ILGfq1pfNOu1RQRGIiWT" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="648,134,65,19" Id="M8fe4SzwtuGPsevBkDxlk3">
+            <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Console" />
+            </p:NodeReference>
+            <Pin Id="QRyethaV6BDMAOFQiC3gsJ" Name="Output" Kind="OutputPin" />
+            <Pin Id="IUuu4uMlp5FOA4Uo45k0nm" Name="Mouse" Kind="OutputPin" />
+            <Pin Id="GWBOC7Zi9wYLKQdLnq1Pn5" Name="Keyboard" Kind="OutputPin" />
+            <Pin Id="LvJoDOl3jAqLgpOE7YgTT4" Name="Notifications" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="667,180,74,26" Id="Ozgeb1b8NZWLQYU0EFLFKo">
+            <p:NodeReference LastCategoryFullName="IO.Mouse.MouseDevice" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="MutableInterfaceType" Name="MouseDevice" />
+              <Choice Kind="OperationCallFlag" Name="Notifications" />
+            </p:NodeReference>
+            <Pin Id="DnQaTsNJtT2N9gyvAvLKtN" Name="Input" Kind="StateInputPin" />
+            <Pin Id="L2jh3LUldHmOEGrE4SvjYB" Name="Notifications" Kind="OutputPin" />
+          </Node>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -99,8 +128,12 @@
           <Fragment Id="FS8SLTMVNnnMxuHsD4JK5c" Patch="T5DV0xifO78P27haBv56J1" Enabled="true" />
         </ProcessDefinition>
         <Link Id="RNsPyyXtGvMMZi6CGCe5x6" Ids="BrpnGAVLwCWPUUW8Xuw3jr,Pb8ehWNEiz5PErrAnLtpFM" />
-        <Link Id="NtKjpFQDrO0OqpIJ9wuBo6" Ids="RDc9PxgiOhJOtmmXh6xX2K,BYoCNKXrtzaN3xZnODf2VZ" />
+        <Link Id="NtKjpFQDrO0OqpIJ9wuBo6" Ids="RDc9PxgiOhJOtmmXh6xX2K,GJV7MwLqX56Ox9BCyH4BLE" />
         <Link Id="DqQQBcWBOtMND3dGMCqwOy" Ids="AZW0Pnet894NzChysDGTgv,DQGK5oDfhNnOm1YzdzVDJR" />
+        <Link Id="DjnkY6hZ4mmNElAQxP0b4w" Ids="L6ILGfq1pfNOu1RQRGIiWT,BYoCNKXrtzaN3xZnODf2VZ" />
+        <Link Id="MwiuLevTAMJN02FjovB2vD" Ids="QRyethaV6BDMAOFQiC3gsJ,QRHrqJ9T8NcOPQWhwzy9h5" />
+        <Link Id="KlW8vpvYcpYP7hCnAeC7Ya" Ids="IUuu4uMlp5FOA4Uo45k0nm,DnQaTsNJtT2N9gyvAvLKtN" />
+        <Link Id="MtC6boiGF76OXroMTVcuFJ" Ids="L2jh3LUldHmOEGrE4SvjYB,OrtnkmVYVjnOeZ5xQhI73Y" />
       </Patch>
     </Node>
   </Patch>
