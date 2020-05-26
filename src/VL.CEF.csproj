@@ -3,18 +3,36 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
     <OutputType>WinExe</OutputType>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Platforms>x64;x86</Platforms>
+    
+    <LangVersion>8.0</LangVersion>
+    
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>bin\</OutputPath>
-    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    
+    <!-- Passed to vvvv.exe -->
     <PackageRepositories>$(MsBuildThisFileDirectory)..\..\</PackageRepositories>
     <OverviewPatch>$(MsBuildThisFileDirectory)..\help\Explanation Overview.vl</OverviewPatch>
-    <Platforms>x64;x86</Platforms>
-    <LangVersion>8.0</LangVersion>
-    <VersionPrefix>0.0.1</VersionPrefix>
+
+    <!-- Version information -->
+    <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
+    <VersionPrefix>0.0.2</VersionPrefix>
     
     <!-- We need the GenerateBuildDependencyFile target-->
     <GenerateDependencyFile>true</GenerateDependencyFile>
+
+    <!-- Package properties -->
+    <Authors>vvvv group</Authors>
+    <Owners>$(Authors)</Owners>
+    <Copyright>Copyright © $(Year) by $(Authors). All rights reserved.</Copyright>
+    <Description>Chromium Embedded Framework (CEF) for VL</Description>
+    <PackageProjectUrl>http://vvvv.org</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/vvvv/VL.CEF</RepositoryUrl>
+    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+    <PackageReleaseNotes>Popular nodes: WebRenderer</PackageReleaseNotes>
+    <PackageTags>VL;web;html;texture;vvvv</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Platform)' == 'x86'">
