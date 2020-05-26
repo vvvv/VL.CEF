@@ -386,6 +386,7 @@
           <Link Id="TIVhezNj2QwQRj8fry1kwU" Ids="GOmRCzokMIqPA7aZMzbziR,PADlyt8dFMSMFDhllz9lgx" IsHidden="true" />
           <Link Id="RiS3WIo4F3dM0Mo0Z5aJzX" Ids="JY1pQm85vkaPRWQwi4RYOF,HypQZJzWjMyQDDdq3v0LdH" />
           <Link Id="VeqHhFo1vCVNQTE0D4wmSg" Ids="IBpaQq4URSGP90OhELE81l,GcW7Bb6zT36OjU2VVjNN69" />
+          <Link Id="SF6pFK0cxK8Nw8YEqdZuFN" Ids="CrcwwUdYgd4O8r4KjGIw0K,GOmRCzokMIqPA7aZMzbziR" />
           <Patch Id="Ak9WvzmVjGoN4SsUn0lt5r" Name="Create">
             <Pin Id="D2ZjcRKWiaqLIfCUAh8Ech" Name="Frame Rate" Kind="InputPin" />
           </Patch>
@@ -394,12 +395,12 @@
             <Pin Id="GFhoOAYH8W3MZ15DnwwQKu" Name="Size" Kind="InputPin" />
             <Pin Id="RB9OkFi7XJcMuHwwgQ9prA" Name="Mouse Events" Kind="InputPin" />
             <Pin Id="GapkcU6eeXKPIrSkAPmOAt" Name="Key Events" Kind="InputPin" />
+            <Pin Id="HaurRHeAR62N94VDWktnKK" Name="Touch Events" Kind="InputPin" />
             <Pin Id="PADlyt8dFMSMFDhllz9lgx" Name="Frames" Kind="OutputPin" Bounds="836,530" />
             <Pin Id="NReAH2wSrZfNcxnBDaVmLo" Name="Is Loading" Kind="OutputPin" />
             <Pin Id="HITdSHuym2yOnsCOLmNZfo" Name="Loaded" Kind="OutputPin" />
           </Patch>
           <Patch Id="H598UxtpFsePeL0xIJ9997" Name="Dispose" />
-          <Link Id="SF6pFK0cxK8Nw8YEqdZuFN" Ids="CrcwwUdYgd4O8r4KjGIw0K,GOmRCzokMIqPA7aZMzbziR" />
         </Patch>
       </Node>
     </Canvas>
@@ -424,7 +425,6 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="DPI4tlEmYAyLLILPPUkSTl" Location="VL.Skia" Version="2020.1.0" />
   <PlatformDependency Id="UEg695aV6JdOmhDK4DFcMP" Location="./src/bin/VL.CEF.exe" />
   <PlatformDependency Id="IhtJTPQFyJfNdlzEkhQGYm" Location="./src/bin/Xilium.CefGlue.dll" />
 </Document>
