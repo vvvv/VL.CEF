@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Reactive.Subjects;
 using VL.Lib.Basics.Imaging;
-using Xenko.Core.Mathematics;
+using Stride.Core.Mathematics;
 using VL.Core;
 using SharpDX.Direct3D11;
 using VL.Lib.Basics.Resources;

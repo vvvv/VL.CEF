@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2020.1.0.53" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2020.1.0" />
+<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2020.2.0.217" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2020.2.0-0217-g78b13ed816" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -175,7 +175,7 @@
             </Node>
             <ControlPoint Id="Jtk0TpwDqppLM7yi1iuQAb" Bounds="632,268" />
             <Node Bounds="558,319,88,86" Id="NK5A1JCrNZaOqVbTBAxoS9">
-              <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+              <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="VL.CoreLib.dll">
                 <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
                 <Choice Kind="ProcessStatefulRegion" Name="Cache" />
                 <FullNameCategoryReference ID="Primitive" />
