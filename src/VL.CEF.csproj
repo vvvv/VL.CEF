@@ -18,7 +18,7 @@
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <VersionPrefix>0.0.2</VersionPrefix>
+    <VersionPrefix>0.0.3</VersionPrefix>
     
     <!-- We need the GenerateBuildDependencyFile target-->
     <GenerateDependencyFile>true</GenerateDependencyFile>

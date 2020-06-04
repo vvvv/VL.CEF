@@ -15,6 +15,7 @@ using MapMode = VL.Core.MapMode;
 using VL.Lib.IO.Notifications;
 using VL.Lib.IO;
 using System.Reactive.Linq;
+using SharpDX;
 
 namespace VL.CEF
 {
@@ -736,8 +737,18 @@ namespace VL.CEF
             {
                 var device = FDeviceHandle.Resource;
 
-                using var texture = device.OpenSharedResource<Texture2D>(sharedHandle);
-                FTextures.OnNext(texture);
+                var texture = device.OpenSharedResource<Texture2D>(sharedHandle);
+                try
+                {
+                    FTextures.OnNext(texture);
+                }
+                finally
+                {
+                    // Disposing would make the managed object unusable for a consumer.
+                    // So instead we simply decrease the reference count on the native resource.
+                    var unknown = texture as IUnknown;
+                    unknown.Release();
+                }
             }
         }
     }
