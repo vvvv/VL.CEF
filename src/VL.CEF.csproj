@@ -46,9 +46,8 @@
   <ItemGroup>
     <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
     <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
-    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
-    <PackageReference Include="VL.Core" Version="2020.1.0" PrivateAssets="all" />
-    <PackageReference Include="VL.UI.Core" Version="2020.1.0" PrivateAssets="all" />
+    <PackageReference Include="VL.Skia" Version="2020.2.0-0248-g3050946883" />
+    <PackageReference Include="VL.Stride.Runtime" Version="0.7.298-gf81d04748f" ExcludeAssets="build;buildTransitive" PrivateAssets="all" />
   </ItemGroup>
   
   <!-- Manual fix for Cef packages -->

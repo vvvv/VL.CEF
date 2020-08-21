@@ -18,8 +18,7 @@ namespace VL.CEF
                 factory.RegisterService<NodeContext, IResourceProvider<Device>>(nodeContext =>
                 {
                     // One per entry point
-                    var key = nodeContext.Path.Stack.Last();
-                    return ResourceProvider.NewPooled(key, _ => new Device(DriverType.Hardware, DeviceCreationFlags.BgraSupport | DeviceCreationFlags.VideoSupport));
+                    return ResourceProvider.NewPooledPerApp(nodeContext, () => new Device(DriverType.Hardware, DeviceCreationFlags.BgraSupport | DeviceCreationFlags.VideoSupport));
                 });
             }
         }

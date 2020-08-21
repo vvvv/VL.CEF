@@ -5,6 +5,8 @@ using System.IO;
 using System.Text;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using Stride.Core.Mathematics;
+using NuGet;
 
 namespace VL.CEF
 {
@@ -42,14 +44,19 @@ namespace VL.CEF
 
             protected override void GetViewRect(CefBrowser browser, out CefRectangle rect)
             {
-                var width = Math.Max(1, (int)FRenderer.Size.X);
-                var height = Math.Max(1, (int)FRenderer.Size.Y);
+                var logicalSize = FRenderer.Size.DeviceToLogical(FRenderer.ScaleFactor);
+                var width = Math.Max(1, (int)Math.Ceiling(logicalSize.X));
+                var height = Math.Max(1, (int)Math.Ceiling(logicalSize.Y));
                 rect = new CefRectangle(0, 0, width, height);
             }
 
             protected override bool GetScreenPoint(CefBrowser browser, int viewX, int viewY, ref int screenX, ref int screenY)
             {
-                return base.GetScreenPoint(browser, viewX, viewY, ref screenX, ref screenY);
+                var viewPoint = new Vector2(viewX, viewY);
+                var screenPoint = viewPoint.LogicalToDevice(FRenderer.ScaleFactor);
+                screenX = (int)screenPoint.X;
+                screenY = (int)screenPoint.Y;
+                return true;
             }
 
             protected override void OnCursorChange(CefBrowser browser, IntPtr cursorHandle, CefCursorType type, CefCursorInfo customCursorInfo)
@@ -69,7 +76,7 @@ namespace VL.CEF
 
             protected override void OnAcceleratedPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
             {
-                FRenderer.OnAcceleratedPain(browser, type, dirtyRects, sharedHandle);
+                FRenderer.OnAcceleratedPaint(browser, type, dirtyRects, sharedHandle);
             }
 
             protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr buffer, int width, int height)
@@ -79,7 +86,13 @@ namespace VL.CEF
 
             protected override bool GetScreenInfo(CefBrowser browser, CefScreenInfo screenInfo)
             {
-                return false;
+                GetViewRect(browser, out var viewRect);
+
+                screenInfo.DeviceScaleFactor = FRenderer.ScaleFactor;
+                screenInfo.Rectangle = viewRect;
+                screenInfo.AvailableRectangle = viewRect;
+
+                return true;
             }
 
             protected override void OnScrollOffsetChanged(CefBrowser browser, double x, double y)

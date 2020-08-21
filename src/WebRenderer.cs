@@ -3,14 +3,9 @@ using Xilium.CefGlue;
 using System.Globalization;
 using System.Xml.Linq;
 using System.Threading;
-using System.Diagnostics;
 using System.Windows.Forms;
-using System.Reactive.Subjects;
-using VL.Lib.Basics.Imaging;
-using Xenko.Core.Mathematics;
+using Stride.Core.Mathematics;
 using VL.Core;
-using SharpDX.Direct3D11;
-using VL.Lib.Basics.Resources;
 using MapMode = VL.Core.MapMode;
 using VL.Lib.IO.Notifications;
 using VL.Lib.IO;
@@ -18,24 +13,19 @@ using System.Reactive.Linq;
 
 namespace VL.CEF
 {
-    public class WebRenderer : IDisposable
+    public abstract class WebRenderer : IDisposable
     {
         public const string DEFAULT_URL = "http://vvvv.org";
         public const string DEFAULT_CONTENT = @"<html><head></head><body bgcolor=""#ffffff""></body></html>";
         public const int DEFAULT_WIDTH = 800;
         public const int DEFAULT_HEIGHT = 600;
-        public const int MIN_FRAME_RATE = 1;
-        public const int MAX_FRAME_RATE = 60;
 
         private volatile bool FEnabled = true;
         private readonly IDisposable FRuntimeHandle;
         private readonly WebClient FWebClient;
-        private readonly Subject<IImage> FImages = new Subject<IImage>();
-        private readonly Subject<Texture2D> FTextures = new Subject<Texture2D>();
-        private readonly IResourceHandle<Device> FDeviceHandle;
         private CefBrowser FBrowser;
         private CefRequestContext FRequestContext;
-        private CefBrowserHost FBrowserHost;
+        protected CefBrowserHost FBrowserHost;
         private string FUrl;
         private string FHtml;
         private bool FDomIsValid;
@@ -57,17 +47,9 @@ namespace VL.CEF
         /// cannot generate frames at the requested rate. The minimum value is 1 and the 
         /// maximum value is 60 (default 30).
         /// </param>
-        public WebRenderer(NodeContext nodeContext, bool sharedTextureEnabled = false, int frameRate = 30)
+        public WebRenderer(NodeContext nodeContext, bool sharedTextureEnabled = false)
         {
             FRuntimeHandle = CefExtensions.GetRuntimeProvider().GetHandle();
-
-            if (sharedTextureEnabled)
-            {
-                var deviceProvider = nodeContext.Factory.CreateService<IResourceProvider<Device>>(nodeContext);
-                FDeviceHandle = deviceProvider.GetHandle();
-            }
-
-            FrameRate = VLMath.Clamp(frameRate, MIN_FRAME_RATE, MAX_FRAME_RATE);
 
             FLoaded = false;
 
@@ -78,9 +60,9 @@ namespace VL.CEF
             settings.UniversalAccessFromFileUrls = CefState.Enabled;
             settings.WebGL = CefState.Enabled;
             settings.WebSecurity = CefState.Disabled;
-            settings.WindowlessFrameRate = VLMath.Clamp(frameRate, MIN_FRAME_RATE, MAX_FRAME_RATE);
 
             var windowInfo = CefWindowInfo.Create();
+            windowInfo.ExternalBeginFrameEnabled = true;
             windowInfo.SharedTextureEnabled = sharedTextureEnabled;
             windowInfo.SetAsWindowless(IntPtr.Zero, true);
 
@@ -98,12 +80,6 @@ namespace VL.CEF
             FBrowserAttachedEvent.WaitOne();
         }
 
-        public int FrameRate { get; private set; }
-
-        public IObservable<Texture2D> Textures => FTextures;
-
-        public IObservable<IImage> Images => FImages;
-
         internal void Attach(CefBrowser browser)
         {
             FBrowser = browser;
@@ -118,18 +94,14 @@ namespace VL.CEF
             FBrowserDetachedEvent.Set();
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             FBrowserHost.CloseBrowser(true);
             FBrowserDetachedEvent.WaitOne();
             FBrowserAttachedEvent.Dispose();
             FBrowserDetachedEvent.Dispose();
             FRequestContext.Dispose();
-            FMouseSubscription?.Dispose();
-            FKeyboardSubscription?.Dispose();
-            FTouchSubscription?.Dispose();
             FRuntimeHandle.Dispose();
-            FDeviceHandle?.Dispose();
         }
 
         public void LoadUrl(string url)
@@ -405,6 +377,21 @@ namespace VL.CEF
             }
         }
 
+        public float ScaleFactor
+        {
+            get => scaleFactor;
+            set
+            {
+                if (value != scaleFactor)
+                {
+                    scaleFactor = value;
+                    FBrowserHost.NotifyScreenInfoChanged();
+                    FBrowserHost.WasResized();
+                }
+            }
+        }
+        float scaleFactor = 1f;
+
         public bool IsAutoWidth { get { return FSize.X <= 0; } }
         public bool IsAutoHeight { get { return FSize.Y <= 0; } }
         public bool IsAutoSize { get { return IsAutoWidth || IsAutoHeight; } }
@@ -461,182 +448,6 @@ namespace VL.CEF
                 }
             }
         }
-
-        public IObservable<MouseNotification> MouseEvents
-        {
-            set
-            {
-                if (value != FMouseEvents)
-                {
-                    FMouseEvents = value;
-                    var mouse = new Mouse(value, injectMouseClicks: false);
-                    FMouseSubscription = value.Subscribe(n =>
-                    {
-                        var mouseEvent = new CefMouseEvent((int)n.Position.X, (int)n.Position.Y, GetMouseModifiers(mouse, n));
-                        switch (n.Kind)
-                        {
-                            case MouseNotificationKind.MouseDown:
-                                var mouseDown = n as MouseDownNotification;
-                                FBrowserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseDown.Buttons), mouseUp: false, clickCount: 1);
-                                break;
-                            case MouseNotificationKind.MouseUp:
-                                var mouseUp = n as MouseUpNotification;
-                                FBrowserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseUp.Buttons), mouseUp: true, clickCount: 1);
-                                break;
-                            case MouseNotificationKind.MouseMove:
-                                FBrowserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: false);
-                                break;
-                            case MouseNotificationKind.MouseWheel:
-                                var mouseWheel = n as MouseWheelNotification;
-                                FBrowserHost.SendMouseWheelEvent(mouseEvent, 0, mouseWheel.WheelDelta);
-                                break;
-                            case MouseNotificationKind.MouseHorizontalWheel:
-                                var mouseHWheel = n as MouseHorizontalWheelNotification;
-                                FBrowserHost.SendMouseWheelEvent(mouseEvent, mouseHWheel.WheelDelta, 0);
-                                break;
-                            case MouseNotificationKind.MouseClick:
-                                var mouseClick = n as MouseClickNotification;
-                                FBrowserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseClick.Buttons), mouseUp: false, clickCount: mouseClick.ClickCount);
-                                break;
-                            case MouseNotificationKind.DeviceLost:
-                                FBrowserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: true);
-                                break;
-                            default:
-                                throw new NotImplementedException();
-                        }
-                    });
-                }
-
-                CefEventFlags GetMouseModifiers(Mouse mouse, MouseNotification n)
-                {
-                    var result = CefEventFlags.None;
-
-                    var buttons = mouse.PressedButtons;
-                    if ((buttons & MouseButtons.Left) != 0)
-                        result |= CefEventFlags.LeftMouseButton;
-                    if ((buttons & MouseButtons.Middle) != 0)
-                        result |= CefEventFlags.MiddleMouseButton;
-                    if ((buttons & MouseButtons.Right) != 0)
-                        result |= CefEventFlags.RightMouseButton;
-
-                    if (n.AltKey)
-                        result |= CefEventFlags.AltDown;
-                    if (n.CtrlKey)
-                        result |= CefEventFlags.ControlDown;
-                    if (n.ShiftKey)
-                        result |= CefEventFlags.ShiftDown;
-
-                    return result;
-                }
-
-                CefMouseButtonType GetMouseButtonType(MouseButtons buttons)
-                {
-                    if ((buttons & MouseButtons.Left) != 0)
-                        return CefMouseButtonType.Left;
-                    if ((buttons & MouseButtons.Middle) != 0)
-                        return CefMouseButtonType.Middle;
-                    if ((buttons & MouseButtons.Right) != 0)
-                        return CefMouseButtonType.Right;
-                    return default;
-                }
-            }
-        }
-        IObservable<MouseNotification> FMouseEvents;
-        IDisposable FMouseSubscription;
-
-        public IObservable<KeyNotification> KeyboardEvents
-        {
-            set
-            {
-                if (value != FKeyboardEvents)
-                {
-                    FKeyboardEvents = value;
-                    FKeyboard = new Keyboard(value);
-                    FKeyboardSubscription = FKeyboard.Notifications.Subscribe(n =>
-                    {
-                        var keyEvent = new CefKeyEvent()
-                        {
-                            Modifiers = (CefEventFlags)((int)(FKeyboard.Modifiers) >> 15)
-                        };
-                        switch (n.Kind)
-                        {
-                            case KeyNotificationKind.KeyDown:
-                                var keyDown = n as KeyDownNotification;
-                                keyEvent.EventType = CefKeyEventType.KeyDown;
-                                keyEvent.WindowsKeyCode = (int)keyDown.KeyCode;
-                                keyEvent.NativeKeyCode = (int)keyDown.KeyCode;
-                                break;
-                            case KeyNotificationKind.KeyPress:
-                                var keyPress = n as KeyPressNotification;
-                                keyEvent.EventType = CefKeyEventType.Char;
-                                keyEvent.Character = keyPress.KeyChar;
-                                keyEvent.UnmodifiedCharacter = keyPress.KeyChar;
-                                keyEvent.WindowsKeyCode = (int)keyPress.KeyChar;
-                                keyEvent.NativeKeyCode = (int)keyPress.KeyChar;
-                                break;
-                            case KeyNotificationKind.KeyUp:
-                                var keyUp = n as KeyUpNotification;
-                                keyEvent.EventType = CefKeyEventType.KeyUp;
-                                keyEvent.WindowsKeyCode = (int)keyUp.KeyCode;
-                                keyEvent.NativeKeyCode = (int)keyUp.KeyCode;
-                                break;
-                            default:
-                                break;
-                        }
-                        FBrowserHost.SendKeyEvent(keyEvent);
-                    });
-                }
-            }
-        }
-        IObservable<KeyNotification> FKeyboardEvents;
-        Keyboard FKeyboard = new Keyboard(Observable.Empty<KeyNotification>());
-        IDisposable FKeyboardSubscription;
-
-        public IObservable<TouchNotification> TouchEvents
-        {
-            set
-            {
-                if (value != FTouchEvents)
-                {
-                    FTouchEvents = value;
-                    var touchDevice = new TouchDevice(value);
-                    FTouchSubscription = touchDevice.Notifications.Subscribe(n =>
-                    {
-                        var touchEvent = new CefTouchEvent()
-                        {
-                            Id = n.Id,
-                            Modifiers = (CefEventFlags)((int)(FKeyboard.Modifiers) >> 15),
-                            PointerType = CefPointerType.Touch,
-                            Pressure = 1f,
-                            RadiusX = n.ContactArea.X,
-                            RadiusY = n.ContactArea.Y,
-                            RotationAngle = 0,
-                            Type = GetTouchType(n.Kind),
-                            X = n.Position.X,
-                            Y = n.Position.Y
-                        };
-                        FBrowserHost.SendTouchEvent(touchEvent);
-                    });
-
-                    CefTouchEventType GetTouchType(TouchNotificationKind kind)
-                    {
-                        switch (kind)
-                        {
-                            case TouchNotificationKind.TouchDown:
-                                return CefTouchEventType.Pressed;
-                            case TouchNotificationKind.TouchUp:
-                                return CefTouchEventType.Released;
-                            case TouchNotificationKind.TouchMove:
-                                return CefTouchEventType.Moved;
-                            default:
-                                return CefTouchEventType.Cancelled;
-                        }
-                    }
-                }
-            }
-        }
-        IObservable<TouchNotification> FTouchEvents;
-        IDisposable FTouchSubscription;
 
         private bool FIsLoading;
         public bool IsLoading
@@ -717,12 +528,15 @@ namespace VL.CEF
 
             if (type == CefPaintElementType.View)
             {
-                using var image = buffer.ToImage(4 * width * height, width, height, PixelFormat.B8G8R8A8);
-                FImages.OnNext(image);
+                OnPaintCore(browser, type, cefRects, buffer, width, height);
             }
         }
 
-        internal void OnAcceleratedPain(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+        protected virtual void OnPaintCore(CefBrowser browser, CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height) 
+        { 
+        }
+
+        internal void OnAcceleratedPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
         {
             // Do nothing if disabled
             if (!FEnabled)
@@ -734,11 +548,12 @@ namespace VL.CEF
 
             if (type == CefPaintElementType.View)
             {
-                var device = FDeviceHandle.Resource;
-
-                using var texture = device.OpenSharedResource<Texture2D>(sharedHandle);
-                FTextures.OnNext(texture);
+                OnAcceleratedPaintCore(browser, type, dirtyRects, sharedHandle);
             }
+        }
+
+        protected virtual void OnAcceleratedPaintCore(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+        {
         }
     }
 }
