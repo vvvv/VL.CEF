@@ -16,7 +16,6 @@ using VL.Core;
 using VL.Lib.Basics.Resources;
 using VL.Stride.Input;
 using Xilium.CefGlue;
-using BlendStateDescription = Stride.Graphics.BlendStateDescription;
 
 namespace VL.CEF
 {
@@ -111,15 +110,29 @@ namespace VL.CEF
                     if (renderTarget is null)
                         return;
 
-                    // Ensure we render in the proper size
-                    if (input.Width != renderTarget.Width || input.Height != renderTarget.Height)
+                    var renderView = context.RenderContext.RenderView;
+                    RectangleF bounds;
+                    switch (webRenderer.SizeMode)
                     {
-                        webRenderer.Size = new Vector2(renderTarget.Width, renderTarget.Height);
+                        case SizeMode.RenderView:
+                            bounds = new RectangleF(0f, 0f, renderView.ViewSize.X, renderView.ViewSize.Y);
+                            break;
+                        case SizeMode.Custom:
+                            bounds = webRenderer.Bounds;
+                            break;
+                        default:
+                            throw new NotImplementedException();
                     }
 
-                    shader.SetInput(input);
-                    shader.SetOutput(renderTarget);
-                    shader.Draw(context);
+                    // Ensure we render in the proper size
+                    webRenderer.Size = new Vector2(bounds.Width, bounds.Height);
+
+                    batch.Begin(context.GraphicsContext, renderView.View,
+                        sortMode: SpriteSortMode.Immediate, 
+                        effect: effect,
+                        blendState: BlendStates.AlphaBlend /* The incoming texture uses premultiplied alpha */);
+                    batch.Draw(input, bounds, Color4.White);
+                    batch.End();
                 }
             }
             private readonly SerialDisposable inputSubscription = new SerialDisposable();
@@ -141,25 +154,10 @@ namespace VL.CEF
                 EffectSystem.Compiler = compiler;
                 try
                 {
-                    // We get premuliplied alpha
-                    var blendState = BlendStateDescription.Default;
-                    blendState.RenderTarget0 = new BlendStateRenderTargetDescription()
-                    {
-                        BlendEnable = true,
-                        // dst.rgb = src.rgb + dst.rgb * (1 – src.a)
-                        ColorBlendFunction = BlendFunction.Add,
-                        ColorSourceBlend = Blend.One,
-                        ColorDestinationBlend = Blend.InverseSourceAlpha,
-                        // dst.a = src.a + dst.a * (1 - src.a)
-                        AlphaBlendFunction = BlendFunction.Add,
-                        AlphaSourceBlend = Blend.One,
-                        AlphaDestinationBlend = Blend.InverseSourceAlpha,
-                        ColorWriteChannels = ColorWriteChannels.All
-                    };
-
-                    shader = ToLoadAndUnload(new ImageEffectShader("WebRendererShader"));
-                    shader.BlendState = new BlendStateDescription(Blend.One, Blend.InverseSourceAlpha)/* blendState*/;
-                    shader.EffectInstance.UpdateEffect(GraphicsDevice);
+                    effect = new DynamicEffectInstance("WebRendererShader");
+                    effect.Initialize(Services);
+                    effect.UpdateEffect(GraphicsDevice);
+                    batch = new SpriteBatch(GraphicsDevice, bufferElementCount: 1, batchCapacity: 1);
                 }
                 finally
                 {
@@ -194,11 +192,14 @@ shader WebRendererShader : ImageEffectShader
 ";
                 }
             }
-            ImageEffectShader shader;
+            private SpriteBatch batch;
+            private DynamicEffectInstance effect;
 
             protected override void Destroy()
             {
                 Input?.Dispose();
+                batch?.Dispose();
+                effect?.Dispose();
                 base.Destroy();
             }
 

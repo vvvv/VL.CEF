@@ -37,16 +37,6 @@ namespace VL.CEF
         private readonly AutoResetEvent FBrowserAttachedEvent = new AutoResetEvent(false);
         private readonly AutoResetEvent FBrowserDetachedEvent = new AutoResetEvent(false);
 
-        /// <summary>
-        /// Create a new texture renderer.
-        /// </summary>
-        /// <param name="logger">The logger to log to.</param>
-        /// <param name="frameRate">
-        /// The maximum rate in frames per second (fps) that CefRenderHandler::OnPaint will
-        /// be called for a windowless browser. The actual fps may be lower if the browser
-        /// cannot generate frames at the requested rate. The minimum value is 1 and the 
-        /// maximum value is 60 (default 30).
-        /// </param>
         public WebRenderer(NodeContext nodeContext, bool sharedTextureEnabled = false)
         {
             FRuntimeHandle = CefExtensions.GetRuntimeProvider().GetHandle();
@@ -391,6 +381,10 @@ namespace VL.CEF
             }
         }
         float scaleFactor = 1f;
+
+        public SizeMode SizeMode { get; set; } = SizeMode.RenderView;
+
+        public RectangleF Bounds { get; set; } = new RectangleF(0, 0, 1, 1);
 
         public bool IsAutoWidth { get { return FSize.X <= 0; } }
         public bool IsAutoHeight { get { return FSize.Y <= 0; } }

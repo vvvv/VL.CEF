@@ -1,14 +1,6 @@
-﻿using SkiaSharp;
-using Stride.Core.Mathematics;
+﻿using Stride.Core.Mathematics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Subjects;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using VL.Core;
-using VL.Lib.Basics.Imaging;
 using VL.Lib.IO.Notifications;
 using VL.Skia;
 using Xilium.CefGlue;
@@ -39,6 +31,7 @@ namespace VL.CEF
 
         private void HandleTouchNotification(TouchNotification n, CallerInfo caller)
         {
+            var position = GetPositionInViewport(n, caller);
             var touchEvent = new CefTouchEvent()
             {
                 Id = n.Id,
@@ -49,8 +42,8 @@ namespace VL.CEF
                 RadiusY = n.ContactArea.Y,
                 RotationAngle = 0,
                 Type = GetTouchType(n.Kind),
-                X = n.Position.X,
-                Y = n.Position.Y
+                X = position.X,
+                Y = position.Y
             };
             FBrowserHost.SendTouchEvent(touchEvent);
 
@@ -106,7 +99,8 @@ namespace VL.CEF
 
         private void HandleMouseNotification(MouseNotification n, CallerInfo caller)
         {
-            var mouseEvent = new CefMouseEvent((int)n.Position.X, (int)n.Position.Y, CefEventFlags.None);
+            var position = GetPositionInViewport(n, caller);
+            var mouseEvent = new CefMouseEvent((int)position.X, (int)position.Y, CefEventFlags.None);
             switch (n.Kind)
             {
                 case MouseNotificationKind.MouseDown:
@@ -149,6 +143,15 @@ namespace VL.CEF
                     return CefMouseButtonType.Right;
                 return default;
             }
+        }
+
+        private Vector2 GetPositionInViewport(INotificationWithSpacePositions n, CallerInfo callerInfo)
+        {
+            var position = n.PositionInWorldSpace;
+            var p = callerInfo.Transformation.MapPoint(position.X, position.Y);
+            if (SizeMode == SizeMode.Custom)
+                p -= callerInfo.Transformation.MapPoint(Bounds.Left, Bounds.Top);
+            return new Vector2(p.X, p.Y);
         }
     }
 }

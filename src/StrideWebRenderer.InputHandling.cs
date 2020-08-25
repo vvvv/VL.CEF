@@ -53,6 +53,9 @@ namespace VL.CEF
                     return;
 
                 var position = e.AbsolutePosition.DeviceToLogical(ScaleFactor);
+                if (SizeMode == SizeMode.Custom)
+                    position -= Bounds.TopLeft;
+
                 FBrowserHost.SendTouchEvent(new CefTouchEvent()
                 {
                     Id = e.PointerId,
@@ -142,6 +145,8 @@ namespace VL.CEF
         CefMouseEvent ToMouseEvent(IMouseDevice mouse)
         {
             var position = (mouse.Position * mouse.SurfaceSize).DeviceToLogical(ScaleFactor);
+            if (SizeMode == SizeMode.Custom)
+                position -= Bounds.TopLeft;
             return new CefMouseEvent((int)position.X, (int)position.Y, GetMouseModifiers(mouse));
         }
 

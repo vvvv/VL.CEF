@@ -49,14 +49,27 @@ namespace VL.CEF
                 if (canvas is null)
                     return;
 
-                // Ensure we render in the proper size
-                var bounds = canvas.DeviceClipBounds;
-                if (FImage.Width != bounds.Width || FImage.Height != bounds.Height)
+                var localClipBounds = canvas.LocalClipBounds;
+                var deviceClipBounds = canvas.DeviceClipBounds;
+
+                RectangleF bounds;
+                switch (SizeMode)
                 {
-                    Size = new Vector2(bounds.Width, bounds.Height);
+                    case SizeMode.RenderView:
+                        bounds = new RectangleF(localClipBounds.Left, localClipBounds.Top, localClipBounds.Width, localClipBounds.Height);
+                        break;
+                    case SizeMode.Custom:
+                        bounds = Bounds;
+                        break;
+                    default:
+                        throw new NotImplementedException();
                 }
 
-                caller.Canvas.DrawImage(FImage, canvas.LocalClipBounds);
+                // Ensure we render in the proper size
+                var v = canvas.TotalMatrix.MapVector(bounds.Width, bounds.Height);
+                Size = new Vector2(v.X, v.Y);
+
+                caller.Canvas.DrawImage(FImage, new SKRect(bounds.Left, bounds.Top, bounds.Right, bounds.Bottom));
             }
         }
     }
