@@ -1,408 +1,494 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2020.2.0.217" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2020.2.0-0217-g78b13ed816" />
+<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2020.2.0.262" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2020.2.0-0262-g2752f56465" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
-      <!--
+      <Canvas Id="QK9dH0d5QqSNUrHQwzPZcN" Name="Graphics" Position="424,306" DefaultCategory="Graphics.Skia.Layers" CanvasType="FullCategory">
+        <!--
 
-    ************************ WebRenderer (Image Reactive) ************************
-
--->
-      <Node Name="WebRenderer (Image Reactive)" Bounds="359,210" Id="PZIAFLtzoOxLQsrX7odXe3">
-        <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="builtin">
-          <Choice Kind="ContainerDefinition" Name="Process" />
-        </p:NodeReference>
-        <Patch Id="R7Ipy6LLtGMQW7ZyVZMPF7">
-          <Canvas Id="HHbAx81KXZWP5csdbMtKUW" CanvasType="Group">
-            <Node Bounds="291,314,64,26" Id="PjhIeyeqYldMj05mq145df">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
-                <Choice Kind="OperationCallFlag" Name="Images" />
-              </p:NodeReference>
-              <Pin Id="GELWoQKiMrXND6XUABdNx0" Name="Input" Kind="StateInputPin" />
-              <Pin Id="A9bT4NUwtk3Mkv5AcojgQy" Name="Output" Kind="StateOutputPin" />
-              <Pin Id="DVyXUPlAsjtLJtoE89SGCu" Name="Images" Kind="OutputPin" />
-            </Node>
-            <ControlPoint Id="JLm5yuOzfueMnXBYPpyVUq" Bounds="353,407" />
-            <Node Bounds="291,266,105,19" AutoConnect="true" Id="I6WkhpBYmmFLfc8V6s2HTb">
-              <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
-                <PinReference Kind="OutputPin" Name="Renderer" />
-              </p:NodeReference>
-              <Pin Id="MIlRUTzfTCmMm6G88OL14P" Name="Shared Texture Enabled" Kind="InputPin" />
-              <Pin Id="L7UWkU3VhrTP3arKfOU6oY" Name="Frame Rate" Kind="InputPin" />
-              <Pin Id="KZo3IpwADcaOPbRfBiOcTG" Name="Url" Kind="InputPin" />
-              <Pin Id="HgJkpKqacIVMAR4ooGHDxV" Name="Size" Kind="InputPin" />
-              <Pin Id="Du0MPlvXc3rK9qsTTZmLZ5" Name="Mouse Events" Kind="InputPin" />
-              <Pin Id="VkBte4U4Dj6OMmKo9yFboQ" Name="Key Events" Kind="InputPin" />
-              <Pin Id="H6CDW1z86j2OncXrFGxnf6" Name="Touch Events" Kind="InputPin" />
-              <Pin Id="H9UD7a05AsnQWsMCwxBkMM" Name="Renderer" Kind="OutputPin" />
-              <Pin Id="U4czRDeINMyPGCziFmCDwY" Name="Is Loading" Kind="OutputPin" />
-              <Pin Id="HzXfNESIRs4LV9zLgvrI0s" Name="Loaded" Kind="OutputPin" />
-            </Node>
-            <Pad Id="UjjtlT1uMYLP9PedTn4ir3" Comment="Shared Texture Enabled" Bounds="293,162,35,35" ShowValueBox="true" isIOBox="true" Value="False">
-              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-                <Choice Kind="TypeFlag" Name="Boolean" />
-              </p:TypeAnnotation>
-            </Pad>
-          </Canvas>
-          <ProcessDefinition Id="Lc3UHoEBTUmPakCsBeCXNh">
-            <Fragment Id="KD7a37bmmHjPduJ5Ief1Ln" Patch="GYIfqgL9eEKLittmsSTN5E" Enabled="true" />
-            <Fragment Id="Ucw5VpA6moyLtGKovssvL8" Patch="OWaCsjsq47MLNE2b6vTMUG" Enabled="true" />
-          </ProcessDefinition>
-          <Link Id="SoanRBKPMmcNKytjORR6TN" Ids="JLm5yuOzfueMnXBYPpyVUq,BqXaJhKBrUMMETCqh6oKCg" IsHidden="true" />
-          <Link Id="O3Yk1lGIfEXN08Gzo1whwq" Ids="DVyXUPlAsjtLJtoE89SGCu,JLm5yuOzfueMnXBYPpyVUq" />
-          <Link Id="OgqU4phxwdSLCtOtrIGw4s" Ids="H9UD7a05AsnQWsMCwxBkMM,GELWoQKiMrXND6XUABdNx0" />
-          <Link Id="UzgmLPrncGFQcGzHph8kDq" Ids="UjjtlT1uMYLP9PedTn4ir3,MIlRUTzfTCmMm6G88OL14P" />
-          <Patch Id="GYIfqgL9eEKLittmsSTN5E" Name="Create">
-            <Pin Id="InSSfrmXZcTQFsqxHxuEWl" Name="Frame Rate" Kind="InputPin" />
-          </Patch>
-          <Patch Id="OWaCsjsq47MLNE2b6vTMUG" Name="Update" ManuallySortedPins="true">
-            <Pin Id="NvfAE7PWFeWPMMXTZ0ldsu" Name="Url" Kind="InputPin" />
-            <Pin Id="DFMGt6rZLdoMNQmaNZtDYv" Name="Size" Kind="InputPin" />
-            <Pin Id="StNbCbtL47GNhn3CUGfPIV" Name="Mouse Events" Kind="InputPin" />
-            <Pin Id="GtVK8YBx9PxOnOMfdVeqOP" Name="Key Events" Kind="InputPin" />
-            <Pin Id="R27N1wtodrTPhEODw91L9L" Name="Touch Events" Kind="InputPin" />
-            <Pin Id="BqXaJhKBrUMMETCqh6oKCg" Name="Frames" Kind="OutputPin" Bounds="836,530" />
-            <Pin Id="MBUIopNyE2EL3gHCCNxSX4" Name="Is Loading" Kind="OutputPin" />
-            <Pin Id="Fvf5E1863z7NU35raMIGWo" Name="Loaded" Kind="OutputPin" />
-          </Patch>
-          <Patch Id="AmdKGy0GbraPXpKXaVGlYP" Name="Dispose" />
-        </Patch>
-      </Node>
-      <!--
-
-    ************************ WebRenderer (Image) ************************
+    ************************ WebRenderer ************************
 
 -->
-      <Node Name="WebRenderer (Image)" Bounds="359,276" Id="VhnLN3qd3PtMMq25ic3Y9Y">
-        <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="builtin">
-          <Choice Kind="ContainerDefinition" Name="Process" />
-        </p:NodeReference>
-        <Patch Id="JcwbwWd9zDXOgS5yqXezs6">
-          <Canvas Id="HnwQjhYNnH8NBQt374ma2l" CanvasType="Group">
-            <Node Bounds="430,262" AutoConnect="true" Id="Fx5aPFgxQexL5zFzt4WLEx">
-              <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <Choice Kind="ProcessAppFlag" Name="WebRenderer (Image Reactive)" />
-              </p:NodeReference>
-              <Pin Id="KYUmRCQ22x8NOkg60AJpdO" Name="Frame Rate" Kind="InputPin" />
-              <Pin Id="VMUNQbMbQc1PA4ijyghrZz" Name="Url" Kind="InputPin" />
-              <Pin Id="EH0kcef495PL2NBygRr98R" Name="Size" Kind="InputPin" />
-              <Pin Id="NgpijX4OynjOmB7bfNwolM" Name="Mouse Events" Kind="InputPin" />
-              <Pin Id="DFta8NsqktJQdsuArGFGFJ" Name="Key Events" Kind="InputPin" />
-              <Pin Id="VUVHLIitEZ3N6dMXLtBSnT" Name="Touch Events" Kind="InputPin" />
-              <Pin Id="S17oZlNhYSiNRxsaJyGfs2" Name="Frames" Kind="OutputPin" />
-              <Pin Id="CnZkN5RwZNPLHbWAnYzJUw" Name="Is Loading" Kind="OutputPin" />
-              <Pin Id="GrDAtBcWRgQOowUkYqHkwy" Name="Loaded" Kind="OutputPin" />
-            </Node>
-            <ControlPoint Id="VWgCaO0Hu01OfsEFf4rsBC" Bounds="431,416" />
-            <Node Bounds="429,348,88,19" Id="EGId6caawmAMUmrBN9bA0F">
-              <p:NodeReference LastCategoryFullName="Graphics.Imaging" LastSymbolSource="VL.Imaging.vl">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <Choice Kind="ProcessAppFlag" Name="HoldLatestCopy" />
-                <CategoryReference Kind="Category" Name="Imaging" NeedsToBeDirectParent="true">
-                  <p:OuterCategoryReference Kind="Category" Name="Graphics" NeedsToBeDirectParent="true" />
-                </CategoryReference>
-              </p:NodeReference>
-              <Pin Id="EC5cPABrczLOcIz9TSkQNK" Name="Async Notifications" Kind="InputPin" />
-              <Pin Id="Uo7qjvQyhB2MVFTISMaBwL" Name="Timeout" Kind="InputPin" />
-              <Pin Id="Sz4kwfoO6p6LZdW1EXHD34" Name="Reset" Kind="InputPin" />
-              <Pin Id="H6ldrl27xSAOy1SnryAUuO" Name="Result" Kind="OutputPin" />
-              <Pin Id="UbM6RUTRsZaOKVVtQAUSUQ" Name="Swap Count" Kind="OutputPin" />
-              <Pin Id="GQgU5uYPRSdNKL6uMq4L6e" Name="Drop Count" Kind="OutputPin" />
-            </Node>
-          </Canvas>
-          <ProcessDefinition Id="U344QG57aDuLeGam30YR0J">
-            <Fragment Id="N2OLqpJNMMvOdU14bVgjRk" Patch="FKfEYvXlw2TM5timAdConK" Enabled="true" />
-            <Fragment Id="LJF6tYvezmKNz1oYc0Eq3W" Patch="EBgWDuskzkqOUWyQzhPrIA" Enabled="true" />
-          </ProcessDefinition>
-          <Link Id="JfIhIWpbamyMgWVCbhb5Wl" Ids="VWgCaO0Hu01OfsEFf4rsBC,GwQAqg1M7glOBC7pLvbYyz" IsHidden="true" />
-          <Link Id="UQ6VIKJwC9qO8RYCpr8bM3" Ids="H6ldrl27xSAOy1SnryAUuO,VWgCaO0Hu01OfsEFf4rsBC" />
-          <Link Id="JUrhSw6mPGqLrAmhyDekUw" Ids="S17oZlNhYSiNRxsaJyGfs2,EC5cPABrczLOcIz9TSkQNK" />
-          <Patch Id="FKfEYvXlw2TM5timAdConK" Name="Create">
-            <Pin Id="T8OE6txSXrdMpy03coLYh8" Name="Frame Rate" Kind="InputPin" />
-          </Patch>
-          <Patch Id="EBgWDuskzkqOUWyQzhPrIA" Name="Update" ManuallySortedPins="true">
-            <Pin Id="VpswXQhq1crL3Iv4cDM877" Name="Url" Kind="InputPin" />
-            <Pin Id="SZyvggfgyhRK9xnaoe4sha" Name="Size" Kind="InputPin" />
-            <Pin Id="OkRZwIWyS8lPykQg3JG6Kn" Name="Mouse Events" Kind="InputPin" />
-            <Pin Id="OM4kVc8jzdQPzesYrA1MZA" Name="Key Events" Kind="InputPin" />
-            <Pin Id="OpZgGHFR8UXOR7iiha7lus" Name="Touch Events" Kind="InputPin" />
-            <Pin Id="GwQAqg1M7glOBC7pLvbYyz" Name="Frame" Kind="OutputPin" Bounds="428,490" />
-            <Pin Id="Af0dwlSeOg5Mm0DTNSEOFU" Name="Is Loading" Kind="OutputPin" />
-            <Pin Id="LF9P7MZt7KEMifYlUTF6NQ" Name="Loaded" Kind="OutputPin" />
-          </Patch>
-        </Patch>
-      </Node>
-      <!--
-
-    ************************ WebRenderer (Internal) ************************
-
--->
-      <Node Name="WebRenderer (Internal)" Bounds="357,141" Id="MCG1m64xIWXMlLJ5OJfjY7">
-        <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="builtin">
-          <Choice Kind="ContainerDefinition" Name="Process" />
-        </p:NodeReference>
-        <Patch Id="K5386cU9haYOTSbJQBn2He">
-          <Canvas Id="U8oJoieSDj2PCMvTe3wLRs" CanvasType="Group">
-            <Node Bounds="474,195,64,26" Id="US7uwqfQCQ3NKQdSQFPDXI">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
-                <Choice Kind="OperationCallFlag" Name="Create" />
-              </p:NodeReference>
-              <Pin Id="MXQ8O2XGM6LLVHTORFv0xH" Name="Node Context" Kind="InputPin" />
-              <Pin Id="SxTulaafxYRNhTLIyAAEma" Name="Shared Texture Enabled" Kind="InputPin" />
-              <Pin Id="FjUKtbpOJl0MxRKHj4quW2" Name="Frame Rate" Kind="InputPin" DefaultValue="60">
-                <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-                  <Choice Kind="TypeFlag" Name="Integer32" />
+        <Node Name="WebRenderer" Bounds="402,237" Id="RiuNf7AJm6QQCXKiW1xWXw">
+          <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="builtin">
+            <Choice Kind="ContainerDefinition" Name="Process" />
+          </p:NodeReference>
+          <Patch Id="LjpV4NB0uZ2LF2ljBsDP61">
+            <Canvas Id="Bu6EmufMtVvL86rPYZBbSJ" CanvasType="Group">
+              <ControlPoint Id="UCrDGBeHDfrLXNEzY3fNOs" Bounds="491,321" />
+              <Node Bounds="431,274,105,19" AutoConnect="true" Id="SB8SRxAkM2IQcU9fOuO4Up">
+                <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                  <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
+                  <CategoryReference Kind="Category" Name="CEF" NeedsToBeDirectParent="true" />
+                </p:NodeReference>
+                <Pin Id="TygAOj3pqFkNK7mcXdWC6q" Name="Render Handler" Kind="InputPin" />
+                <Pin Id="HcPW9XCGgKTMTivSmNyGt7" Name="Scale Factor" Kind="InputPin" />
+                <Pin Id="Aog0c9Kd5yzNEYLi2nswW7" Name="Zoom Level" Kind="InputPin" />
+                <Pin Id="HVkLBMy8T7yNzH0ZCbfhqW" Name="Scroll To" Kind="InputPin" />
+                <Pin Id="CAHry8Kkj4lPWyIAaWa3hN" Name="Enabled" Kind="InputPin" />
+                <Pin Id="UjWxEF5bY3BOWeCnWTouYG" Name="Output" Kind="OutputPin" />
+                <Pin Id="K4v2KMp3w4dQOiainaRDBI" Name="Result" Kind="OutputPin" />
+                <Pin Id="AsoOWUBjMEhNchN5udW7AL" Name="Is Loading" Kind="OutputPin" />
+                <Pin Id="OLvpmmeub2QQQBQqHLFA0Q" Name="Loaded" Kind="OutputPin" />
+                <Pin Id="KjsnNNQaZrwNHxijmWfMvi" Name="Error Text" Kind="OutputPin" />
+                <Pin Id="NiqjTxEXuk1PGpt3yddtZt" Name="Document Size" Kind="OutputPin" />
+              </Node>
+              <Node Bounds="431,220,84,26" Id="T0AjfbhIZ2nMRXU97Eiia3">
+                <p:NodeReference LastCategoryFullName="VL.CEF.SkiaRenderHandler" LastSymbolSource="VL.CEF.exe">
+                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                  <CategoryReference Kind="AssemblyCategory" Name="SkiaRenderHandler" />
+                  <Choice Kind="OperationCallFlag" Name="Create" />
+                </p:NodeReference>
+                <Pin Id="E7nS2E8yyibQMPMKVtgJeV" Name="Node Context" Kind="InputPin" />
+                <Pin Id="FNVyGpNXxQuMXWI1IXn4tR" Name="Output" Kind="StateOutputPin" />
+              </Node>
+              <Node Bounds="430,335,64,26" Id="FECn7IpTuqqQKTD2NWqeLS">
+                <p:NodeReference LastCategoryFullName="CEF.WebRenderer" LastSymbolSource="VL.CEF.vl">
+                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                  <Choice Kind="OperationCallFlag" Name="LoadUrl" />
+                  <CategoryReference Kind="ClassType" Name="WebRenderer" NeedsToBeDirectParent="true" />
+                </p:NodeReference>
+                <Pin Id="MZxf857tAGrMh7R0rowEjv" Name="Input" Kind="StateInputPin" />
+                <Pin Id="S8M8c6vOxFMO0WTaSIZuGe" Name="Url" Kind="InputPin" />
+                <Pin Id="SObzEZRK6FJP4xfTY30Ozp" Name="Output" Kind="StateOutputPin" />
+              </Node>
+              <ControlPoint Id="UxhPDXC7fp9NDEsJ8go2AX" Bounds="454,415" />
+            </Canvas>
+            <ProcessDefinition Id="Mc62FmB6kg2NtBU9dVrg3C">
+              <Fragment Id="ICqhOzPlrmFLCHsk1FcMGI" Patch="Jmi0NxP9C6LOIfiraXYb4z" Enabled="true" />
+              <Fragment Id="S8WbOvMX6NZMk0vuBTGXKV" Patch="S1Tqwq56phjNaRhkxsgv9m" Enabled="true" />
+            </ProcessDefinition>
+            <Link Id="OyDTine7gXQLTXbMVmPhj8" Ids="MFbzEOZ5gNeQTQ4HpH14SS,UCrDGBeHDfrLXNEzY3fNOs" IsHidden="true" />
+            <Link Id="BbbawD25Q9ROeJdsWV9ntw" Ids="FNVyGpNXxQuMXWI1IXn4tR,TygAOj3pqFkNK7mcXdWC6q" />
+            <Link Id="JIOW6MChoSyOBdnzrLf6SV" Ids="UjWxEF5bY3BOWeCnWTouYG,MZxf857tAGrMh7R0rowEjv" />
+            <Link Id="VXDU71PnPqGMAcc8Me3ALR" Ids="UCrDGBeHDfrLXNEzY3fNOs,S8M8c6vOxFMO0WTaSIZuGe" />
+            <Link Id="M2A7yJfQmJtLyZ4BEQ9YVc" Ids="K4v2KMp3w4dQOiainaRDBI,UxhPDXC7fp9NDEsJ8go2AX" />
+            <Link Id="HMed3sC9acmPpnzDMugiZt" Ids="UxhPDXC7fp9NDEsJ8go2AX,Ugv7U4H59E2O9oxVMhoSBA" IsHidden="true" />
+            <Patch Id="Jmi0NxP9C6LOIfiraXYb4z" Name="Create" />
+            <Patch Id="S1Tqwq56phjNaRhkxsgv9m" Name="Update" ManuallySortedPins="true">
+              <Pin Id="Ugv7U4H59E2O9oxVMhoSBA" Name="Output" Kind="OutputPin" Bounds="770,413">
+                <p:TypeAnnotation>
+                  <Choice Kind="TypeFlag" Name="Layer" />
                 </p:TypeAnnotation>
               </Pin>
-              <Pin Id="GUYxLuuPv8YQbTVMHC8SQX" Name="Output" Kind="StateOutputPin" />
-            </Node>
-            <Pad Id="SsmcTSwu5uyPWWgrThuX3n" SlotId="H8CrvFEZvBvM8H0IXDIQgu" Bounds="476,270" />
-            <Node Bounds="472,495,64,26" Id="Ct23It6ImF7OREFzgrxW5M">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
-                <Choice Kind="OperationCallFlag" Name="Dispose" />
-              </p:NodeReference>
-              <Pin Id="SL1YvFUCO43Px6D1AJ4SHN" Name="Input" Kind="StateInputPin" />
-              <Pin Id="NctOKDdlcQuMdrwMdAbVvK" Name="Output" Kind="StateOutputPin" />
-            </Node>
-            <ControlPoint Id="Jtk0TpwDqppLM7yi1iuQAb" Bounds="632,268" />
-            <Node Bounds="558,319,88,86" Id="NK5A1JCrNZaOqVbTBAxoS9">
-              <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="VL.CoreLib.dll">
-                <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
-                <Choice Kind="ProcessStatefulRegion" Name="Cache" />
-                <FullNameCategoryReference ID="Primitive" />
-              </p:NodeReference>
-              <Pin Id="QHqZRTXhUZgNUmqVFyBpJ1" Name="Force" Kind="InputPin" />
-              <Pin Id="UzP0R0JWRSFM9v11LHSyB6" Name="Dispose Cached Outputs" Kind="InputPin" />
-              <Pin Id="GfCVd9IceIfPtdtc28bNQG" Name="Has Changed" Kind="OutputPin" />
-              <ControlPoint Id="I2j9E3cGmvcPSdh8vZElbv" Bounds="631,325" Alignment="Top" />
-              <Patch Id="DIPfKmRPrDEOn3Iy3ICgoj" ManuallySortedPins="true">
-                <Patch Id="KuzFDp1rrOeNltrf64UlZw" Name="Create" ManuallySortedPins="true" />
-                <Patch Id="Hd7hifqkaVmNcX3BcEURTf" Name="Then" ManuallySortedPins="true" />
-                <Node Bounds="570,347,64,26" Id="JnULooKRjlpM7MOyvx0Cba">
-                  <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                    <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                    <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
-                    <Choice Kind="OperationCallFlag" Name="LoadUrl" />
-                    <PinReference Kind="InputPin" Name="Size" />
-                  </p:NodeReference>
-                  <Pin Id="S1LQklZZljLOXO6nTgh9er" Name="Input" Kind="StateInputPin" />
-                  <Pin Id="Fz6l48HEuRgLyzLFMcTzuF" Name="Size" Kind="InputPin" />
-                  <Pin Id="EFJZGPJZUhSMe2szN83T9O" Name="Url" Kind="InputPin" />
-                  <Pin Id="QokX6bTufzTMt8uTrMcBIP" Name="Output" Kind="StateOutputPin" />
-                </Node>
-              </Patch>
-            </Node>
-            <Pad Id="ADnrkItNGuhNQYaJyBoDye" SlotId="H8CrvFEZvBvM8H0IXDIQgu" Bounds="768,501" />
-            <Node Bounds="967,559,64,26" Id="SqScgIBcZwaNFpxRuGyCIj">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
-                <Choice Kind="OperationCallFlag" Name="IsLoading" />
-              </p:NodeReference>
-              <Pin Id="Esjz6rjyiOaOVcljUVnW1n" Name="Input" Kind="StateInputPin" />
-              <Pin Id="VbrlMASBIS1MayIuAfSWeC" Name="Output" Kind="StateOutputPin" />
-              <Pin Id="HyR6po33x8GLoET89lqWbd" Name="Is Loading" Kind="OutputPin" />
-            </Node>
-            <ControlPoint Id="Fj0egCFCOlbM01gEybN0LS" Bounds="1024,705" />
-            <Node Bounds="1161,560,64,26" Id="LV6MhzbnYCUPFfPLneTaTf">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
-                <Choice Kind="OperationCallFlag" Name="Loaded" />
-              </p:NodeReference>
-              <Pin Id="DNrXvuoXjWdNr9sNuLV76t" Name="Input" Kind="StateInputPin" />
-              <Pin Id="Jw3LpbZEuTkLd7M4qPYvWz" Name="Output" Kind="StateOutputPin" />
-              <Pin Id="Rt8E8KOfFnhLO2vykdsw2V" Name="Loaded" Kind="OutputPin" />
-            </Node>
-            <ControlPoint Id="KWvMamqbX3TOcxVBMyeOeJ" Bounds="1221,705" />
-            <ControlPoint Id="Ioh6dEvb1niN6m86FDQiug" Bounds="863,266" />
-            <Node Bounds="801,371" Id="T6M08tEVeonNTHVnwdIytF">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
-                <Choice Kind="OperationCallFlag" Name="SetSize" />
-              </p:NodeReference>
-              <Pin Id="KgWBzO1uyVIOpD16umAJRD" Name="Input" Kind="StateInputPin" />
-              <Pin Id="A1rbiiGR6slP06khF0s2B8" Name="Value" Kind="InputPin" />
-              <Pin Id="MDju4PplQCKLMB8pCFG45T" Name="Output" Kind="StateOutputPin" />
-            </Node>
-            <Pad Id="FidYjmxWB5cNXvEp4SxxjU" SlotId="H8CrvFEZvBvM8H0IXDIQgu" Bounds="804,346" />
-            <Pad Id="Twt3221wrzzLoaRy6CJQmc" SlotId="H8CrvFEZvBvM8H0IXDIQgu" Bounds="986,337" />
-            <Node Bounds="985,382,64,26" Id="Q4X1qQ7Z574NnLcHlss6Jp">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <Choice Kind="OperationCallFlag" Name="SetMouseEvents" />
-              </p:NodeReference>
-              <Pin Id="HNP6t5nhdyrQQ5kqtcQGCc" Name="Input" Kind="StateInputPin" />
-              <Pin Id="E4fP6JRScSjPZmVx73eZxp" Name="Value" Kind="InputPin" />
-              <Pin Id="Qj4N43S24FaNa9NGfdVt5e" Name="Output" Kind="StateOutputPin" />
-            </Node>
-            <ControlPoint Id="U3JBVnP4yWcLyyaIEWPwI7" Bounds="1071,294" />
-            <Pad Id="MxHIMnFLrfDMZGCqPLvNT6" SlotId="H8CrvFEZvBvM8H0IXDIQgu" Bounds="1254,337" />
-            <Node Bounds="1254,378,64,26" Id="Be9uo18hdPeLr2tOR4Os59">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <Choice Kind="OperationCallFlag" Name="SetKeyboardEvents" />
-              </p:NodeReference>
-              <Pin Id="IxYlEI6mr0VP2fO17HKx1O" Name="Input" Kind="StateInputPin" />
-              <Pin Id="GqC30zj39DDLSWxrdIaImY" Name="Value" Kind="InputPin" />
-              <Pin Id="DyqT6YYrovaLXlrmAvTiX2" Name="Output" Kind="StateOutputPin" />
-            </Node>
-            <ControlPoint Id="Ai1ppJzbuCUMvmD8NExe5K" Bounds="1353,300" />
-            <ControlPoint Id="TDHp2wc7KVdPcHSilPIYDr" Bounds="760,711" />
-            <ControlPoint Id="E86BA9yueVtNWYFCx4tKXH" Bounds="506,130" />
-            <ControlPoint Id="FUhX1u768WhNg7iPuwVzJj" Bounds="664,133" />
-            <Pad Id="E2CaqstpY7dLowD86VGKMK" SlotId="H8CrvFEZvBvM8H0IXDIQgu" Bounds="1479,347" />
-            <Node Bounds="1479,388,64,26" Id="ISawh4HEoAYMutnAMSv63N">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <Choice Kind="OperationCallFlag" Name="SetTouchEvents" />
-              </p:NodeReference>
-              <Pin Id="UqHi8OLygJ8Ojp4NmVijqX" Name="Input" Kind="StateInputPin" />
-              <Pin Id="HxknNgVTE9BOcmlKgOzmCo" Name="Value" Kind="InputPin" />
-              <Pin Id="GiNXKztS0nsLzvdyCBhfSj" Name="Output" Kind="StateOutputPin" />
-            </Node>
-            <ControlPoint Id="Q1yRSzKy9GxN7mZLqY0e19" Bounds="1587,305" />
-          </Canvas>
-          <Patch Id="K1Rm678fXEQNwgkwO8TeGg" Name="Create" ParticipatingElements="US7uwqfQCQ3NKQdSQFPDXI">
-            <Pin Id="SqujQNoMa9WLZXbzB0aUsL" Name="Shared Texture Enabled" Kind="InputPin" Bounds="506,130" />
-            <Pin Id="Hbhe5iurs6KQGPcX3cdedx" Name="Frame Rate" Kind="InputPin" Bounds="664,133" />
+              <Pin Id="MnkSZQRPs41Pgk6lZeDSpH" Name="Is Loading" Kind="OutputPin" />
+              <Pin Id="U54OBu18mb4PX9pI1ilwbs" Name="Loaded" Kind="OutputPin" />
+              <Pin Id="B3y7R4PMfarMktmNoWX5Pj" Name="Error Text" Kind="OutputPin" />
+              <Pin Id="LGEdEHTu0IhNbe7C2Ii3eW" Name="Document Size" Kind="OutputPin" />
+              <Pin Id="MFbzEOZ5gNeQTQ4HpH14SS" Name="Url" Kind="InputPin" Bounds="646,268" DefaultValue="vvvv.org">
+                <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                  <Choice Kind="TypeFlag" Name="String" />
+                </p:TypeAnnotation>
+              </Pin>
+              <Pin Id="EaYECsaux7OOvluqTq1Kmu" Name="Scale Factor" Kind="InputPin" />
+              <Pin Id="EhqDqg8cwPELsK2JN58zec" Name="Zoom Level" Kind="InputPin" />
+              <Pin Id="HNk1wGHTpAGOViAk59sYZz" Name="Scroll To" Kind="InputPin" />
+              <Pin Id="L1Jdlj8InwtODJVaqbLP0U" Name="Enabled" Kind="InputPin" />
+            </Patch>
           </Patch>
-          <Patch Id="TtTKlr5Fx2sOjqlXKRkx8y" Name="Update">
-            <Pin Id="CQpQaI1XmW8N0ZKle579F7" Name="Url" Kind="InputPin" Bounds="646,268" DefaultValue="vvvv.org">
-              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-                <Choice Kind="TypeFlag" Name="String" />
-              </p:TypeAnnotation>
-            </Pin>
-            <Pin Id="HOz41iqz2zMLWNjVsdCO7P" Name="Is Loading" Kind="OutputPin" Bounds="1041,507" />
-            <Pin Id="IT9CwiVo58FNQ1Q3q3cner" Name="Loaded" Kind="OutputPin" Bounds="1229,512" />
-            <Pin Id="Ug2aI09Tq5aMy3orBipzMN" Name="Size" Kind="InputPin" Bounds="921,235" DefaultValue="1024, 1024">
-              <p:TypeAnnotation LastCategoryFullName="2D" LastSymbolSource="CoreLibBasics.vl">
-                <Choice Kind="TypeFlag" Name="Vector2" />
-              </p:TypeAnnotation>
-            </Pin>
-            <Pin Id="SYGNGo1LLpvN6MPweJEtqR" Name="Mouse Events" Kind="InputPin" Bounds="1069,277" />
-            <Pin Id="C5Z3ynAhk4MMLKK0hg8Wut" Name="Key Events" Kind="InputPin" Bounds="1351,286" />
-            <Pin Id="AridIl3QNuZP0r1UqgK4rO" Name="Renderer" Kind="OutputPin" Bounds="643,706" />
-            <Pin Id="TxybQJouvAjOn1iFkRQUah" Name="Touch Events" Kind="InputPin" Bounds="1587,305" />
-          </Patch>
-          <ProcessDefinition Id="CY72iJBNXouNXUJeR9Dhvb">
-            <Fragment Id="DCeQvTb5oaPLJBx16K7umD" Patch="K1Rm678fXEQNwgkwO8TeGg" Enabled="true" />
-            <Fragment Id="PIlVDkUWrmQMMnZ3TxOkDI" Patch="TtTKlr5Fx2sOjqlXKRkx8y" Enabled="true" />
-          </ProcessDefinition>
-          <Slot Id="H8CrvFEZvBvM8H0IXDIQgu" Name="Renderer" />
-          <Link Id="NBabfHvegFuP7uZKqBFEu7" Ids="GUYxLuuPv8YQbTVMHC8SQX,SsmcTSwu5uyPWWgrThuX3n" />
-          <Link Id="AzbwCpatbmMQVbEiSJ9NMO" Ids="SsmcTSwu5uyPWWgrThuX3n,SL1YvFUCO43Px6D1AJ4SHN" />
-          <Patch Id="DDq4l5ygdOzOg2UK6DQEwr" Name="Dispose" ParticipatingElements="Ct23It6ImF7OREFzgrxW5M" />
-          <Link Id="H0xSfnJkVfhOEuq5YBRfo1" Ids="SsmcTSwu5uyPWWgrThuX3n,S1LQklZZljLOXO6nTgh9er" />
-          <Link Id="NKQet13x1xOOqIABSKtSQx" Ids="CQpQaI1XmW8N0ZKle579F7,Jtk0TpwDqppLM7yi1iuQAb" IsHidden="true" />
-          <Link Id="E4hzUs1YJSyNsop7imWHLD" Ids="Jtk0TpwDqppLM7yi1iuQAb,I2j9E3cGmvcPSdh8vZElbv" />
-          <Link Id="NuEhcSzN7WHLHKS6qMlpFZ" Ids="I2j9E3cGmvcPSdh8vZElbv,EFJZGPJZUhSMe2szN83T9O" />
-          <Link Id="QzCAVr0SwQbPrqAs1bIEcV" Ids="ADnrkItNGuhNQYaJyBoDye,Esjz6rjyiOaOVcljUVnW1n" />
-          <Link Id="TRA4Cv3UBcQM1PjlHXehSE" Ids="HyR6po33x8GLoET89lqWbd,Fj0egCFCOlbM01gEybN0LS" />
-          <Link Id="BDbIusjWY7aPtyDCYrOPcL" Ids="Fj0egCFCOlbM01gEybN0LS,HOz41iqz2zMLWNjVsdCO7P" IsHidden="true" />
-          <Link Id="TAUUIfH4KNuOzGCSlcCsk0" Ids="ADnrkItNGuhNQYaJyBoDye,DNrXvuoXjWdNr9sNuLV76t" />
-          <Link Id="U2Bd4zlRp4zQTxfjHHRjSx" Ids="Rt8E8KOfFnhLO2vykdsw2V,KWvMamqbX3TOcxVBMyeOeJ" />
-          <Link Id="FMrH56qJjHwQcrneO3lhAX" Ids="KWvMamqbX3TOcxVBMyeOeJ,IT9CwiVo58FNQ1Q3q3cner" IsHidden="true" />
-          <Link Id="NOS9xS3ViOWOW9q0QQvhBJ" Ids="Ug2aI09Tq5aMy3orBipzMN,Ioh6dEvb1niN6m86FDQiug" IsHidden="true" />
-          <Link Id="KFWn9Ve9re7N9ZHDiyoDnT" Ids="Ioh6dEvb1niN6m86FDQiug,A1rbiiGR6slP06khF0s2B8" />
-          <Link Id="VcYLrLBBkDaOjp0Y2MlYW6" Ids="Ioh6dEvb1niN6m86FDQiug,Fz6l48HEuRgLyzLFMcTzuF" />
-          <Link Id="VY2zC72YqFmLNbc1OvnqHV" Ids="FidYjmxWB5cNXvEp4SxxjU,KgWBzO1uyVIOpD16umAJRD" />
-          <Link Id="DqLtRc5q9gSNhkM8H4rqr7" Ids="Twt3221wrzzLoaRy6CJQmc,HNP6t5nhdyrQQ5kqtcQGCc" />
-          <Link Id="VuXGWpDqQgOLS6hePHkxTx" Ids="U3JBVnP4yWcLyyaIEWPwI7,E4fP6JRScSjPZmVx73eZxp" />
-          <Link Id="GHwCoZ8JN81Na3yuy0tS3P" Ids="SYGNGo1LLpvN6MPweJEtqR,U3JBVnP4yWcLyyaIEWPwI7" IsHidden="true" />
-          <Link Id="TJcu57FfdfTMuVXHHISTPR" Ids="MxHIMnFLrfDMZGCqPLvNT6,IxYlEI6mr0VP2fO17HKx1O" />
-          <Link Id="SM0ag1y32frMmHnIHTYw9a" Ids="Ai1ppJzbuCUMvmD8NExe5K,GqC30zj39DDLSWxrdIaImY" />
-          <Link Id="NePHJzGbTAPQY0I64yuq6r" Ids="C5Z3ynAhk4MMLKK0hg8Wut,Ai1ppJzbuCUMvmD8NExe5K" IsHidden="true" />
-          <Link Id="Pq9zDWipnWHMrb7a4hZUD4" Ids="ADnrkItNGuhNQYaJyBoDye,TDHp2wc7KVdPcHSilPIYDr" />
-          <Link Id="GNTohlX43VMOeKtTyn3xiX" Ids="TDHp2wc7KVdPcHSilPIYDr,AridIl3QNuZP0r1UqgK4rO" IsHidden="true" />
-          <Link Id="DYqpJeFzR65P2P4iJG5R7x" Ids="E86BA9yueVtNWYFCx4tKXH,SxTulaafxYRNhTLIyAAEma" />
-          <Link Id="Gv76iigBIo5NHkK2JnFj3J" Ids="SqujQNoMa9WLZXbzB0aUsL,E86BA9yueVtNWYFCx4tKXH" IsHidden="true" />
-          <Link Id="LAoK4Sl5UwRPbDI8YByU2s" Ids="FUhX1u768WhNg7iPuwVzJj,FjUKtbpOJl0MxRKHj4quW2" />
-          <Link Id="POFKqAgy2WpOcj7RlbWxb7" Ids="Hbhe5iurs6KQGPcX3cdedx,FUhX1u768WhNg7iPuwVzJj" IsHidden="true" />
-          <Link Id="ESfAq5Lrr9YMcnZp6ZOxSq" Ids="E2CaqstpY7dLowD86VGKMK,UqHi8OLygJ8Ojp4NmVijqX" />
-          <Link Id="I2sCvVMEeU1LoKzbt9DfB2" Ids="Q1yRSzKy9GxN7mZLqY0e19,HxknNgVTE9BOcmlKgOzmCo" />
-          <Link Id="PAHsa0E9jWIQOnoAMaoAjg" Ids="TxybQJouvAjOn1iFkRQUah,Q1yRSzKy9GxN7mZLqY0e19" IsHidden="true" />
-        </Patch>
-      </Node>
-      <!--
+        </Node>
+      </Canvas>
+      <Canvas Id="KInLVsgs3z3OYHWD3KCmJS" Name="Graphics" Position="424,369" DefaultCategory="Stride.Rendering" CanvasType="FullCategory">
+        <!--
 
-    ************************ WebRenderer (Texture Reactive) ************************
+    ************************ WebRenderer ************************
 
 -->
-      <Node Name="WebRenderer (Texture Reactive)" Bounds="356,368" Id="Qm8x7zgpb6wPKdIfE4T7de">
-        <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="builtin">
-          <Choice Kind="ContainerDefinition" Name="Process" />
-        </p:NodeReference>
-        <Patch Id="HcnXcjIlqIwPgIH3izWYOr">
-          <Canvas Id="Jc8t1u9w1AcLnqnUbKGQXZ" CanvasType="Group">
-            <Node Bounds="291,314,64,26" Id="Ezp9gKRm17FQLyLVQpCzjh">
-              <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer" LastSymbolSource="VL.CEF.exe">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <CategoryReference Kind="AssemblyCategory" Name="WebRenderer" />
-                <Choice Kind="OperationCallFlag" Name="Textures" />
-              </p:NodeReference>
-              <Pin Id="HypQZJzWjMyQDDdq3v0LdH" Name="Input" Kind="StateInputPin" />
-              <Pin Id="KlJFTKzpYYqPZkkfrLRwi0" Name="Output" Kind="StateOutputPin" />
-              <Pin Id="CrcwwUdYgd4O8r4KjGIw0K" Name="Textures" Kind="OutputPin" />
-            </Node>
-            <ControlPoint Id="GOmRCzokMIqPA7aZMzbziR" Bounds="353,407" />
-            <Node Bounds="291,266,105,19" AutoConnect="true" Id="AguCflghaLXP8et4New8zs">
-              <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
-                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
-                <PinReference Kind="OutputPin" Name="Renderer" />
-              </p:NodeReference>
-              <Pin Id="GcW7Bb6zT36OjU2VVjNN69" Name="Shared Texture Enabled" Kind="InputPin" />
-              <Pin Id="LbRtBSCp85sNdM15uZ87wA" Name="Frame Rate" Kind="InputPin" />
-              <Pin Id="NwmN9MzdGbgL6YcUi2Gj3g" Name="Url" Kind="InputPin" />
-              <Pin Id="AYVdtCJydNoLIbGrr9ivQQ" Name="Size" Kind="InputPin" />
-              <Pin Id="LJ8w5q3f151Mu3xyRBLu9M" Name="Mouse Events" Kind="InputPin" />
-              <Pin Id="FcuL5nPstEzOLqUMdyERtJ" Name="Key Events" Kind="InputPin" />
-              <Pin Id="VoHrusOWoxUOrarxNmup5d" Name="Touch Events" Kind="InputPin" />
-              <Pin Id="JY1pQm85vkaPRWQwi4RYOF" Name="Renderer" Kind="OutputPin" />
-              <Pin Id="JiIfSr7e4ACLKyfOhg9aW9" Name="Is Loading" Kind="OutputPin" />
-              <Pin Id="F3KtDY08pQiOoFmk7KGVzD" Name="Loaded" Kind="OutputPin" />
-            </Node>
-            <Pad Id="IBpaQq4URSGP90OhELE81l" Comment="Shared Texture Enabled" Bounds="293,162,35,35" ShowValueBox="true" isIOBox="true" Value="True">
-              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-                <Choice Kind="TypeFlag" Name="Boolean" />
-              </p:TypeAnnotation>
-            </Pad>
-          </Canvas>
-          <ProcessDefinition Id="IZWoPg8nwFFMY7vPKrYtbc">
-            <Fragment Id="B4E8cwdvpqbNenhObshRMy" Patch="Ak9WvzmVjGoN4SsUn0lt5r" Enabled="true" />
-            <Fragment Id="TNaPEKvfjGQNssNXgKw5cO" Patch="PAKaUkamSppPVBxyze02ah" Enabled="true" />
-          </ProcessDefinition>
-          <Link Id="TIVhezNj2QwQRj8fry1kwU" Ids="GOmRCzokMIqPA7aZMzbziR,PADlyt8dFMSMFDhllz9lgx" IsHidden="true" />
-          <Link Id="RiS3WIo4F3dM0Mo0Z5aJzX" Ids="JY1pQm85vkaPRWQwi4RYOF,HypQZJzWjMyQDDdq3v0LdH" />
-          <Link Id="VeqHhFo1vCVNQTE0D4wmSg" Ids="IBpaQq4URSGP90OhELE81l,GcW7Bb6zT36OjU2VVjNN69" />
-          <Link Id="SF6pFK0cxK8Nw8YEqdZuFN" Ids="CrcwwUdYgd4O8r4KjGIw0K,GOmRCzokMIqPA7aZMzbziR" />
-          <Patch Id="Ak9WvzmVjGoN4SsUn0lt5r" Name="Create">
-            <Pin Id="D2ZjcRKWiaqLIfCUAh8Ech" Name="Frame Rate" Kind="InputPin" />
+        <Node Name="WebRenderer" Bounds="412,268" Id="T0upw1QEwoaONQHmclo5PX">
+          <p:NodeReference LastCategoryFullName="Primitive" LastSymbolSource="builtin">
+            <Choice Kind="ContainerDefinition" Name="Process" />
+          </p:NodeReference>
+          <Patch Id="FdApnYBVBbYMNVZXl7amwe">
+            <Canvas Id="QIN7sLy3iuPPUS66ZExvyf" CanvasType="Group">
+              <ControlPoint Id="AeOYQLXYPwYNXxcGCiElRE" Bounds="579,348" />
+              <Node Bounds="519,301,105,19" AutoConnect="true" Id="TN0rH6Jh7UBML0rqEuZcl9">
+                <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                  <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
+                  <CategoryReference Kind="Category" Name="CEF" NeedsToBeDirectParent="true" />
+                </p:NodeReference>
+                <Pin Id="MSb6yzSkaHIN9uit0Va2JK" Name="Render Handler" Kind="InputPin" />
+                <Pin Id="KqZ2PnmcIHbN99acSGJmEn" Name="Scale Factor" Kind="InputPin" />
+                <Pin Id="UJJJYKbAhgZM4ajHvwshkK" Name="Zoom Level" Kind="InputPin" />
+                <Pin Id="KfFRFZdL7Z0Om8a76R8ncV" Name="Scroll To" Kind="InputPin" />
+                <Pin Id="R7zffqOVWThMTdlMzEB3ir" Name="Enabled" Kind="InputPin" />
+                <Pin Id="U70z2ElfZtsMo4A3xdzO2f" Name="Output" Kind="OutputPin" />
+                <Pin Id="Bg8rlOKmHoTOJqrNDCPjOj" Name="Result" Kind="OutputPin" />
+                <Pin Id="PS6mNhCWulNN0xh6JAbg3J" Name="Is Loading" Kind="OutputPin" />
+                <Pin Id="UwTAs8S0if9O0nk7I7Av6I" Name="Loaded" Kind="OutputPin" />
+                <Pin Id="A1C7iGYYq0EL90uYuw3gzz" Name="Error Text" Kind="OutputPin" />
+                <Pin Id="Rf6phq0DmY1N28ytnFL9yw" Name="Document Size" Kind="OutputPin" />
+              </Node>
+              <Node Bounds="519,247,84,26" Id="CfMg403h1nbNv9Ab3VWeEI">
+                <p:NodeReference LastCategoryFullName="VL.CEF.StrideRenderHandler" LastSymbolSource="VL.CEF.exe">
+                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                  <Choice Kind="OperationCallFlag" Name="Create" />
+                  <CategoryReference Kind="AssemblyCategory" Name="StrideRenderHandler" NeedsToBeDirectParent="true" />
+                </p:NodeReference>
+                <Pin Id="Ok8puwdz6uLNFAbfEnf1zi" Name="Node Context" Kind="InputPin" />
+                <Pin Id="LZKWDKrnJE4N5IFxelXR3r" Name="Output" Kind="StateOutputPin" />
+              </Node>
+              <Node Bounds="518,362,64,26" Id="D13BJlt686qMarTXjak9eh">
+                <p:NodeReference LastCategoryFullName="CEF.WebRenderer" LastSymbolSource="VL.CEF.vl">
+                  <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                  <Choice Kind="OperationCallFlag" Name="LoadUrl" />
+                  <CategoryReference Kind="ClassType" Name="WebRenderer" NeedsToBeDirectParent="true" />
+                </p:NodeReference>
+                <Pin Id="LJKLY6B9xVHMrD90ntYqyN" Name="Input" Kind="StateInputPin" />
+                <Pin Id="O5HuBZJHRnhME76DU6mdBf" Name="Url" Kind="InputPin" />
+                <Pin Id="MasqJ2xATi1OxCi6oNHIZ6" Name="Output" Kind="StateOutputPin" />
+              </Node>
+              <ControlPoint Id="KD2brxa5W5pOnbiuTTbh2D" Bounds="542,442" />
+            </Canvas>
+            <ProcessDefinition Id="CsdYpq4BgeMMCmRB0a1sTC">
+              <Fragment Id="TEHjuRfsIPONztem3hmHgj" Patch="LSuwQVV0AZkK9xtHyIDKi4" Enabled="true" />
+              <Fragment Id="UL66PnQwQfoPIpWDNGkOSe" Patch="KnMVd1wkGNEQUT5kYcOdrN" Enabled="true" />
+            </ProcessDefinition>
+            <Link Id="A4kmom4J8s0OEPtImS4xWP" Ids="Hu2XzhN1Mw3QXAo91HfFde,AeOYQLXYPwYNXxcGCiElRE" IsHidden="true" />
+            <Link Id="EmJPHNibCqwQP5L7JYsHwM" Ids="LZKWDKrnJE4N5IFxelXR3r,MSb6yzSkaHIN9uit0Va2JK" />
+            <Link Id="QNY4BiLDFbTMAntveHKt8X" Ids="U70z2ElfZtsMo4A3xdzO2f,LJKLY6B9xVHMrD90ntYqyN" />
+            <Link Id="MSFhkLy2zIDNTdhAAu3efC" Ids="AeOYQLXYPwYNXxcGCiElRE,O5HuBZJHRnhME76DU6mdBf" />
+            <Link Id="Tb86qLA5BDxNP5d1hcEmKE" Ids="Bg8rlOKmHoTOJqrNDCPjOj,KD2brxa5W5pOnbiuTTbh2D" />
+            <Link Id="ILgIpK3khzSP32lCjqZ3V7" Ids="KD2brxa5W5pOnbiuTTbh2D,Q6cSxzxdojfNzMc1rRZbVs" IsHidden="true" />
+            <Patch Id="LSuwQVV0AZkK9xtHyIDKi4" Name="Create" />
+            <Patch Id="KnMVd1wkGNEQUT5kYcOdrN" Name="Update" ManuallySortedPins="true">
+              <Pin Id="Hu2XzhN1Mw3QXAo91HfFde" Name="Url" Kind="InputPin" Bounds="646,268" DefaultValue="vvvv.org">
+                <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                  <Choice Kind="TypeFlag" Name="String" />
+                </p:TypeAnnotation>
+              </Pin>
+              <Pin Id="KeLg9thapTvNTEgRUxNsmQ" Name="Scale Factor" Kind="InputPin" />
+              <Pin Id="UKGSdU7VBnDLKuunOhLT1z" Name="Zoom Level" Kind="InputPin" />
+              <Pin Id="RNYxV574L78LXePytKUbvX" Name="Scroll To" Kind="InputPin" />
+              <Pin Id="OvzQsQPtX7aPBuaDx8OK7T" Name="Enabled" Kind="InputPin" />
+              <Pin Id="Q6cSxzxdojfNzMc1rRZbVs" Name="Output" Kind="OutputPin" Bounds="770,413">
+                <p:TypeAnnotation>
+                  <Choice Kind="TypeFlag" Name="IRenderer" />
+                </p:TypeAnnotation>
+              </Pin>
+              <Pin Id="Ertvmp64Q65OFuPt2Sj82X" Name="Is Loading" Kind="OutputPin" />
+              <Pin Id="RVTHGhxVNTwPdBW99koNwG" Name="Loaded" Kind="OutputPin" />
+              <Pin Id="HaJbFFLn1cNMtISo0rSu92" Name="Error Text" Kind="OutputPin" />
+              <Pin Id="NWqOtPxZQaOQP5TpIbqIlU" Name="Document Size" Kind="OutputPin" />
+            </Patch>
           </Patch>
-          <Patch Id="PAKaUkamSppPVBxyze02ah" Name="Update" ManuallySortedPins="true">
-            <Pin Id="NV3eMjl0pFgPMh70v2V2WC" Name="Url" Kind="InputPin" />
-            <Pin Id="GFhoOAYH8W3MZ15DnwwQKu" Name="Size" Kind="InputPin" />
-            <Pin Id="RB9OkFi7XJcMuHwwgQ9prA" Name="Mouse Events" Kind="InputPin" />
-            <Pin Id="GapkcU6eeXKPIrSkAPmOAt" Name="Key Events" Kind="InputPin" />
-            <Pin Id="HaurRHeAR62N94VDWktnKK" Name="Touch Events" Kind="InputPin" />
-            <Pin Id="PADlyt8dFMSMFDhllz9lgx" Name="Frames" Kind="OutputPin" Bounds="836,530" />
-            <Pin Id="NReAH2wSrZfNcxnBDaVmLo" Name="Is Loading" Kind="OutputPin" />
-            <Pin Id="HITdSHuym2yOnsCOLmNZfo" Name="Loaded" Kind="OutputPin" />
+        </Node>
+      </Canvas>
+      <Canvas Id="NJWqH1UdYrLP3LKwxxhRoq" Name="Internal" Position="425,214">
+        <!--
+
+    ************************ WebRenderer ************************
+
+-->
+        <Node Name="WebRenderer" Bounds="365,230" Id="FMBaAmruZBmOpzMyfm1Fme">
+          <p:NodeReference>
+            <Choice Kind="ForwardDefinition" Name="Forward" />
+            <FullNameCategoryReference ID="Primitive" />
+          </p:NodeReference>
+          <p:TypeAnnotation LastCategoryFullName="VL.CEF" LastSymbolSource="VL.CEF.exe">
+            <Choice Kind="TypeFlag" Name="WebRenderer`1" />
+          </p:TypeAnnotation>
+          <Patch Id="AJeg1NIAqvlM5LWVUMBF7F">
+            <Canvas Id="HW6TZDesWdOP8oTSjVTxVt" CanvasType="Group">
+              <!--
+
+    ************************ Create ************************
+
+-->
+              <Node Name="Create" Bounds="350,207,100,50" Id="SdgcJ3CWnYLO8CA22qU2dk">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="HqDRpnL6aEqMTy2hC4Gzv7" IsGeneric="true">
+                  <Node Bounds="350,207,10,10" AutoConnect="true" Id="RWzdm0hm9cxOvTaAxzdVQ7">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="Create" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="Ts5AZd84fI2QFhnfPgDnUt" Name="Render Handler" Kind="InputPin" />
+                    <Pin Id="MiHW7gnJtPQNMAM2kyV8oH" Name="Output" Kind="StateOutputPin" />
+                  </Node>
+                  <Pin Id="JaHjIY7Se6oMGPo8IwIo8V" Name="Render Handler" Kind="InputPin" />
+                  <Pin Id="InBU1Vahw68NBPeAt8CvoB" Name="Output" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ Update ************************
+
+-->
+              <Node Name="Update" Bounds="542,175,112,80" Id="VOqjpXIgUz6OeX4FzOWghP">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="Ixtats6qOAHNwn3JqMZuPb" IsGeneric="true">
+                  <Node Bounds="554,204,73,26" AutoConnect="true" Id="DUrlpAFqj94LRyaNP7sjSu">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="Update" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="PFhSCTuaBdGMQF5cEnELlS" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="DjeFBdgYhSEMOSWAuHW0CY" Name="Output" Kind="StateOutputPin" />
+                    <Pin Id="G11IqyL9obVP8TDQk1py7O" Name="Result" Kind="OutputPin" />
+                  </Node>
+                  <Pin Id="B0qEW1dYZQXPwxqNUeTWhk" Name="Input" Kind="InputPin" />
+                  <Pin Id="GNNTMKxChKSLRFMXFLMalf" Name="Output" Kind="OutputPin" />
+                  <Pin Id="NRhG5Qe4e3cPWAAEJUR65E" Name="Result" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ DocumentSize ************************
+
+-->
+              <Node Name="DocumentSize" Bounds="860,387,112,80" Id="Uy5DZWkownPMEFyrU4E6Fr">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="F4EeGyRrFNXLoJ6tI9Ak0O" IsGeneric="true">
+                  <Node Bounds="872,416,81,26" AutoConnect="true" Id="GpSRMngmxEWPyWVwsgtCs6">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="DocumentSize" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="VltdOpSuNvdLC41MeUjcDp" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="SJ08LKuzIeWPmFufwF8XFu" Name="Output" Kind="StateOutputPin" />
+                    <Pin Id="MLCnIF2W19eOzQSrCiUK5Y" Name="Document Size" Kind="OutputPin" />
+                  </Node>
+                  <Pin Id="IbJLjokadM2Pjj5OmWc7Ky" Name="Input" Kind="InputPin" />
+                  <Pin Id="SkC1BmwRlNUMHYGaZKqCiB" Name="Output" Kind="OutputPin" />
+                  <Pin Id="IGMotddQmPWPdYSyvXriwT" Name="Document Size" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ SetEnabled ************************
+
+-->
+              <Node Name="SetEnabled" Bounds="869,537,142,78" Id="IW4YHI16GYiLrR3i6D78kH">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="A5XeiIDGHXXNv5dtSq7BHQ" IsGeneric="true">
+                  <Node Bounds="881,569,73,26" AutoConnect="true" Id="NkpQoZnDwqjLm5n41QWAFF">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="SetEnabled" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="GCL4DQuPwJtPY90JHbyZWD" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="PVgVuiryXlPOK6Xm2xJFNK" Name="Value" Kind="InputPin" />
+                    <Pin Id="AfnLN9R4zdLLLnXTHAgPAH" Name="Output" Kind="StateOutputPin" />
+                  </Node>
+                  <ControlPoint Id="VsBqGgVWawgPJ7ybGrpKpn" Bounds="952,555" />
+                  <Link Id="V4R2iV1ZtdrPhOudXi74UL" Ids="VsBqGgVWawgPJ7ybGrpKpn,PVgVuiryXlPOK6Xm2xJFNK" />
+                  <Link Id="Bw10rFcbOIRL76uA3EufVm" Ids="Cb20cyojojNMAktbgGjfis,VsBqGgVWawgPJ7ybGrpKpn" IsHidden="true" />
+                  <Pin Id="Cb20cyojojNMAktbgGjfis" Name="Enabled" Kind="InputPin" Bounds="606,381" DefaultValue="True">
+                    <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                      <Choice Kind="TypeFlag" Name="Boolean" />
+                    </p:TypeAnnotation>
+                  </Pin>
+                  <Pin Id="QHeJH7rSNpoQKp6ePCKAE1" Name="Input" Kind="InputPin" />
+                  <Pin Id="TrRB4zi7oJVOfcypapklVb" Name="Output" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ ErrorText ************************
+
+-->
+              <Node Name="ErrorText" Bounds="644,387,112,80" Id="MK1itLfkkxsPU3fawPpCyW">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="GBXQJGOSxXoOhSH1Mn3Lip" IsGeneric="true">
+                  <Node Bounds="656,416,73,26" AutoConnect="true" Id="HvgGeKfIJhwLhMjiCMWk8Q">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="ErrorText" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="J30Z7KDGpnwOW1SH3N5Cn9" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="TkzOuiulfwvP2PRABXWye0" Name="Output" Kind="StateOutputPin" />
+                    <Pin Id="Fg6R5XpHKoyNFULCNJ9dCx" Name="Error Text" Kind="OutputPin" />
+                  </Node>
+                  <Pin Id="N0cXbXjW0KxQNh6B6M7RW4" Name="Input" Kind="InputPin" />
+                  <Pin Id="UPhUc3fVzleQTxRXM9n07h" Name="Output" Kind="OutputPin" />
+                  <Pin Id="JWf8YmF7BCOMZfOoNjvEiQ" Name="Error Text" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ IsLoading ************************
+
+-->
+              <Node Name="IsLoading" Bounds="243,385,112,80" Id="LrpqUIevQGuLBHl9Kn6rZ8">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="GruwNaxNNmxMRbAygj4EJv" IsGeneric="true">
+                  <Node Bounds="255,414,73,26" AutoConnect="true" Id="RXzddvSFSuELO4fZ25YjDX">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="IsLoading" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="C0cS5HNqEBeMkaqD6gow1B" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="Kwt55utZEAoLu0PEpHwMZZ" Name="Output" Kind="StateOutputPin" />
+                    <Pin Id="UlUxhKapatgOWzpzCqImfA" Name="Is Loading" Kind="OutputPin" />
+                  </Node>
+                  <Pin Id="E1ECZbO8zCZOmqIVQnvy2p" Name="Input" Kind="InputPin" />
+                  <Pin Id="UO9oITb4PjDMi0cpElv2qF" Name="Output" Kind="OutputPin" />
+                  <Pin Id="REX078BCJ1TLRC5USMKKlx" Name="Is Loading" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ Loaded ************************
+
+-->
+              <Node Name="Loaded" Bounds="463,388,112,80" Id="FTrDuqB7FiAQBL06RRwAr1">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="HT1qQ3YmavHQPQgMQ5WKsH" IsGeneric="true">
+                  <Node Bounds="475,417,73,26" AutoConnect="true" Id="KZFljt0L5DjM5GtH4c2iA8">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="Loaded" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="TvVCq982ufYNDvwlygWviP" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="KIMoMjrhaXMOShjZT7iWZz" Name="Output" Kind="StateOutputPin" />
+                    <Pin Id="Qltc3uhsNFxQGXXdaUaoa2" Name="Loaded" Kind="OutputPin" />
+                  </Node>
+                  <Pin Id="EKTJdycyTywLfUiYPVWlqZ" Name="Input" Kind="InputPin" />
+                  <Pin Id="EZkkftEDumQQJ7WJoa9vD1" Name="Output" Kind="OutputPin" />
+                  <Pin Id="FBYVf25lHNbMcgUAE7WZOH" Name="Loaded" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ SetScaleFactor ************************
+
+-->
+              <Node Name="SetScaleFactor" Bounds="247,532,168,83" Id="FUbiCc2oEEdOlVw2MVh2t1">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="LYIIeohEPnrN7b3QByX2Az" IsGeneric="true">
+                  <Node Bounds="259,564,81,26" AutoConnect="true" Id="LTPyRhww1YLLIXehRTQk9Q">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="SetScaleFactor" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="Cpa4WPUahXcP1S9nWyHUtV" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="EdznonGx95QOhcX96vcXp1" Name="Value" Kind="InputPin" />
+                    <Pin Id="T2g7eWTeJn4L3eotHdTZ7V" Name="Output" Kind="StateOutputPin" />
+                  </Node>
+                  <ControlPoint Id="L2AomiaMCsSL3zSZ3M1UPc" Bounds="338,550" />
+                  <Link Id="GVWay84znXrPTlAGlyT1yz" Ids="L2AomiaMCsSL3zSZ3M1UPc,EdznonGx95QOhcX96vcXp1" />
+                  <Link Id="CmQC4lh7LzwM1eDsTVS3IW" Ids="N09t1vhoAXFM38Rwgt6sbI,L2AomiaMCsSL3zSZ3M1UPc" IsHidden="true" />
+                  <Pin Id="N09t1vhoAXFM38Rwgt6sbI" Name="Scale Factor" Kind="InputPin" Bounds="886,529" DefaultValue="1">
+                    <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                      <Choice Kind="TypeFlag" Name="Float32" />
+                    </p:TypeAnnotation>
+                  </Pin>
+                  <Pin Id="DptjwUHhmmOO5VtcO6kA1f" Name="Input" Kind="InputPin" />
+                  <Pin Id="MKZhlUyt0vWPj7TrasqPC4" Name="Output" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ SetScrollTo ************************
+
+-->
+              <Node Name="SetScrollTo" Bounds="461,531,145,83" Id="ENY22Q94Z7MOlR8A5dK5Ln">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="EDCIfjbEHJULgxAOCNFrJ4" IsGeneric="true">
+                  <Node Bounds="473,568,73,26" AutoConnect="true" Id="QQR5NxFskE1P2NGKrmXToJ">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="SetScrollTo" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="VgqUbPhXyyoOgUXANNa3hK" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="RvMQaHyIEbyL5vdiw3JoLX" Name="Value" Kind="InputPin" />
+                    <Pin Id="MVUICZ0uAxzOvneIa0vHLw" Name="Output" Kind="StateOutputPin" />
+                  </Node>
+                  <ControlPoint Id="T0W0rct2RnrNy95dJoFs80" Bounds="543,549" />
+                  <Link Id="M5wIFgVdJjBQXdWe9rgNp3" Ids="T0W0rct2RnrNy95dJoFs80,RvMQaHyIEbyL5vdiw3JoLX" />
+                  <Link Id="SY9fu8vUA3fLuu9K0UYG8T" Ids="DTa8o8wofbCOdOklIpsvEk,T0W0rct2RnrNy95dJoFs80" IsHidden="true" />
+                  <Pin Id="DTa8o8wofbCOdOklIpsvEk" Name="Scroll To" Kind="InputPin" Bounds="332,675" />
+                  <Pin Id="KagPpyHJ94hLdgn5anknJy" Name="Input" Kind="InputPin" />
+                  <Pin Id="MGHgHrRIrWVO2Oiseormfw" Name="Output" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ SetZoomLevel ************************
+
+-->
+              <Node Name="SetZoomLevel" Bounds="648,526,167,91" Id="VyJWkndjyPLLNqFkvFE500">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="S5NNcP9M8qiMP9Ohs70lXP" IsGeneric="true">
+                  <Node Bounds="660,566,79,26" AutoConnect="true" Id="FhZz6M8TMGALUQTFxKY3Uc">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                      <Choice Kind="OperationNode" Name="SetZoomLevel" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="C172y8jOs5HOqZW1i9tfs9" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="CSPSrSrr5fNPWsK4Nt8Kpq" Name="Value" Kind="InputPin" />
+                    <Pin Id="QUaBxiaSUq2OlZsJa9CpuM" Name="Output" Kind="StateOutputPin" />
+                  </Node>
+                  <ControlPoint Id="FAHuu5XfCF0QXltCo1Q4fT" Bounds="740,544" />
+                  <Link Id="Mpz0xrD5EUeQC3OcMwH5fJ" Ids="FAHuu5XfCF0QXltCo1Q4fT,CSPSrSrr5fNPWsK4Nt8Kpq" />
+                  <Link Id="LHC18IVopppNmRERcy1b2i" Ids="EdSvEOmcWPLM23QQwsbuOM,FAHuu5XfCF0QXltCo1Q4fT" IsHidden="true" />
+                  <Pin Id="EdSvEOmcWPLM23QQwsbuOM" Name="Zoom Level" Kind="InputPin" Bounds="887,671" DefaultValue="1">
+                    <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
+                      <Choice Kind="TypeFlag" Name="Float32" />
+                    </p:TypeAnnotation>
+                  </Pin>
+                  <Pin Id="BO6jvVr2mhPOk8fa2fDjRX" Name="Input" Kind="InputPin" />
+                  <Pin Id="FGxZFh9AzdEOB6nSdbcWmd" Name="Output" Kind="OutputPin" />
+                </Patch>
+              </Node>
+            </Canvas>
+            <ProcessDefinition Id="HGJnR8OFhb8Pcl5RAlYoM7" HasStateOut="true">
+              <Fragment Id="GYL8w8PFpqoONHUDz1JlIN" Patch="SdgcJ3CWnYLO8CA22qU2dk" Enabled="true" />
+              <Fragment Id="FKHt0rMJrtkOOzPuzNZHeJ" Patch="FUbiCc2oEEdOlVw2MVh2t1" Enabled="true" />
+              <Fragment Id="Gl60I7FF1TRL81bNA2B0Zk" Patch="VyJWkndjyPLLNqFkvFE500" Enabled="true" />
+              <Fragment Id="EeiliGdBDA2OdTUAzyjQWJ" Patch="ENY22Q94Z7MOlR8A5dK5Ln" Enabled="true" />
+              <Fragment Id="FWX6ZeL7gm6M9ccC0MAQpN" Patch="IW4YHI16GYiLrR3i6D78kH" Enabled="true" />
+              <Fragment Id="VJmCesZZK7SOp4Bcj6jlVb" Patch="VOqjpXIgUz6OeX4FzOWghP" Enabled="true" />
+              <Fragment Id="PZL3UKNQsxwQLqhs5QQvWp" Patch="LrpqUIevQGuLBHl9Kn6rZ8" Enabled="true" />
+              <Fragment Id="BMfsfbPN4nRPHnwsEO58Dd" Patch="FTrDuqB7FiAQBL06RRwAr1" Enabled="true" />
+              <Fragment Id="AZg3C8w9HOpMPmJjueptBl" Patch="MK1itLfkkxsPU3fawPpCyW" Enabled="true" />
+              <Fragment Id="V1zNtQTwrhzNGacA92lG9S" Patch="Uy5DZWkownPMEFyrU4E6Fr" Enabled="true" />
+            </ProcessDefinition>
           </Patch>
-          <Patch Id="H598UxtpFsePeL0xIJ9997" Name="Dispose" />
-        </Patch>
-      </Node>
+        </Node>
+      </Canvas>
     </Canvas>
     <!--
 
@@ -427,4 +513,6 @@
   </Patch>
   <PlatformDependency Id="UEg695aV6JdOmhDK4DFcMP" Location="./src/bin/VL.CEF.exe" />
   <PlatformDependency Id="IhtJTPQFyJfNdlzEkhQGYm" Location="./src/bin/Xilium.CefGlue.dll" />
+  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="0.7.322-g6875704a00" />
+  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2020.2.0-0262-g2752f56465" />
 </Document>

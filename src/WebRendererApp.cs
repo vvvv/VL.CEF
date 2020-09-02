@@ -112,27 +112,6 @@ namespace VL.CEF
             }
         }
 
-        class DomVisitor : CefDomVisitor
-        {
-            public XDocument Result;
-            public Exception Exception;
-
-            protected override void Visit(CefDomDocument document)
-            {
-                using (var xmlReader = new CefXmlReader(document))
-                {
-                    try
-                    {
-                        Result = XDocument.Load(xmlReader);
-                    }
-                    catch (Exception e)
-                    {
-                        Exception = e;
-                    }
-                }
-            }
-        }
-
         class BrowserProcessHandler : CefBrowserProcessHandler
         {
             protected override void OnRenderProcessThreadCreated(CefListValue extraInfo)
@@ -156,7 +135,6 @@ namespace VL.CEF
             class CustomCallbackHandler : CefV8Handler
             {
                 public const string ReportDocumentSize = "vvvvReportDocumentSize";
-                public const string Send = "vvvvSend";
 
                 private readonly CefBrowser Browser;
                 private readonly CefFrame Frame;
@@ -186,42 +164,6 @@ namespace VL.CEF
                                 returnValue = null;
                                 exception = null;
                                 return true;
-                            case Send:
-                                if (arguments.Length != 1)
-                                {
-                                    exception = "Invalid argument; expecting a single dictionary";
-                                    returnValue = null;
-                                    return true;
-                                }
-                                var arg = arguments[0];
-                                if (!arg.IsObject)
-                                {
-                                    exception = "Argument is not an object";
-                                    returnValue = null;
-                                    return true;
-                                }
-                                message = CefProcessMessage.Create("receive-data");
-                                message.SetFrameIdentifier(Frame.Identifier);
-                                using (var disposable = new CompositeDisposable())
-                                using (args = message.Arguments)
-                                {
-                                    if (arg.IsArray)
-                                    {
-                                        var value = ToListValue(arg, disposable);
-                                        args.SetString(2, "list");
-                                        args.SetList(3, value);
-                                    }
-                                    else
-                                    {
-                                        var value = ToDictionaryValue(arg, disposable);
-                                        args.SetString(2, "dict");
-                                        args.SetDictionary(3, value);
-                                    }
-                                    Frame.SendProcessMessage(CefProcessId.Browser, message);
-                                }
-                                returnValue = null;
-                                exception = null;
-                                return true;
                             default:
                                 returnValue = null;
                                 exception = null;
@@ -235,61 +177,6 @@ namespace VL.CEF
                 }
             }
 
-            static CefDictionaryValue ToDictionaryValue(CefV8Value value, CompositeDisposable disposable)
-            {
-                var result = CefDictionaryValue.Create();
-                foreach (var key in value.GetKeys())
-                {
-                    var val = value.GetValue(key);
-                    if (val.IsBool)
-                        result.SetBool(key, val.GetBoolValue());
-                    else if (val.IsInt)
-                        result.SetInt(key, val.GetIntValue());
-                    else if (val.IsDouble)
-                        result.SetDouble(key, val.GetDoubleValue());
-                    else if (val.IsString)
-                        result.SetString(key, val.GetStringValue());
-                    else if (val.IsNull)
-                        result.SetNull(key);
-                    else if (val.IsArray)
-                        result.SetList(key, ToListValue(val, disposable));
-                    else if (val.IsObject)
-                        result.SetDictionary(key, ToDictionaryValue(val, disposable));
-                }
-                disposable.Add(result);
-                return result;
-            }
-
-            static CefListValue ToListValue(CefV8Value value, CompositeDisposable disposable)
-            {
-                var result = CefListValue.Create();
-                var count = value.GetArrayLength();
-                result.SetSize(count);
-                for (int i = 0; i < count; i++)
-                {
-                    var val = value.GetValue(i);
-                    if (val != null)
-                    {
-                        if (val.IsBool)
-                            result.SetBool(i, val.GetBoolValue());
-                        else if (val.IsInt)
-                            result.SetInt(i, val.GetIntValue());
-                        else if (val.IsDouble)
-                            result.SetDouble(i, val.GetDoubleValue());
-                        else if (val.IsString)
-                            result.SetString(i, val.GetStringValue());
-                        else if (val.IsNull)
-                            result.SetNull(i);
-                        else if (val.IsArray)
-                            result.SetList(i, ToListValue(val, disposable));
-                        else if (val.IsObject)
-                            result.SetDictionary(i, ToDictionaryValue(val, disposable));
-                    }
-                }
-                disposable.Add(result);
-                return result;
-            }
-
             protected override void OnRenderThreadCreated(CefListValue extraInfo)
             {
                 base.OnRenderThreadCreated(extraInfo);
@@ -300,9 +187,6 @@ namespace VL.CEF
                 long identifier;
                 switch (message.Name)
                 {
-                    case "dom-request":
-                        HandleDomRequest(browser, sourceProcess, frame);
-                        return true;
                     case "document-size-request":
                         HandleDocumentSizeRequest(browser, sourceProcess, frame);
                         return true;
@@ -323,43 +207,9 @@ namespace VL.CEF
                         var handler = new CustomCallbackHandler(browser, frame);
                         var reportDocumentSizeFunc = CefV8Value.CreateFunction(CustomCallbackHandler.ReportDocumentSize, handler);
                         window.SetValue(CustomCallbackHandler.ReportDocumentSize, reportDocumentSizeFunc, CefV8PropertyAttribute.None);
-                        var sendFunc = CefV8Value.CreateFunction(CustomCallbackHandler.Send, handler);
-                        window.SetValue(CustomCallbackHandler.Send, sendFunc, CefV8PropertyAttribute.None);
                     }
                 }
                 base.OnContextCreated(browser, frame, context);
-            }
-
-            private void HandleDomRequest(CefBrowser browser, CefProcessId sourceProcess, CefFrame frame)
-            {
-                var scheduler = GetTaskScheduler(CefThreadId.Renderer);
-                Task.Factory.StartNew(
-                    () =>
-                    {
-                        var visitor = new DomVisitor();
-                        frame.VisitDom(visitor);
-                        using (var response = CefProcessMessage.Create("dom-response"))
-                        {
-                            response.SetFrameIdentifier(frame.Identifier);
-                            using (var args = response.Arguments)
-                            {
-                                if (visitor.Result != null)
-                                {
-                                    args.SetBool(2, true);
-                                    args.SetString(3, visitor.Result.ToString());
-                                }
-                                else
-                                {
-                                    args.SetBool(2, false);
-                                    args.SetString(3, visitor.Exception.ToString());
-                                }
-                                frame.SendProcessMessage(sourceProcess, response);
-                            }
-                        }
-                    },
-                    CancellationToken.None,
-                    TaskCreationOptions.None,
-                    scheduler);
             }
 
             private void HandleDocumentSizeRequest(CefBrowser browser, CefProcessId sourceProcess, CefFrame frame)

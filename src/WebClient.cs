@@ -1,14 +1,12 @@
 ﻿using System;
 using Xilium.CefGlue;
-using System.Xml.Linq;
-using System.IO;
-using System.Text;
-using System.Collections.Specialized;
 using System.Diagnostics;
+using Stride.Core.Mathematics;
 
 namespace VL.CEF
 {
-    public class WebClient : CefClient
+    internal sealed class WebClient<T> : CefClient
+        where T : IRenderHandler
     {
         public class RequestContextHandler : CefRequestContextHandler
         {
@@ -28,11 +26,11 @@ namespace VL.CEF
 
         class RenderHandler : CefRenderHandler
         {
-            private readonly WebRenderer FRenderer;
+            private readonly WebRenderer<T> renderer;
             
-            public RenderHandler(WebRenderer renderer)
+            public RenderHandler(WebRenderer<T> renderer)
             {
-                FRenderer = renderer;
+                this.renderer = renderer;
             }
 
             protected override bool GetRootScreenRect(CefBrowser browser, ref CefRectangle rect)
@@ -42,14 +40,19 @@ namespace VL.CEF
 
             protected override void GetViewRect(CefBrowser browser, out CefRectangle rect)
             {
-                var width = Math.Max(1, (int)FRenderer.Size.X);
-                var height = Math.Max(1, (int)FRenderer.Size.Y);
+                var logicalSize = renderer.Size.DeviceToLogical(renderer.ScaleFactor);
+                var width = Math.Max(1, (int)Math.Ceiling(logicalSize.X));
+                var height = Math.Max(1, (int)Math.Ceiling(logicalSize.Y));
                 rect = new CefRectangle(0, 0, width, height);
             }
 
             protected override bool GetScreenPoint(CefBrowser browser, int viewX, int viewY, ref int screenX, ref int screenY)
             {
-                return base.GetScreenPoint(browser, viewX, viewY, ref screenX, ref screenY);
+                var viewPoint = new Vector2(viewX, viewY);
+                var screenPoint = viewPoint.LogicalToDevice(renderer.ScaleFactor);
+                screenX = (int)screenPoint.X;
+                screenY = (int)screenPoint.Y;
+                return true;
             }
 
             protected override void OnCursorChange(CefBrowser browser, IntPtr cursorHandle, CefCursorType type, CefCursorInfo customCursorInfo)
@@ -69,24 +72,30 @@ namespace VL.CEF
 
             protected override void OnAcceleratedPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
             {
-                FRenderer.OnAcceleratedPain(browser, type, dirtyRects, sharedHandle);
+                renderer.OnAcceleratedPaint(browser, type, dirtyRects, sharedHandle);
             }
 
             protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr buffer, int width, int height)
             {
-                FRenderer.OnPaint(browser, type, dirtyRects, buffer, width, height);
+                renderer.OnPaint(browser, type, dirtyRects, buffer, width, height);
             }
 
             protected override bool GetScreenInfo(CefBrowser browser, CefScreenInfo screenInfo)
             {
-                return false;
+                GetViewRect(browser, out var viewRect);
+
+                screenInfo.DeviceScaleFactor = renderer.ScaleFactor;
+                screenInfo.Rectangle = viewRect;
+                screenInfo.AvailableRectangle = viewRect;
+
+                return true;
             }
 
             protected override void OnScrollOffsetChanged(CefBrowser browser, double x, double y)
             {
                 // Do not report the change as long as the renderer is busy loading content
-                if (!FRenderer.IsLoading)
-                    FRenderer.UpdateDocumentSize();
+                if (!renderer.IsLoading)
+                    renderer.UpdateDocumentSize();
             }
 
             protected override CefAccessibilityHandler GetAccessibilityHandler()
@@ -99,145 +108,55 @@ namespace VL.CEF
                 
             }
         }
-
-        //class RequestHandler : CefRequestHandler
-        //{
-        //    class HtmlStringResourceHandler : CefResourceHandler
-        //    {
-        //        private readonly Stream FStream;
-        //        private readonly byte[] FBuffer = new byte[1024];
-
-        //        public HtmlStringResourceHandler(string text)
-        //        {
-        //            FStream = new MemoryStream(Encoding.UTF8.GetBytes(text));
-        //        }
-
-        //        protected override void Dispose(bool disposing)
-        //        {
-        //            FStream.Dispose();
-        //            base.Dispose(disposing);
-        //        }
-
-        //        protected override bool CanGetCookie(CefCookie cookie)
-        //        {
-        //            return true;
-        //        }
-
-        //        protected override bool CanSetCookie(CefCookie cookie)
-        //        {
-        //            return true;
-        //        }
-
-        //        protected override void Cancel()
-        //        {
-                    
-        //        }
-
-        //        protected override void GetResponseHeaders(CefResponse response, out long responseLength, out string redirectUrl)
-        //        {
-        //            response.MimeType = "text/html";
-        //            response.Status = 200;
-        //            response.StatusText = "OK";
-
-        //            var headers = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
-        //            headers.Add("Cache-Control", "private");
-        //            response.SetHeaderMap(headers);
-
-        //            responseLength = FStream.Length;
-        //            redirectUrl = null;
-        //        }
-
-        //        protected override bool ProcessRequest(CefRequest request, CefCallback callback)
-        //        {
-        //            callback.Continue();
-        //            return true;
-        //        }
-
-        //        protected override bool ReadResponse(Stream response, int bytesToRead, out int bytesRead, CefCallback callback)
-        //        {
-        //            bytesRead = 0;
-        //            while (bytesRead < bytesToRead)
-        //            {
-        //                var readCount = FStream.Read(FBuffer, 0, Math.Min(FBuffer.Length, bytesToRead));
-        //                response.Write(FBuffer, 0, readCount);
-        //                bytesRead += readCount;
-        //            }
-        //            return true;
-        //        }
-        //    }
-
-        //    private readonly WebClient FWebClient;
-        //    private readonly WebRenderer FRenderer;
-
-        //    public RequestHandler(WebClient webClient, WebRenderer renderer)
-        //    {
-        //        FWebClient = webClient;
-        //        FRenderer = renderer;
-        //    }
-
-        //    protected override CefResourceHandler GetResourceHandler(CefBrowser browser, CefFrame frame, CefRequest request)
-        //    {
-        //        if (frame.IsMain && 
-        //            request.Method == "GET" && 
-        //            request.ResourceType == CefResourceType.MainFrame &&
-        //            (request.TransitionType == CefTransitionType.Explicit || request.TransitionType == CefTransitionType.Reload))
-        //        {
-        //            var html = FRenderer.CurrentHTML;
-        //            if (html != null)
-        //                return new HtmlStringResourceHandler(html);
-        //        }
-        //        return base.GetResourceHandler(browser, frame, request);
-        //    }
-        //}
         
         class LifeSpanHandler : CefLifeSpanHandler
         {
-            private readonly WebClient FWebClient;
-            private readonly WebRenderer FRenderer;
+            private readonly WebClient<T> webClient;
+            private readonly WebRenderer<T> renderer;
             
-            public LifeSpanHandler(WebClient webClient, WebRenderer renderer)
+            public LifeSpanHandler(WebClient<T> webClient, WebRenderer<T> renderer)
             {
-                FWebClient = webClient;
-                FRenderer = renderer;
+                this.webClient = webClient;
+                this.renderer = renderer;
             }
 
             protected override bool OnBeforePopup(CefBrowser browser, CefFrame frame, string targetUrl, string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture, CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings, ref CefDictionaryValue extraInfo, ref bool noJavascriptAccess)
             {
-                FRenderer.LoadUrl(targetUrl);
+                renderer.LoadUrl(targetUrl);
                 return true;
             }
 
             protected override void OnAfterCreated(CefBrowser browser)
             {
-                FRenderer.Attach(browser);
+                renderer.Attach(browser);
                 base.OnAfterCreated(browser);
             }
             
             protected override void OnBeforeClose(CefBrowser browser)
             {
-                FRenderer.Detach();
+                renderer.Detach();
                 base.OnBeforeClose(browser);
             }
         }
         
         class LoadHandler : CefLoadHandler
         {
-            private readonly WebRenderer FRenderer;
+            private readonly WebRenderer<T> renderer;
             
-            public LoadHandler(WebRenderer renderer)
+            public LoadHandler(WebRenderer<T> renderer)
             {
-                FRenderer = renderer;
+                this.renderer = renderer;
             }
 
             protected override void OnLoadError(CefBrowser browser, CefFrame frame, CefErrorCode errorCode, string errorText, string failedUrl)
             {
-                FRenderer.OnLoadError(frame, errorCode, failedUrl, errorText);
+                renderer.OnLoadError(frame, errorCode, failedUrl, errorText);
                 base.OnLoadError(browser, frame, errorCode, errorText, failedUrl);
             }
 
             protected override void OnLoadingStateChange(CefBrowser browser, bool isLoading, bool canGoBack, bool canGoForward)
             {
-                FRenderer.OnLoadingStateChange(isLoading, canGoBack, canGoForward);
+                renderer.OnLoadingStateChange(isLoading, canGoBack, canGoForward);
                 base.OnLoadingStateChange(browser, isLoading, canGoBack, canGoForward);
             }
         }
@@ -257,11 +176,11 @@ namespace VL.CEF
 
         class DisplayHandler : CefDisplayHandler
         {
-            private readonly WebRenderer FRenderer;
+            private readonly WebRenderer<T> renderer;
 
-            public DisplayHandler(WebRenderer renderer)
+            public DisplayHandler(WebRenderer<T> renderer)
             {
-                FRenderer = renderer;
+                this.renderer = renderer;
             }
 
             protected override bool OnConsoleMessage(CefBrowser browser, CefLogSeverity level, string message, string source, int line)
@@ -286,35 +205,35 @@ namespace VL.CEF
             }
         }
 
-        private readonly WebRenderer FRenderer;
-        private readonly CefRenderHandler FRenderHandler;
-        private readonly CefRequestHandler FRequestHandler;
-        private readonly CefLifeSpanHandler FLifeSpanHandler;
-        private readonly CefLoadHandler FLoadHandler;
-        private readonly CefKeyboardHandler FKeyboardHandler;
-        private readonly CefDisplayHandler FDisplayHandler;
-        private readonly CefContextMenuHandler FContextMenuHandler;
+        private readonly WebRenderer<T> renderer;
+        private readonly CefRenderHandler renderHandler;
+        private readonly CefRequestHandler requestHandler;
+        private readonly CefLifeSpanHandler lifeSpanHandler;
+        private readonly CefLoadHandler loadHandler;
+        private readonly CefKeyboardHandler keyboardHandler;
+        private readonly CefDisplayHandler displayHandler;
+        private readonly CefContextMenuHandler contextMenuHandler;
         
-        public WebClient(WebRenderer renderer)
+        public WebClient(WebRenderer<T> renderer)
         {
-            FRenderer = renderer;
-            FRenderHandler = new RenderHandler(renderer);
+            this.renderer = renderer;
+            renderHandler = new RenderHandler(renderer);
             //FRequestHandler = new RequestHandler(this, renderer);
-            FLifeSpanHandler = new LifeSpanHandler(this, renderer);
-            FLoadHandler = new LoadHandler(renderer);
-            FKeyboardHandler = new KeyboardHandler();
-            FDisplayHandler = new DisplayHandler(renderer);
-            FContextMenuHandler = new ContextMenuHandler();
+            lifeSpanHandler = new LifeSpanHandler(this, renderer);
+            loadHandler = new LoadHandler(renderer);
+            keyboardHandler = new KeyboardHandler();
+            displayHandler = new DisplayHandler(renderer);
+            contextMenuHandler = new ContextMenuHandler();
         }
 
         protected override CefContextMenuHandler GetContextMenuHandler()
         {
-            return FContextMenuHandler;
+            return contextMenuHandler;
         }
 
         protected override CefDisplayHandler GetDisplayHandler()
         {
-            return FDisplayHandler;
+            return displayHandler;
         }
         
         protected override CefFocusHandler GetFocusHandler()
@@ -329,66 +248,40 @@ namespace VL.CEF
         
         protected override CefKeyboardHandler GetKeyboardHandler()
         {
-            return FKeyboardHandler;
+            return keyboardHandler;
         }
         
         protected override CefLifeSpanHandler GetLifeSpanHandler()
         {
-            return FLifeSpanHandler;
+            return lifeSpanHandler;
         }
         
         protected override CefLoadHandler GetLoadHandler()
         {
-            return FLoadHandler;
+            return loadHandler;
         }
 
         protected override CefRequestHandler GetRequestHandler()
         {
-            return FRequestHandler;
+            return requestHandler;
         }
         
         protected override CefRenderHandler GetRenderHandler()
         {
-            return FRenderHandler;
+            return renderHandler;
         }
 
         protected override bool OnProcessMessageReceived(CefBrowser browser, CefFrame frame, CefProcessId sourceProcess, CefProcessMessage message)
         {
             switch (message.Name)
             {
-                case "dom-response":
-                    if (frame != null)
-                    {
-                        var arguments = message.Arguments;
-                        var success = arguments.GetBool(2);
-                        var s = arguments.GetString(3);
-                        if (success)
-                        {
-                            var dom = XDocument.Parse(s);
-                            FRenderer.OnUpdateDom(dom);
-                        }
-                        else
-                            FRenderer.OnUpdateDom(s);
-                    }
-                    return true;
                 case "document-size-response":
                     if (frame != null)
                     {
                         var arguments = message.Arguments;
                         var width = arguments.GetInt(2);
                         var height = arguments.GetInt(3);
-                        FRenderer.OnDocumentSize(frame, width, height);
-                    }
-                    return true;
-                case "receive-data":
-                    if (frame != null)
-                    {
-                        var arguments = message.Arguments;
-                        var type = arguments.GetString(2);
-                        if (type == "list")
-                            FRenderer.OnReceiveData(frame, arguments.GetList(3));
-                        else if (type == "dict")
-                            FRenderer.OnReceiveData(frame, arguments.GetDictionary(3));
+                        renderer.OnDocumentSize(frame, width, height);
                     }
                     return true;
                 default:

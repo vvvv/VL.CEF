@@ -7,6 +7,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Stride.Core.Mathematics;
+using Stride.Graphics;
+using Stride.Rendering;
 using VL.Lib.Basics.Resources;
 using Xilium.CefGlue;
 
@@ -90,6 +93,21 @@ namespace VL.CEF
         {
             low = (int)(value);
             high = (int)(value >> 32);
+        }
+
+        public static Vector2 DeviceToLogical(this Vector2 v, float scaleFactor)
+        {
+            return v / scaleFactor;
+        }
+
+        public static Vector2 LogicalToDevice(this Vector2 v, float scaleFactor)
+        {
+            return v * scaleFactor;
+        }
+
+        public static Vector2 ToScreenSpace(this Vector2 v, in Viewport viewport, in Matrix view, in Matrix projection)
+        {
+            return viewport.Project((Vector3)v, view, projection, Matrix.Identity).XY();
         }
     }
 }

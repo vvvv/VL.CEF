@@ -2,7 +2,7 @@
   "profiles": {
     "VL.CEF": {
       "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_2020.1.0\\vvvv.exe",
+      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_2020.2.0-0262-g2752f56465\\vvvv.exe",
       "commandLineArgs": "--package-repositories $(PackageRespositories) -o \"$(OverviewPatch)\" --allowmultiple"
     }
   }

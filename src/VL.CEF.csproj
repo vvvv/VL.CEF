@@ -7,6 +7,7 @@
     <Platforms>x64;x86</Platforms>
     
     <LangVersion>8.0</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -18,7 +19,7 @@
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <VersionPrefix>0.0.4</VersionPrefix>
+    <VersionPrefix>0.0.5</VersionPrefix>
     <VersionSuffix>stride</VersionSuffix>
     
     <!-- We need the GenerateBuildDependencyFile target-->
@@ -45,10 +46,11 @@
   </PropertyGroup>
   
   <ItemGroup>
+    <PackageReference Include="OpenTK" Version="3.2.0" />
     <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
     <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
-    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
-    <PackageReference Include="VL.UI.Core" Version="2020.2.0-0217-g78b13ed816" PrivateAssets="all" />
+    <PackageReference Include="VL.Skia" Version="2020.2.0-0218-ga8106f90dc" PrivateAssets="all" />
+    <PackageReference Include="VL.Stride.Runtime" Version="0.7.298-gf81d04748f" ExcludeAssets="build;buildTransitive" PrivateAssets="all" />
   </ItemGroup>
   
   <!-- Manual fix for Cef packages -->
