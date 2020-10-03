@@ -105,8 +105,7 @@ namespace VL.CEF
             base.InitializeCore();
 
             // Setup our own effect compiler
-            var databaseFileProvider = Services.GetService<IDatabaseFileProviderService>();
-            using var fileProvider = new InMemoryFileProvider(databaseFileProvider.FileProvider);
+            using var fileProvider = new InMemoryFileProvider(EffectSystem.FileProvider);
             fileProvider.Register("shaders/WebRendererShader.sdsl", GetShaderSource());
             using var compiler = new EffectCompiler(fileProvider);
             compiler.SourceDirectories.Add("shaders");
