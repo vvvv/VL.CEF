@@ -13,7 +13,7 @@ Once the nuget is installed and referenced in your VL document you'll see the ca
 
 Demos are available via the Help Browser!
 
-## Using the library with vvvv 2020.2-preview
+## Using the library with vvvv > 2020.2
 Install the preview version of the package
 
     nuget install VL.CEF -pre
