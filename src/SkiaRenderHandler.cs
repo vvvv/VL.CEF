@@ -31,9 +31,6 @@ namespace VL.CEF
         {
             var deviceProvider = nodeContext.Factory.CreateService<IResourceProvider<Device>>(nodeContext);
             deviceHandle = deviceProvider?.GetHandle();
-            var device = deviceHandle?.Resource;
-            if (device != null)
-                wglDeviceHandle = Wgl.DXOpenDeviceNV(device.NativePointer);
         }
 
         public bool UseAcceleratedPaint => wglDeviceHandle != default;
@@ -101,7 +98,12 @@ namespace VL.CEF
                     return;
 
                 if (wglDeviceHandle == IntPtr.Zero)
-                    return;
+                {
+                    // We assume that an OpenGL context is current
+                    wglDeviceHandle = Wgl.DXOpenDeviceNV(device.NativePointer);
+                    if (wglDeviceHandle == IntPtr.Zero)
+                        return;
+                }
 
                 if (!sharedTextures.TryGetValue(sharedHandle, out var sharedTexture))
                 {

@@ -19,7 +19,7 @@
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <VersionPrefix>0.0.6</VersionPrefix>
+    <VersionPrefix>0.0.7</VersionPrefix>
     <VersionSuffix>stride</VersionSuffix>
     
     <!-- We need the GenerateBuildDependencyFile target-->
