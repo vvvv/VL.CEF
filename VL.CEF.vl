@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2020.2.0.262" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2020.2.0-0262-g2752f56465" />
+<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2020.2.2.281" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2020.2.2" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <Canvas Id="QK9dH0d5QqSNUrHQwzPZcN" Name="Graphics" Position="424,306" DefaultCategory="Graphics.Skia.Layers" CanvasType="FullCategory">
@@ -35,7 +35,7 @@
                 <Pin Id="NiqjTxEXuk1PGpt3yddtZt" Name="Document Size" Kind="OutputPin" />
               </Node>
               <Node Bounds="431,220,84,26" Id="T0AjfbhIZ2nMRXU97Eiia3">
-                <p:NodeReference LastCategoryFullName="VL.CEF.SkiaRenderHandler" LastSymbolSource="VL.CEF.exe">
+                <p:NodeReference LastCategoryFullName="VL.CEF.SkiaRenderHandler" LastSymbolSource="VL.CEF.Core.dll">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <CategoryReference Kind="AssemblyCategory" Name="SkiaRenderHandler" />
                   <Choice Kind="OperationCallFlag" Name="Create" />
@@ -121,7 +121,7 @@
                 <Pin Id="Rf6phq0DmY1N28ytnFL9yw" Name="Document Size" Kind="OutputPin" />
               </Node>
               <Node Bounds="519,247,84,26" Id="CfMg403h1nbNv9Ab3VWeEI">
-                <p:NodeReference LastCategoryFullName="VL.CEF.StrideRenderHandler" LastSymbolSource="VL.CEF.exe">
+                <p:NodeReference LastCategoryFullName="VL.CEF.StrideRenderHandler" LastSymbolSource="VL.CEF.Core.dll">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <Choice Kind="OperationCallFlag" Name="Create" />
                   <CategoryReference Kind="AssemblyCategory" Name="StrideRenderHandler" NeedsToBeDirectParent="true" />
@@ -204,7 +204,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="HqDRpnL6aEqMTy2hC4Gzv7" IsGeneric="true">
                   <Node Bounds="350,207,10,10" AutoConnect="true" Id="RWzdm0hm9cxOvTaAxzdVQ7">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="Create" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -228,7 +228,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="Ixtats6qOAHNwn3JqMZuPb" IsGeneric="true">
                   <Node Bounds="554,204,73,26" AutoConnect="true" Id="DUrlpAFqj94LRyaNP7sjSu">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="Update" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -254,7 +254,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="F4EeGyRrFNXLoJ6tI9Ak0O" IsGeneric="true">
                   <Node Bounds="872,416,81,26" AutoConnect="true" Id="GpSRMngmxEWPyWVwsgtCs6">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="DocumentSize" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -280,7 +280,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="A5XeiIDGHXXNv5dtSq7BHQ" IsGeneric="true">
                   <Node Bounds="881,569,73,26" AutoConnect="true" Id="NkpQoZnDwqjLm5n41QWAFF">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="SetEnabled" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -313,7 +313,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="GBXQJGOSxXoOhSH1Mn3Lip" IsGeneric="true">
                   <Node Bounds="656,416,73,26" AutoConnect="true" Id="HvgGeKfIJhwLhMjiCMWk8Q">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="ErrorText" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -339,7 +339,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="GruwNaxNNmxMRbAygj4EJv" IsGeneric="true">
                   <Node Bounds="255,414,73,26" AutoConnect="true" Id="RXzddvSFSuELO4fZ25YjDX">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="IsLoading" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -365,7 +365,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="HT1qQ3YmavHQPQgMQ5WKsH" IsGeneric="true">
                   <Node Bounds="475,417,73,26" AutoConnect="true" Id="KZFljt0L5DjM5GtH4c2iA8">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="Loaded" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -391,7 +391,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="LYIIeohEPnrN7b3QByX2Az" IsGeneric="true">
                   <Node Bounds="259,564,81,26" AutoConnect="true" Id="LTPyRhww1YLLIXehRTQk9Q">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="SetScaleFactor" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -424,7 +424,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="EDCIfjbEHJULgxAOCNFrJ4" IsGeneric="true">
                   <Node Bounds="473,568,73,26" AutoConnect="true" Id="QQR5NxFskE1P2NGKrmXToJ">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="SetScrollTo" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -453,7 +453,7 @@
                 <p:HideCategory p:Type="Boolean">false</p:HideCategory>
                 <Patch Id="S5NNcP9M8qiMP9Ohs70lXP" IsGeneric="true">
                   <Node Bounds="660,566,79,26" AutoConnect="true" Id="FhZz6M8TMGALUQTFxKY3Uc">
-                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.exe">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
                       <Choice Kind="OperationNode" Name="SetZoomLevel" />
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
@@ -511,8 +511,8 @@
       </Patch>
     </Node>
   </Patch>
-  <PlatformDependency Id="UEg695aV6JdOmhDK4DFcMP" Location="./src/bin/VL.CEF.exe" />
-  <PlatformDependency Id="IhtJTPQFyJfNdlzEkhQGYm" Location="./src/bin/Xilium.CefGlue.dll" />
   <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="0.7.322-g6875704a00" />
-  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2020.2.0-0262-g2752f56465" />
+  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2020.2.2" />
+  <NugetDependency Id="VwwxP082TdeOxb27pgcMDb" Location="VL.CEF.Core" Version="0.0.8-stride" />
+  <NugetDependency Id="IB2zAnzlQFnPHn5Uo120Vw" Location="Stride.Rendering" Version="4.0.0.1-beta04-1317" />
 </Document>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>bin\</OutputPath>
+
+    <PackageOutputPath>$(MsBuildThisFileDirectory)..\bin\</PackageOutputPath>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <!-- Version information -->
+    <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
+    <VersionPrefix>0.0.8</VersionPrefix>
+    <VersionSuffix>stride</VersionSuffix>
+
+    <!-- Package properties -->
+    <Authors>vvvv group</Authors>
+    <Owners>$(Authors)</Owners>
+    <Copyright>Copyright © $(Year) by $(Authors). All rights reserved.</Copyright>
+    <PackageProjectUrl>http://vvvv.org</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/vvvv/VL.CEF</RepositoryUrl>
+    <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+  </PropertyGroup>
+</Project>

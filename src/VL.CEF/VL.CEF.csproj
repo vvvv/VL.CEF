@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <Platforms>x64;x86</Platforms>
+
+    <!-- Passed to vvvv.exe -->
+    <LocalVLPackages>$(MsBuildThisFileDirectory)..\..\..\</LocalVLPackages>
+    <LocalNugetPackages>$(MsBuildThisFileDirectory)..\</LocalNugetPackages>
+    <PackageRepositories>$(LocalVLPackages);$(LocalNugetPackages)</PackageRepositories>
+    <OverviewPatch>$(MsBuildThisFileDirectory)..\..\help\Explanation Overview.vl</OverviewPatch>
+    
+    <!-- Package properties -->
+    <Description>Chromium Embedded Framework (CEF) for VL</Description>
+    <PackageReleaseNotes>Popular nodes: WebRenderer</PackageReleaseNotes>
+    <PackageTags>VL;web;html;texture;vvvv</PackageTags>
+    <!-- This package contains the VL files only -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reference Stride.Rendering so the package gets installed on the user machine. Needed by export (see issue #3). -->
+    <!-- We'd like to include this dependency through VL.Stride.Runtime by removing the private assets flag -->
+    <!-- but that pulls in a lot of packages some of which VL can't handle (as of 2020.2.2) -->
+    <PackageReference Include="Stride.Rendering" Version="4.0.0.1-vvvv-1307" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="GetCustomContentPackageFiles" DependsOnTargets="BuiltProjectOutputGroup;GenerateBuildDependencyFile">
+    <ItemGroup>
+      <!-- VL files -->
+      <TfmSpecificPackageFile Include="..\..\**\*.vl">
+        <PackagePath></PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VL.CEF.Core\VL.CEF.Core.csproj" />
+  </ItemGroup>
+</Project>

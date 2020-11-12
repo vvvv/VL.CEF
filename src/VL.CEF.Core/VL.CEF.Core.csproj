@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Platforms>x64;x86</Platforms>
+    
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    
+    <!-- We need the GenerateBuildDependencyFile target-->
+    <GenerateDependencyFile>true</GenerateDependencyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)' == 'x86'">
+    <RuntimeIdentifier>win-x86</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)' == 'x64'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="OpenTK" Version="3.2.0" />
+    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="VL.Skia" Version="2020.2.2" PrivateAssets="all" />
+    <PackageReference Include="VL.Stride.Runtime" Version="0.8.10-g8460fd4e14" ExcludeAssets="build;buildTransitive" PrivateAssets="all">
+      <IncludeAssets>runtime; compile; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\VL.CEF.Renderer\VL.CEF.Renderer.csproj" />
+  </ItemGroup>
+  
+  <!-- Manual fix for Cef packages -->
+  <ItemGroup>
+    <Reference Include="Xilium.CefGlue">
+      <HintPath>$(PkgCefGlue_Common)\lib\net472\x64\Xilium.CefGlue.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Xilium.CefGlue.Common">
+      <HintPath>$(PkgCefGlue_Common)\lib\net472\x64\Xilium.CefGlue.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetCustomLibPackageFiles</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <Target Name="GetCustomLibPackageFiles">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(PkgCefGlue_Common)\lib\net472\x64\*.dll" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="CopyCustomPackageFiles" AfterTargets="Build">
+    <ItemGroup>
+      <CefBinaries Include="$(PkgCefGlue_Common)\lib\net472\x64\*.dll" />
+      <CefBinaries Include="$(Pkgcef_redist_x64)\CEF\**" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(CefBinaries)" DestinationFiles="@(CefBinaries->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+</Project>
