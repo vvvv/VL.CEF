@@ -26,7 +26,7 @@
     <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
     <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
     <PackageReference Include="VL.Skia" Version="2020.2.2" PrivateAssets="all" />
-    <PackageReference Include="VL.Stride.Runtime" Version="0.8.10-g8460fd4e14" ExcludeAssets="build;buildTransitive" PrivateAssets="all">
+    <PackageReference Include="VL.Stride.Runtime" Version="0.8.146-gd37a2c4664" ExcludeAssets="build;buildTransitive" PrivateAssets="all">
       <IncludeAssets>runtime; compile; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>

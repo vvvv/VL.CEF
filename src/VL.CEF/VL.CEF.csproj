@@ -23,7 +23,7 @@
     <!-- Reference Stride.Rendering so the package gets installed on the user machine. Needed by export (see issue #3). -->
     <!-- We'd like to include this dependency through VL.Stride.Runtime by removing the private assets flag -->
     <!-- but that pulls in a lot of packages some of which VL can't handle (as of 2020.2.2) -->
-    <PackageReference Include="Stride.Rendering" Version="4.0.0.1-vvvv-1307" />
+    <PackageReference Include="Stride.Rendering" Version="4.0.0.1-beta04-1374" />
   </ItemGroup>
 
   <PropertyGroup>

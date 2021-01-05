@@ -10,7 +10,7 @@
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <VersionPrefix>0.0.8</VersionPrefix>
+    <VersionPrefix>0.0.9</VersionPrefix>
     <VersionSuffix>stride</VersionSuffix>
 
     <!-- Package properties -->
