@@ -81,5 +81,25 @@ namespace VL.CEF
         {
             return viewport.Project((Vector3)v, view, projection, Matrix.Identity).XY();
         }
+
+        // Taken from https://github.com/cefsharp/CefSharp/blob/6f6ca94ea9bc12b332e6fdb96c5b40b95b50dff5/CefSharp/WebBrowserExtensions.cs
+        /// <summary>
+        /// Loads html as Data Uri
+        /// See https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs for details
+        /// If base64Encode is false then html will be Uri encoded
+        /// </summary>
+        public static void LoadString(this CefFrame frame, string html, bool base64Encode = false)
+        {
+            if (base64Encode)
+            {
+                var base64EncodedHtml = Convert.ToBase64String(Encoding.UTF8.GetBytes(html));
+                frame.LoadUrl("data:text/html;base64," + base64EncodedHtml);
+            }
+            else
+            {
+                var uriEncodedHtml = Uri.EscapeDataString(html);
+                frame.LoadUrl("data:text/html," + uriEncodedHtml);
+            }
+        }
     }
 }

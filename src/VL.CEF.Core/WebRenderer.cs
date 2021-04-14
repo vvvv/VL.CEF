@@ -6,6 +6,7 @@ using System.Threading;
 using Stride.Core.Mathematics;
 using VL.Core;
 using MapMode = VL.Core.MapMode;
+using System.Text;
 
 namespace VL.CEF
 {
@@ -122,24 +123,18 @@ namespace VL.CEF
             }
         }
 
-        public void LoadString(string content, string baseUrl)
+        public void LoadString(string content)
         {
             // Normalize inputs
-            if (FUrl != baseUrl || FContent != content)
+            if (FContent != content)
             {
                 // Set new values
-                FUrl = baseUrl;
                 FContent = content;
                 // Reset all computed values
                 Reset();
                 using (var mainFrame = FBrowser.GetMainFrame())
                 {
-                    // Create a valid url
-                    var uri = new UriBuilder(baseUrl).Uri;
-                    if (uri.IsFile && !uri.ToString().EndsWith("/"))
-                        // Append trailing slash
-                        uri = new UriBuilder(uri.ToString() + "/").Uri;
-                    mainFrame.LoadString(content ?? string.Empty, baseUrl);
+                    mainFrame.LoadString(content ?? string.Empty);
                 }
             }
         }

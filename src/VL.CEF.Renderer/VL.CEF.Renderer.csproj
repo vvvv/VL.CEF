@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
-    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="CefGlue.Common" Version="$(CefGlueVersion)" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="$(CefRedistVersion)" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
   </ItemGroup>
 
   <!-- Manual fix for Cef packages -->

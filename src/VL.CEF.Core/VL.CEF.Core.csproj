@@ -23,8 +23,8 @@
   
   <ItemGroup>
     <PackageReference Include="OpenTK" Version="3.2.0" />
-    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
-    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="CefGlue.Common" Version="$(CefGlueVersion)" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="$(CefRedistVersion)" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
     <PackageReference Include="VL.Skia" Version="2021.3.0" PrivateAssets="all" />
     <PackageReference Include="VL.Stride.Runtime" Version="0.9.87-g2f0f4f32ab" ExcludeAssets="build;buildTransitive" PrivateAssets="all">
       <IncludeAssets>runtime; compile; native; contentfiles; analyzers</IncludeAssets>

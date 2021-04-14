@@ -106,19 +106,6 @@ namespace VL.CEF
             }
         }
 
-        class BrowserProcessHandler : CefBrowserProcessHandler
-        {
-            protected override void OnRenderProcessThreadCreated(CefListValue extraInfo)
-            {
-                base.OnRenderProcessThreadCreated(extraInfo);
-            }
-
-            protected override void OnBeforeChildProcessLaunch(CefCommandLine commandLine)
-            {
-                base.OnBeforeChildProcessLaunch(commandLine);
-            }
-        }
-
         class RenderProcessHandler : CefRenderProcessHandler
         {
             class CustomCallbackHandler : CefV8Handler
@@ -163,11 +150,6 @@ namespace VL.CEF
                         message?.Dispose();
                     }
                 }
-            }
-
-            protected override void OnRenderThreadCreated(CefListValue extraInfo)
-            {
-                base.OnRenderThreadCreated(extraInfo);
             }
 
             protected override bool OnProcessMessageReceived(CefBrowser browser, CefFrame frame, CefProcessId sourceProcess, CefProcessMessage message)
@@ -232,11 +214,6 @@ namespace VL.CEF
                 commandLine.AppendSwitch("enable-system-flash");
             }
             base.OnBeforeCommandLineProcessing(processType, commandLine);
-        }
-
-        protected override CefBrowserProcessHandler GetBrowserProcessHandler()
-        {
-            return new BrowserProcessHandler();
         }
 
         protected override CefRenderProcessHandler GetRenderProcessHandler()

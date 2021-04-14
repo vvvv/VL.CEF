@@ -11,6 +11,10 @@
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
     <VersionPrefix>0.1.0</VersionPrefix>
+    
+    <!-- Used CEF version -->
+    <CefGlueVersion>85.4183.55607</CefGlueVersion>
+    <CefRedistVersion>85.3.13</CefRedistVersion>
 
     <!-- Package properties -->
     <Authors>vvvv group</Authors>
