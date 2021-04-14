@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reactive.Disposables;
 using System.Text;
+using System.Threading;
 using VL.Core;
 using VL.Lib.Basics.Resources;
 using VL.Stride.Input;
@@ -24,6 +25,8 @@ namespace VL.CEF
         private readonly object syncRoot = new object();
         private readonly IResourceHandle<Game> gameHandle;
         private WebRenderer webRenderer;
+        private Texture surface;
+        private bool needsConversion;
 
         public StrideRenderHandler(NodeContext nodeContext)
         {
@@ -32,8 +35,6 @@ namespace VL.CEF
             var renderContext = RenderContext.GetShared(gameHandle.Resource.Services);
             Initialize(renderContext);
         }
-
-        public bool UseAcceleratedPaint => SharpDXInterop.GetNativeDevice(GraphicsDevice) is Device;
 
         public void Initialize(WebRenderer webRenderer)
         {
@@ -49,27 +50,49 @@ namespace VL.CEF
 
         public void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
         {
-            // TODO: Implement me!
+            var data = new DataBox(buffer, width * 4, width * height * 4);
+            var format = PixelFormat.B8G8R8A8_UNorm;
+            if (GraphicsDevice.ColorSpace == ColorSpace.Linear)
+                format = PixelFormat.B8G8R8A8_UNorm_SRgb;
+
+            var surface = Texture.New2D(GraphicsDevice, width, height, 1, format, new[] { data }, usage: GraphicsResourceUsage.Immutable);
+            lock (syncRoot)
+            {
+                this.surface?.Dispose();
+                this.surface = surface;
+            }
+
+            needsConversion = false;
         }
 
         public void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
         {
-            var d3dDevice = SharpDXInterop.GetNativeDevice(GraphicsDevice) as Device;
-            if (d3dDevice is null)
-                return;
-
-            var d3dTexture = d3dDevice.OpenSharedResource<Texture2D>(sharedHandle);
-            if (d3dTexture is null)
-                return;
-
-            var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
-            lock (syncRoot)
+            try
             {
-                surface?.Dispose();
-                surface = strideTexture;
+                if (sharedHandle == IntPtr.Zero)
+                    return;
+
+                var d3dDevice = SharpDXInterop.GetNativeDevice(GraphicsDevice) as Device;
+                if (d3dDevice is null)
+                    return;
+
+                var d3dTexture = d3dDevice.OpenSharedResource<Texture2D>(sharedHandle);
+                if (d3dTexture is null)
+                    return;
+
+                var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
+                lock (syncRoot)
+                {
+                    surface?.Dispose();
+                    surface = strideTexture;
+                }
+                needsConversion = true;
+            }
+            catch (Exception e)
+            {
+                RuntimeGraph.ReportException(e);
             }
         }
-        Texture surface;
 
         protected override void DrawCore(RenderDrawContext context)
         {
@@ -91,9 +114,16 @@ namespace VL.CEF
                 var renderTarget = commandList.RenderTarget;
                 if (surface != null && renderTarget != null)
                 {
-                    shader.SetInput(surface);
-                    shader.SetOutput(renderTarget);
-                    shader.Draw(context);
+                    if (needsConversion)
+                    {
+                        shader.SetInput(surface);
+                        shader.SetOutput(renderTarget);
+                        shader.Draw(context);
+                    }
+                    else
+                    {
+                        context.GraphicsContext.DrawTexture(surface, BlendStates.AlphaBlend);
+                    }
                 }
             }
         }

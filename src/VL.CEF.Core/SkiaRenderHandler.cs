@@ -33,8 +33,6 @@ namespace VL.CEF
             deviceHandle = deviceProvider?.GetHandle();
         }
 
-        public bool UseAcceleratedPaint => wglDeviceHandle != default;
-
         public void Initialize(WebRenderer webRenderer)
         {
             this.webRenderer = webRenderer;
@@ -52,9 +50,6 @@ namespace VL.CEF
 
         public void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
         {
-            if (UseAcceleratedPaint)
-                return;
-
             var image = SKImage.FromPixelCopy(new SKImageInfo(width, height, SKColorType.Bgra8888, SKAlphaType.Premul, SKColorSpace.CreateSrgb()), buffer, width * 4);
             lock (syncRoot)
             {
@@ -65,11 +60,17 @@ namespace VL.CEF
 
         public void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
         {
-            sharedSurfaceHandle = sharedHandle;
+            lock (this)
+            {
+                sharedSurfaceHandle = sharedHandle;
+            }
         }
 
         public void Render(CallerInfo caller)
         {
+            if (caller.GRContext is null)
+                return;
+
             var canvas = caller.Canvas;
             var localClipBounds = canvas.LocalClipBounds;
             var deviceClipBounds = canvas.DeviceClipBounds;
@@ -77,7 +78,7 @@ namespace VL.CEF
             // Ensure we render in the proper size
             webRenderer.Size = new Vector2(deviceClipBounds.Width, deviceClipBounds.Height);
 
-            if (!UseAcceleratedPaint)
+            if (surface != null)
             {
                 lock (syncRoot)
                 {
@@ -105,27 +106,30 @@ namespace VL.CEF
                         return;
                 }
 
-                if (!sharedTextures.TryGetValue(sharedHandle, out var sharedTexture))
+                lock (this)
                 {
-                    var texture = device.OpenSharedResource<Texture2D>(sharedHandle);
-                    foreach (var entry in sharedTextures.ToList())
+                    if (!sharedTextures.TryGetValue(sharedHandle, out var sharedTexture))
                     {
-                        var description = entry.Value.Texture.Description;
-                        if (description.Width != texture.Description.Width || description.Height != texture.Description.Height || description.Format != texture.Description.Format)
+                        var texture = device.OpenSharedResource<Texture2D>(sharedHandle);
+                        foreach (var entry in sharedTextures.ToList())
                         {
-                            sharedTextures.Remove(entry.Key);
-                            entry.Value.Dispose();
+                            var description = entry.Value.Texture.Description;
+                            if (description.Width != texture.Description.Width || description.Height != texture.Description.Height || description.Format != texture.Description.Format)
+                            {
+                                sharedTextures.Remove(entry.Key);
+                                entry.Value.Dispose();
+                            }
                         }
+                        sharedTexture = SharedTextureImage.Create(caller.GRContext, wglDeviceHandle, texture);
+                        sharedTextures.Add(sharedHandle, sharedTexture);
                     }
-                    sharedTexture = SharedTextureImage.Create(caller.GRContext, wglDeviceHandle, texture);
-                    sharedTextures.Add(sharedHandle, sharedTexture);
-                }
 
-                if (sharedTexture != null && sharedTexture.Lock())
-                {
-                    canvas.DrawImage(sharedTexture.Image, localClipBounds);
-                    canvas.Flush();
-                    sharedTexture.Unlock();
+                    if (sharedTexture != null && sharedTexture.Lock())
+                    {
+                        canvas.DrawImage(sharedTexture.Image, localClipBounds);
+                        canvas.Flush();
+                        sharedTexture.Unlock();
+                    }
                 }
             }
         }

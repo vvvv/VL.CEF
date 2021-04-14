@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2020.2.2.281" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2020.2.2" />
+<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2021.3.2.109" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2021.3.2" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <Canvas Id="QK9dH0d5QqSNUrHQwzPZcN" Name="Graphics" Position="424,306" DefaultCategory="Graphics.Skia.Layers" CanvasType="FullCategory">
@@ -23,6 +23,7 @@
                   <CategoryReference Kind="Category" Name="CEF" NeedsToBeDirectParent="true" />
                 </p:NodeReference>
                 <Pin Id="TygAOj3pqFkNK7mcXdWC6q" Name="Render Handler" Kind="InputPin" />
+                <Pin Id="D0gSTWWg0EgMjZsmp2Ak39" Name="Shared Texture Enabled" Kind="InputPin" />
                 <Pin Id="HcPW9XCGgKTMTivSmNyGt7" Name="Scale Factor" Kind="InputPin" />
                 <Pin Id="Aog0c9Kd5yzNEYLi2nswW7" Name="Zoom Level" Kind="InputPin" />
                 <Pin Id="HVkLBMy8T7yNzH0ZCbfhqW" Name="Scroll To" Kind="InputPin" />
@@ -53,7 +54,7 @@
                 <Pin Id="S8M8c6vOxFMO0WTaSIZuGe" Name="Url" Kind="InputPin" />
                 <Pin Id="SObzEZRK6FJP4xfTY30Ozp" Name="Output" Kind="StateOutputPin" />
               </Node>
-              <ControlPoint Id="UxhPDXC7fp9NDEsJ8go2AX" Bounds="454,415" />
+              <ControlPoint Id="UxhPDXC7fp9NDEsJ8go2AX" Bounds="457,440" />
             </Canvas>
             <ProcessDefinition Id="Mc62FmB6kg2NtBU9dVrg3C">
               <Fragment Id="ICqhOzPlrmFLCHsk1FcMGI" Patch="Jmi0NxP9C6LOIfiraXYb4z" Enabled="true" />
@@ -65,7 +66,9 @@
             <Link Id="VXDU71PnPqGMAcc8Me3ALR" Ids="UCrDGBeHDfrLXNEzY3fNOs,S8M8c6vOxFMO0WTaSIZuGe" />
             <Link Id="M2A7yJfQmJtLyZ4BEQ9YVc" Ids="K4v2KMp3w4dQOiainaRDBI,UxhPDXC7fp9NDEsJ8go2AX" />
             <Link Id="HMed3sC9acmPpnzDMugiZt" Ids="UxhPDXC7fp9NDEsJ8go2AX,Ugv7U4H59E2O9oxVMhoSBA" IsHidden="true" />
-            <Patch Id="Jmi0NxP9C6LOIfiraXYb4z" Name="Create" />
+            <Patch Id="Jmi0NxP9C6LOIfiraXYb4z" Name="Create">
+              <Pin Id="NYeLzu31QwgLkmszJN4Tpp" Name="Shared Texture Enabled" Kind="InputPin" />
+            </Patch>
             <Patch Id="S1Tqwq56phjNaRhkxsgv9m" Name="Update" ManuallySortedPins="true">
               <Pin Id="Ugv7U4H59E2O9oxVMhoSBA" Name="Output" Kind="OutputPin" Bounds="770,413">
                 <p:TypeAnnotation>
@@ -109,6 +112,7 @@
                   <CategoryReference Kind="Category" Name="CEF" NeedsToBeDirectParent="true" />
                 </p:NodeReference>
                 <Pin Id="MSb6yzSkaHIN9uit0Va2JK" Name="Render Handler" Kind="InputPin" />
+                <Pin Id="GTyZJNDIENHPOSJUvdBPW7" Name="Shared Texture Enabled" Kind="InputPin" />
                 <Pin Id="KqZ2PnmcIHbN99acSGJmEn" Name="Scale Factor" Kind="InputPin" />
                 <Pin Id="UJJJYKbAhgZM4ajHvwshkK" Name="Zoom Level" Kind="InputPin" />
                 <Pin Id="KfFRFZdL7Z0Om8a76R8ncV" Name="Scroll To" Kind="InputPin" />
@@ -151,7 +155,9 @@
             <Link Id="MSFhkLy2zIDNTdhAAu3efC" Ids="AeOYQLXYPwYNXxcGCiElRE,O5HuBZJHRnhME76DU6mdBf" />
             <Link Id="Tb86qLA5BDxNP5d1hcEmKE" Ids="Bg8rlOKmHoTOJqrNDCPjOj,KD2brxa5W5pOnbiuTTbh2D" />
             <Link Id="ILgIpK3khzSP32lCjqZ3V7" Ids="KD2brxa5W5pOnbiuTTbh2D,Q6cSxzxdojfNzMc1rRZbVs" IsHidden="true" />
-            <Patch Id="LSuwQVV0AZkK9xtHyIDKi4" Name="Create" />
+            <Patch Id="LSuwQVV0AZkK9xtHyIDKi4" Name="Create">
+              <Pin Id="V60OFzz1FX2QVHkpjwqt7d" Name="Shared Texture Enabled" Kind="InputPin" />
+            </Patch>
             <Patch Id="KnMVd1wkGNEQUT5kYcOdrN" Name="Update" ManuallySortedPins="true">
               <Pin Id="Hu2XzhN1Mw3QXAo91HfFde" Name="Url" Kind="InputPin" Bounds="646,268" DefaultValue="vvvv.org">
                 <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
@@ -209,9 +215,11 @@
                       <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
                     </p:NodeReference>
                     <Pin Id="Ts5AZd84fI2QFhnfPgDnUt" Name="Render Handler" Kind="InputPin" />
+                    <Pin Id="AxREsSr8oAfNyABUXQUX9B" Name="Shared Texture Enabled" Kind="InputPin" />
                     <Pin Id="MiHW7gnJtPQNMAM2kyV8oH" Name="Output" Kind="StateOutputPin" />
                   </Node>
                   <Pin Id="JaHjIY7Se6oMGPo8IwIo8V" Name="Render Handler" Kind="InputPin" />
+                  <Pin Id="IZHnV0PPdZKMtedkYYLCHV" Name="Shared Texture Enabled" Kind="InputPin" />
                   <Pin Id="InBU1Vahw68NBPeAt8CvoB" Name="Output" Kind="OutputPin" />
                 </Patch>
               </Node>
@@ -511,8 +519,8 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="0.7.322-g6875704a00" />
-  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2020.2.2" />
-  <NugetDependency Id="VwwxP082TdeOxb27pgcMDb" Location="VL.CEF.Core" Version="0.0.8-stride" />
-  <NugetDependency Id="IB2zAnzlQFnPHn5Uo120Vw" Location="Stride.Rendering" Version="4.0.0.1-beta04-1317" />
+  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="0.9.96-gbe66fd6c22" />
+  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2021.3.2" />
+  <NugetDependency Id="VwwxP082TdeOxb27pgcMDb" Location="VL.CEF.Core" Version="0.1.0" />
+  <NugetDependency Id="IB2zAnzlQFnPHn5Uo120Vw" Location="Stride.Rendering" Version="4.0.0.1-vvvv-1307" />
 </Document>

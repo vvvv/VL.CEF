@@ -11,8 +11,6 @@ namespace VL.CEF
 {
     public interface IRenderHandler : IDisposable
     {
-        bool UseAcceleratedPaint { get; }
-
         void Initialize(WebRenderer renderer);
 
         void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height);
@@ -43,7 +41,7 @@ namespace VL.CEF
         private readonly AutoResetEvent FBrowserDetachedEvent = new AutoResetEvent(false);
         private readonly TRenderHandler FRenderHandler;
 
-        public WebRenderer(TRenderHandler renderHandler)
+        public WebRenderer(TRenderHandler renderHandler, bool sharedTextureEnabled)
         {
             FRenderHandler = renderHandler;
             FRuntimeHandle = CefExtensions.GetRuntimeProvider().GetHandle();
@@ -58,7 +56,7 @@ namespace VL.CEF
 
             var windowInfo = CefWindowInfo.Create();
             windowInfo.ExternalBeginFrameEnabled = true;
-            windowInfo.SharedTextureEnabled = renderHandler.UseAcceleratedPaint;
+            windowInfo.SharedTextureEnabled = sharedTextureEnabled;
             windowInfo.SetAsWindowless(IntPtr.Zero, true);
 
             FWebClient = new WebClient<TRenderHandler>(this);
