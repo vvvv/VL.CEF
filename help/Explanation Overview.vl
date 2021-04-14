@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2020.2.2.281" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2020.2.2" />
+<Document xmlns:p="property" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2021.3.2.109" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2021.3.2" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -23,11 +23,7 @@
                 <p:OuterCategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
               </CategoryReference>
             </p:NodeReference>
-            <Pin Id="E3OMTJBvkavPkSyDbQM2je" Name="Url" Kind="InputPin">
-              <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
-                <Choice Kind="TypeFlag" Name="String" />
-              </p:TypeAnnotation>
-            </Pin>
+            <Pin Id="E3OMTJBvkavPkSyDbQM2je" Name="Url" Kind="InputPin" />
             <Pin Id="NcDPBWkaqVgLPQca84C26e" Name="Scale Factor" Kind="InputPin" />
             <Pin Id="N4DXDlzA6W8M9XYzZvfRgB" Name="Zoom Level" Kind="InputPin" />
             <Pin Id="BMuLGebuHj3QS2KFv1RvK5" Name="Scroll To" Kind="InputPin" />
@@ -52,11 +48,7 @@
             <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
             <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
             <Pin Id="OOGQG7BFIEtNLL3wzKPENq" Name="Clear" Kind="InputPin" />
-            <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin">
-              <p:TypeAnnotation LastCategoryFullName="VL.Skia" LastSymbolSource="VL.Skia.dll">
-                <Choice Kind="TypeFlag" Name="CommonSpace" />
-              </p:TypeAnnotation>
-            </Pin>
+            <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin" />
             <Pin Id="S94F0I4MRSDOmqXJETXtMl" Name="Show Cursor" Kind="InputPin" />
             <Pin Id="MpoohInZy8NNDwShJ6Z6oY" Name="VSync" Kind="InputPin" />
             <Pin Id="QSQDd262CNvPbpv6EkhAKI" Name="Enabled" Kind="InputPin" />
@@ -97,11 +89,7 @@
                 <Choice Kind="TypeFlag" Name="Boolean" />
               </p:TypeAnnotation>
             </Pin>
-            <Pin Id="PwIoPbP3a26Pscio6Wbfec" Name="Space" Kind="InputPin">
-              <p:TypeAnnotation LastCategoryFullName="VL.Skia" LastSymbolSource="VL.Skia.dll">
-                <Choice Kind="TypeFlag" Name="CommonSpace" />
-              </p:TypeAnnotation>
-            </Pin>
+            <Pin Id="PwIoPbP3a26Pscio6Wbfec" Name="Space" Kind="InputPin" />
             <Pin Id="FQvS1j0dRX4LwHJjTYDjFo" Name="Draw Background" Kind="InputPin" />
             <Pin Id="BtB36ndF0n6QEREnh0dAcv" Name="Background Color" Kind="InputPin" />
             <Pin Id="VUfZUn3DOx2MZz8DUGP4bi" Name="Backdrop Layer" Kind="InputPin" />
@@ -113,19 +101,15 @@
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
               <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
             </p:NodeReference>
-            <Pin Id="BDq1Bv8gyHuMghkCHGcNmU" Name="Bounds" Kind="InputPin" DefaultValue="1018, 526, 600, 400">
-              <p:TypeAnnotation LastCategoryFullName="System.Drawing" LastSymbolSource="System.Drawing.dll">
+            <Pin Id="BDq1Bv8gyHuMghkCHGcNmU" Name="Bounds" Kind="InputPin" DefaultValue="886, 416, 1008, 712">
+              <p:TypeAnnotation LastCategoryFullName="System.Windows" LastSymbolSource="VL.CoreLib.Windows.vl">
                 <Choice Kind="TypeFlag" Name="Rectangle" />
               </p:TypeAnnotation>
             </Pin>
             <Pin Id="FTqlig7xItYN4hh7ZQH9Sj" Name="Input" Kind="InputPin" />
             <Pin Id="UjagV3LeDEfOYGvFxpMJQj" Name="Color" Kind="InputPin" />
             <Pin Id="LgydaaucjpPPJlsgt0OtU0" Name="Clear" Kind="InputPin" />
-            <Pin Id="OVqbMBQjcvoP8gWQqDHEAQ" Name="Space" Kind="InputPin">
-              <p:TypeAnnotation LastCategoryFullName="VL.Skia" LastSymbolSource="VL.Skia.dll">
-                <Choice Kind="TypeFlag" Name="CommonSpace" />
-              </p:TypeAnnotation>
-            </Pin>
+            <Pin Id="OVqbMBQjcvoP8gWQqDHEAQ" Name="Space" Kind="InputPin" />
             <Pin Id="STncR4DUw0aO6l7PoBLz66" Name="Show Cursor" Kind="InputPin" />
             <Pin Id="LH7XWwiphQMN5z77QxFTO4" Name="VSync" Kind="InputPin" />
             <Pin Id="LftQNV2Log4PwGy0BLm4Mq" Name="Enabled" Kind="InputPin" />
@@ -165,7 +149,7 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2020.2.2" />
-  <NugetDependency Id="BryS6yDUHWAMOesu60Y624" Location="VL.Stride" Version="0.7.322-g6875704a00" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2021.3.2" />
+  <NugetDependency Id="BryS6yDUHWAMOesu60Y624" Location="VL.Stride" Version="0.9.96-gbe66fd6c22" />
   <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
 </Document>
