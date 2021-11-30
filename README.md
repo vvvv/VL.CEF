@@ -22,3 +22,7 @@ In case you're working with an older vvvv version you'll need to install a speci
 ### 2020.2
 
     nuget install VL.CEF -version 0.0.9-stride -pre -source nuget.org -source http://teamcity.vvvv.org/guestAuth/app/nuget/v1/FeedService.svc/
+
+### 2021.3
+
+    nuget install VL.CEF -version 0.1.1 -source nuget.org -source http://teamcity.vvvv.org/guestAuth/app/nuget/v1/FeedService.svc/
