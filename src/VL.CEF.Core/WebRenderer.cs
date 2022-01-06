@@ -6,6 +6,10 @@ using System.Threading;
 using Stride.Core.Mathematics;
 using VL.Core;
 using MapMode = VL.Core.MapMode;
+using System.Collections;
+using VL.Lib.Collections;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace VL.CEF
 {
@@ -37,6 +41,7 @@ namespace VL.CEF
         private string FUrl;
         private string FContent;
         private Vector2 FSize;
+        private Spread<QueryHandler> FQueryHandlers;
         private readonly AutoResetEvent FBrowserAttachedEvent = new AutoResetEvent(false);
         private readonly AutoResetEvent FBrowserDetachedEvent = new AutoResetEvent(false);
         private readonly TRenderHandler FRenderHandler;
@@ -183,6 +188,168 @@ namespace VL.CEF
             }
         }
 
+        internal void OnQuery(CefFrame frame, CefListValue args)
+        {
+            var name = args.GetString(0);
+            var id = args.GetInt(1);
+            var argument = ToObject(args.GetValue(2));
+
+
+            using var response = CefProcessMessage.Create("query-response");
+            response.Arguments.SetString(0, name);
+            response.Arguments.SetInt(1, id);
+
+            var handler = QueryHandlers?.FirstOrDefault(q => q.Name == name);
+            if (handler is null)
+            {
+                response.Arguments.SetString(2, $"No handler found for {name}.");
+                response.Arguments.SetValue(3, ToValue(null));
+            }
+            else
+            {
+                try
+                {
+                    var result = handler.Invoke(argument);
+                    response.Arguments.SetString(2, null);
+                    response.Arguments.SetValue(3, ToValue(result));
+                }
+                catch (Exception e)
+                {
+                    response.Arguments.SetString(2, e.ToString());
+                    response.Arguments.SetValue(3, ToValue(null));
+                    RuntimeGraph.ReportException(e);
+                }
+            }
+            
+            frame.SendProcessMessage(CefProcessId.Renderer, response);
+
+            static object ToObject(CefValue v)
+            {
+                switch (v.GetValueType())
+                {
+                    case CefValueType.Null:
+                        return null;
+                    case CefValueType.Bool:
+                        return v.GetBool();
+                    case CefValueType.Int:
+                        return v.GetInt();
+                    case CefValueType.Double:
+                        return v.GetDouble();
+                    case CefValueType.String:
+                        return v.GetString();
+                    case CefValueType.Binary:
+                        return v.GetBinary().ToArray();
+                    case CefValueType.Dictionary:
+                        return ToDictionary(v.GetDictionary());
+                    case CefValueType.List:
+                        return ToSpread(v.GetList());
+                    default:
+                        throw new NotImplementedException();
+                }
+
+                static ImmutableDictionary<string, object> ToDictionary(CefDictionaryValue dict)
+                {
+                    var x = ImmutableDictionary.CreateBuilder<string, object>();
+                    foreach (var key in dict.GetKeys())
+                        x.Add(key, ToObject(dict.GetValue(key)));
+                    return x.ToImmutable();
+                }
+
+                static Spread<object> ToSpread(CefListValue list)
+                {
+                    var x = new SpreadBuilder<object>(list.Count);
+                    for (int i = 0; i < list.Count; i++)
+                        x.Add(ToValue(list.GetValue(i)));
+                    return x.ToSpread();
+                }
+            }
+
+            static CefValue ToValue(object o)
+            {
+                var v = CefValue.Create();
+                if (o is null)
+                    v.SetNull();
+                else if (o is bool b)
+                    v.SetBool(b);
+                else if (o is int i)
+                    v.SetInt(i);
+                else if (o is double d)
+                    v.SetDouble(d);
+                else if (o is float f)
+                    v.SetDouble(f);
+                else if (o is string s)
+                    v.SetString(s);
+                else if (o is byte[] data)
+                    v.SetBinary(CefBinaryValue.Create(data));
+                else if (o is IDictionary dict)
+                    v.SetDictionary(ToDict(dict));
+                else if (o is ICollection coll)
+                    v.SetList(ToList(coll));
+                return v;
+            }
+
+            static CefDictionaryValue ToDict(IDictionary dictionary)
+            {
+                var v = CefDictionaryValue.Create();
+                foreach (DictionaryEntry x in dictionary)
+                {
+                    if (x.Key is string key)
+                    {
+                        var o = x.Value;
+                        if (o is null)
+                            v.SetNull(key);
+                        else if (o is bool b)
+                            v.SetBool(key, b);
+                        else if (o is int i)
+                            v.SetInt(key, i);
+                        else if (o is double d)
+                            v.SetDouble(key, d);
+                        else if (o is float f)
+                            v.SetDouble(key, f);
+                        else if (o is string s)
+                            v.SetString(key, s);
+                        else if (o is byte[] data)
+                            v.SetBinary(key, CefBinaryValue.Create(data));
+                        else if (o is IDictionary dict)
+                            v.SetDictionary(key, ToDict(dict));
+                        else if (o is ICollection coll)
+                            v.SetList(key, ToList(coll));
+                    }
+                }
+                return v;
+            }
+
+            static CefListValue ToList(ICollection list)
+            {
+                var v = CefListValue.Create();
+                var index = 0;
+                foreach (var o in list)
+                {
+                    if (o is null)
+                        v.SetNull(index);
+                    else if (o is bool b)
+                        v.SetBool(index, b);
+                    else if (o is int i)
+                        v.SetInt(index, i);
+                    else if (o is double d)
+                        v.SetDouble(index, d);
+                    else if (o is float f)
+                        v.SetDouble(index, f);
+                    else if (o is string s)
+                        v.SetString(index, s);
+                    else if (o is byte[] data)
+                        v.SetBinary(index, CefBinaryValue.Create(data));
+                    else if (o is IDictionary dict)
+                        v.SetDictionary(index, ToDict(dict));
+                    else if (o is ICollection coll)
+                        v.SetList(index, ToList(coll));
+
+                    index++;
+                }
+                return v;
+            }
+        }
+
         public void Reload()
         {
             Loaded = false;
@@ -272,6 +439,20 @@ namespace VL.CEF
         public bool Loaded { get; private set; }
 
         public string ErrorText { get; private set; }
+
+        public Spread<QueryHandler> QueryHandlers 
+        {
+            private get => FQueryHandlers;
+            set
+            {
+                if (value != FQueryHandlers)
+                {
+                    FQueryHandlers = value;
+                    // Doesn't work, renderer stays blank on open. Probably something off when loading from string.
+                    //Reload();
+                }
+            }
+        }
 
         public bool Enabled
         {

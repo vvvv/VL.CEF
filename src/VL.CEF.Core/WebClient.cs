@@ -284,6 +284,13 @@ namespace VL.CEF
                         renderer.OnDocumentSize(frame, width, height);
                     }
                     return true;
+                case "query-request":
+                    if (frame != null)
+                    {
+                        var arguments = message.Arguments;
+                        renderer.OnQuery(frame, arguments);
+                    }
+                    return true;
                 default:
                     break;
             }

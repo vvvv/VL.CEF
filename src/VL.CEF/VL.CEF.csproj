@@ -9,7 +9,7 @@
     <LocalVLPackages>$(MsBuildThisFileDirectory)..\..\..\</LocalVLPackages>
     <LocalNugetPackages>$(MsBuildThisFileDirectory)..\</LocalNugetPackages>
     <PackageRepositories>$(LocalVLPackages);$(LocalNugetPackages)</PackageRepositories>
-    <OverviewPatch>$(MsBuildThisFileDirectory)..\..\help\Explanation Overview.vl</OverviewPatch>
+    <OverviewPatch>$(MsBuildThisFileDirectory)..\..\help\Explanation JavaScript.vl</OverviewPatch>
     
     <!-- Package properties -->
     <Description>Chromium Embedded Framework (CEF) for VL</Description>
