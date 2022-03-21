@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2021.4.3.736" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2021.4.3" />
+<Document xmlns:p="property" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2021.4.7.906" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2021.4.7" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <Canvas Id="QK9dH0d5QqSNUrHQwzPZcN" Name="Graphics" Position="424,306" DefaultCategory="Graphics.Skia.Layers" CanvasType="FullCategory">
@@ -42,7 +42,6 @@
                   <CategoryReference Kind="AssemblyCategory" Name="SkiaRenderHandler" />
                   <Choice Kind="OperationCallFlag" Name="Create" />
                 </p:NodeReference>
-                <Pin Id="E7nS2E8yyibQMPMKVtgJeV" Name="Node Context" Kind="InputPin" />
                 <Pin Id="FNVyGpNXxQuMXWI1IXn4tR" Name="Output" Kind="StateOutputPin" />
               </Node>
               <Node Bounds="430,335,64,26" Id="FECn7IpTuqqQKTD2NWqeLS">
@@ -131,7 +130,6 @@
                   <CategoryReference Kind="AssemblyCategory" Name="SkiaRenderHandler" />
                   <Choice Kind="OperationCallFlag" Name="Create" />
                 </p:NodeReference>
-                <Pin Id="BnflBcsMad6Nkj5wCHNA42" Name="Node Context" Kind="InputPin" />
                 <Pin Id="GVyQvPHHvKEMNkVqkswkFd" Name="Output" Kind="StateOutputPin" />
               </Node>
               <Node Bounds="430,346,65,26" Id="Q9kjFLEkyQhQQkDdmEvJIV">
@@ -223,7 +221,6 @@
                   <Choice Kind="OperationCallFlag" Name="Create" />
                   <CategoryReference Kind="AssemblyCategory" Name="StrideRenderHandler" NeedsToBeDirectParent="true" />
                 </p:NodeReference>
-                <Pin Id="Ok8puwdz6uLNFAbfEnf1zi" Name="Node Context" Kind="InputPin" />
                 <Pin Id="LZKWDKrnJE4N5IFxelXR3r" Name="Output" Kind="StateOutputPin" />
               </Node>
               <Node Bounds="518,362,64,26" Id="D13BJlt686qMarTXjak9eh">
@@ -312,7 +309,6 @@
                   <Choice Kind="OperationCallFlag" Name="Create" />
                   <CategoryReference Kind="AssemblyCategory" Name="StrideRenderHandler" NeedsToBeDirectParent="true" />
                 </p:NodeReference>
-                <Pin Id="Gn38gt2HgBBM9rf0hKhhUC" Name="Node Context" Kind="InputPin" />
                 <Pin Id="TBr7U1fxb8LOx7PiWmi5Ta" Name="Output" Kind="StateOutputPin" />
               </Node>
               <Node Bounds="518,362,64,26" Id="UfSU23xSCVCMAkGcCzJ2Pr">
@@ -803,8 +799,8 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2021.4.3" />
-  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2021.4.3" />
-  <NugetDependency Id="VwwxP082TdeOxb27pgcMDb" Location="VL.CEF.Core" Version="0.2.0" />
+  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2021.4.7" />
+  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2021.4.7" />
+  <NugetDependency Id="VwwxP082TdeOxb27pgcMDb" Location="VL.CEF.Core" Version="0.2.2" />
   <NugetDependency Id="IB2zAnzlQFnPHn5Uo120Vw" Location="Stride.Rendering" Version="4.0.1.1428" />
 </Document>

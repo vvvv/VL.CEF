@@ -207,7 +207,7 @@ namespace VL.CEF
 
         private readonly WebRenderer<T> renderer;
         private readonly CefRenderHandler renderHandler;
-        private readonly CefRequestHandler requestHandler;
+        //private readonly CefRequestHandler requestHandler;
         private readonly CefLifeSpanHandler lifeSpanHandler;
         private readonly CefLoadHandler loadHandler;
         private readonly CefKeyboardHandler keyboardHandler;

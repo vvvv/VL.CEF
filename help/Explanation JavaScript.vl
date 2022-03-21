@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2021.4.3.736" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2021.4.3" />
+<Document xmlns:p="property" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2021.4.7.906" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2021.4.7" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -110,7 +110,7 @@
               <Node Bounds="753,585,46,19" Id="I76xnjtI5D7M7nwHIWy1c5">
                 <p:NodeReference LastCategoryFullName="Primitive.Int2" LastSymbolSource="CoreLibBasics.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-                  <Choice Kind="OperationCallFlag" Name="Int2 (Join)" />
+                  <Choice Kind="OperationCallFlag" Name="Int2 (Create)" />
                 </p:NodeReference>
                 <Pin Id="G9pdVW0kKhCLskC2aEEFHH" Name="X" Kind="InputPin" />
                 <Pin Id="FPioJKbr7QpQDoxCPjDipA" Name="Y" Kind="InputPin" />
@@ -257,7 +257,7 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2021.4.3" />
-  <NugetDependency Id="BryS6yDUHWAMOesu60Y624" Location="VL.Stride" Version="2021.4.3" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2021.4.7" />
+  <NugetDependency Id="BryS6yDUHWAMOesu60Y624" Location="VL.Stride" Version="2021.4.7" />
   <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
 </Document>

@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading;
 using VL.Core;
 using VL.Lib.Basics.Resources;
+using VL.Stride;
 using VL.Stride.Input;
 using Xilium.CefGlue;
 
@@ -28,10 +29,9 @@ namespace VL.CEF
         private Texture surface;
         private bool needsConversion;
 
-        public StrideRenderHandler(NodeContext nodeContext)
+        public StrideRenderHandler()
         {
-            var gameProvider = nodeContext.Factory.CreateService<IResourceProvider<Game>>(nodeContext);
-            gameHandle = gameProvider?.GetHandle() ?? throw new ArgumentNullException(nameof(nodeContext), "The game service wasn't found");
+            gameHandle = ServiceRegistry.Current.GetGameHandle();
             var renderContext = RenderContext.GetShared(gameHandle.Resource.Services);
             Initialize(renderContext);
         }

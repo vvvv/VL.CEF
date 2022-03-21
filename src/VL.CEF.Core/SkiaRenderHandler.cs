@@ -1,7 +1,6 @@
 ﻿using SharpDX.Direct3D11;
 using SkiaSharp;
 using System;
-using VL.Core;
 using VL.Skia;
 using Xilium.CefGlue;
 using Vector2 = Stride.Core.Mathematics.Vector2;
@@ -25,7 +24,7 @@ namespace VL.CEF
         private IntPtr sharedHandle;
         private WebRenderer webRenderer;
 
-        public SkiaRenderHandler(NodeContext nodeContext)
+        public SkiaRenderHandler()
         {
             renderContext = RenderContext.ForCurrentThread();
             if (renderContext.EglContext.Dislpay.TryGetD3D11Device(out var d3dDevice))
