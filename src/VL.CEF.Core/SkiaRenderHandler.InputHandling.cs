@@ -9,6 +9,8 @@ namespace VL.CEF
 {
     partial class SkiaRenderHandler
     {
+        CefEventFlags mouseModifiers;
+
         public bool Notify(INotification notification, CallerInfo caller)
         {
             if (notification is MouseNotification mouseNotification)
@@ -35,7 +37,7 @@ namespace VL.CEF
             var touchEvent = new CefTouchEvent()
             {
                 Id = n.Id,
-                //Modifiers = (CefEventFlags)((int)(FKeyboard.Modifiers) >> 15),
+                Modifiers = GetModifiers(n),
                 PointerType = CefPointerType.Touch,
                 Pressure = 1f,
                 RadiusX = n.ContactArea.X,
@@ -67,7 +69,7 @@ namespace VL.CEF
         {
             var keyEvent = new CefKeyEvent()
             {
-                //Modifiers = (CefEventFlags)((int)(FKeyboard.Modifiers) >> 15)
+                Modifiers = GetModifiers(n)
             };
             switch (n.Kind)
             {
@@ -99,8 +101,15 @@ namespace VL.CEF
 
         private void HandleMouseNotification(MouseNotification n, CallerInfo caller)
         {
+            {
+                if (n is MouseDownNotification mouseDown)
+                    mouseModifiers |= ToCefEventFlags(mouseDown.Buttons);
+                else if (n is MouseUpNotification mouseUp)
+                    mouseModifiers &= ~ToCefEventFlags(mouseUp.Buttons);
+            }
+
             var position = GetPositionInViewport(n, caller);
-            var mouseEvent = new CefMouseEvent((int)position.X, (int)position.Y, CefEventFlags.None);
+            var mouseEvent = new CefMouseEvent((int)position.X, (int)position.Y, GetModifiers(n));
             var browserHost = webRenderer.BrowserHost;
             switch (n.Kind)
             {
@@ -130,8 +139,6 @@ namespace VL.CEF
                 case MouseNotificationKind.DeviceLost:
                     browserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: true);
                     break;
-                default:
-                    throw new NotImplementedException();
             }
 
             CefMouseButtonType GetMouseButtonType(MouseButtons buttons)
@@ -144,6 +151,20 @@ namespace VL.CEF
                     return CefMouseButtonType.Right;
                 return default;
             }
+
+            static CefEventFlags ToCefEventFlags(MouseButtons buttons)
+            {
+                switch (buttons)
+                {
+                    case MouseButtons.Left:
+                        return CefEventFlags.LeftMouseButton;
+                    case MouseButtons.Middle:
+                        return CefEventFlags.MiddleMouseButton;
+                    case MouseButtons.Right:
+                        return CefEventFlags.RightMouseButton;
+                }
+                return default;
+            }
         }
 
         private Vector2 GetPositionInViewport(INotificationWithSpacePositions n, CallerInfo callerInfo)
@@ -151,6 +172,18 @@ namespace VL.CEF
             var position = n.PositionInWorldSpace;
             var p = callerInfo.Transformation.MapPoint(position.X, position.Y) - callerInfo.ViewportBounds.Location;
             return new Vector2(p.X, p.Y).DeviceToLogical(webRenderer.ScaleFactor);
+        }
+
+        CefEventFlags GetModifiers(NotificationBase n)
+        {
+            var result = CefEventFlags.None;
+            if (n.AltKey)
+                result |= CefEventFlags.AltDown | CefEventFlags.IsLeft;
+            if (n.ShiftKey)
+                result |= CefEventFlags.ShiftDown | CefEventFlags.IsLeft;
+            if (n.CtrlKey)
+                result |= CefEventFlags.ControlDown | CefEventFlags.IsLeft;
+            return result | mouseModifiers;
         }
     }
 }

@@ -62,6 +62,7 @@ namespace VL.CEF
                     X = position.X,
                     Y = position.Y,
                     Type = ToCefTouchEventType(e.EventType),
+                    Modifiers = GetModifiers(GetKeyboard(inputSource)) | GetModifiers(GetMouse(inputSource))
                 });
 
                 if (e.EventType == PointerEventType.Moved && e.Device is IMouseDevice mouse)
@@ -110,7 +111,8 @@ namespace VL.CEF
                 var cefEvent = new CefKeyEvent()
                 {
                     WindowsKeyCode = (int)key,
-                    NativeKeyCode = (int)key
+                    NativeKeyCode = (int)key,
+                    Modifiers = GetModifiers(e.Keyboard) | GetModifiers(GetMouse(inputSource))
                 };
                 if (e.IsDown)
                     cefEvent.EventType = CefKeyEventType.KeyDown;
@@ -135,7 +137,11 @@ namespace VL.CEF
                         webRenderer.BrowserHost.SendKeyEvent(new CefKeyEvent()
                         {
                             EventType = CefKeyEventType.Char,
-                            Character = c
+                            Character = c,
+                            UnmodifiedCharacter = c,
+                            WindowsKeyCode = (int)c,
+                            NativeKeyCode = (int)c,
+                            Modifiers = GetModifiers(e.Device as IKeyboardDevice) | GetModifiers(GetMouse(inputSource))
                         });
                     }
                 }
@@ -145,14 +151,31 @@ namespace VL.CEF
         CefMouseEvent ToMouseEvent(IMouseDevice mouse)
         {
             var position = (mouse.Position * mouse.SurfaceSize).DeviceToLogical(webRenderer.ScaleFactor);
-            return new CefMouseEvent((int)position.X, (int)position.Y, GetMouseModifiers(mouse));
+            return new CefMouseEvent((int)position.X, (int)position.Y, GetModifiers(mouse) | GetModifiers(GetKeyboard(mouse.Source)));
         }
 
-        CefEventFlags GetMouseModifiers(IMouseDevice mouse)
+        IMouseDevice GetMouse(IInputSource inputSource)
+        {
+            foreach (var entry in inputSource.Devices)
+                if (entry.Value is IMouseDevice m)
+                    return m;
+            return null;
+        }
+
+        IKeyboardDevice GetKeyboard(IInputSource inputSource)
+        {
+            foreach (var entry in inputSource.Devices)
+                if (entry.Value is IKeyboardDevice k)
+                    return k;
+            return null;
+        }
+
+        CefEventFlags GetModifiers(IMouseDevice mouse)
         {
             var result = CefEventFlags.None;
+            if (mouse is null)
+                return result;
 
-            var buttons = mouse.PressedButtons;
             foreach (var button in mouse.DownButtons)
             {
                 switch (button)
@@ -166,15 +189,48 @@ namespace VL.CEF
                     case MouseButton.Right:
                         result |= CefEventFlags.RightMouseButton;
                         break;
-                    case MouseButton.Extended1:
+                }
+            }
+            return result;
+        }
+
+
+        static CefEventFlags GetModifiers(IKeyboardDevice keyboard)
+        {
+            var result = CefEventFlags.None;
+            if (keyboard is null)
+                return result;
+
+            foreach (var key in keyboard.DownKeys)
+            {
+                switch (key)
+                {
+                    case Keys.LeftShift:
+                        result |= CefEventFlags.ShiftDown | CefEventFlags.IsLeft;
                         break;
-                    case MouseButton.Extended2:
+                    case Keys.RightShift:
+                        result |= CefEventFlags.ShiftDown | CefEventFlags.IsRight;
                         break;
-                    default:
+                    case Keys.LeftCtrl:
+                        result |= CefEventFlags.ControlDown | CefEventFlags.IsLeft;
+                        break;
+                    case Keys.RightCtrl:
+                        result |= CefEventFlags.ControlDown | CefEventFlags.IsRight;
+                        break;
+                    case Keys.LeftAlt:
+                        result |= CefEventFlags.AltDown | CefEventFlags.IsLeft;
+                        break;
+                    case Keys.RightAlt:
+                        result |= CefEventFlags.AltDown | CefEventFlags.IsRight;
+                        break;
+                    case Keys.LeftWin:
+                        result |= CefEventFlags.CommandDown | CefEventFlags.IsLeft;
+                        break;
+                    case Keys.RightWin:
+                        result |= CefEventFlags.CommandDown | CefEventFlags.IsRight;
                         break;
                 }
             }
-
             return result;
         }
 

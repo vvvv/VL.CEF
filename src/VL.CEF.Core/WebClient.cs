@@ -207,7 +207,6 @@ namespace VL.CEF
 
         private readonly WebRenderer<T> renderer;
         private readonly CefRenderHandler renderHandler;
-        //private readonly CefRequestHandler requestHandler;
         private readonly CefLifeSpanHandler lifeSpanHandler;
         private readonly CefLoadHandler loadHandler;
         private readonly CefKeyboardHandler keyboardHandler;
@@ -218,7 +217,6 @@ namespace VL.CEF
         {
             this.renderer = renderer;
             renderHandler = new RenderHandler(renderer);
-            //FRequestHandler = new RequestHandler(this, renderer);
             lifeSpanHandler = new LifeSpanHandler(this, renderer);
             loadHandler = new LoadHandler(renderer);
             keyboardHandler = new KeyboardHandler();
@@ -263,7 +261,7 @@ namespace VL.CEF
 
         protected override CefRequestHandler GetRequestHandler()
         {
-            return requestHandler;
+            return null;
         }
         
         protected override CefRenderHandler GetRenderHandler()
