@@ -10,6 +10,7 @@ using System.Collections;
 using VL.Lib.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Reactive.Subjects;
 
 namespace VL.CEF
 {
@@ -45,6 +46,7 @@ namespace VL.CEF
         private readonly AutoResetEvent FBrowserAttachedEvent = new AutoResetEvent(false);
         private readonly AutoResetEvent FBrowserDetachedEvent = new AutoResetEvent(false);
         private readonly TRenderHandler FRenderHandler;
+        private readonly Subject<CefTextInputMode> FVirtualKeyboardRequests = new Subject<CefTextInputMode>();
 
         public WebRenderer(TRenderHandler renderHandler, bool sharedTextureEnabled)
         {
@@ -434,6 +436,18 @@ namespace VL.CEF
         }
         Vector2 FScrollTo;
 
+        /// <summary>
+        /// The currently loaded URL.
+        /// </summary>
+        public string Url => FBrowser.GetMainFrame().Url;
+
+        /// <summary>
+        /// Raised when an on-screen keyboard should be shown or hidden. 
+        /// The input mode specifies what kind of keyboard should be opened.
+        /// If input mode is CefTextInputMode.None, any existing keyboard for this browser should be hidden.
+        /// </summary>
+        public IObservable<CefTextInputMode> VirtualKeyboardRequests => FVirtualKeyboardRequests;
+
         public bool IsLoading { get; private set; }
 
         public bool Loaded { get; private set; }
@@ -521,6 +535,11 @@ namespace VL.CEF
             {
                 FRenderHandler.OnAcceleratedPaint(type, dirtyRects, sharedHandle);
             }
+        }
+
+        internal void OnVirtualKeyboardRequested(CefBrowser browser, CefTextInputMode inputMode)
+        {
+            FVirtualKeyboardRequests.OnNext(inputMode);
         }
     }
 }

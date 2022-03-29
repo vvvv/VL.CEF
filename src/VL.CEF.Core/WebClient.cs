@@ -107,6 +107,11 @@ namespace VL.CEF
             {
                 
             }
+
+            protected override void OnVirtualKeyboardRequested(CefBrowser browser, CefTextInputMode inputMode)
+            {
+                renderer.OnVirtualKeyboardRequested(browser, inputMode);
+            }
         }
         
         class LifeSpanHandler : CefLifeSpanHandler

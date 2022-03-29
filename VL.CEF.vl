@@ -35,6 +35,8 @@
                 <Pin Id="OLvpmmeub2QQQBQqHLFA0Q" Name="Loaded" Kind="OutputPin" />
                 <Pin Id="KjsnNNQaZrwNHxijmWfMvi" Name="Error Text" Kind="OutputPin" />
                 <Pin Id="NiqjTxEXuk1PGpt3yddtZt" Name="Document Size" Kind="OutputPin" />
+                <Pin Id="Rq89qmrBxXHLM9kf7V3sqW" Name="Url" Kind="OutputPin" />
+                <Pin Id="SQvPoNnp7eRLLYFWozWxbx" Name="Virtual Keyboard Requests" Kind="OutputPin" />
               </Node>
               <Node Bounds="431,220,84,26" Id="T0AjfbhIZ2nMRXU97Eiia3">
                 <p:NodeReference LastCategoryFullName="VL.CEF.SkiaRenderHandler" LastSymbolSource="VL.CEF.Core.dll">
@@ -79,6 +81,8 @@
               <Pin Id="U54OBu18mb4PX9pI1ilwbs" Name="Loaded" Kind="OutputPin" />
               <Pin Id="B3y7R4PMfarMktmNoWX5Pj" Name="Error Text" Kind="OutputPin" />
               <Pin Id="LGEdEHTu0IhNbe7C2Ii3eW" Name="Document Size" Kind="OutputPin" />
+              <Pin Id="HslWZKkTHOiMx8MOFwRf5N" Name="Url" Kind="OutputPin" />
+              <Pin Id="EnlOX9zYxxZO3Gbhr7MBa8" Name="Virtual Keyboard Requests" Kind="OutputPin" />
               <Pin Id="MFbzEOZ5gNeQTQ4HpH14SS" Name="Url" Kind="InputPin" Bounds="646,268" DefaultValue="vvvv.org">
                 <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
                   <Choice Kind="TypeFlag" Name="String" />
@@ -104,7 +108,7 @@
           <Patch Id="JmzzEpHTDhIMwu6MoBzI6J">
             <Canvas Id="TQ3d43SYyGTMTkA4KX0qBt" CanvasType="Group">
               <ControlPoint Id="P98yl2C08y3LpHjvh4KPtc" Bounds="491,321" />
-              <Node Bounds="431,274,105,19" AutoConnect="true" Id="UmmxBL5VpzENQY843ucTxC">
+              <Node Bounds="431,274,79,19" AutoConnect="true" Id="UmmxBL5VpzENQY843ucTxC">
                 <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
@@ -123,6 +127,8 @@
                 <Pin Id="FDtkQAyTBoGPRo1tvi7njY" Name="Loaded" Kind="OutputPin" />
                 <Pin Id="JajBVato9JXO4YRj4DvLUM" Name="Error Text" Kind="OutputPin" />
                 <Pin Id="K3ZqhllxB1CN7VEDKF50mf" Name="Document Size" Kind="OutputPin" />
+                <Pin Id="LDo1JXhCGBTPp9ZIUHhiSA" Name="Url" Kind="OutputPin" />
+                <Pin Id="UEeEhF7tAWROTCVyIFtM3X" Name="Virtual Keyboard Requests" Kind="OutputPin" />
               </Node>
               <Node Bounds="431,220,84,26" Id="E990jbdbde1Poy3ZrM4FWV">
                 <p:NodeReference LastCategoryFullName="VL.CEF.SkiaRenderHandler" LastSymbolSource="VL.CEF.Core.dll">
@@ -171,6 +177,8 @@
               <Pin Id="KeyERbPrld1MsUxJgl22iV" Name="Loaded" Kind="OutputPin" />
               <Pin Id="B08lvRnVunyNM094kmFjru" Name="Error Text" Kind="OutputPin" />
               <Pin Id="DpEccclkRaMNj3QC4SScgx" Name="Document Size" Kind="OutputPin" />
+              <Pin Id="JxDziT8o5FKNOVpFIMf7pE" Name="Url" Kind="OutputPin" />
+              <Pin Id="QWps1MXe9VDNm8oJchbfgo" Name="Virtual Keyboard Requests" Kind="OutputPin" />
               <Pin Id="RhAEd0Wn4ShP0TNR4msWKD" Name="Content" Kind="InputPin" Bounds="646,268" DefaultValue="&lt;html&gt;&lt;body&gt;Hi there&lt;/body&gt;&lt;/html&gt;" />
               <Pin Id="EdlJBNJ1aspNxf5PGZtHVo" Name="Base Url" Kind="InputPin" Bounds="557,320" DefaultValue="localhost" />
               <Pin Id="IX8ZofybetAMy2cKKOEppF" Name="Scale Factor" Kind="InputPin" />
@@ -214,6 +222,8 @@
                 <Pin Id="UwTAs8S0if9O0nk7I7Av6I" Name="Loaded" Kind="OutputPin" />
                 <Pin Id="A1C7iGYYq0EL90uYuw3gzz" Name="Error Text" Kind="OutputPin" />
                 <Pin Id="Rf6phq0DmY1N28ytnFL9yw" Name="Document Size" Kind="OutputPin" />
+                <Pin Id="AQJjAGcnCpEPAV8AXEsCsW" Name="Url" Kind="OutputPin" />
+                <Pin Id="HyOvmlrTMjiPbEKHESazTn" Name="Virtual Keyboard Requests" Kind="OutputPin" />
               </Node>
               <Node Bounds="519,247,84,26" Id="CfMg403h1nbNv9Ab3VWeEI">
                 <p:NodeReference LastCategoryFullName="VL.CEF.StrideRenderHandler" LastSymbolSource="VL.CEF.Core.dll">
@@ -258,6 +268,8 @@
               <Pin Id="RVTHGhxVNTwPdBW99koNwG" Name="Loaded" Kind="OutputPin" />
               <Pin Id="HaJbFFLn1cNMtISo0rSu92" Name="Error Text" Kind="OutputPin" />
               <Pin Id="NWqOtPxZQaOQP5TpIbqIlU" Name="Document Size" Kind="OutputPin" />
+              <Pin Id="K01NowT91XgPF6JGsXMZMv" Name="Url" Kind="OutputPin" />
+              <Pin Id="BmYRV5IpFN9MMZxFjOTFGw" Name="Virtual Keyboard Requests" Kind="OutputPin" />
               <Pin Id="Hu2XzhN1Mw3QXAo91HfFde" Name="Url" Kind="InputPin" Bounds="646,268" DefaultValue="vvvv.org">
                 <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
                   <Choice Kind="TypeFlag" Name="String" />
@@ -302,6 +314,8 @@
                 <Pin Id="PUJOEiuqBtHQARNTD9Fku5" Name="Loaded" Kind="OutputPin" />
                 <Pin Id="M88hJurYIZjNupnd6GRsTS" Name="Error Text" Kind="OutputPin" />
                 <Pin Id="TtA5e9eOe1qMI3oNKi618o" Name="Document Size" Kind="OutputPin" />
+                <Pin Id="JerzX43ApD4LchbU1clcWf" Name="Url" Kind="OutputPin" />
+                <Pin Id="RYuAJFa7WGOPGzK1WKkWra" Name="Virtual Keyboard Requests" Kind="OutputPin" />
               </Node>
               <Node Bounds="519,247,84,26" Id="OQpXZ4bcGK6O5cqq64EkU5">
                 <p:NodeReference LastCategoryFullName="VL.CEF.StrideRenderHandler" LastSymbolSource="VL.CEF.Core.dll">
@@ -334,17 +348,13 @@
             <Link Id="NsEUnQYm1JuQQvywEjRnu9" Ids="K14k6X2IvgJMIKANsDv95W,JVfFOSP4dxIPvLnw6PD3eU" />
             <Link Id="DTv5u8yroWKQT1Iv7dxAEx" Ids="NE4XrAZGg2ONAWAoiEHcwY,MiEqVdDCipPLpeXRtKp8gx" />
             <Link Id="HgVHF6RKwyrMrDm40UXrRL" Ids="MiEqVdDCipPLpeXRtKp8gx,VO83NBeRl4pPuE4biUYuFf" IsHidden="true" />
+            <Link Id="Vta0S4D4eL1M3mDOhfBn45" Ids="UThnH6cjSJpNhk69n3znLx,DqlvI1wgNVWQW6UymEXqWu" />
+            <Link Id="POnfz9G6oSeMtiXMgAQ8WI" Ids="IfL7u7AYHqmM3Dvk22EgAH,EhIG68wJEzoOZC8LwNpG32" />
+            <Link Id="DaU4SFn2nAOPJ6Am0g9Pit" Ids="Plq2wx0Lp9cP0S7Yq0U7J6,IfL7u7AYHqmM3Dvk22EgAH" IsHidden="true" />
             <Patch Id="Se5jF0no8kuQV9pfOnR0Qj" Name="Create">
               <Pin Id="ERa3kN2llXNNYeS6GIrGMD" Name="Shared Texture Enabled" Kind="InputPin" />
             </Patch>
             <Patch Id="MDL9hMM89qKMAKTJBTrJrZ" Name="Update" ManuallySortedPins="true">
-              <Pin Id="Plq2wx0Lp9cP0S7Yq0U7J6" Name="Content" Kind="InputPin" Bounds="552,337" DefaultValue="" />
-              <Pin Id="QRMDDHSx4itLP5Sfp6YK5U" Name="Base Url" Kind="InputPin" Bounds="646,268" />
-              <Pin Id="D2IFQk3B7cyM8QhpjasRKi" Name="Scale Factor" Kind="InputPin" />
-              <Pin Id="SaKV4S3U6ePMvJdzXRcZRT" Name="Zoom Level" Kind="InputPin" />
-              <Pin Id="DIxgaxaRsVDQVVDUum90f9" Name="Scroll To" Kind="InputPin" />
-              <Pin Id="GuoNUmftW4YNqbbOTrTyIA" Name="Query Handlers" Kind="InputPin" />
-              <Pin Id="IYdJBK9vP2mLUY2ifjapxi" Name="Enabled" Kind="InputPin" />
               <Pin Id="VO83NBeRl4pPuE4biUYuFf" Name="Output" Kind="OutputPin" Bounds="770,413">
                 <p:TypeAnnotation>
                   <Choice Kind="TypeFlag" Name="IRenderer" />
@@ -354,10 +364,16 @@
               <Pin Id="KjQqhOE9KBGQbNMKFcQlPu" Name="Loaded" Kind="OutputPin" />
               <Pin Id="R82FO2FRAd4Pvvlo2zmg8X" Name="Error Text" Kind="OutputPin" />
               <Pin Id="A2VTCgMpTKaMWJFp6WzzSs" Name="Document Size" Kind="OutputPin" />
+              <Pin Id="K27HFCDqKPdOsTCgAEWCQm" Name="Url" Kind="OutputPin" />
+              <Pin Id="DBX5dECXUFaN2lbOcsPQAR" Name="Virtual Keyboard Requests" Kind="OutputPin" />
+              <Pin Id="Plq2wx0Lp9cP0S7Yq0U7J6" Name="Content" Kind="InputPin" Bounds="552,337" DefaultValue="" />
+              <Pin Id="QRMDDHSx4itLP5Sfp6YK5U" Name="Base Url" Kind="InputPin" Bounds="646,268" />
+              <Pin Id="D2IFQk3B7cyM8QhpjasRKi" Name="Scale Factor" Kind="InputPin" />
+              <Pin Id="SaKV4S3U6ePMvJdzXRcZRT" Name="Zoom Level" Kind="InputPin" />
+              <Pin Id="DIxgaxaRsVDQVVDUum90f9" Name="Scroll To" Kind="InputPin" />
+              <Pin Id="GuoNUmftW4YNqbbOTrTyIA" Name="Query Handlers" Kind="InputPin" />
+              <Pin Id="IYdJBK9vP2mLUY2ifjapxi" Name="Enabled" Kind="InputPin" />
             </Patch>
-            <Link Id="Vta0S4D4eL1M3mDOhfBn45" Ids="UThnH6cjSJpNhk69n3znLx,DqlvI1wgNVWQW6UymEXqWu" />
-            <Link Id="POnfz9G6oSeMtiXMgAQ8WI" Ids="IfL7u7AYHqmM3Dvk22EgAH,EhIG68wJEzoOZC8LwNpG32" />
-            <Link Id="DaU4SFn2nAOPJ6Am0g9Pit" Ids="Plq2wx0Lp9cP0S7Yq0U7J6,IfL7u7AYHqmM3Dvk22EgAH" IsHidden="true" />
           </Patch>
         </Node>
       </Canvas>
@@ -690,6 +706,58 @@
                   <Pin Id="NEVjte4MUgbOQSW52ecZ41" Name="Output" Kind="OutputPin" />
                 </Patch>
               </Node>
+              <!--
+
+    ************************ Url ************************
+
+-->
+              <Node Name="Url" Bounds="496,686,112,80" Id="NYqUXnPZnbdLmQF2jXqG97">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="DM7A8FIZnz1MYxp3hc8azl" IsGeneric="true">
+                  <Node Bounds="508,714,73,26" AutoConnect="true" Id="NAeUbiBfsUuPXhMPyqZ8xx">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
+                      <Choice Kind="OperationNode" Name="Url" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="CotPYbdBWpYQMRtidZPRcl" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="S2QpcPd7eNZO6S8pqvMBTo" Name="Output" Kind="StateOutputPin" />
+                    <Pin Id="OM8R9o1C0B7P0RsFLm6g4K" Name="Url" Kind="OutputPin" />
+                  </Node>
+                  <Pin Id="V31acAQAjwWNQgamV0GOGY" Name="Input" Kind="InputPin" />
+                  <Pin Id="U3oKKCXJKTkNb5JKdcBSfn" Name="Output" Kind="OutputPin" />
+                  <Pin Id="I7p5dun4tHsNAwHZzJfQVH" Name="Url" Kind="OutputPin" />
+                </Patch>
+              </Node>
+              <!--
+
+    ************************ VirtualKeyboardRequests ************************
+
+-->
+              <Node Name="VirtualKeyboardRequests" Bounds="647,687,154,80" Id="BoChfdnWzhdLtzOpz7y5mz">
+                <p:NodeReference>
+                  <Choice Kind="OperationDefinition" Name="Operation" />
+                  <FullNameCategoryReference ID="Primitive" />
+                </p:NodeReference>
+                <p:HideCategory p:Type="Boolean">false</p:HideCategory>
+                <Patch Id="LpECGl5T8nHLekhlYRYPi1" IsGeneric="true">
+                  <Node Bounds="659,715,130,26" AutoConnect="true" Id="Io1N8YojkLoP1chr6wepMM">
+                    <p:NodeReference LastCategoryFullName="VL.CEF.WebRenderer`1" LastSymbolSource="VL.CEF.Core.dll">
+                      <Choice Kind="OperationNode" Name="VirtualKeyboardRequests" />
+                      <FullNameCategoryReference ID="VL.CEF.WebRenderer`1" />
+                    </p:NodeReference>
+                    <Pin Id="RB9fBaww57dPCN4Agug4eu" Name="Input" Kind="StateInputPin" />
+                    <Pin Id="QWLvqHSdW4IPqZlGMgn151" Name="Output" Kind="StateOutputPin" />
+                    <Pin Id="AqDnI3y76vWQUbVzYohFcw" Name="Virtual Keyboard Requests" Kind="OutputPin" />
+                  </Node>
+                  <Pin Id="Qz3HKkrMfg7LMshyE8q6bH" Name="Input" Kind="InputPin" />
+                  <Pin Id="U8SOPnSfkjuN9FEWS2ZCzb" Name="Output" Kind="OutputPin" />
+                  <Pin Id="DTwFDHil8QjMgYjV2uq4Lp" Name="Virtual Keyboard Requests" Kind="OutputPin" />
+                </Patch>
+              </Node>
             </Canvas>
             <ProcessDefinition Id="HGJnR8OFhb8Pcl5RAlYoM7" HasStateOut="true">
               <Fragment Id="GYL8w8PFpqoONHUDz1JlIN" Patch="SdgcJ3CWnYLO8CA22qU2dk" Enabled="true" />
@@ -703,6 +771,8 @@
               <Fragment Id="BMfsfbPN4nRPHnwsEO58Dd" Patch="FTrDuqB7FiAQBL06RRwAr1" Enabled="true" />
               <Fragment Id="AZg3C8w9HOpMPmJjueptBl" Patch="MK1itLfkkxsPU3fawPpCyW" Enabled="true" />
               <Fragment Id="V1zNtQTwrhzNGacA92lG9S" Patch="Uy5DZWkownPMEFyrU4E6Fr" Enabled="true" />
+              <Fragment Id="NcGaGyJ07qBNFa0h2naXo0" Patch="NYqUXnPZnbdLmQF2jXqG97" Enabled="true" />
+              <Fragment Id="O8XlpVS2lt2PYgU54JRXRR" Patch="BoChfdnWzhdLtzOpz7y5mz" Enabled="true" />
             </ProcessDefinition>
           </Patch>
         </Node>
@@ -777,6 +847,24 @@
           <Link Id="IYiIvQiTGYSQLn2sKc4FCI" Ids="LCKdDo3pNC0MTsEJxh26wN,Jtciq2E0cWePhZSpNEoaoD" />
         </Patch>
       </Node>
+      <!--
+
+    ************************ CefTextInputMode ************************
+
+-->
+      <Node Name="CefTextInputMode" Bounds="432,520" Id="HDFHHKYmYniP0Zvz5OEqbg">
+        <p:NodeReference>
+          <Choice Kind="ForwardRecordDefinition" Name="Immutable Forward" />
+          <FullNameCategoryReference ID="Primitive" />
+        </p:NodeReference>
+        <p:TypeAnnotation LastCategoryFullName="Xilium.CefGlue" LastSymbolSource="Xilium.CefGlue.dll">
+          <Choice Kind="TypeFlag" Name="CefTextInputMode" />
+        </p:TypeAnnotation>
+        <Patch Id="Uzot1IZJ1vROaeMxgftJdu">
+          <Canvas Id="AtSVdyEN3lbOw4cBl3p3pZ" BordersChecked="false" CanvasType="Group" />
+          <ProcessDefinition Id="S4r2Gg9lL9wLrW8Prw7zAY" IsHidden="true" />
+        </Patch>
+      </Node>
     </Canvas>
     <!--
 
@@ -801,6 +889,6 @@
   </Patch>
   <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2021.4.7" />
   <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2021.4.7" />
-  <NugetDependency Id="VwwxP082TdeOxb27pgcMDb" Location="VL.CEF.Core" Version="0.2.2" />
+  <NugetDependency Id="VwwxP082TdeOxb27pgcMDb" Location="VL.CEF.Core" Version="0.2.3" />
   <NugetDependency Id="IB2zAnzlQFnPHn5Uo120Vw" Location="Stride.Rendering" Version="4.0.1.1428" />
 </Document>

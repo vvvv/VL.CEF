@@ -7,10 +7,11 @@
 
     <PackageOutputPath>$(MsBuildThisFileDirectory)..\bin\</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <VersionPrefix>0.2.3</VersionPrefix>
+    <VersionPrefix>0.2.4</VersionPrefix>
 
     <!-- Package properties -->
     <Authors>vvvv group</Authors>
