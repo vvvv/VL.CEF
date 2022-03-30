@@ -15,42 +15,20 @@
       </p:NodeReference>
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
-          <Node Bounds="305,710,145,19" Id="TfmER9p04DgLts3OXxTs07">
-            <p:NodeReference LastCategoryFullName="Graphics.Skia.Layers" LastSymbolSource="VL.CEF.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <CategoryReference Kind="Category" Name="Layers" NeedsToBeDirectParent="true">
-                <p:OuterCategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
-              </CategoryReference>
-              <Choice Kind="ProcessAppFlag" Name="WebRenderer (String)" />
-            </p:NodeReference>
-            <Pin Id="Guh7mEujJ5OMEPNARPPRoL" Name="Shared Texture Enabled" Kind="InputPin" />
-            <Pin Id="MgYQAg5kDoWPpVckesxvxm" Name="Content" Kind="InputPin" />
-            <Pin Id="Co0ihwBB3M1OT5p8JcdoRV" Name="Base Url" Kind="InputPin" />
-            <Pin Id="NcDPBWkaqVgLPQca84C26e" Name="Scale Factor" Kind="InputPin" />
-            <Pin Id="N4DXDlzA6W8M9XYzZvfRgB" Name="Zoom Level" Kind="InputPin" />
-            <Pin Id="BMuLGebuHj3QS2KFv1RvK5" Name="Scroll To" Kind="InputPin" DefaultValue="0, 0" />
-            <Pin Id="TMwTNNiiJ1kM1LFSn7Abfj" Name="Query Handlers" Kind="InputPin" />
-            <Pin Id="GTu5bxUJrrcQG9FmqEBnXe" Name="Enabled" Kind="InputPin" DefaultValue="True" />
-            <Pin Id="JLWQAW7fjLgOJgJQo0v5S2" Name="Output" Kind="OutputPin" />
-            <Pin Id="Nmflk1Hs8STPe2TsmpRVmS" Name="Is Loading" Kind="OutputPin" />
-            <Pin Id="D1WsCywadJ4OYgaS6lX2F7" Name="Loaded" Kind="OutputPin" />
-            <Pin Id="TtvpqJjMxYJMqUeWamX8TD" Name="Error Text" Kind="OutputPin" />
-            <Pin Id="SNEhhFUZxYbOAmGiMRzaEI" Name="Document Size" Kind="OutputPin" />
-          </Node>
-          <Node Bounds="265,767,165,19" Id="T6EK0aeUpK8L42vEmISS7W">
+          <Node Bounds="268,826,165,19" Id="T6EK0aeUpK8L42vEmISS7W">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
               <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
             </p:NodeReference>
-            <Pin Id="MaFDPFADn2NMBq2LZLTlHp" Name="Bounds" Kind="InputPin" DefaultValue="1129, 60, 795, 473">
+            <Pin Id="MaFDPFADn2NMBq2LZLTlHp" Name="Bounds" Kind="InputPin" DefaultValue="1243, 60, 616, 439">
               <p:TypeAnnotation LastCategoryFullName="System.Drawing" LastSymbolSource="System.Drawing.dll">
                 <Choice Kind="TypeFlag" Name="Rectangle" />
               </p:TypeAnnotation>
             </Pin>
             <Pin Id="IhuWo8drzraNUwUkrUHKZ0" Name="Bound to Document" Kind="InputPin" DefaultValue="True" />
             <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
-            <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" DefaultValue="1, 1, 1, 1" />
+            <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
             <Pin Id="OOGQG7BFIEtNLL3wzKPENq" Name="Clear" Kind="InputPin" />
             <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin" />
             <Pin Id="S94F0I4MRSDOmqXJETXtMl" Name="Show Cursor" Kind="InputPin" />
@@ -60,7 +38,7 @@
             <Pin Id="HPpjtVnWzz7OhpUCceYYRN" Name="ClientBounds" Kind="OutputPin" />
             <Pin Id="RnoPyy9Gtl7QZhK4qZRKgz" Name="Render Time" Kind="OutputPin" />
           </Node>
-          <Pad Id="NRQ0mANvc1oQNCzUx0wAy8" Comment="Content" Bounds="326,-18,426,437" ShowValueBox="true" isIOBox="true" Value="&lt;html&gt;&#xD;&#xA;&lt;body&gt;&#xD;&#xA;&lt;h1&gt;Passing messages between JS and VL&lt;/h1&gt;&#xD;&#xA;&lt;p id=&quot;p1&quot;&gt;No value&lt;/p&gt;&#xD;&#xA;&lt;p id=&quot;p2&quot;&gt;Hover me to send the mouse position to the patch&lt;/p&gt;&#xD;&#xA;&lt;/body&gt;&#xD;&#xA;&#xD;&#xA;&lt;script&gt;&#xD;&#xA;var p1 = document.getElementById(&quot;p1&quot;);&#xD;&#xA;window.setInterval(function()&#xD;&#xA;{&#xD;&#xA;  window.vvvvQuery(&#xD;&#xA;  { &#xD;&#xA;    request: 'getCurrentLFOValue',&#xD;&#xA;    onSuccess: function(response) {&#xD;&#xA;      p1.innerHTML = response;&#xD;&#xA;    }&#xD;&#xA;  });&#xD;&#xA;}, 33);&#xD;&#xA;&#xD;&#xA;var p2 = document.getElementById(&quot;p2&quot;);&#xD;&#xA;p2.addEventListener(&quot;mousemove&quot;, function(event)&#xD;&#xA;{&#xD;&#xA;  window.vvvvQuery(&#xD;&#xA;  { &#xD;&#xA;    request: 'sendToVL',&#xD;&#xA;    arguments: { X: event.clientX, Y: event.clientY }&#xD;&#xA;  });&#xD;&#xA;});&#xD;&#xA;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;/html&gt;">
+          <Pad Id="NRQ0mANvc1oQNCzUx0wAy8" Comment="Content" Bounds="326,-18,426,437" ShowValueBox="true" isIOBox="true" Value="&lt;html&gt;&#xD;&#xA;&lt;body bgcolor=&quot;#ffffff&quot;&gt;&#xD;&#xA;&lt;h1&gt;Passing messages between JS and VL&lt;/h1&gt;&#xD;&#xA;&lt;p id=&quot;p1&quot;&gt;No value&lt;/p&gt;&#xD;&#xA;&lt;p id=&quot;p2&quot;&gt;Hover me to send the mouse position to the patch&lt;/p&gt;&#xD;&#xA;&lt;/body&gt;&#xD;&#xA;&#xD;&#xA;&lt;script&gt;&#xD;&#xA;var p1 = document.getElementById(&quot;p1&quot;);&#xD;&#xA;window.setInterval(function()&#xD;&#xA;{&#xD;&#xA;  window.vvvvQuery(&#xD;&#xA;  { &#xD;&#xA;    request: 'getCurrentLFOValue',&#xD;&#xA;    onSuccess: function(response) {&#xD;&#xA;      p1.innerHTML = response;&#xD;&#xA;    }&#xD;&#xA;  });&#xD;&#xA;}, 33);&#xD;&#xA;&#xD;&#xA;var p2 = document.getElementById(&quot;p2&quot;);&#xD;&#xA;p2.addEventListener(&quot;mousemove&quot;, function(event)&#xD;&#xA;{&#xD;&#xA;  window.vvvvQuery(&#xD;&#xA;  { &#xD;&#xA;    request: 'sendToVL',&#xD;&#xA;    arguments: { X: event.clientX, Y: event.clientY }&#xD;&#xA;  });&#xD;&#xA;});&#xD;&#xA;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;/html&gt;">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastSymbolSource="CoreLibBasics.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -223,6 +201,48 @@
             </p:ValueBoxSettings>
           </Pad>
           <ControlPoint Id="D4yCSurnzReM1aECltk3PB" Bounds="707,428" />
+          <Node Bounds="308,715,71,19" Id="BjQ2f8e6YnlLOUaMfsxFwp">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
+            </p:NodeReference>
+            <Pin Id="A8QxDYaqQOYMNSwNN7I0LT" Name="Shared Texture Enabled" Kind="InputPin" DefaultValue="False" />
+            <Pin Id="Jm5yfWec8R5PbSHWywwVmh" Name="Startup Url" Kind="InputPin" />
+            <Pin Id="TWenFyNM9aQLl3qcBgqNFR" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="PIxysgcPsV4N2bHonHN4ER" Name="Output" Kind="OutputPin" />
+            <Pin Id="TfhI4W342auNsLkTBfbXec" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="DQFU2kqvnnXLO4jFiez8fv" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="BO9n3pxVSScL1KNn5YdsrK" Name="Error Text" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="308,747,65,26" Id="E8WeI8gKNUGPvhVpDZlyem">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <FullNameCategoryReference ID="CEF.WebBrowser" />
+              <Choice Kind="OperationCallFlag" Name="LoadString" />
+            </p:NodeReference>
+            <Pin Id="D4yjkQuRDFpPEyutC3ftZc" Name="Input" Kind="StateInputPin" />
+            <Pin Id="CCEJAM6ivc2QXHqKHxeimb" Name="Content" Kind="InputPin" />
+            <Pin Id="RnF1AoZygeFMIrRHWkTPZE" Name="Base Url" Kind="InputPin" />
+            <Pin Id="L5k7WTdKJxjNDczrpbQO54" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="Dahba5LskWvMMSdMm0TUps" Name="Apply" Kind="InputPin" />
+          </Node>
+          <Node Bounds="308,786,70,19" Id="JjkOjSub4cSOapZoOUNFEm">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <FullNameCategoryReference ID="CEF" />
+              <Choice Kind="ProcessAppFlag" Name="ToSkiaLayer" />
+            </p:NodeReference>
+            <Pin Id="QtWsMFVTovoMnvw8ZvIIhz" Name="Browser" Kind="InputPin" />
+            <Pin Id="CuGbX9ElZdkOBmvW8Pb4Pr" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="394,715,54,19" Id="U1NfsVhDCm2PEYcpA0kHmp">
+            <p:NodeReference LastCategoryFullName="Control" LastSymbolSource="CoreLibBasics.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="OnOpen" />
+            </p:NodeReference>
+            <Pin Id="Hk12Z91QwZEPmeDiHKouFj" Name="Simulate" Kind="InputPin" />
+            <Pin Id="DILzRnsHEcKOSP1VZOTMkv" Name="Output" Kind="OutputPin" />
+          </Node>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" ParticipatingElements="I5cDRdxvSykNXP4qRKhN4X" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -230,11 +250,8 @@
           <Fragment Id="Ccrp0QpGYEKPqBSB8xuGew" Patch="Vnymg3KwFcqPuuJT3crEKr" Enabled="true" />
           <Fragment Id="FS8SLTMVNnnMxuHsD4JK5c" Patch="T5DV0xifO78P27haBv56J1" Enabled="true" />
         </ProcessDefinition>
-        <Link Id="D5dYae0Z42cNsKpmXMRCYe" Ids="JLWQAW7fjLgOJgJQo0v5S2,MTDHVcEhKXPLq5yLm8QAE5" />
-        <Link Id="SAuAWfSV6NeNiKjuSLnNO8" Ids="NRQ0mANvc1oQNCzUx0wAy8,MgYQAg5kDoWPpVckesxvxm" />
         <Link Id="Pbx18HremRsMBKD1yFNctg" Ids="DKx5lzK8ZgALQLzin3TfuQ,B260kgpgnEeOjOTlTwMGSp" IsHidden="true" />
         <Link Id="Ch1mk4AMoEPOOvsTS31RZI" Ids="CqCbnHIpjNFPg3PeugG2Od,HLzzQBqqfRCNkdtf1IB5OG" IsHidden="true" />
-        <Link Id="JYXFL6SktOoO1Zvb4p8zDM" Ids="CV1gNKCzjZoMgLm9hnxe6N,TMwTNNiiJ1kM1LFSn7Abfj" />
         <Link Id="Hc3uKmEw7DnPx0uVR1gJcm" Ids="Szbrm1wiVbTOxvbuoHIbeQ,ICzz7SaaAayP9mg4lZpPt0" />
         <Link Id="IU64s1mfm1WPxp5A401TTp" Ids="SVLLODZcBUXL8gvJqHTmmX,BzkSWBAEtJlNZ009AxukUi" />
         <Link Id="SNaYyDOA17vOkAgiScqlHI" Ids="BzkSWBAEtJlNZ009AxukUi,D4yCSurnzReM1aECltk3PB,Nvvb6L4ztU3MSBc1a3hKck" />
@@ -254,6 +271,12 @@
         <Link Id="Q5gkWX5DGIiOBImZqTAqU7" Ids="B260kgpgnEeOjOTlTwMGSp,FaFlCuQ6SjVNLjjxAppswv" />
         <Link Id="Nn5QanHYsypNrvRi6GdTdh" Ids="B8uXQqDHgGfQC035hileAC,CNwuLqNpjboMiFYtbztZHB" />
         <Link Id="QI3tfocKjQtLpyLrU7vJqT" Ids="TCmlpJiTtvLLHynhx7R7Uv,NKLizQBC2sILNwM6EfrwrG" />
+        <Link Id="GyIaEXwn7ahL3tCMvYzjfn" Ids="PIxysgcPsV4N2bHonHN4ER,D4yjkQuRDFpPEyutC3ftZc" />
+        <Link Id="TuxHIJgEYPENOpKFV6Sobt" Ids="NRQ0mANvc1oQNCzUx0wAy8,CCEJAM6ivc2QXHqKHxeimb" />
+        <Link Id="S1l0cBhS0dKOkam5pCZcqS" Ids="CV1gNKCzjZoMgLm9hnxe6N,TWenFyNM9aQLl3qcBgqNFR" />
+        <Link Id="AvAAdDiwQjMQQMIdKGceCa" Ids="L5k7WTdKJxjNDczrpbQO54,QtWsMFVTovoMnvw8ZvIIhz" />
+        <Link Id="PQNPo1D0kyrLDo7VShY3KB" Ids="CuGbX9ElZdkOBmvW8Pb4Pr,MTDHVcEhKXPLq5yLm8QAE5" />
+        <Link Id="Trx8JXHPG9KOw9fHRCjbWN" Ids="DILzRnsHEcKOSP1VZOTMkv,Dahba5LskWvMMSdMm0TUps" />
       </Patch>
     </Node>
   </Patch>

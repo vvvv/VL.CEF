@@ -47,7 +47,7 @@ namespace VL.CEF
                 X = position.X,
                 Y = position.Y
             };
-            webRenderer.BrowserHost.SendTouchEvent(touchEvent);
+            browser.BrowserHost.SendTouchEvent(touchEvent);
 
             CefTouchEventType GetTouchType(TouchNotificationKind kind)
             {
@@ -96,7 +96,7 @@ namespace VL.CEF
                 default:
                     break;
             }
-            webRenderer.BrowserHost.SendKeyEvent(keyEvent);
+            browser.BrowserHost.SendKeyEvent(keyEvent);
         }
 
         private void HandleMouseNotification(MouseNotification n, CallerInfo caller)
@@ -110,7 +110,7 @@ namespace VL.CEF
 
             var position = GetPositionInViewport(n, caller);
             var mouseEvent = new CefMouseEvent((int)position.X, (int)position.Y, GetModifiers(n));
-            var browserHost = webRenderer.BrowserHost;
+            var browserHost = browser.BrowserHost;
             switch (n.Kind)
             {
                 case MouseNotificationKind.MouseDown:
@@ -171,7 +171,7 @@ namespace VL.CEF
         {
             var position = n.PositionInWorldSpace;
             var p = callerInfo.Transformation.MapPoint(position.X, position.Y) - callerInfo.ViewportBounds.Location;
-            return new Vector2(p.X, p.Y).DeviceToLogical(webRenderer.ScaleFactor);
+            return new Vector2(p.X, p.Y).DeviceToLogical(browser.ScaleFactor);
         }
 
         CefEventFlags GetModifiers(NotificationBase n)

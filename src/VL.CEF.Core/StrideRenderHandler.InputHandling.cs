@@ -54,9 +54,9 @@ namespace VL.CEF
                 if (e.Device.Source != inputSource)
                     return;
 
-                var position = e.AbsolutePosition.DeviceToLogical(webRenderer.ScaleFactor);
+                var position = e.AbsolutePosition.DeviceToLogical(browser.ScaleFactor);
 
-                webRenderer.BrowserHost.SendTouchEvent(new CefTouchEvent()
+                browser.BrowserHost.SendTouchEvent(new CefTouchEvent()
                 {
                     Id = e.PointerId,
                     X = position.X,
@@ -68,7 +68,7 @@ namespace VL.CEF
                 if (e.EventType == PointerEventType.Moved && e.Device is IMouseDevice mouse)
                 {
                     var mouseEvent = ToMouseEvent(mouse);
-                    webRenderer.BrowserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: false);
+                    browser.BrowserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: false);
                 }
             });
         }
@@ -83,9 +83,9 @@ namespace VL.CEF
                 var mouseEvent = ToMouseEvent(e.Mouse);
                 var mouseDevice = e.Device as IMouseDevice;
                 if (e.IsDown)
-                    webRenderer.BrowserHost.SendMouseClickEvent(mouseEvent, ToCefMouseButton(e.Button), mouseUp: false, clickCount: 1);
+                    browser.BrowserHost.SendMouseClickEvent(mouseEvent, ToCefMouseButton(e.Button), mouseUp: false, clickCount: 1);
                 else
-                    webRenderer.BrowserHost.SendMouseClickEvent(mouseEvent, ToCefMouseButton(e.Button), mouseUp: true, clickCount: 1);
+                    browser.BrowserHost.SendMouseClickEvent(mouseEvent, ToCefMouseButton(e.Button), mouseUp: true, clickCount: 1);
             });
         }
 
@@ -96,7 +96,7 @@ namespace VL.CEF
                 if (e.Device.Source != inputSource)
                     return;
                 var mouseEvent = ToMouseEvent(e.Mouse);
-                webRenderer.BrowserHost.SendMouseWheelEvent(mouseEvent, 0, (int)e.WheelDelta * 120);
+                browser.BrowserHost.SendMouseWheelEvent(mouseEvent, 0, (int)e.WheelDelta * 120);
             });
         }
 
@@ -119,7 +119,7 @@ namespace VL.CEF
                 else
                     cefEvent.EventType = CefKeyEventType.KeyUp;
 
-                webRenderer.BrowserHost.SendKeyEvent(cefEvent);
+                browser.BrowserHost.SendKeyEvent(cefEvent);
             });
         }
 
@@ -134,7 +134,7 @@ namespace VL.CEF
                 {
                     foreach (var c in e.Text)
                     {
-                        webRenderer.BrowserHost.SendKeyEvent(new CefKeyEvent()
+                        browser.BrowserHost.SendKeyEvent(new CefKeyEvent()
                         {
                             EventType = CefKeyEventType.Char,
                             Character = c,
@@ -150,7 +150,7 @@ namespace VL.CEF
 
         CefMouseEvent ToMouseEvent(IMouseDevice mouse)
         {
-            var position = (mouse.Position * mouse.SurfaceSize).DeviceToLogical(webRenderer.ScaleFactor);
+            var position = (mouse.Position * mouse.SurfaceSize).DeviceToLogical(browser.ScaleFactor);
             return new CefMouseEvent((int)position.X, (int)position.Y, GetModifiers(mouse) | GetModifiers(GetKeyboard(mouse.Source)));
         }
 

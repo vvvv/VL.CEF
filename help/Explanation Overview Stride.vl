@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="PQrNVFUfCwxLCZ1fNYBsdJ" LanguageVersion="2021.3.2.109" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2021.3.2" />
+<Document xmlns:p="property" Id="PQrNVFUfCwxLCZ1fNYBsdJ" LanguageVersion="2021.4.7.906" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2021.4.7" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -16,23 +16,17 @@
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
           <Node Bounds="376,229,85,19" Id="MMP6cjQT9JjLvM5vr2aW51">
-            <p:NodeReference LastCategoryFullName="Stride.Rendering" LastSymbolSource="VL.CEF.vl">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
-              <CategoryReference Kind="Category" Name="Rendering" NeedsToBeDirectParent="true">
-                <p:OuterCategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
-              </CategoryReference>
+              <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
             </p:NodeReference>
-            <Pin Id="LIcxTStVBZQM9x0NpwEkev" Name="Url" Kind="InputPin" />
-            <Pin Id="Nytsg7rzSqgPKlB0Q4jUR2" Name="Scale Factor" Kind="InputPin" />
-            <Pin Id="G4XiktmOSLAQUmmVZMQRSi" Name="Zoom Level" Kind="InputPin" />
-            <Pin Id="Mcz1p5uvVxPMh8RvmT4aDm" Name="Scroll To" Kind="InputPin" />
-            <Pin Id="Rqp40LQo02GL7LWom1YYbg" Name="Enabled" Kind="InputPin" />
+            <Pin Id="S51cWOJvwXXNYEoC9jALNq" Name="Shared Texture Enabled" Kind="InputPin" DefaultValue="True" />
+            <Pin Id="QcPjJBovtk2LuDGuHRdYFG" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
+            <Pin Id="Csnq1j80EmFLS9SJRLQxEI" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="PfgcKbNJo1pLnSvnxzrHAj" Name="Output" Kind="OutputPin" />
-            <Pin Id="QAT9GpqNKc5Ox6VR0u32vQ" Name="Is Loading" Kind="OutputPin" />
             <Pin Id="SCYBquxmN9tOENFcS9KkMq" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="QAT9GpqNKc5Ox6VR0u32vQ" Name="Is Loading" Kind="OutputPin" />
             <Pin Id="DHQKZmzsJLmNPVihGa6uds" Name="Error Text" Kind="OutputPin" />
-            <Pin Id="MsQ7TybbDWPM86wyMPrdtW" Name="Document Size" Kind="OutputPin" />
           </Node>
           <Node Bounds="356,318,125,19" Id="LBXcddToameNmdRpXequ0l">
             <p:NodeReference LastCategoryFullName="Stride" LastSymbolSource="VL.Stride.Engine.vl">
@@ -60,34 +54,14 @@
             <Pin Id="G2JBz0k6SshPaVFwUIaehP" Name="Depth Buffer" Kind="OutputPin" />
           </Node>
           <Overlay Id="Uhe8YDKZiulQAbyyZ7vrtV" Name="Render fullscreen" Bounds="290,140,269,258" />
-          <Node Bounds="377,505,85,19" Id="F7VPRYGte19Le5fbfzxrGU">
-            <p:NodeReference LastCategoryFullName="Stride.Rendering" LastSymbolSource="VL.CEF.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
-              <CategoryReference Kind="Category" Name="Rendering" NeedsToBeDirectParent="true">
-                <p:OuterCategoryReference Kind="Category" Name="Stride" NeedsToBeDirectParent="true" />
-              </CategoryReference>
-            </p:NodeReference>
-            <Pin Id="IukST4dWxbWLwolY2xoH48" Name="Url" Kind="InputPin" />
-            <Pin Id="EcBctHfQmL3LhOUYehK483" Name="Scale Factor" Kind="InputPin" />
-            <Pin Id="ASvRd6gur4CLNgvQ1ObwOl" Name="Zoom Level" Kind="InputPin" />
-            <Pin Id="MzyLiiwmIbHPg0SJCNn2HG" Name="Scroll To" Kind="InputPin" />
-            <Pin Id="OtwgE9WKQOuOQAx8LPhz53" Name="Enabled" Kind="InputPin" />
-            <Pin Id="CZBPCgLak9VM4JGIEVoDmg" Name="Output" Kind="OutputPin" />
-            <Pin Id="H2lAp8Vgd40PPyOlcVxQxT" Name="Is Loading" Kind="OutputPin" />
-            <Pin Id="Ho0OyGbRHNgMBI76Y3nbFY" Name="Loaded" Kind="OutputPin" />
-            <Pin Id="DZJjSKsT1WwNJsKrhgYeKJ" Name="Error Text" Kind="OutputPin" />
-            <Pin Id="N6GhgpshvBwPa4YkUt4kn8" Name="Document Size" Kind="OutputPin" />
-          </Node>
           <Node Bounds="377,549,105,19" Id="JjR0CC8f2vHOV8S37xlV3Y">
             <p:NodeReference LastCategoryFullName="Stride" LastSymbolSource="VL.Stride.Engine.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="RenderTexture" />
             </p:NodeReference>
             <Pin Id="Lof4jKPkN0yL5WJFGQ7hHL" Name="Input" Kind="InputPin" />
+            <Pin Id="C3vqfqbuGBuQKGE5BfwpvT" Name="Size" Kind="InputPin" />
             <Pin Id="VifYZK5OpOlMdkt6LzQdV3" Name="Render View" Kind="InputPin" />
-            <Pin Id="HJNdJN1RnPkPzCVswVgGzU" Name="Width" Kind="InputPin" />
-            <Pin Id="BMSBnfKF2OsO8T8uD6IC3V" Name="Height" Kind="InputPin" />
             <Pin Id="ANKe4nTZEoDLC7JsyW6hsn" Name="Format" Kind="InputPin" />
             <Pin Id="FtkPGrx57ewOVtkyzJcJe5" Name="Depth Format" Kind="InputPin" />
             <Pin Id="PClD8bdK5cCLMrHJ40b91j" Name="Clear Color" Kind="InputPin" />
@@ -114,7 +88,7 @@
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="SceneWindow" />
             </p:NodeReference>
-            <Pin Id="Fur7tCddcenLIuxsPXkU52" Name="Bounds" Kind="InputPin" />
+            <Pin Id="Fur7tCddcenLIuxsPXkU52" Name="Bounds" Kind="InputPin" DefaultValue="1022, 588, 786, 432" />
             <Pin Id="HZqX1hw9AOsMYZ3gmmRLDI" Name="Input" Kind="InputPin" />
             <Pin Id="VySYDet30edL3ugyTVa2Bo" Name="Camera" Kind="InputPin" />
             <Pin Id="AOMAIwcfns0Ps9glVPDUCy" Name="Enable Default Camera" Kind="InputPin" />
@@ -141,6 +115,35 @@
             <Pin Id="Mneyw2zP0nOPt9GA3gUx54" Name="Output" Kind="OutputPin" />
           </Node>
           <Overlay Id="KNanO9xCKXuOUI78WZxQUh" Name="Render to a texture" Bounds="292,445,284,306" />
+          <Node Bounds="376,273,95,19" Id="Njg0Wem0LbSL54eR6IxD8d">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="ToStrideRenderer" />
+            </p:NodeReference>
+            <Pin Id="I0Rz8HOQUlCO8IeKezuW6J" Name="Browser" Kind="InputPin" />
+            <Pin Id="F28MEYORPwRPvWXuSJUg1W" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="377,483,85,19" Id="HG4e9wwrZxaQc0vNxeTGZn">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
+            </p:NodeReference>
+            <Pin Id="H2DzkZCLPcVPJCq8aqhfW0" Name="Shared Texture Enabled" Kind="InputPin" />
+            <Pin Id="MRm1tFUVtP0QP0aoDpISeF" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
+            <Pin Id="CB1rKjTyYnxNPX5Z2vwjrJ" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="Gm00tSEgRLWMruV4ljOUBM" Name="Output" Kind="OutputPin" />
+            <Pin Id="PUDvTQVVCu1L0NuqPn3y5d" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="Mp0ElTlgHQUQVOcXGUlqzm" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="Goz4jkL0lF0N6n1R6Yc0rR" Name="Error Text" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="377,515,95,19" Id="MZnV4Pqt2v3OdJIOdXNglr">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="ToStrideRenderer" />
+            </p:NodeReference>
+            <Pin Id="SKzlONgmEhFNKLB3qQrgyF" Name="Browser" Kind="InputPin" />
+            <Pin Id="NzV76AhHE7aM9xXRj8suH6" Name="Output" Kind="OutputPin" />
+          </Node>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -148,15 +151,17 @@
           <Fragment Id="Ccrp0QpGYEKPqBSB8xuGew" Patch="Vnymg3KwFcqPuuJT3crEKr" Enabled="true" />
           <Fragment Id="FS8SLTMVNnnMxuHsD4JK5c" Patch="T5DV0xifO78P27haBv56J1" Enabled="true" />
         </ProcessDefinition>
-        <Link Id="RlZYiTHA1QCOOhyt54ADE1" Ids="CZBPCgLak9VM4JGIEVoDmg,Lof4jKPkN0yL5WJFGQ7hHL" />
         <Link Id="TXwivcDWEzXMl7lwl4bC0f" Ids="Mneyw2zP0nOPt9GA3gUx54,HZqX1hw9AOsMYZ3gmmRLDI" />
         <Link Id="RwgkQQLlWelOe18C2dvFbb" Ids="GRV6VEhvqVxNHv8sSIvt6k,TwtE1SETAfYPPbsGFssDCU" />
         <Link Id="GBJMBx96qzeP0C2gjIRLGF" Ids="JpTVwLmbldMM40dddOzNwg,T2i1hcRJhwdM5LKZowMhau" />
-        <Link Id="Fqd5TIFAkp3Nscl7cLQ2NB" Ids="PfgcKbNJo1pLnSvnxzrHAj,IrHM3qJHybXP5MARtaKMSV" />
+        <Link Id="Fqd5TIFAkp3Nscl7cLQ2NB" Ids="PfgcKbNJo1pLnSvnxzrHAj,I0Rz8HOQUlCO8IeKezuW6J" />
+        <Link Id="LubMxiU8FcOO6muPNQeN9O" Ids="F28MEYORPwRPvWXuSJUg1W,IrHM3qJHybXP5MARtaKMSV" />
+        <Link Id="EyC7UupmEQxM0WYFArim4H" Ids="Gm00tSEgRLWMruV4ljOUBM,SKzlONgmEhFNKLB3qQrgyF" />
+        <Link Id="Gop1KfaL5tbL6RjelEhI5A" Ids="NzV76AhHE7aM9xXRj8suH6,Lof4jKPkN0yL5WJFGQ7hHL" />
       </Patch>
     </Node>
   </Patch>
   <DocumentDependency Id="JUwSZblEMtfK95E86fZfKG" Location="../VL.CEF.vl" />
-  <NugetDependency Id="VF77dLs5GcJM2E64nRd3Xt" Location="VL.Stride.Windows" Version="0.9.96-gbe66fd6c22" />
-  <NugetDependency Id="CETLk4zmNbMLwrgwX3i4PN" Location="VL.Stride" Version="0.9.96-gbe66fd6c22" />
+  <NugetDependency Id="VF77dLs5GcJM2E64nRd3Xt" Location="VL.Stride.Windows" Version="2021.4.7" />
+  <NugetDependency Id="CETLk4zmNbMLwrgwX3i4PN" Location="VL.Stride" Version="2021.4.7" />
 </Document>

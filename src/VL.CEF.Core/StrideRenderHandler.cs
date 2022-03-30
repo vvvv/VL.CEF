@@ -21,34 +21,36 @@ using Xilium.CefGlue;
 
 namespace VL.CEF
 {
-    public sealed partial class StrideRenderHandler : RendererBase, IRenderHandler
+    public sealed partial class StrideRenderHandler : RendererBase
     {
         private readonly object syncRoot = new object();
         private readonly IResourceHandle<Game> gameHandle;
-        private WebRenderer webRenderer;
+        private readonly WebBrowser browser;
         private Texture surface;
         private bool needsConversion;
 
-        public StrideRenderHandler()
+        public StrideRenderHandler(WebBrowser browser)
         {
+            this.browser = browser;
             gameHandle = ServiceRegistry.Current.GetGameHandle();
             var renderContext = RenderContext.GetShared(gameHandle.Resource.Services);
             Initialize(renderContext);
-        }
 
-        public void Initialize(WebRenderer webRenderer)
-        {
-            this.webRenderer = webRenderer;
+            browser.Paint += OnPaint;
+            browser.AcceleratedPaint += OnAcceleratedPaint;
         }
 
         protected override void Destroy()
         {
+            browser.Paint -= OnPaint;
+            browser.AcceleratedPaint -= OnAcceleratedPaint;
+
             surface?.Dispose();
             base.Destroy();
             gameHandle.Dispose();
         }
 
-        public void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
+        void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
         {
             var data = new DataBox(buffer, width * 4, width * height * 4);
             var format = PixelFormat.B8G8R8A8_UNorm;
@@ -65,7 +67,7 @@ namespace VL.CEF
             needsConversion = false;
         }
 
-        public void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+        void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
         {
             try
             {
@@ -107,7 +109,7 @@ namespace VL.CEF
             var commandList = context.CommandList;
 
             // Ensure we render in the proper size
-            webRenderer.Size = commandList.Viewport.Size;
+            browser.Size = commandList.Viewport.Size;
 
             lock (syncRoot)
             {
@@ -175,7 +177,7 @@ float ToLinear(float C_srgb)
     if (C_srgb <= 0.04045)
         return C_srgb / 12.92;
     else
-        return pow((C_srgb + 0.055) / 1.055, 2.4);
+        return pow(abs((C_srgb + 0.055) / 1.055), 2.4);
 }
 };
 ";

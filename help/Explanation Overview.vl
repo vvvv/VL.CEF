@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2021.3.2.109" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2021.3.2" />
+<Document xmlns:p="property" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2021.4.7.906" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2021.4.7" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -15,26 +15,7 @@
       </p:NodeReference>
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
-          <Node Bounds="273,234,76,19" Id="TfmER9p04DgLts3OXxTs07">
-            <p:NodeReference LastCategoryFullName="Graphics.Skia.Layers" LastSymbolSource="VL.CEF.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
-              <CategoryReference Kind="Category" Name="Layers" NeedsToBeDirectParent="true">
-                <p:OuterCategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
-              </CategoryReference>
-            </p:NodeReference>
-            <Pin Id="E3OMTJBvkavPkSyDbQM2je" Name="Url" Kind="InputPin" />
-            <Pin Id="NcDPBWkaqVgLPQca84C26e" Name="Scale Factor" Kind="InputPin" />
-            <Pin Id="N4DXDlzA6W8M9XYzZvfRgB" Name="Zoom Level" Kind="InputPin" />
-            <Pin Id="BMuLGebuHj3QS2KFv1RvK5" Name="Scroll To" Kind="InputPin" />
-            <Pin Id="GTu5bxUJrrcQG9FmqEBnXe" Name="Enabled" Kind="InputPin" />
-            <Pin Id="JLWQAW7fjLgOJgJQo0v5S2" Name="Output" Kind="OutputPin" />
-            <Pin Id="Nmflk1Hs8STPe2TsmpRVmS" Name="Is Loading" Kind="OutputPin" />
-            <Pin Id="D1WsCywadJ4OYgaS6lX2F7" Name="Loaded" Kind="OutputPin" />
-            <Pin Id="TtvpqJjMxYJMqUeWamX8TD" Name="Error Text" Kind="OutputPin" />
-            <Pin Id="SNEhhFUZxYbOAmGiMRzaEI" Name="Document Size" Kind="OutputPin" />
-          </Node>
-          <Node Bounds="252,294,145,19" Id="T6EK0aeUpK8L42vEmISS7W">
+          <Node Bounds="251,324,145,19" Id="T6EK0aeUpK8L42vEmISS7W">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
@@ -58,25 +39,6 @@
           </Node>
           <Overlay Id="DAMsgPaMnqaMMeq1mbWpf4" Name="Render fullscreen" Bounds="208,174,248,201" />
           <Overlay Id="Ln7dj4BaN4BMJGdyVRKZs5" Name="Render to specific destination" Bounds="204,451,334,180" />
-          <Node Bounds="316,508,85,19" Id="F4Cxcwo7fPCLM4jYgHBjk4">
-            <p:NodeReference LastCategoryFullName="Graphics.Skia.Layers" LastSymbolSource="VL.CEF.vl">
-              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
-              <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
-              <CategoryReference Kind="Category" Name="Layers" NeedsToBeDirectParent="true">
-                <p:OuterCategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
-              </CategoryReference>
-            </p:NodeReference>
-            <Pin Id="SSrzcMY4f6EQCb5e9Uwjo9" Name="Url" Kind="InputPin" />
-            <Pin Id="PNzHTkr65cBPItHncJQUsG" Name="Scale Factor" Kind="InputPin" />
-            <Pin Id="PrHwzkPShyIQDvQb7B8Dva" Name="Zoom Level" Kind="InputPin" />
-            <Pin Id="EUwgxMDVRoMOM6K1CQcFVz" Name="Scroll To" Kind="InputPin" />
-            <Pin Id="Eqm42DqtDHzPBABZQ4H37W" Name="Enabled" Kind="InputPin" />
-            <Pin Id="TrjWNv2SXXlOs0eempNVhS" Name="Output" Kind="OutputPin" />
-            <Pin Id="QhY3RVgztEUPC7RtKHtUYD" Name="Is Loading" Kind="OutputPin" />
-            <Pin Id="MBBVBqG246rNYIKNAsJ4C3" Name="Loaded" Kind="OutputPin" />
-            <Pin Id="CsxM4TGK8TNPUxQqrucbzi" Name="Error Text" Kind="OutputPin" />
-            <Pin Id="KdhoZNNEDgwMVmzNj2VRd5" Name="Document Size" Kind="OutputPin" />
-          </Node>
           <Node Bounds="263,561,125,19" Id="EqLwDWx94yqONlszRHkqDV">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastSymbolSource="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -135,6 +97,50 @@
             </Pin>
             <Pin Id="IJqfB1d6y7QPodrC5Sx3eY" Name="Output" Kind="StateOutputPin" />
           </Node>
+          <Node Bounds="271,216,71,19" Id="IMN6zSf42oOQZQDq6fQKlx">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
+            </p:NodeReference>
+            <Pin Id="Q3U8r88N64wNrvQ5j2ixzp" Name="Shared Texture Enabled" Kind="InputPin" />
+            <Pin Id="KmxDcDJIL0ON5GdQldZhdQ" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
+            <Pin Id="MrPQX5zSAABQViiCSHAUER" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="GEaYnfy1wE1O3csVBan2pM" Name="Output" Kind="OutputPin" />
+            <Pin Id="VAAMuXnMHKTOHJQUEoQsM1" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="Ul5VFACwvp7M63CyKRElKW" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="Osw2o8okQEuQZwfcyUXIDI" Name="Error Text" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="271,267,70,19" Id="BcFRMmqe25vNuOWfGDwHd8">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <FullNameCategoryReference ID="CEF" />
+              <Choice Kind="ProcessAppFlag" Name="ToSkiaLayer" />
+            </p:NodeReference>
+            <Pin Id="GbFtIGrk5pkMqbo0LwxPRa" Name="Browser" Kind="InputPin" />
+            <Pin Id="DwTr3OtvpTuMixklZywlr8" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="322,493,71,19" Id="IYMFVCzR9lvPjqNv9fz3re">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
+            </p:NodeReference>
+            <Pin Id="RjMWjacKXpUL6pF87Tlpbf" Name="Shared Texture Enabled" Kind="InputPin" />
+            <Pin Id="JQphwhN5H0yMFcyhEB3wuC" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
+            <Pin Id="JPwTk1uDzgMLRl4AVZdrUE" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="JLxY8wampJHOmTrrIckHMD" Name="Output" Kind="OutputPin" />
+            <Pin Id="AMknDU5u63vP7AUyaDbVwL" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="IN1i3VezWrZLCpJY9dAKGS" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="LJ5WhTbCjFDN5f26zVXhob" Name="Error Text" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="322,525,70,19" Id="A2gkJG94pAMM40M7k8w7Uf">
+            <p:NodeReference LastCategoryFullName="CEF" LastSymbolSource="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <FullNameCategoryReference ID="CEF" />
+              <Choice Kind="ProcessAppFlag" Name="ToSkiaLayer" />
+            </p:NodeReference>
+            <Pin Id="Tx7Z1GDjveoMH2Jxd2LfzH" Name="Browser" Kind="InputPin" />
+            <Pin Id="NDpbfpMottKLIvGa1WGPI1" Name="Output" Kind="OutputPin" />
+          </Node>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -142,14 +148,16 @@
           <Fragment Id="Ccrp0QpGYEKPqBSB8xuGew" Patch="Vnymg3KwFcqPuuJT3crEKr" Enabled="true" />
           <Fragment Id="FS8SLTMVNnnMxuHsD4JK5c" Patch="T5DV0xifO78P27haBv56J1" Enabled="true" />
         </ProcessDefinition>
-        <Link Id="D5dYae0Z42cNsKpmXMRCYe" Ids="JLWQAW7fjLgOJgJQo0v5S2,MTDHVcEhKXPLq5yLm8QAE5" />
-        <Link Id="G4TH3R9xNXeNxFApFZLkTO" Ids="TrjWNv2SXXlOs0eempNVhS,BfOK57JUgQULAni1va3d84" />
         <Link Id="NCbsa212VXFNyJkIHLMFxj" Ids="SKbfNZCHkAzNifffyHYtmm,FTqlig7xItYN4hh7ZQH9Sj" />
         <Link Id="CwjZhfRwEHWOZwXMknMete" Ids="IJqfB1d6y7QPodrC5Sx3eY,JEZHcYQDzMnNEVr7hwzY9P" />
+        <Link Id="N5bkXrOssj9PizORkS8j0D" Ids="DwTr3OtvpTuMixklZywlr8,MTDHVcEhKXPLq5yLm8QAE5" />
+        <Link Id="AoCgXOpZcIjNWKrNVcXZPW" Ids="NDpbfpMottKLIvGa1WGPI1,BfOK57JUgQULAni1va3d84" />
+        <Link Id="OEOsrwscmAIOnp0wcRnTXj" Ids="GEaYnfy1wE1O3csVBan2pM,GbFtIGrk5pkMqbo0LwxPRa" />
+        <Link Id="HNz33VDAn1NN9qVdWP2FGH" Ids="JLxY8wampJHOmTrrIckHMD,Tx7Z1GDjveoMH2Jxd2LfzH" />
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2021.3.2" />
-  <NugetDependency Id="BryS6yDUHWAMOesu60Y624" Location="VL.Stride" Version="0.9.96-gbe66fd6c22" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2021.4.7" />
+  <NugetDependency Id="BryS6yDUHWAMOesu60Y624" Location="VL.Stride" Version="2021.4.7" />
   <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
 </Document>

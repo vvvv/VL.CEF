@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace VL.CEF
 {
-    public sealed partial class SkiaRenderHandler : IRenderHandler, ILayer
+    public sealed partial class SkiaRenderHandler : ILayer
     {
         private readonly object syncRoot = new object();
 
@@ -22,31 +22,32 @@ namespace VL.CEF
         private SKImage rasterImage, textureImage;
         private Texture2D sharedTexture;
         private IntPtr sharedHandle;
-        private WebRenderer webRenderer;
+        private WebBrowser browser;
 
-        public SkiaRenderHandler()
+        public SkiaRenderHandler(WebBrowser browser)
         {
+            this.browser = browser;
             renderContext = RenderContext.ForCurrentThread();
             if (renderContext.EglContext.Dislpay.TryGetD3D11Device(out var d3dDevice))
             {
                 device = new Device(d3dDevice);
             }
-        }
-
-        public void Initialize(WebRenderer webRenderer)
-        {
-            this.webRenderer = webRenderer;
+            browser.Paint += OnPaint;
+            browser.AcceleratedPaint += OnAcceleratedPaint;
         }
 
         public void Dispose()
         {
+            browser.Paint -= OnPaint;
+            browser.AcceleratedPaint -= OnAcceleratedPaint;
+
             rasterImage?.Dispose();
             textureImage?.Dispose();
             sharedTexture?.Dispose();
             renderContext.Dispose();
         }
 
-        public void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
+        private void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
         {
             var image = SKImage.FromPixelCopy(new SKImageInfo(width, height, SKColorType.Bgra8888, SKAlphaType.Premul, SKColorSpace.CreateSrgb()), buffer, width * 4);
             lock (syncRoot)
@@ -56,7 +57,7 @@ namespace VL.CEF
             }
         }
 
-        public void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+        private void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
         {
             lock (syncRoot)
             {
@@ -76,7 +77,7 @@ namespace VL.CEF
             var deviceClipBounds = canvas.DeviceClipBounds;
 
             // Ensure we render in the proper size
-            webRenderer.Size = new Vector2(deviceClipBounds.Width, deviceClipBounds.Height);
+            browser.Size = new Vector2(deviceClipBounds.Width, deviceClipBounds.Height);
 
             lock (syncRoot)
             {
