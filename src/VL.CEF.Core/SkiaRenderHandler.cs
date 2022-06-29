@@ -10,6 +10,7 @@ using VL.Skia.Egl;
 using SharpDX.DXGI;
 using Device = SharpDX.Direct3D11.Device;
 using System.Threading;
+using Stride.Core.Mathematics;
 
 namespace VL.CEF
 {
@@ -69,6 +70,8 @@ namespace VL.CEF
                 }
             }
         }
+
+        public RectangleF? Bounds => default;
 
         public void Render(CallerInfo caller)
         {
