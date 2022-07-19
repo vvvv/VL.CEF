@@ -14,7 +14,7 @@ using Stride.Core.Mathematics;
 
 namespace VL.CEF
 {
-    public sealed partial class SkiaRenderHandler : ILayer
+    public partial class SkiaRenderHandler : LinkedLayerBase
     {
         private readonly object syncRoot = new object();
 
@@ -71,9 +71,7 @@ namespace VL.CEF
             }
         }
 
-        public RectangleF? Bounds => default;
-
-        public void Render(CallerInfo caller)
+        public override void Render(CallerInfo caller)
         {
             var canvas = caller.Canvas;
             var localClipBounds = canvas.LocalClipBounds;

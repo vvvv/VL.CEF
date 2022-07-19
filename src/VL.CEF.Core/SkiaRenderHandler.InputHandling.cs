@@ -11,7 +11,7 @@ namespace VL.CEF
     {
         CefEventFlags mouseModifiers;
 
-        public bool Notify(INotification notification, CallerInfo caller)
+        public override bool Notify(INotification notification, CallerInfo caller)
         {
             if (notification is MouseNotification mouseNotification)
             {
