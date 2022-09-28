@@ -25,13 +25,27 @@ namespace VL.CEF
             {
                 if (Interlocked.Increment(ref initCount) == 1)
                 {
+                    var browserPath = typeof(WebRendererApp).Assembly.Location;
+                    // Check if we're in package (different folder layout)
+                    var toolsPath = Path.Combine(Path.GetDirectoryName(browserPath), "..", "..", "renderer", Path.GetFileName(browserPath));
+                    if (File.Exists(toolsPath))
+                    {
+                        browserPath = toolsPath;
+
+                        // Ensure native libs can be found if we're in package format
+                        var browserDir = Path.GetDirectoryName(browserPath);
+                        var pathVariable = Environment.GetEnvironmentVariable("PATH");
+                        if (!pathVariable.Contains(browserDir))
+                            Environment.SetEnvironmentVariable("PATH", $"{pathVariable};{browserDir}");
+                    }
+
                     CefRuntime.Load();
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;
                     cefSettings.PackLoadingDisabled = false;
                     cefSettings.MultiThreadedMessageLoop = true;
-                    cefSettings.BrowserSubprocessPath = typeof(WebRendererApp).Assembly.Location;
+                    cefSettings.BrowserSubprocessPath = browserPath;
                     cefSettings.CommandLineArgsDisabled = false;
                     cefSettings.IgnoreCertificateErrors = true;
                     //// We do not meet the requirements - see cef_sandbox_win.h
@@ -41,14 +55,6 @@ namespace VL.CEF
 #else
             cefSettings.LogSeverity = CefLogSeverity.Disable;
 #endif
-
-                    // Check if we're in package (different folder layout)
-                    var filename = Path.GetFileName(cefSettings.BrowserSubprocessPath);
-                    var toolsPath = Path.Combine(Path.GetDirectoryName(cefSettings.BrowserSubprocessPath), "..", "..", "runtimes", "win-x64", "native", filename);
-                    if (File.Exists(toolsPath))
-                    {
-                        cefSettings.BrowserSubprocessPath = toolsPath;
-                    }
 
                     var args = Environment.GetCommandLineArgs();
                     var mainArgs = new CefMainArgs(args);

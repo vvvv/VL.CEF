@@ -1,0 +1,11 @@
+﻿<Project>
+  
+  <ItemGroup>
+    <!-- For all files in /contentFiles -->
+    <Content Include="$(MSBuildThisFileDirectory)..\renderer\**\*.*">
+      <!-- Copy to output directory on build -->
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
+</Project>

@@ -25,6 +25,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="buildTransitive\*" Pack="true" PackagePath="" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
   </PropertyGroup>
@@ -32,17 +36,17 @@
   <Target Name="GetCustomContentPackageFiles" DependsOnTargets="BuiltProjectOutputGroup;GenerateBuildDependencyFile">
     <ItemGroup>
       <TfmSpecificPackageFile Include="$(Pkgcef_redist_x64)\CEF\**">
-        <PackagePath>runtimes/win-x64/native</PackagePath>
+        <PackagePath>renderer</PackagePath>
       </TfmSpecificPackageFile>
       <!-- The browser subprocess needs all dlls -->
       <TfmSpecificPackageFile Include="$(PkgCefGlue_Common)\lib\net472\x64\*.dll">
-        <PackagePath>runtimes/win-x64/native</PackagePath>
+        <PackagePath>renderer</PackagePath>
       </TfmSpecificPackageFile>
       <TfmSpecificPackageFile Include="@(BuiltProjectOutputGroupOutput)">
-        <PackagePath>runtimes/win-x64/native</PackagePath>
+        <PackagePath>renderer</PackagePath>
       </TfmSpecificPackageFile>
       <TfmSpecificPackageFile Include="@(RuntimeCopyLocalItems)">
-        <PackagePath>runtimes/win-x64/native</PackagePath>
+        <PackagePath>renderer</PackagePath>
       </TfmSpecificPackageFile>
     </ItemGroup>
   </Target>
