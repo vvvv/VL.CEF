@@ -1,5 +1,6 @@
 ﻿using Stride.Core.Mathematics;
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using VL.Lib.IO.Notifications;
 using VL.Skia;
@@ -99,46 +100,77 @@ namespace VL.CEF
             browser.BrowserHost.SendKeyEvent(keyEvent);
         }
 
+        int clickCount = 1;
+        MouseButtons? lastButton;
+        Vector2 lastPosition;
+        Stopwatch stopwatch = Stopwatch.StartNew();
+
         private void HandleMouseNotification(MouseNotification n, CallerInfo caller)
         {
+            if (n is MouseButtonNotification buttonNotification)
             {
+                var position = n.Position;
+                var delta = lastPosition - position;
+                var deltaTime = stopwatch.ElapsedMilliseconds;
+                stopwatch.Restart();
+
+                if (n is MouseDownNotification)
+                {
+                    if (buttonNotification.Buttons == lastButton &&
+                        Math.Abs(delta.X) < SystemInformation.DoubleClickSize.Width / 2 &&
+                        Math.Abs(delta.Y) < SystemInformation.DoubleClickSize.Height / 2 &&
+                        deltaTime < SystemInformation.DoubleClickTime)
+                    {
+                        clickCount++;
+                    }
+                    else
+                    {
+                        clickCount = 1;
+                    }
+                }
+                else if (buttonNotification.Buttons != lastButton)
+                {
+                    clickCount = 1;
+                }
+
+                lastButton = buttonNotification.Buttons;
+                lastPosition = position;
+
                 if (n is MouseDownNotification mouseDown)
                     mouseModifiers |= ToCefEventFlags(mouseDown.Buttons);
                 else if (n is MouseUpNotification mouseUp)
                     mouseModifiers &= ~ToCefEventFlags(mouseUp.Buttons);
             }
 
-            var position = GetPositionInViewport(n, caller);
-            var mouseEvent = new CefMouseEvent((int)position.X, (int)position.Y, GetModifiers(n));
-            var browserHost = browser.BrowserHost;
-            switch (n.Kind)
             {
-                case MouseNotificationKind.MouseDown:
-                    var mouseDown = n as MouseDownNotification;
-                    browserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseDown.Buttons), mouseUp: false, clickCount: 1);
-                    break;
-                case MouseNotificationKind.MouseUp:
-                    var mouseUp = n as MouseUpNotification;
-                    browserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseUp.Buttons), mouseUp: true, clickCount: 1);
-                    break;
-                case MouseNotificationKind.MouseMove:
-                    browserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: false);
-                    break;
-                case MouseNotificationKind.MouseWheel:
-                    var mouseWheel = n as MouseWheelNotification;
-                    browserHost.SendMouseWheelEvent(mouseEvent, 0, mouseWheel.WheelDelta);
-                    break;
-                case MouseNotificationKind.MouseHorizontalWheel:
-                    var mouseHWheel = n as MouseHorizontalWheelNotification;
-                    browserHost.SendMouseWheelEvent(mouseEvent, mouseHWheel.WheelDelta, 0);
-                    break;
-                case MouseNotificationKind.MouseClick:
-                    var mouseClick = n as MouseClickNotification;
-                    browserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseClick.Buttons), mouseUp: false, clickCount: mouseClick.ClickCount);
-                    break;
-                case MouseNotificationKind.DeviceLost:
-                    browserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: true);
-                    break;
+                var position = GetPositionInViewport(n, caller);
+                var mouseEvent = new CefMouseEvent((int)position.X, (int)position.Y, GetModifiers(n));
+                var browserHost = browser.BrowserHost;
+                switch (n.Kind)
+                {
+                    case MouseNotificationKind.MouseDown:
+                        var mouseDown = n as MouseDownNotification;
+                        browserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseDown.Buttons), mouseUp: false, clickCount: clickCount);
+                        break;
+                    case MouseNotificationKind.MouseUp:
+                        var mouseUp = n as MouseUpNotification;
+                        browserHost.SendMouseClickEvent(mouseEvent, GetMouseButtonType(mouseUp.Buttons), mouseUp: true, clickCount: clickCount);
+                        break;
+                    case MouseNotificationKind.MouseMove:
+                        browserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: false);
+                        break;
+                    case MouseNotificationKind.MouseWheel:
+                        var mouseWheel = n as MouseWheelNotification;
+                        browserHost.SendMouseWheelEvent(mouseEvent, 0, mouseWheel.WheelDelta);
+                        break;
+                    case MouseNotificationKind.MouseHorizontalWheel:
+                        var mouseHWheel = n as MouseHorizontalWheelNotification;
+                        browserHost.SendMouseWheelEvent(mouseEvent, mouseHWheel.WheelDelta, 0);
+                        break;
+                    case MouseNotificationKind.DeviceLost:
+                        browserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: true);
+                        break;
+                }
             }
 
             CefMouseButtonType GetMouseButtonType(MouseButtons buttons)

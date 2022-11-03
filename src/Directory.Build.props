@@ -10,7 +10,7 @@
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <Version>0.3.3</Version>
+    <Version>0.3.4</Version>
 
     <!-- Package properties -->
     <Authors>vvvv group</Authors>

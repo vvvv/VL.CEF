@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xilium.CefGlue;
 using WinFormsKeys = System.Windows.Forms.Keys;
+using System.Diagnostics;
+using SystemInformation = System.Windows.Forms.SystemInformation;
 
 namespace VL.CEF
 {
@@ -54,24 +56,34 @@ namespace VL.CEF
                 if (e.Device.Source != inputSource)
                     return;
 
-                var position = e.AbsolutePosition.DeviceToLogical(browser.ScaleFactor);
-
-                browser.BrowserHost.SendTouchEvent(new CefTouchEvent()
+                if (e.Device is IMouseDevice mouse)
                 {
-                    Id = e.PointerId,
-                    X = position.X,
-                    Y = position.Y,
-                    Type = ToCefTouchEventType(e.EventType),
-                    Modifiers = GetModifiers(GetKeyboard(inputSource)) | GetModifiers(GetMouse(inputSource))
-                });
-
-                if (e.EventType == PointerEventType.Moved && e.Device is IMouseDevice mouse)
+                    if (e.EventType == PointerEventType.Moved)
+                    {
+                        var mouseEvent = ToMouseEvent(mouse);
+                        browser.BrowserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: false);
+                    }
+                }
+                else
                 {
-                    var mouseEvent = ToMouseEvent(mouse);
-                    browser.BrowserHost.SendMouseMoveEvent(mouseEvent, mouseLeave: false);
+                    var position = e.AbsolutePosition.DeviceToLogical(browser.ScaleFactor);
+
+                    browser.BrowserHost.SendTouchEvent(new CefTouchEvent()
+                    {
+                        Id = e.PointerId,
+                        X = position.X,
+                        Y = position.Y,
+                        Type = ToCefTouchEventType(e.EventType),
+                        Modifiers = GetModifiers(GetKeyboard(inputSource)) | GetModifiers(GetMouse(inputSource))
+                    });
                 }
             });
         }
+
+        int clickCount = 1;
+        MouseButton? lastButton;
+        Vector2 lastPosition;
+        Stopwatch stopwatch = Stopwatch.StartNew();
 
         private IInputEventListener NewMouseButtonListener(IInputSource inputSource)
         {
@@ -80,12 +92,40 @@ namespace VL.CEF
                 if (e.Device.Source != inputSource)
                     return;
 
-                var mouseEvent = ToMouseEvent(e.Mouse);
                 var mouseDevice = e.Device as IMouseDevice;
+                var mouseEvent = ToMouseEvent(e.Mouse);
+
+                var position = mouseDevice.Position * mouseDevice.SurfaceSize;
+                var delta = lastPosition - position;
+                var deltaTime = stopwatch.ElapsedMilliseconds;
+                stopwatch.Restart();
+
                 if (e.IsDown)
-                    browser.BrowserHost.SendMouseClickEvent(mouseEvent, ToCefMouseButton(e.Button), mouseUp: false, clickCount: 1);
+                {
+                    if (e.Button == lastButton && 
+                        Math.Abs(delta.X) < SystemInformation.DoubleClickSize.Width / 2 &&
+                        Math.Abs(delta.Y) < SystemInformation.DoubleClickSize.Height / 2 && 
+                        deltaTime < SystemInformation.DoubleClickTime)
+                    {
+                        clickCount++;
+                    }
+                    else
+                    {
+                        clickCount = 1;
+                    }
+                }
+                else if (e.Button != lastButton)
+                {
+                    clickCount = 1;
+                }
+
+                lastButton = e.Button;
+                lastPosition = position;
+
+                if (e.IsDown)
+                    browser.BrowserHost.SendMouseClickEvent(mouseEvent, ToCefMouseButton(e.Button), mouseUp: false, clickCount: clickCount);
                 else
-                    browser.BrowserHost.SendMouseClickEvent(mouseEvent, ToCefMouseButton(e.Button), mouseUp: true, clickCount: 1);
+                    browser.BrowserHost.SendMouseClickEvent(mouseEvent, ToCefMouseButton(e.Button), mouseUp: true, clickCount: clickCount);
             });
         }
 
