@@ -2,8 +2,7 @@
 <Project>
   <PropertyGroup>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>$(MsBuildThisFileDirectory)..\lib\</OutputPath>
 
     <PackageOutputPath>$(MsBuildThisFileDirectory)..\bin\</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
