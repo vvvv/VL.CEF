@@ -25,19 +25,30 @@ namespace VL.CEF
             {
                 if (Interlocked.Increment(ref initCount) == 1)
                 {
-                    var browserPath = typeof(WebRendererApp).Assembly.Location;
-                    // Check if we're in package (different folder layout)
-                    var toolsPath = Path.Combine(Path.GetDirectoryName(browserPath), "..", "..", "renderer", Path.GetFileName(browserPath));
-                    if (File.Exists(toolsPath))
+                    var browserSubprocessPath = typeof(WebRendererApp).Assembly.Location;
+                    var thisDirectory = Path.GetDirectoryName(browserSubprocessPath);
+                    var exeFileName = Path.GetFileName(browserSubprocessPath);
+                    // In standalone the webrenderer is in the renderer subfolder
+                    var standalonePath = Path.Combine(thisDirectory, "renderer", exeFileName);
+                    if (File.Exists(standalonePath))
                     {
-                        browserPath = toolsPath;
-
-                        // Ensure native libs can be found if we're in package format
-                        var browserDir = Path.GetDirectoryName(browserPath);
-                        var pathVariable = Environment.GetEnvironmentVariable("PATH");
-                        if (!pathVariable.Contains(browserDir))
-                            Environment.SetEnvironmentVariable("PATH", $"{pathVariable};{browserDir}");
+                        browserSubprocessPath = standalonePath;
                     }
+                    else
+                    {
+                        // Check if we're in package (different folder layout)
+                        var packagePath = Path.Combine(thisDirectory, "..", "..", "renderer", exeFileName);
+                        if (File.Exists(packagePath))
+                        {
+                            browserSubprocessPath = packagePath;
+                        }
+                    }
+
+                    // Ensure native libs can be found
+                    var browserDir = Path.GetDirectoryName(browserSubprocessPath);
+                    var pathVariable = Environment.GetEnvironmentVariable("PATH");
+                    if (!pathVariable.Contains(browserDir))
+                        Environment.SetEnvironmentVariable("PATH", $"{pathVariable};{browserDir}");
 
                     CefRuntime.Load();
 
@@ -45,7 +56,7 @@ namespace VL.CEF
                     cefSettings.WindowlessRenderingEnabled = true;
                     cefSettings.PackLoadingDisabled = false;
                     cefSettings.MultiThreadedMessageLoop = true;
-                    cefSettings.BrowserSubprocessPath = browserPath;
+                    cefSettings.BrowserSubprocessPath = browserSubprocessPath;
                     cefSettings.CommandLineArgsDisabled = false;
                     cefSettings.IgnoreCertificateErrors = true;
                     //// We do not meet the requirements - see cef_sandbox_win.h

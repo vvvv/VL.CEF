@@ -56,12 +56,4 @@
     </ItemGroup>
   </Target>
 
-  <Target Name="CopyCustomPackageFiles" AfterTargets="Build">
-    <ItemGroup>
-      <CefBinaries Include="$(PkgCefGlue_Common)\lib\net472\x64\*.dll" />
-      <CefBinaries Include="$(Pkgcef_redist_x64)\CEF\**" />
-    </ItemGroup>
-
-    <Copy SourceFiles="@(CefBinaries)" DestinationFiles="@(CefBinaries->'$(OutputPath)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
-  </Target>
 </Project>

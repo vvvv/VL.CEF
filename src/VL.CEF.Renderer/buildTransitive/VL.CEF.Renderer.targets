@@ -5,6 +5,7 @@
     <Content Include="$(MSBuildThisFileDirectory)..\renderer\**\*.*">
       <!-- Copy to output directory on build -->
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <LinkBase>renderer</LinkBase>
     </Content>
   </ItemGroup>
   
