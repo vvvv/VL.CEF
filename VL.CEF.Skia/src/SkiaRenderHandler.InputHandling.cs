@@ -1,7 +1,7 @@
 ﻿using Stride.Core.Mathematics;
 using System;
 using System.Diagnostics;
-using System.Windows.Forms;
+using VL.Lib.IO;
 using VL.Lib.IO.Notifications;
 using VL.Skia;
 using Xilium.CefGlue;
@@ -12,7 +12,7 @@ namespace VL.CEF
     {
         CefEventFlags mouseModifiers;
 
-        public override bool Notify(INotification notification, CallerInfo caller)
+        public bool Notify(INotification notification, CallerInfo caller)
         {
             if (notification is MouseNotification mouseNotification)
             {
@@ -117,9 +117,9 @@ namespace VL.CEF
                 if (n is MouseDownNotification)
                 {
                     if (buttonNotification.Buttons == lastButton &&
-                        Math.Abs(delta.X) < SystemInformation.DoubleClickSize.Width / 2 &&
-                        Math.Abs(delta.Y) < SystemInformation.DoubleClickSize.Height / 2 &&
-                        deltaTime < SystemInformation.DoubleClickTime)
+                        Math.Abs(delta.X) < Mouse.DoubleClickSize.Width / 2 &&
+                        Math.Abs(delta.Y) < Mouse.DoubleClickSize.Height / 2 &&
+                        deltaTime < Mouse.DoubleClickTime)
                     {
                         clickCount++;
                     }

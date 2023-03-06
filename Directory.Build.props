@@ -2,15 +2,16 @@
 <Project>
   <PropertyGroup>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-    <OutputPath>$(MsBuildThisFileDirectory)..\lib\</OutputPath>
 
-    <PackageOutputPath>$(MsBuildThisFileDirectory)..\bin\</PackageOutputPath>
+    <PackageOutputPath>$(MsBuildThisFileDirectory)bin\</PackageOutputPath>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+    <!-- Used VL version -->
+    <VLVersion>2022.5.0-0683-g91567c285a</VLVersion>
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <Version>0.3.4</Version>
+    <Version>0.4.0-preview</Version>
 
     <!-- Package properties -->
     <Authors>vvvv group</Authors>

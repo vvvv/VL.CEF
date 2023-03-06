@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputPath>..\lib</OutputPath>
+    <Platforms>x64;x86</Platforms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    
+    <!-- Package properties -->
+    <Description>Stride backend for VL.CEF</Description>
+    <PackageTags>VL;web;html;texture;vvvv</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="VL.Stride.Runtime" Version="$(VLVersion)" ExcludeAssets="build;buildTransitive" PrivateAssets="all">
+      <IncludeAssets>runtime; compile; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+
+    <!-- Reference Stride.Rendering so the package gets installed on the user machine. Needed by export (see issue #3). -->
+    <!-- We'd like to include this dependency through VL.Stride.Runtime by removing the private assets flag -->
+    <!-- but that pulls in a lot of packages some of which VL can't handle (as of 2020.2.2) -->
+    <PackageReference Include="Stride.Rendering" Version="4.1.0.1805">
+      <ExcludeAssets>build;buildTransitive</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\VL.CEF\src\VL.CEF.csproj" />
+  </ItemGroup>
+
+  <!-- Manual fix for Cef packages -->
+  <ItemGroup>
+    <Reference Include="Xilium.CefGlue">
+      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.dll</HintPath>
+    </Reference>
+    <Reference Include="Xilium.CefGlue.Common">
+      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="GetCustomContentPackageFiles" DependsOnTargets="BuiltProjectOutputGroup;GenerateBuildDependencyFile">
+    <ItemGroup>
+      <!-- VL files -->
+      <TfmSpecificPackageFile Include="..\**\*.vl">
+        <PackagePath></PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+
+</Project>

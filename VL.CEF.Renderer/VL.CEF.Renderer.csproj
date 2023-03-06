@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Platforms>x64;x86</Platforms>
+    <SelfContained>false</SelfContained>
+    <OutputPath>..\VL.CEF\lib\$(TargetFramework)\renderer\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    
+    <!-- Disable pack warning about dlls being in wrong folder - this package delivers the whole renderer app -->
+    <NoWarn>NU5128;NU5100</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Manual fix for Cef packages -->
+  <ItemGroup>
+    <Reference Include="Xilium.CefGlue">
+      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.dll</HintPath>
+    </Reference>
+    <Reference Include="Xilium.CefGlue.Common">
+      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="$(Pkgcef_redist_x64)\CEF\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Visible>false</Visible>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="buildTransitive\*" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="GetCustomContentPackageFiles" DependsOnTargets="ResolveAssemblyReferences;BuiltProjectOutputGroup;GetCopyToOutputDirectoryItems">
+    <ItemGroup>
+      <!-- The dll of this project -->
+      <TfmSpecificPackageFile Include="@(BuiltProjectOutputGroupOutput)">
+        <PackagePath>renderer</PackagePath>
+      </TfmSpecificPackageFile>
+      <!-- The referenced dlls of this project -->
+      <TfmSpecificPackageFile Include="@(ReferenceCopyLocalPaths)">
+        <PackagePath>renderer</PackagePath>
+      </TfmSpecificPackageFile>
+      <!-- The apphost.exe used as exe for this project as well as all files to be copied to output (native CEF dlls, see None include above) -->
+      <TfmSpecificPackageFile Include="@(AllItemsFullPathWithTargetPath)">
+        <PackagePath>renderer\%(AllItemsFullPathWithTargetPath.TargetPath)</PackagePath>
+      </TfmSpecificPackageFile>      
+    </ItemGroup>
+  </Target>
+
+</Project>

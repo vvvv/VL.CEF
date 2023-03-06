@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputPath>..\lib</OutputPath>
+    <Platforms>x64;x86</Platforms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <!-- Passed to vvvv.exe -->
+    <LocalVLPackages>$(MsBuildThisFileDirectory)..\..\</LocalVLPackages>
+    <PackageRepositories>$(LocalVLPackages)</PackageRepositories>
+    <OverviewPatch>$(MsBuildThisFileDirectory)..\help\Explanation JavaScript.vl</OverviewPatch>
+    
+    <!-- Package properties -->
+    <Description>Chromium Embedded Framework (CEF) for VL</Description>
+    <PackageReleaseNotes>Popular nodes: WebRenderer</PackageReleaseNotes>
+    <PackageTags>VL;web;html;texture;vvvv</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="VL.Core" Version="$(VLVersion)" PrivateAssets="all" />
+    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\VL.CEF.Renderer\VL.CEF.Renderer.csproj">
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+
+  <!-- Manual fix for Cef packages -->
+  <ItemGroup>
+    <Reference Include="Xilium.CefGlue">
+      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.dll</HintPath>
+    </Reference>
+    <Reference Include="Xilium.CefGlue.Common">
+      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetCustomLibPackageFiles</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <Target Name="GetCustomLibPackageFiles">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\*.dll" />
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="GetCustomContentPackageFiles" DependsOnTargets="BuiltProjectOutputGroup;GenerateBuildDependencyFile">
+    <ItemGroup>
+      <!-- VL files -->
+      <TfmSpecificPackageFile Include="..\**\*.vl">
+        <PackagePath></PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+
+</Project>

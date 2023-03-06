@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <OutputPath>..\lib</OutputPath>
+    <Platforms>x64;x86</Platforms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    
+    <!-- Package properties -->
+    <Description>Skia backend for VL.CEF</Description>
+    <PackageTags>VL;web;html;vvvv</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="VL.Core.Skia" Version="$(VLVersion)" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\VL.CEF\src\VL.CEF.csproj" />
+  </ItemGroup>
+
+  <!-- Manual fix for Cef packages -->
+  <ItemGroup>
+    <Reference Include="Xilium.CefGlue">
+      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.dll</HintPath>
+    </Reference>
+    <Reference Include="Xilium.CefGlue.Common">
+      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <Target Name="GetCustomContentPackageFiles" DependsOnTargets="BuiltProjectOutputGroup;GenerateBuildDependencyFile">
+    <ItemGroup>
+      <!-- VL files -->
+      <TfmSpecificPackageFile Include="..\**\*.vl">
+        <PackagePath></PackagePath>
+      </TfmSpecificPackageFile>
+    </ItemGroup>
+  </Target>
+
+</Project>

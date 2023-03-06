@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" Id="FgyU0uYKYnINLXJUYAW0B1" LanguageVersion="2022.5.0-0683-g91567c285a" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2022.5.0-0683-g91567c285a" />
+  <Patch Id="BZs5A6rRdrDOhDYS793S2G">
+    <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
+      <!--
+
+    ************************ ToSkiaLayer ************************
+
+-->
+      <Node Name="ToSkiaLayer" Bounds="440,352" Id="VEBMyyJDlg9QAomG55ESg4">
+        <p:NodeReference LastCategoryFullName="Primitive" LastDependency="builtin">
+          <Choice Kind="ContainerDefinition" Name="Process" />
+        </p:NodeReference>
+        <Patch Id="NB5WSbAHjw5QdG1krxHlJa">
+          <Canvas Id="TleZrKJPakKNxLyIoG23Bc" CanvasType="Group">
+            <Node Bounds="441,138,143,164" Id="HaK1z361xhvPELalh9CFUj">
+              <p:NodeReference LastCategoryFullName="Primitive" LastDependency="Builtin">
+                <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
+                <Choice Kind="ProcessStatefulRegion" Name="Cache" />
+                <FullNameCategoryReference ID="Primitive" />
+              </p:NodeReference>
+              <Pin Id="VifrFt3mEcSOf29xn0ZgvD" Name="Force" Kind="InputPin" />
+              <Pin Id="Oko4g4zUWzKNZmRAHh0L2N" Name="Dispose Cached Outputs" Kind="InputPin" DefaultValue="True" />
+              <Pin Id="Esqqcs3bNpVPJqtyn9Anfd" Name="Has Changed" Kind="OutputPin" />
+              <ControlPoint Id="NOR930JYBoBMhtbAH73Jdu" Bounds="479,145" Alignment="Top" />
+              <ControlPoint Id="BaMKtodjmwbLenssLnz31o" Bounds="478,297" Alignment="Bottom" />
+              <Patch Id="J6ySmzFqbTkOkBtVvyW3aq" ManuallySortedPins="true">
+                <Patch Id="NRUuwidh2H0O9zlYZvYt7V" Name="Create" ManuallySortedPins="true" />
+                <Patch Id="HbglYms6D38MG7VdzmgZdh" Name="Then" ManuallySortedPins="true" />
+                <Node Bounds="464,196,108,81" Id="DMHZH5uJYZbPducacUkRxP">
+                  <p:NodeReference LastCategoryFullName="Primitive" LastDependency="Builtin">
+                    <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
+                    <Choice Kind="ApplicationStatefulRegion" Name="If" />
+                    <FullNameCategoryReference ID="Primitive" />
+                  </p:NodeReference>
+                  <Pin Id="IOXFxhQZdg9MK24zs1JkmC" Name="Condition" Kind="InputPin" />
+                  <ControlPoint Id="J4Pkff9qM0ZO8mSvhFeUU1" Bounds="478,271" Alignment="Bottom" />
+                  <ControlPoint Id="TT3GYqmTlZlNTbNrv8kp0v" Bounds="480,202" Alignment="Top" />
+                  <Patch Id="TsXiwWiOBePPgQ8P4Cljnt" ManuallySortedPins="true">
+                    <Patch Id="NPims2JN0QxOnl9erUrmtX" Name="Create" ManuallySortedPins="true" />
+                    <Patch Id="N9YB4L7LROiL4NhMEbHlcv" Name="Then" ManuallySortedPins="true" />
+                    <Node Bounds="476,223,84,26" Id="UBNMQyAfvb1QG4vEjdpj8x">
+                      <p:NodeReference LastCategoryFullName="VL.CEF.SkiaRenderHandler" LastDependency="VL.CEF.Skia.dll">
+                        <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                        <CategoryReference Kind="AssemblyCategory" Name="SkiaRenderHandler" />
+                        <Choice Kind="OperationCallFlag" Name="Create" />
+                      </p:NodeReference>
+                      <Pin Id="JKn45NjvzdWNsIrEjiGHJD" Name="Browser" Kind="InputPin" />
+                      <Pin Id="SNVT3OPwooGMvCS3OXZyXA" Name="Output" Kind="StateOutputPin" />
+                    </Node>
+                  </Patch>
+                </Node>
+                <Node Bounds="465,164,65,19" Id="C3sCwYT4FoMMxzmOWPhP8P">
+                  <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
+                    <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                    <Choice Kind="OperationCallFlag" Name="IsAssigned" />
+                  </p:NodeReference>
+                  <Pin Id="VtjLF3jEPQ9LjRPX7h0J09" Name="X" Kind="InputPin" />
+                  <Pin Id="Kj49Rh7RHejMQ5Yt2AsOeX" Name="Result" Kind="OutputPin" />
+                  <Pin Id="NkpOBDxAqXjMbmmSTkn9YH" Name="Not Assigned" Kind="OutputPin" />
+                </Node>
+              </Patch>
+            </Node>
+            <ControlPoint Id="TrN6sLVYjGeOaJgAoMTyu6" Bounds="479,112" />
+            <ControlPoint Id="CFU6wkyhy5ZPXq2DmdKhRB" Bounds="477,348" />
+          </Canvas>
+          <ProcessDefinition Id="A394xkjLK30OX6zdDzhttf">
+            <Fragment Id="QdYym9XzZNGL9o9jU9qjVS" Patch="RBMBXE8IZv6M92G5CrovQu" Enabled="true" />
+            <Fragment Id="QLyfw5DTzKbNvMLMeW5GCX" Patch="OapgN99fLCoOT8vsygg4o3" Enabled="true" />
+          </ProcessDefinition>
+          <Link Id="CcEulVv4w8xO4AIvtM2RtY" Ids="NOR930JYBoBMhtbAH73Jdu,JKn45NjvzdWNsIrEjiGHJD" />
+          <Link Id="FuSKd431srqOFUHVcLJtjA" Ids="TrN6sLVYjGeOaJgAoMTyu6,NOR930JYBoBMhtbAH73Jdu" />
+          <Link Id="HkRnMb1ncr4MAbGy9NTyTl" Ids="GfzJUTDbnRPNWYh18yNZoP,TrN6sLVYjGeOaJgAoMTyu6" IsHidden="true" />
+          <Link Id="U9i7AXsUSVuOJUbnu8X1av" Ids="BaMKtodjmwbLenssLnz31o,CFU6wkyhy5ZPXq2DmdKhRB" />
+          <Link Id="BwfMzI6PNhmPzRLsNJZwRf" Ids="CFU6wkyhy5ZPXq2DmdKhRB,Odu2VEFY0ApMWbWZzUB73W" IsHidden="true" />
+          <Link Id="Pd1ydrjz0IKNXRFwcxUFF6" Ids="NOR930JYBoBMhtbAH73Jdu,VtjLF3jEPQ9LjRPX7h0J09" />
+          <Link Id="UHDMim6JkTANL4AA5mxfNd" Ids="Kj49Rh7RHejMQ5Yt2AsOeX,IOXFxhQZdg9MK24zs1JkmC" />
+          <Link Id="ICvRtvAQD9dLE7xlDdUY7k" Ids="TT3GYqmTlZlNTbNrv8kp0v,J4Pkff9qM0ZO8mSvhFeUU1" IsFeedback="true" />
+          <Link Id="MKcL3VbzoIGMJiSZF2MHbN" Ids="SNVT3OPwooGMvCS3OXZyXA,J4Pkff9qM0ZO8mSvhFeUU1" />
+          <Link Id="BKXvOVbuklnLVcxyPGgNEC" Ids="J4Pkff9qM0ZO8mSvhFeUU1,BaMKtodjmwbLenssLnz31o" />
+          <Patch Id="RBMBXE8IZv6M92G5CrovQu" Name="Create" />
+          <Patch Id="OapgN99fLCoOT8vsygg4o3" Name="Update">
+            <Pin Id="GfzJUTDbnRPNWYh18yNZoP" Name="Browser" Kind="InputPin" Bounds="481,106" />
+            <Pin Id="Odu2VEFY0ApMWbWZzUB73W" Name="Output" Kind="OutputPin" Bounds="477,348">
+              <p:TypeAnnotation LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
+                <Choice Kind="TypeFlag" Name="Layer" />
+              </p:TypeAnnotation>
+            </Pin>
+          </Patch>
+        </Patch>
+      </Node>
+    </Canvas>
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="TtxZZJUEAGbOsL1PBGD3vj">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <FullNameCategoryReference ID="Primitive" />
+      </p:NodeReference>
+      <Patch Id="EhPIHoRIRvUNVykuBmu5Rb">
+        <Canvas Id="F5oGTRFbagFOIbIlKDJp1Z" CanvasType="Group" />
+        <Patch Id="O4uq9wbTMb6OOThRKHyui2" Name="Create" />
+        <Patch Id="H72fEPhIvIoL1SSXPbdYYQ" Name="Update" />
+        <ProcessDefinition Id="JzIyWEpgt97OmPji74yRRN">
+          <Fragment Id="Phlob7FM4AXPMrRqiPZ4ld" Patch="O4uq9wbTMb6OOThRKHyui2" Enabled="true" />
+          <Fragment Id="OqTjc1DwaaENi8GSioyIwF" Patch="H72fEPhIvIoL1SSXPbdYYQ" Enabled="true" />
+        </ProcessDefinition>
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2022.5.0-0683-g91567c285a" />
+  <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net6.0-windows/VL.CEF.Skia.dll" />
+  <NugetDependency Id="Knu810rkN45OuFmlmqfa99" Location="VL.CEF" Version="0.0.0" />
+</Document>

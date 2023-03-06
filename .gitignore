@@ -351,3 +351,5 @@ MigrationBackup/
 
 /.vl
 /lib/net472/
+/lib/
+*/lib/

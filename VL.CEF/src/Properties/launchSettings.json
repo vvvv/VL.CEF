@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "VL.CEF": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_$(VLVersion)\\vvvv.exe",
+      "commandLineArgs": "--package-repositories $(PackageRepositories) --export-package-sources $(PackageOutputPath) -o \"$(OverviewPatch)\" --editable-packages VL.CEF"
+    }
+  }
+}

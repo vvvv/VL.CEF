@@ -67,11 +67,11 @@ namespace VL.CEF
             FBrowserAttachedEvent.WaitOne();
         }
 
-        internal event PaintHandler Paint;
+        public event PaintHandler Paint;
 
-        internal event AcceleratedPaintHandler AcceleratedPaint;
+        public event AcceleratedPaintHandler AcceleratedPaint;
 
-        internal CefBrowserHost BrowserHost => FBrowserHost;
+        public CefBrowserHost BrowserHost => FBrowserHost;
 
         internal void Attach(CefBrowser browser)
         {
