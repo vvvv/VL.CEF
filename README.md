@@ -7,11 +7,13 @@ Download: http://visualprogramming.net
 ## Using the library
 In order to use this library with VL you have to install the nuget that is available via nuget.org. For information on how to use nugets with VL, see [Managing Nugets](https://thegraybook.vvvv.org/reference/libraries/dependencies.html#manage-nugets) in the VL documentation. As described there you go to the commandline and then type:
 
-    nuget install VL.CEF
+    nuget install VL.CEF.Stride
+    
+and/or
+    
+    nuget install VL.CEF.Skia
 
-Once the nuget is installed and referenced in your VL document you'll see the category "CEF" in the nodebrowser. 
-
-Demos are available via the Help Browser!
+Once the nugets are installed demo patches are available via the Help Browser!
 
 ## Using the library with previous vvvv releases
 In case you're working with an older vvvv version you'll need to install a specific version of this library:
