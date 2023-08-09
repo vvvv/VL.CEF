@@ -1,5 +1,5 @@
 # VL.CEF
-Set of nodes to render websites in VL. Based on the excellent library [Chromium Embedded Framework (CEF)](https://bitbucket.org/chromiumembedded/cef/src/master/) and the .NET bindings [CefGlue](https://gitlab.com/xiliumhq/chromiumembedded/cefglue)
+Set of nodes to render websites in VL. Based on the excellent library [CEF](https://bitbucket.org/chromiumembedded/cef/src/master/) (Version 75.1.14) and the .NET bindings [CefGlue](https://gitlab.com/xiliumhq/chromiumembedded/cefglue)
 
 Try it with vvvv, the visual live-programming environment for .NET  
 Download: http://visualprogramming.net
