@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "VL.CEF": {
+    "VL.CEF.Skia": {
       "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_$(VLVersion)\\vvvv.exe",
+      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_5.2\\vvvv.exe",
       "commandLineArgs": "--package-repositories $(PackageRepositories) --export-package-sources $(PackageOutputPath) -o \"$(OverviewPatch)\" --editable-packages VL.CEF"
     }
   }

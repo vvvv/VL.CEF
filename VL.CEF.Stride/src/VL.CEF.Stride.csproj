@@ -27,7 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\VL.CEF\src\VL.CEF.csproj" />
+    <ProjectReference Include="..\..\VL.CEF\src\VL.CEF.csproj">
+      <ExcludeAssets>runtime</ExcludeAssets>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
 
   <!-- Manual fix for Cef packages -->

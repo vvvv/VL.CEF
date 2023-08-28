@@ -5,11 +5,6 @@
     <OutputPath>..\lib</OutputPath>
     <Platforms>x64;x86</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-
-    <!-- Passed to vvvv.exe -->
-    <LocalVLPackages>$(MsBuildThisFileDirectory)..\..\</LocalVLPackages>
-    <PackageRepositories>$(LocalVLPackages)</PackageRepositories>
-    <OverviewPatch>$(MsBuildThisFileDirectory)..\help\Explanation JavaScript.vl</OverviewPatch>
     
     <!-- Package properties -->
     <Description>Chromium Embedded Framework (CEF) for VL</Description>

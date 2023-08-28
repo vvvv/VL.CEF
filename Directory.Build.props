@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     
     <!-- Used VL version -->
-    <VLVersion>2022.5.0-0683-g91567c285a</VLVersion>
+    <VLVersion>2023.5.2</VLVersion>
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
@@ -20,5 +20,10 @@
     <PackageProjectUrl>http://vvvv.org</PackageProjectUrl>
     <RepositoryUrl>https://github.com/vvvv/VL.CEF</RepositoryUrl>
     <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+
+    <!-- Passed to vvvv.exe -->
+    <LocalVLPackages>$(MsBuildThisFileDirectory)</LocalVLPackages>
+    <PackageRepositories>$(LocalVLPackages)</PackageRepositories>
+    <OverviewPatch>$(MsBuildThisFileDirectory)VL.CEF\help\Explanation Overview.vl</OverviewPatch>
   </PropertyGroup>
 </Project>
