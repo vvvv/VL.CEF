@@ -1,0 +1,17 @@
+deps/cef/License.txt filter=lfs diff=lfs merge=lfs -text
+deps/cef/chrome_200_percent.pak filter=lfs diff=lfs merge=lfs -text
+deps/cef/chrome_elf.dll filter=lfs diff=lfs merge=lfs -text
+deps/cef/libGLESv2.dll filter=lfs diff=lfs merge=lfs -text
+deps/cef/locales filter=lfs diff=lfs merge=lfs -text
+deps/cef/v8_context_snapshot.bin filter=lfs diff=lfs merge=lfs -text
+deps/cef/vk_swiftshader_icd.json filter=lfs diff=lfs merge=lfs -text
+deps/cef/vulkan-1.dll filter=lfs diff=lfs merge=lfs -text
+deps/cef/README.txt filter=lfs diff=lfs merge=lfs -text
+deps/cef/chrome_100_percent.pak filter=lfs diff=lfs merge=lfs -text
+deps/cef/icudtl.dat filter=lfs diff=lfs merge=lfs -text
+deps/cef/libEGL.dll filter=lfs diff=lfs merge=lfs -text
+deps/cef/vk_swiftshader.dll filter=lfs diff=lfs merge=lfs -text
+deps/cef/d3dcompiler_47.dll filter=lfs diff=lfs merge=lfs -text
+deps/cef/libcef.dll filter=lfs diff=lfs merge=lfs -text
+deps/cef/resources.pak filter=lfs diff=lfs merge=lfs -text
+deps/cef/snapshot_blob.bin filter=lfs diff=lfs merge=lfs -text
