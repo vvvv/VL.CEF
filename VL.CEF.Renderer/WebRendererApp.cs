@@ -112,11 +112,6 @@ namespace VL.CEF
 
         class BrowserProcessHandler : CefBrowserProcessHandler
         {
-            protected override void OnRenderProcessThreadCreated(CefListValue extraInfo)
-            {
-                base.OnRenderProcessThreadCreated(extraInfo);
-            }
-
             protected override void OnBeforeChildProcessLaunch(CefCommandLine commandLine)
             {
                 base.OnBeforeChildProcessLaunch(commandLine);
@@ -197,11 +192,6 @@ namespace VL.CEF
 
             private readonly ConcurrentDictionary<(string request, int id), (CefV8Context context, CefV8Value onSuccess, CefV8Value onError)> queries = new ConcurrentDictionary<(string request, int id), (CefV8Context context, CefV8Value onSuccess, CefV8Value onError)>();
             private int queryCount;
-
-            protected override void OnRenderThreadCreated(CefListValue extraInfo)
-            {
-                base.OnRenderThreadCreated(extraInfo);
-            }
 
             protected override bool OnProcessMessageReceived(CefBrowser browser, CefFrame frame, CefProcessId sourceProcess, CefProcessMessage message)
             {

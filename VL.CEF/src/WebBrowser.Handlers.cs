@@ -58,11 +58,6 @@ namespace VL.CEF
                 return true;
             }
 
-            protected override void OnCursorChange(CefBrowser browser, IntPtr cursorHandle, CefCursorType type, CefCursorInfo customCursorInfo)
-            {
-
-            }
-
             protected override void OnPopupShow(CefBrowser browser, bool show)
             {
                 base.OnPopupShow(browser, show);
@@ -71,6 +66,12 @@ namespace VL.CEF
             protected override void OnPopupSize(CefBrowser browser, CefRectangle rect)
             {
 
+            }
+
+            protected override void OnAcceleratedPaint2(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle, int newTexture)
+            {
+                if (renderer.Enabled && type == CefPaintElementType.View)
+                    renderer.AcceleratedPaint2?.Invoke(type, dirtyRects, sharedHandle, newTexture);
             }
 
             protected override void OnAcceleratedPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
@@ -225,6 +226,14 @@ namespace VL.CEF
                         break;
                 }
                 return base.OnConsoleMessage(browser, level, message, source, line);
+            }
+
+            protected override bool OnCursorChange(CefBrowser browser, IntPtr cursorHandle, CefCursorType type, CefCursorInfo customCursorInfo)
+            {
+                // Returning true marks this as handled which is equivalent to the old 
+                // SetMouseCursorChangeDisabled in WebBrowser::Attach
+                // https://github.com/cefsharp/CefSharp/issues/3275
+                return true;
             }
         }
 

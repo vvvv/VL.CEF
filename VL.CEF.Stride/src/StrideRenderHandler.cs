@@ -38,12 +38,14 @@ namespace VL.CEF
 
             browser.Paint += OnPaint;
             browser.AcceleratedPaint += OnAcceleratedPaint;
+            browser.AcceleratedPaint2 += OnAcceleratedPaint2;
         }
 
         protected override void Destroy()
         {
             browser.Paint -= OnPaint;
             browser.AcceleratedPaint -= OnAcceleratedPaint;
+            browser.AcceleratedPaint2 -= OnAcceleratedPaint2;
 
             surface?.Dispose();
             base.Destroy();
@@ -79,6 +81,39 @@ namespace VL.CEF
                     return;
 
                 var d3dTexture = d3dDevice.OpenSharedResource<Texture2D>(sharedHandle);
+                if (d3dTexture is null)
+                    return;
+
+                var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
+                lock (syncRoot)
+                {
+                    surface?.Dispose();
+                    surface = strideTexture;
+                }
+                needsConversion = true;
+            }
+            catch (Exception e)
+            {
+                RuntimeGraph.ReportException(e);
+            }
+        }
+
+        void OnAcceleratedPaint2(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle, int newTexture)
+        {
+            try
+            {
+                if (sharedHandle == IntPtr.Zero)
+                    return;
+
+                var d3dDevice = SharpDXInterop.GetNativeDevice(GraphicsDevice) as Device;
+                if (d3dDevice is null)
+                    return;
+
+                var d3dDevice1 = d3dDevice.QueryInterface<SharpDX.Direct3D11.Device1>();
+                if (d3dDevice1 is null)
+                    return;
+
+                var d3dTexture = d3dDevice1.OpenSharedResource1<Texture2D>(sharedHandle);
                 if (d3dTexture is null)
                     return;
 

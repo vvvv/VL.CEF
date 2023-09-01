@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="MLzy2Ilx953Pfn5zJRwtAu" LanguageVersion="2022.5.0-0683-g91567c285a" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2022.5.0-0683-g91567c285a" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="MLzy2Ilx953Pfn5zJRwtAu" LanguageVersion="2023.5.2" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2023.5.2" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -21,7 +21,7 @@
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
               <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
             </p:NodeReference>
-            <Pin Id="MaFDPFADn2NMBq2LZLTlHp" Name="Bounds" Kind="InputPin" DefaultValue="1017, 53, 795, 473">
+            <Pin Id="MaFDPFADn2NMBq2LZLTlHp" Name="Bounds" Kind="InputPin" DefaultValue="1419, 82, 795, 473">
               <p:TypeAnnotation LastCategoryFullName="System.Drawing" LastDependency="System.Drawing.dll">
                 <Choice Kind="TypeFlag" Name="Rectangle" />
               </p:TypeAnnotation>
@@ -63,7 +63,7 @@
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
               <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
             </p:NodeReference>
-            <Pin Id="BDq1Bv8gyHuMghkCHGcNmU" Name="Bounds" Kind="InputPin" DefaultValue="886, 416, 1008, 712">
+            <Pin Id="BDq1Bv8gyHuMghkCHGcNmU" Name="Bounds" Kind="InputPin" DefaultValue="1367, 573, 1008, 712">
               <p:TypeAnnotation LastCategoryFullName="System.Windows" LastDependency="VL.CoreLib.Windows.vl">
                 <Choice Kind="TypeFlag" Name="Rectangle" />
               </p:TypeAnnotation>
@@ -103,9 +103,10 @@
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
             </p:NodeReference>
             <Pin Id="KmxDcDJIL0ON5GdQldZhdQ" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
-            <Pin Id="Q3U8r88N64wNrvQ5j2ixzp" Name="Shared Texture Enabled" Kind="InputPin" />
+            <Pin Id="Q3U8r88N64wNrvQ5j2ixzp" Name="Shared Texture Enabled" Kind="InputPin" DefaultValue="True" />
             <Pin Id="MrPQX5zSAABQViiCSHAUER" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="MZhcStex7AcM8wApzFRvK1" Name="Enabled" Kind="InputPin" />
+            <Pin Id="AHH8xCCP8TUNJccapsDFir" Name="Max framerate" Kind="InputPin" />
             <Pin Id="GEaYnfy1wE1O3csVBan2pM" Name="Output" Kind="OutputPin" />
             <Pin Id="VAAMuXnMHKTOHJQUEoQsM1" Name="Loaded" Kind="OutputPin" />
             <Pin Id="Ul5VFACwvp7M63CyKRElKW" Name="Is Loading" Kind="OutputPin" />
@@ -126,9 +127,10 @@
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
             </p:NodeReference>
             <Pin Id="JQphwhN5H0yMFcyhEB3wuC" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
-            <Pin Id="RjMWjacKXpUL6pF87Tlpbf" Name="Shared Texture Enabled" Kind="InputPin" />
+            <Pin Id="RjMWjacKXpUL6pF87Tlpbf" Name="Shared Texture Enabled" Kind="InputPin" DefaultValue="True" />
             <Pin Id="JPwTk1uDzgMLRl4AVZdrUE" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="MEiQsplTuc1PVijgJKG8Eg" Name="Enabled" Kind="InputPin" />
+            <Pin Id="DD2DmfXqX0SMA0IpClvntG" Name="Max framerate" Kind="InputPin" />
             <Pin Id="JLxY8wampJHOmTrrIckHMD" Name="Output" Kind="OutputPin" />
             <Pin Id="AMknDU5u63vP7AUyaDbVwL" Name="Loaded" Kind="OutputPin" />
             <Pin Id="IN1i3VezWrZLCpJY9dAKGS" Name="Is Loading" Kind="OutputPin" />
@@ -159,7 +161,7 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2022.5.0-0683-g91567c285a" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2023.5.2" />
   <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
   <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.0.0" />
 </Document>

@@ -35,12 +35,14 @@ namespace VL.CEF
             }
             browser.Paint += OnPaint;
             browser.AcceleratedPaint += OnAcceleratedPaint;
+            browser.AcceleratedPaint2 += OnAcceleratedPaint2;
         }
 
         public void Dispose()
         {
             browser.Paint -= OnPaint;
             browser.AcceleratedPaint -= OnAcceleratedPaint;
+            browser.AcceleratedPaint2 -= OnAcceleratedPaint2;
 
             rasterImage?.Dispose();
             textureImage?.Dispose();
@@ -67,6 +69,19 @@ namespace VL.CEF
                     this.sharedHandle = sharedHandle;
                     sharedTexture?.Dispose();
                     sharedTexture = device?.OpenSharedResource<Texture2D>(sharedHandle);
+                }
+            }
+        }
+
+        private void OnAcceleratedPaint2(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle, int newTexture)
+        {
+            lock (syncRoot)
+            {
+                if (newTexture != 0)
+                {
+                    sharedTexture?.Dispose();
+                    var device1 = device.QueryInterface<SharpDX.Direct3D11.Device1>();
+                    sharedTexture = device1?.OpenSharedResource1<Texture2D>(sharedHandle);
                 }
             }
         }
