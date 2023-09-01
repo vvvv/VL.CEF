@@ -70,7 +70,6 @@ namespace VL.CEF
                     cefSettings.MultiThreadedMessageLoop = true;
                     cefSettings.BrowserSubprocessPath = resolvedRendererPath;
                     cefSettings.CommandLineArgsDisabled = false;
-                    cefSettings.IgnoreCertificateErrors = true;
                     //// We do not meet the requirements - see cef_sandbox_win.h
                     //cefSettings.NoSandbox = true;
 #if DEBUG

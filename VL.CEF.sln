@@ -11,12 +11,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{AC4B68B4
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VL.CEF.Renderer", "VL.CEF.Renderer\VL.CEF.Renderer.csproj", "{D13D1441-EDD2-4EFC-ADAE-4373D8EAB626}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2} = {A301CA7C-9FBC-41B3-9576-1F3D261708C2}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VL.CEF", "VL.CEF\src\VL.CEF.csproj", "{8E01702E-D677-4CE8-8072-FCAC5DE01163}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VL.CEF.Skia", "VL.CEF.Skia\src\VL.CEF.Skia.csproj", "{438919E3-FD57-4462-BF43-BCAD49881B5C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2} = {A301CA7C-9FBC-41B3-9576-1F3D261708C2}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VL.CEF.Stride", "VL.CEF.Stride\src\VL.CEF.Stride.csproj", "{5A596246-CDC6-49B4-BF76-CB497A438BE7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CefGlue", "deps\cef_glue\CefGlue\CefGlue.csproj", "{A301CA7C-9FBC-41B3-9576-1F3D261708C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +84,18 @@ Global
 		{5A596246-CDC6-49B4-BF76-CB497A438BE7}.Release|x64.Build.0 = Release|x64
 		{5A596246-CDC6-49B4-BF76-CB497A438BE7}.Release|x86.ActiveCfg = Release|x86
 		{5A596246-CDC6-49B4-BF76-CB497A438BE7}.Release|x86.Build.0 = Release|x86
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Debug|x64.Build.0 = Debug|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Debug|x86.Build.0 = Debug|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Release|x64.ActiveCfg = Release|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Release|x64.Build.0 = Release|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Release|x86.ActiveCfg = Release|Any CPU
+		{A301CA7C-9FBC-41B3-9576-1F3D261708C2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

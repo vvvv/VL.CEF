@@ -9,21 +9,6 @@ namespace VL.CEF
 {
     internal sealed class SchemeHandler : CefResourceHandler
     {
-        class WebPluginVisitor : CefWebPluginInfoVisitor
-        {
-            public List<CefWebPluginInfo> Plugins { get; private set; }
-
-            public WebPluginVisitor()
-            {
-                Plugins = new List<CefWebPluginInfo>();
-            }
-
-            protected override bool Visit(CefWebPluginInfo info, int count, int total)
-            {
-                Plugins.Add(info);
-                return true;
-            }
-        }
 
         private Stream stream;
 
@@ -77,18 +62,23 @@ namespace VL.CEF
                 switch (uri.AbsolutePath)
                 {
                     case "plugins":
-                        var visitor = new WebPluginVisitor();
-                        CefRuntime.VisitWebPluginInfo(visitor);
-                        var s = new StringBuilder();
-                        foreach (var plugin in visitor.Plugins)
-                        {
-                            s.AppendLine(string.Format("Name: {0}", plugin.Name));
-                            s.AppendLine(string.Format("Description: {0}", plugin.Description));
-                            s.AppendLine(string.Format("Version: {0}", plugin.Version));
-                            s.AppendLine(string.Format("Path: {0}", plugin.Path));
-                            s.AppendLine();
-                        }
-                        this.stream = new MemoryStream(Encoding.UTF8.GetBytes(s.ToString()), false);
+                        // TODO: The plugin visitor API is now gone and should probably
+                        // be replaced with an ExtensionHandler that tracks
+                        // added extensions and keeps a list of them.  
+                        // Old code below for reference:
+
+                        // var visitor = new WebPluginVisitor();
+                        // CefRuntime.VisitWebPluginInfo(visitor);
+                        // var s = new StringBuilder();
+                        // foreach (var plugin in visitor.Plugins)
+                        // {
+                        //     s.AppendLine(string.Format("Name: {0}", plugin.Name));
+                        //     s.AppendLine(string.Format("Description: {0}", plugin.Description));
+                        //     s.AppendLine(string.Format("Version: {0}", plugin.Version));
+                        //     s.AppendLine(string.Format("Path: {0}", plugin.Path));
+                        //     s.AppendLine();
+                        // }
+                        // this.stream = new MemoryStream(Encoding.UTF8.GetBytes(s.ToString()), false);                     
                         break;
                     default:
                         throw new Exception();
@@ -153,7 +143,7 @@ namespace VL.CEF
             response.MimeType = this.mimeType;
         }
 
-        protected override bool Read(Stream response, int bytesToRead, out int bytesRead, CefResourceReadCallback callback)
+        protected override bool Read(IntPtr dataOut, int bytesToRead, out int bytesRead, CefResourceReadCallback callback)
         {
             // Backwards compatibility. ReadResponse will be called.
             callback.Dispose();

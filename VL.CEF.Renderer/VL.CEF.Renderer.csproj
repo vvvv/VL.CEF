@@ -12,27 +12,20 @@
     <!-- Disable pack warning about dlls being in wrong folder - this package delivers the whole renderer app -->
     <NoWarn>NU5128;NU5100</NoWarn>
   </PropertyGroup>
-
+  
+  <!-- Manually include cef dlls and resources in nu packages and copy them to build directory -->
   <ItemGroup>
-    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
-    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
-  </ItemGroup>
-
-  <!-- Manual fix for Cef packages -->
-  <ItemGroup>
-    <Reference Include="Xilium.CefGlue">
-      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.dll</HintPath>
-    </Reference>
-    <Reference Include="Xilium.CefGlue.Common">
-      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.Common.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="$(Pkgcef_redist_x64)\CEF\**">
+    <Content Include="$(SolutionDir)deps\cef\**\*.*">
+      <Link>cef_bin\%(RecursiveDir)%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </None>
+      <TargetPath>%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+      <Pack>true</Pack>
+      <PackagePath>lib\net6.0</PackagePath>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\deps\cef_glue\CefGlue\CefGlue.csproj" />
   </ItemGroup>
 
   <ItemGroup>

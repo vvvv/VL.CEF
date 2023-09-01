@@ -12,8 +12,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CefGlue.Common" Version="75.1.28" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
-    <PackageReference Include="cef.redist.x64" Version="75.1.14" GeneratePathProperty="true" ExcludeAssets="build" PrivateAssets="all" />
     <PackageReference Include="VL.Stride.Runtime" Version="$(VLVersion)" ExcludeAssets="build;buildTransitive" PrivateAssets="all">
       <IncludeAssets>runtime; compile; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -21,26 +19,28 @@
     <!-- Reference Stride.Rendering so the package gets installed on the user machine. Needed by export (see issue #3). -->
     <!-- We'd like to include this dependency through VL.Stride.Runtime by removing the private assets flag -->
     <!-- but that pulls in a lot of packages some of which VL can't handle (as of 2020.2.2) -->
-    <PackageReference Include="Stride.Rendering" Version="4.1.0.1805">
+    <PackageReference Include="Stride.Rendering" Version="4.1.0.1838">
       <ExcludeAssets>build;buildTransitive</ExcludeAssets>
     </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" />
     <ProjectReference Include="..\..\VL.CEF\src\VL.CEF.csproj">
       <ExcludeAssets>runtime</ExcludeAssets>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-
-  <!-- Manual fix for Cef packages -->
+  
+  <!-- Manually include cef dlls and resources in nu packages and copy them to build directory -->
   <ItemGroup>
-    <Reference Include="Xilium.CefGlue">
-      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.dll</HintPath>
-    </Reference>
-    <Reference Include="Xilium.CefGlue.Common">
-      <HintPath>$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\Xilium.CefGlue.Common.dll</HintPath>
-    </Reference>
+    <Content Include="$(SolutionDir)deps\cef\**\*.*">
+      <Link>cef_bin\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
+      <Pack>true</Pack>
+      <PackagePath>lib\net6.0</PackagePath>
+    </Content>
   </ItemGroup>
 
   <PropertyGroup>
