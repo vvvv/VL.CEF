@@ -89,9 +89,6 @@ set GYP_MSVS_VERSION=2019
 REM For tar.bz2 instead of zip
 REM set CEF_ARCHIVE_FORMAT=tar.bz2 
 python3 ..\automate\automate-git.py --download-dir=c:\code\chromium_git --depot-tools-dir=c:\code\depot_tools --minimal-distrib --client-distrib --force-clean --x64-build --with-pgo-profiles --branch="5060"  --no-depot-tools-update --no-chromium-update --url=https://github.com/arturoc/cef
-
-REM To specify chrome branch. Usually guessed from CEF compatibility file
-REM --chromium-checkout=103.0.5060.134
 ```
 
 18\. And run it:
@@ -114,9 +111,6 @@ REM Or with propietary codecs
 REM set GN_DEFINES=is_component_build=true proprietary_codecs=true ffmpeg_branding=Chrome
 set GN_ARGUMENTS=--ide=vs2019 --sln=cef --filters=//cef/*
 python ..\automate\automate-git.py --download-dir=c:\code\chromium_git --depot-tools-dir=c:\code\depot_tools --no-distrib --no-build --branch=5060 --no-depot-tools-update --no-chromium-update --url=https://github.com/arturoc/cef
-
-REM To specify chrome branch. Usually guessed from CEF compatibility file
-REM --chromium-checkout=103.0.5060.134
 ```
 
 21\. And run it:
@@ -142,7 +136,7 @@ cd c:\code\chromium_git\chromium\src\cef
 create.bat
 ```
 
-24\. Now CEF and example can be build including the OBS patches:
+24\. Now CEF and examples can be built including the OBS patches:
 ```
 cd c:\code\chromium_git\chromium\src
 ninja -C out\Debug_GN_x86 cef
