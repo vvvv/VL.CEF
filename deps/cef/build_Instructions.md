@@ -54,6 +54,7 @@ git checkout $(git rev-list -n 1 --before="$COMMIT_DATE" main)
 ```
 cd c:\code\chromium_git\chromium
 git clone https://chromium.googlesource.com/chromium/src.git
+cd c:\code\chromium_git\chromium\src
 git checkout 103.0.5060.113
 ```
 
