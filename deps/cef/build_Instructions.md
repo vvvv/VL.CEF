@@ -6,7 +6,7 @@ All commands bellow are tested from cmd won't work on PowerShell unless otherwis
 
 3\. install VS2019 16.11.13+, Win 10.0.20348 SDK (not from vs but download indepently) 
 
-4\. copy obs branch to own repo and create branch called 5060 (their name is not recognized by the scripts)
+4\. copy [obs branch](https://github.com/obsproject/cef/tree/5060-shared-textures) to own repo and create branch called 5060 (their name is not recognized by the scripts)
 
 5\. create folder structure:
 ```
