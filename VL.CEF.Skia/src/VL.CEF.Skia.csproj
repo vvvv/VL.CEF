@@ -17,22 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" />
+    <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" PrivateAssets="all" />
     <ProjectReference Include="..\..\VL.CEF\src\VL.CEF.csproj">
       <ExcludeAssets>runtime</ExcludeAssets>
       <Private>False</Private>
     </ProjectReference>
-  </ItemGroup>
-  
-  <!-- Manually include cef dlls and resources in nu packages and copy them to build directory -->
-  <ItemGroup>
-    <Content Include="$(SolutionDir)deps\cef\**\*.*">
-      <Link>cef_bin\%(RecursiveDir)%(Filename)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
-      <Pack>true</Pack>
-      <PackagePath>lib\net6.0-windows7.0</PackagePath>
-    </Content>
   </ItemGroup>
 
   <PropertyGroup>

@@ -15,22 +15,29 @@
   
   <!-- Manually include cef dlls and resources in nu packages and copy them to build directory -->
   <ItemGroup>
-    <Content Include="$(SolutionDir)deps\cef\**\*.*">
-      <Link>cef_bin\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    <None Include="$(SolutionDir)deps\cef\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>%(RecursiveDir)%(Filename)%(Extension)</TargetPath>
-      <Pack>true</Pack>
-      <PackagePath>lib\net6.0</PackagePath>
-    </Content>
+      <Visible>false</Visible>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\deps\cef_glue\CefGlue\CefGlue.csproj" />
+    <ProjectReference Include="..\deps\cef_glue\CefGlue\CefGlue.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="buildTransitive\*" Pack="true" PackagePath="" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
 
   <PropertyGroup>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>

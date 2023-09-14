@@ -17,22 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" />
+    <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" PrivateAssets="all" />
     <ProjectReference Include="..\..\VL.CEF.Renderer\VL.CEF.Renderer.csproj">
       <ExcludeAssets>runtime</ExcludeAssets>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-
-  <PropertyGroup>
-    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetCustomLibPackageFiles</TargetsForTfmSpecificBuildOutput>
-  </PropertyGroup>
-
-  <Target Name="GetCustomLibPackageFiles">
-    <ItemGroup>
-      <BuildOutputInPackage Include="$(PkgCefGlue_Common)\lib\netcoreapp2.2\x64\*.dll" />
-    </ItemGroup>
-  </Target>
 
   <PropertyGroup>
     <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
