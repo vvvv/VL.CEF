@@ -121,7 +121,8 @@ namespace VL.CEF
                     return;
 
                 // Doesn't work - Stride can't deal with the options flags of the texture description, therefor set up the Stride wrapper manually
-                 var strideTexture = CreateTextureFromNativeImpl(GraphicsDevice, d3dTexture, takeOwnership: true);
+                // once this PR is merged https://github.com/stride3d/stride/pull/1759  this hack won't be needed anymore:
+                var strideTexture = CreateTextureFromNativeImpl(GraphicsDevice, d3dTexture, takeOwnership: true);
                  //var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
                 lock (syncRoot)
                 {
