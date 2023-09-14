@@ -117,6 +117,8 @@ namespace VL.CEF
                 if (d3dTexture is null)
                     return;
 
+                // Doesn't work - Stride can't deal with the options flags of the texture description, therefor set up the Stride wrapper manually
+                // var strideTexture = CreateTextureFromNativeImpl(GraphicsDevice, d3dTexture, takeOwnership: true);
                 var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
                 lock (syncRoot)
                 {
@@ -128,6 +130,29 @@ namespace VL.CEF
             catch (Exception e)
             {
                 RuntimeGraph.ReportException(e);
+            }
+
+            static Texture CreateTextureFromNativeImpl(GraphicsDevice device, Texture2D dxTexture2D, bool takeOwnership, bool isSRgb = false)
+            {
+                //  new Texture(device)
+                var tex = (Texture)Activator.CreateInstance(typeof(Texture), System.Reflection.BindingFlags.NonPublic, null, new[] { device }, null);
+
+                if (takeOwnership)
+                {
+                    var unknown = dxTexture2D as SharpDX.IUnknown;
+                    unknown.AddReference();
+                }
+
+                // call this via reflection
+                //tex.NativeDeviceChild = dxTexture2D;
+
+                // this should be doable manually, simply copy the relevant code part and don't set the Shared option at all
+                //var newTextureDescription = ConvertFromNativeDescription(dxTexture2D.Description);
+
+                // call this via reflection
+                //tex.InitializeFrom(dxTexture2D);
+
+                return tex;
             }
         }
 
