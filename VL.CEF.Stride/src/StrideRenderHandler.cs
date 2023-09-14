@@ -18,6 +18,9 @@ using VL.Lib.Basics.Resources;
 using VL.Stride;
 using VL.Stride.Input;
 using Xilium.CefGlue;
+using System;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace VL.CEF
 {
@@ -118,8 +121,8 @@ namespace VL.CEF
                     return;
 
                 // Doesn't work - Stride can't deal with the options flags of the texture description, therefor set up the Stride wrapper manually
-                // var strideTexture = CreateTextureFromNativeImpl(GraphicsDevice, d3dTexture, takeOwnership: true);
-                var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
+                 var strideTexture = CreateTextureFromNativeImpl(GraphicsDevice, d3dTexture, takeOwnership: true);
+                 //var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
                 lock (syncRoot)
                 {
                     surface?.Dispose();
@@ -134,8 +137,7 @@ namespace VL.CEF
 
             static Texture CreateTextureFromNativeImpl(GraphicsDevice device, Texture2D dxTexture2D, bool takeOwnership, bool isSRgb = false)
             {
-                //  new Texture(device)
-                var tex = (Texture)Activator.CreateInstance(typeof(Texture), System.Reflection.BindingFlags.NonPublic, null, new[] { device }, null);
+                var tex = (Texture)Activator.CreateInstance(typeof(Texture), BindingFlags.Instance | BindingFlags.NonPublic, null, new[] { device }, null);
 
                 if (takeOwnership)
                 {
@@ -143,14 +145,19 @@ namespace VL.CEF
                     unknown.AddReference();
                 }
 
-                // call this via reflection
-                //tex.NativeDeviceChild = dxTexture2D;
+                var nativeDeviceChild = typeof(GraphicsResourceBase).GetProperty("NativeDeviceChild", BindingFlags.Instance | BindingFlags.NonPublic);
+                nativeDeviceChild.SetValue(tex, dxTexture2D);
 
-                // this should be doable manually, simply copy the relevant code part and don't set the Shared option at all
-                //var newTextureDescription = ConvertFromNativeDescription(dxTexture2D.Description);
+                TextureDescription textureDescription = (TextureDescription)typeof(Texture).GetMethod("ConvertFromNativeDescription", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { dxTexture2D.Description });
+                textureDescription.Options = TextureOptions.SharedNthandle | TextureOptions.SharedKeyedmutex;
 
-                // call this via reflection
-                //tex.InitializeFrom(dxTexture2D);
+                if (isSRgb)
+                {
+                    textureDescription.Format = textureDescription.Format.ToSRgb();
+                }
+
+                var InitializeFrom = typeof(Texture).GetMethod("InitializeFrom", BindingFlags.Instance | BindingFlags.NonPublic, new Type[] { typeof(TextureDescription), typeof(DataBox[]) });
+                InitializeFrom.Invoke(tex, new object[] { textureDescription, null });
 
                 return tex;
             }
