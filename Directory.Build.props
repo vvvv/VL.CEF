@@ -8,10 +8,11 @@
     
     <!-- Used VL version -->
     <VLVersion>2023.5.2</VLVersion>
+    <VLShortVersion>$(VLVersion.Substring(5))</VLShortVersion>
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <Version>0.4.0-preview</Version>
+    <Version>0.5.0</Version>
 
     <!-- Package properties -->
     <Authors>vvvv group</Authors>
@@ -25,5 +26,6 @@
     <LocalVLPackages>$(MsBuildThisFileDirectory)</LocalVLPackages>
     <PackageRepositories>$(LocalVLPackages)</PackageRepositories>
     <OverviewPatch>$(MsBuildThisFileDirectory)VL.CEF\help\Explanation Overview.vl</OverviewPatch>
+    <OverviewPatchStride>$(MsBuildThisFileDirectory)VL.CEF\help\Explanation Overview Stride.vl</OverviewPatchStride>
   </PropertyGroup>
 </Project>
