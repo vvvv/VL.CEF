@@ -42,7 +42,7 @@ namespace VL.CEF
                 var packagePath = Path.Combine(Path.GetDirectoryName(rendererExeAssembly.Location), "..", "..", renderer, rendererExeName);
                 if (File.Exists(packagePath))
                 {
-                    resolvedRendererPath = packagePath;
+                    resolvedRendererPath = Path.GetFullPath(packagePath);
                 }
             }
 
@@ -60,9 +60,12 @@ namespace VL.CEF
         {
             return ResourceProvider.New(() =>
             {
+                if (resolvedRendererPath is null)
+                    throw new FileNotFoundException("Can't find VL.CEF.Renderer.exe");
+
                 if (Interlocked.Increment(ref initCount) == 1)
                 {
-                    CefRuntime.Load();
+                    CefRuntime.Load(Path.GetDirectoryName(resolvedRendererPath));
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;
