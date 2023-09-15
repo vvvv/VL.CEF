@@ -64,7 +64,8 @@ class Build : NukeBuild
                 DotNetNuGetPush(_ => _
                     .SetTargetPath(file)
                     .SetApiKey(NuGetApiKey)
-                    .SetSource("nuget.org"));
+                    .SetSource("nuget.org")
+                    .EnableSkipDuplicate());
             }
         });
 
