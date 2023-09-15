@@ -18,6 +18,8 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
     "main", 
     GitHubActionsImage.UbuntuLatest,
     On = new[] { GitHubActionsTrigger.WorkflowDispatch },
+    Lfs = true,
+    Submodules = GitHubActionsSubmodules.Recursive,
     InvokedTargets = new[] { nameof(Deploy) },
     ImportSecrets = new[] { nameof(NuGetApiKey) })]
 class Build : NukeBuild
