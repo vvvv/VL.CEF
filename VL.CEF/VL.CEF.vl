@@ -55,7 +55,6 @@
                   </p:NodeReference>
                   <Pin Id="MH4C0ZTa2qFMl56pvXCDmQ" Name="Url" Kind="InputPin" />
                   <Pin Id="Q89mbgNPMtWLBLSac452AE" Name="Shared Texture Enabled" Kind="InputPin" />
-                  <Pin Id="KlfV1bhZz48OrKNoj5EJ2n" Name="Fps" Kind="InputPin" />
                   <Pin Id="O1fMQSwTPUTM9OSoFTa3iz" Name="Output" Kind="StateOutputPin" />
                 </Node>
               </Patch>
@@ -128,7 +127,6 @@
               <Pin Id="MYt7iH0SXVIMYKx2H4zzDf" Name="Output" Kind="StateOutputPin" />
             </Node>
             <ControlPoint Id="JMDImo28QtmLxK6qw1rsh1" Bounds="799,171" />
-            <ControlPoint Id="V2wkGghfYiPOlTR47jn5vV" Bounds="897,171" />
           </Canvas>
           <ProcessDefinition Id="PrNChA4ZJuHOJjA2NOnViF">
             <Fragment Id="VuTHLX3LPrlMcSVez5Za9g" Patch="T5PSbhoISlvLPQcianRAO2" Enabled="true" />
@@ -163,17 +161,14 @@
           <Patch Id="T5PSbhoISlvLPQcianRAO2" Name="Create" />
           <Patch Id="Na21BT5OzIINceUwpblFz0" Name="Update">
             <Pin Id="JBlPW3f7YbmO8VUjsPGxzR" Name="Startup Url" Kind="InputPin" Bounds="656,173" DefaultValue="about:blank" />
-            <Pin Id="REltHYGz5R9NaMZUwlM3wm" Name="Shared Texture Enabled" Kind="InputPin" Bounds="558,161" />
+            <Pin Id="REltHYGz5R9NaMZUwlM3wm" Name="Shared Texture Enabled" Kind="InputPin" Bounds="558,161" DefaultValue="True" />
             <Pin Id="GO5myamixtKP5VH3tllA5n" Name="Query Handlers" Kind="InputPin" Bounds="843,158" />
             <Pin Id="Sg9nC59PDpZOuCuxCNJFXb" Name="Enabled" Kind="InputPin" Bounds="926,168" />
             <Pin Id="Fj0DIYjO9IhPPJ5eS3nqHt" Name="Output" Kind="OutputPin" Bounds="546,460" />
             <Pin Id="CDmJcqrKVqrP6KzELSrx4L" Name="Loaded" Kind="OutputPin" Bounds="685,454" />
             <Pin Id="ANlpV3c0EBBObj45vfPmty" Name="Is Loading" Kind="OutputPin" Bounds="776,444" />
             <Pin Id="Es7UDt4uNUTPMSCIufVH6U" Name="Error Text" Kind="OutputPin" Bounds="872,432" />
-            <Pin Id="T3ofvw9yj6vL6na3HqUwlQ" Name="Max framerate" Kind="InputPin" />
           </Patch>
-          <Link Id="CQj0TBpHqfjNp7Qj3lUkHf" Ids="T3ofvw9yj6vL6na3HqUwlQ,V2wkGghfYiPOlTR47jn5vV" IsHidden="true" />
-          <Link Id="TLl56mjU0wGPGlnk6xpYex" Ids="V2wkGghfYiPOlTR47jn5vV,KlfV1bhZz48OrKNoj5EJ2n" />
         </Patch>
       </Node>
       <Canvas Id="QgcvLxh3SGOOssrV89WXRQ" Name="Advanced" Position="434,161">

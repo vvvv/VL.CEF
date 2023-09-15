@@ -16,7 +16,7 @@
 
 name: main
 
-on: [workflow_dispatch]
+on: [workflow_dispatch, push]
 
 jobs:
   ubuntu-latest:

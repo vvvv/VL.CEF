@@ -31,14 +31,13 @@ namespace VL.CEF
         private readonly CefDisplayHandler displayHandler;
         private readonly CefContextMenuHandler contextMenuHandler;
 
-        public WebBrowser(string url = "about:blank", bool sharedTextureEnabled = false, int fps = 30)
+        public WebBrowser(string url = "about:blank", bool sharedTextureEnabled = true)
         {
             FRuntimeHandle = CefExtensions.GetRuntimeProvider().GetHandle();
 
             var settings = new CefBrowserSettings();
             settings.RemoteFonts = CefState.Enabled;
             settings.WebGL = CefState.Enabled;
-            settings.WindowlessFrameRate = fps;
             // Some parameters are gone here compared to old version:
             // - FileAccessFromFileUrls & UniversalAccessFromFileUrls seem related to LoadString baseUrl
             // this is probably now accessible through the new api: ResourceManager which is not available
@@ -65,13 +64,13 @@ namespace VL.CEF
             FBrowserAttachedEvent.WaitOne();
         }
 
-        public event PaintHandler Paint;
+        internal event PaintHandler Paint;
 
-        public event AcceleratedPaintHandler AcceleratedPaint;
+        internal event AcceleratedPaintHandler AcceleratedPaint;
 
-        public event AcceleratedPaint2Handler AcceleratedPaint2;
+        internal event AcceleratedPaint2Handler AcceleratedPaint2;
 
-        public CefBrowserHost BrowserHost => FBrowserHost;
+        internal CefBrowserHost BrowserHost => FBrowserHost;
 
         internal void Attach(CefBrowser browser)
         {

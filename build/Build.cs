@@ -17,7 +17,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 [GitHubActions(
     "main", 
     GitHubActionsImage.UbuntuLatest,
-    On = new[] { GitHubActionsTrigger.WorkflowDispatch },
+    On = new[] { GitHubActionsTrigger.WorkflowDispatch, GitHubActionsTrigger.Push },
     Lfs = true,
     Submodules = GitHubActionsSubmodules.Recursive,
     InvokedTargets = new[] { nameof(Deploy) },
@@ -64,8 +64,7 @@ class Build : NukeBuild
                 DotNetNuGetPush(_ => _
                     .SetTargetPath(file)
                     .SetApiKey(NuGetApiKey)
-                    .SetSource("nuget.org")
-                    .EnableSkipDuplicate());
+                    .SetSource("nuget.org"));
             }
         });
 

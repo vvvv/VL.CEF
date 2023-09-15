@@ -103,10 +103,9 @@
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
             </p:NodeReference>
             <Pin Id="KmxDcDJIL0ON5GdQldZhdQ" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
-            <Pin Id="Q3U8r88N64wNrvQ5j2ixzp" Name="Shared Texture Enabled" Kind="InputPin" DefaultValue="True" />
+            <Pin Id="Q3U8r88N64wNrvQ5j2ixzp" Name="Shared Texture Enabled" Kind="InputPin" />
             <Pin Id="MrPQX5zSAABQViiCSHAUER" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="MZhcStex7AcM8wApzFRvK1" Name="Enabled" Kind="InputPin" />
-            <Pin Id="AHH8xCCP8TUNJccapsDFir" Name="Max framerate" Kind="InputPin" />
             <Pin Id="GEaYnfy1wE1O3csVBan2pM" Name="Output" Kind="OutputPin" />
             <Pin Id="VAAMuXnMHKTOHJQUEoQsM1" Name="Loaded" Kind="OutputPin" />
             <Pin Id="Ul5VFACwvp7M63CyKRElKW" Name="Is Loading" Kind="OutputPin" />
@@ -127,10 +126,9 @@
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
             </p:NodeReference>
             <Pin Id="JQphwhN5H0yMFcyhEB3wuC" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
-            <Pin Id="RjMWjacKXpUL6pF87Tlpbf" Name="Shared Texture Enabled" Kind="InputPin" DefaultValue="True" />
+            <Pin Id="RjMWjacKXpUL6pF87Tlpbf" Name="Shared Texture Enabled" Kind="InputPin" />
             <Pin Id="JPwTk1uDzgMLRl4AVZdrUE" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="MEiQsplTuc1PVijgJKG8Eg" Name="Enabled" Kind="InputPin" />
-            <Pin Id="DD2DmfXqX0SMA0IpClvntG" Name="Max framerate" Kind="InputPin" />
             <Pin Id="JLxY8wampJHOmTrrIckHMD" Name="Output" Kind="OutputPin" />
             <Pin Id="AMknDU5u63vP7AUyaDbVwL" Name="Loaded" Kind="OutputPin" />
             <Pin Id="IN1i3VezWrZLCpJY9dAKGS" Name="Is Loading" Kind="OutputPin" />
