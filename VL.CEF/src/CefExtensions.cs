@@ -83,7 +83,7 @@ namespace VL.CEF
 
                     var args = Environment.GetCommandLineArgs();
                     var mainArgs = new CefMainArgs(args);
-                    CefRuntime.Initialize(mainArgs, cefSettings, application: null, windowsSandboxInfo: default);
+                    CefRuntime.Initialize(mainArgs, cefSettings, application: new App(), windowsSandboxInfo: default);
 
                     var schemeName = "cef";
                     if (!CefRuntime.RegisterSchemeHandlerFactory(SchemeHandlerFactory.SCHEME_NAME, null, new SchemeHandlerFactory()))
@@ -112,5 +112,16 @@ namespace VL.CEF
         //{
         //    return viewport.Project((Vector3)v, view, projection, Matrix.Identity).XY();
         //}
+
+        class App : CefApp
+        {
+            protected override void OnBeforeCommandLineProcessing(string processType, CefCommandLine commandLine)
+            {
+                // Enable auto play (https://github.com/vvvv/VL.CEF/issues/12)
+                commandLine.AppendSwitch("autoplay-policy", "no-user-gesture-required");
+
+                base.OnBeforeCommandLineProcessing(processType, commandLine);
+            }
+        }
     }
 }
