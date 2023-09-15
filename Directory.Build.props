@@ -4,7 +4,6 @@
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 
     <PackageOutputPath>$(MsBuildThisFileDirectory)bin\</PackageOutputPath>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     
     <!-- Used VL version -->
     <VLVersion>2023.5.2</VLVersion>

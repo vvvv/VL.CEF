@@ -4,8 +4,6 @@ using System;
 using VL.Skia;
 using Xilium.CefGlue;
 using Vector2 = Stride.Core.Mathematics.Vector2;
-using System.Collections.Generic;
-using System.Linq;
 using VL.Skia.Egl;
 using SharpDX.DXGI;
 using Device = SharpDX.Direct3D11.Device;

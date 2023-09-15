@@ -1,6 +1,5 @@
 ﻿using SharpDX.Direct3D11;
 using Stride.Core.IO;
-using Stride.Core.Mathematics;
 using Stride.Engine;
 using Stride.Graphics;
 using Stride.Input;
@@ -12,15 +11,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reactive.Disposables;
 using System.Text;
-using System.Threading;
 using VL.Core;
 using VL.Lib.Basics.Resources;
 using VL.Stride;
 using VL.Stride.Input;
 using Xilium.CefGlue;
-using System;
 using System.Reflection;
-using System.Diagnostics;
 
 namespace VL.CEF
 {

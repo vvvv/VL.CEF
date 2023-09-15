@@ -8,7 +8,6 @@ using MapMode = VL.Core.MapMode;
 using VL.Lib.Collections;
 using System.Reactive.Subjects;
 using System.Text;
-using System.Runtime.CompilerServices;
 
 namespace VL.CEF
 {
@@ -31,7 +30,6 @@ namespace VL.CEF
         private readonly CefKeyboardHandler keyboardHandler;
         private readonly CefDisplayHandler displayHandler;
         private readonly CefContextMenuHandler contextMenuHandler;
-        private readonly CefExtensionHandler extensionHandler;
 
         public WebBrowser(string url = "about:blank", bool sharedTextureEnabled = false, int fps = 30)
         {

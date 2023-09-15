@@ -1,13 +1,10 @@
 ﻿using Stride.Core.Mathematics;
-using Stride.Graphics;
 using Stride.Input;
 using Stride.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
-using System.Text;
-using System.Threading.Tasks;
 using Xilium.CefGlue;
 using VLKeys = VL.Lib.IO.Keys;
 using System.Diagnostics;
