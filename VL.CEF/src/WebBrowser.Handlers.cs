@@ -176,6 +176,7 @@ namespace VL.CEF
                     renderer.Loaded = true;
                     // HACK: Re-apply zooming level :/ - https://vvvv.org/forum/htmltexture-bug-with-zoomlevel
                     renderer.FBrowserHost.SetZoomLevel(renderer.ZoomLevel);
+                    renderer.FBrowserHost.SetFocus(true);
                 }
                 else
                     // Reset computed values like document size or DOM
