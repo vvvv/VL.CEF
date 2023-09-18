@@ -3,38 +3,42 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <OutputPath>..\lib</OutputPath>
-    <Platforms>x64;x86</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
     <!-- Package properties -->
+    <NoWarn>NU5100</NoWarn>
     <Description>Chromium Embedded Framework (CEF) for VL</Description>
     <PackageReleaseNotes>Popular nodes: WebRenderer</PackageReleaseNotes>
     <PackageTags>VL;web;html;texture;vvvv</PackageTags>
+
+    <!-- We want our package to have a dependency on VL.CEF.Renderer without the assembly referencing it -->
+    <!-- Couldn't find a way to express this via project file, therefor we go the manual route here and specify our own nuspec file  -->
+    <NuspecFile>$(MSBuildProjectName).nuspec</NuspecFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VL.Core" Version="$(VLVersion)" PrivateAssets="all" />
+    <PackageReference Include="VL.Core" Version="$(VLVersion)" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" />
     <ProjectReference Include="..\..\VL.CEF.Renderer\VL.CEF.Renderer.csproj">
-      <ExcludeAssets>runtime</ExcludeAssets>
-      <Private>False</Private>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
 
-  <PropertyGroup>
-    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);GetCustomContentPackageFiles</TargetsForTfmSpecificContentInPackage>
-  </PropertyGroup>
-
-  <Target Name="GetCustomContentPackageFiles" DependsOnTargets="BuiltProjectOutputGroup;GenerateBuildDependencyFile">
-    <ItemGroup>
-      <!-- VL files -->
-      <TfmSpecificPackageFile Include="..\**\*.vl">
-        <PackagePath></PackagePath>
-      </TfmSpecificPackageFile>
-    </ItemGroup>
+  <Target Name="SetNuspecProperties" BeforeTargets="GenerateNuspec">
+    <PropertyGroup>
+      <NuspecProperties>
+        id=$(PackageId);
+        version=$(PackageVersion);
+        authors=$(Authors);
+        license=$(PackageLicenseExpression);
+        description=$(PackageDescription);
+        projecturl=$(PackageProjectUrl);
+      </NuspecProperties>
+    </PropertyGroup>
   </Target>
 
 </Project>

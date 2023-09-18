@@ -17,8 +17,8 @@ namespace VL.CEF
         [STAThread]
         public static int Main(string[] args)
         {
-            CefRuntime.EnableHighDpiSupport();
             CefRuntime.Load();
+            CefRuntime.EnableHighDpiSupport();
 
             var app = new WebRendererApp();
             var mainArgs = new CefMainArgs(args);

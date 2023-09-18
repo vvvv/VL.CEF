@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,44 +17,37 @@ namespace VL.CEF
 {
     public static class CefExtensions
     {
-        static string resolvedRendererPath;
+        static string? resolvedRendererPath;
         static int initCount;
 
         static CefExtensions()
         {
-            const string rendererAssemblyName = "VL.CEF.Renderer";
-            const string rendererExeName = $"{rendererAssemblyName}.exe";
-            const string renderer = "renderer";
-
-            var thisDirectory = Path.GetDirectoryName(typeof(CefExtensions).Assembly.Location);
-            // In standalone the webrenderer is in the renderer subfolder
-            var standalonePath = Path.Combine(thisDirectory, renderer, rendererExeName);
-            if (File.Exists(standalonePath))
+            foreach (var rendererExe in GetPotentialRendererExeLocations())
             {
-                resolvedRendererPath = standalonePath;
-            }
-            else
-            {
-                // Check if we're in package (different folder layout)
-                var rendererExeAssembly = Assembly.Load(rendererAssemblyName);
-                if (rendererExeAssembly is null)
-                    throw new FileNotFoundException($"Couldn't find {rendererAssemblyName}");
-
-                var packagePath = Path.Combine(Path.GetDirectoryName(rendererExeAssembly.Location), "..", "..", renderer, rendererExeName);
-                if (File.Exists(packagePath))
+                if (File.Exists(rendererExe))
                 {
-                    resolvedRendererPath = Path.GetFullPath(packagePath);
+                    resolvedRendererPath = Path.GetFullPath(rendererExe);
+                    break;
                 }
             }
 
-            if (resolvedRendererPath is null)
-                throw new FileNotFoundException("Can't find VL.CEF.Renderer.exe");
+            static IEnumerable<string> GetPotentialRendererExeLocations()
+            {
+                // Exported app?
+                var processDir = Path.GetDirectoryName(Environment.ProcessPath);
+                if (processDir != null)
+                    yield return Path.Combine(processDir, "renderer", "VL.CEF.Renderer.exe");
 
-            // Ensure native libs can be found
-            var browserDir = Path.GetDirectoryName(resolvedRendererPath);
-            var pathVariable = Environment.GetEnvironmentVariable("PATH");
-            if (!pathVariable.Contains(browserDir))
-                Environment.SetEnvironmentVariable("PATH", $"{pathVariable};{browserDir}");
+                var assemblyDir = Path.GetDirectoryName(typeof(CefExtensions).Assembly.Location);
+                if (assemblyDir != null)
+                {
+                    // Source package?
+                    yield return Path.Combine(assemblyDir, "..", "..", "..", "VL.CEF.Renderer", "bin", "VL.CEF.Renderer.exe");
+                    // Installed package?
+                    yield return Path.Combine(assemblyDir, "..", "..", "renderer", "VL.CEF.Renderer.exe");
+
+                }
+            }
         }
 
         public static IResourceProvider<IDisposable> GetRuntimeProvider()

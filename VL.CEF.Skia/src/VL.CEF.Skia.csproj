@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
     <OutputPath>..\lib</OutputPath>
-    <Platforms>x64;x86</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     
     <!-- Package properties -->
@@ -17,10 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" PrivateAssets="all" />
     <ProjectReference Include="..\..\VL.CEF\src\VL.CEF.csproj">
-      <ExcludeAssets>runtime</ExcludeAssets>
-      <Private>False</Private>
+      <Private>false</Private>
     </ProjectReference>
   </ItemGroup>
 
