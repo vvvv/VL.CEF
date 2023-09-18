@@ -16,7 +16,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 [GitHubActions(
     "main", 
-    GitHubActionsImage.UbuntuLatest,
+    GitHubActionsImage.WindowsLatest,
     On = new[] { GitHubActionsTrigger.WorkflowDispatch, GitHubActionsTrigger.Push },
     Lfs = true,
     Submodules = GitHubActionsSubmodules.Recursive,
