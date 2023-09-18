@@ -22,38 +22,12 @@ namespace VL.CEF
         static CefExtensions()
         {
             const string rendererAssemblyName = "VL.CEF.Renderer";
-            const string rendererExeName = $"{rendererAssemblyName}.exe";
-            const string renderer = "renderer";
 
-            var thisDirectory = Path.GetDirectoryName(typeof(CefExtensions).Assembly.Location);
-            // In standalone the webrenderer is in the renderer subfolder
-            var standalonePath = Path.Combine(thisDirectory, renderer, rendererExeName);
-            if (File.Exists(standalonePath))
-            {
-                resolvedRendererPath = standalonePath;
-            }
-            else
-            {
-                // Check if we're in package (different folder layout)
-                var rendererExeAssembly = Assembly.Load(rendererAssemblyName);
-                if (rendererExeAssembly is null)
-                    throw new FileNotFoundException($"Couldn't find {rendererAssemblyName}");
+            var rendererPath = Assembly.Load(rendererAssemblyName)?.Location;
+            if (rendererPath is null)
+                throw new FileNotFoundException($"Couldn't find {rendererAssemblyName}");
 
-                var packagePath = Path.Combine(Path.GetDirectoryName(rendererExeAssembly.Location), "..", "..", renderer, rendererExeName);
-                if (File.Exists(packagePath))
-                {
-                    resolvedRendererPath = Path.GetFullPath(packagePath);
-                }
-            }
-
-            if (resolvedRendererPath is null)
-                throw new FileNotFoundException("Can't find VL.CEF.Renderer.exe");
-
-            // Ensure native libs can be found
-            var browserDir = Path.GetDirectoryName(resolvedRendererPath);
-            var pathVariable = Environment.GetEnvironmentVariable("PATH");
-            if (!pathVariable.Contains(browserDir))
-                Environment.SetEnvironmentVariable("PATH", $"{pathVariable};{browserDir}");
+            resolvedRendererPath = Path.ChangeExtension(rendererPath, ".exe");
         }
 
         public static IResourceProvider<IDisposable> GetRuntimeProvider()
@@ -65,7 +39,7 @@ namespace VL.CEF
 
                 if (Interlocked.Increment(ref initCount) == 1)
                 {
-                    CefRuntime.Load(Path.GetDirectoryName(resolvedRendererPath));
+                    CefRuntime.Load(Path.Combine(Path.GetDirectoryName(resolvedRendererPath), "renderer"));
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;

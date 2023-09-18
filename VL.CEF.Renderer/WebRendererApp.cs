@@ -11,14 +11,15 @@ using Xilium.CefGlue;
 
 namespace VL.CEF
 {
-    public class WebRendererApp : CefApp
+    class WebRendererApp : CefApp
     {
         // Main entry point when called by CEF
         [STAThread]
         public static int Main(string[] args)
         {
+            var rendererPath = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "renderer");
+            CefRuntime.Load(rendererPath);
             CefRuntime.EnableHighDpiSupport();
-            CefRuntime.Load();
 
             var app = new WebRendererApp();
             var mainArgs = new CefMainArgs(args);

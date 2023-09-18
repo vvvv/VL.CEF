@@ -18,10 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\deps\cef_glue\CefGlue\CefGlue.csproj" PrivateAssets="all" />
-    <ProjectReference Include="..\..\VL.CEF.Renderer\VL.CEF.Renderer.csproj">
-      <ExcludeAssets>runtime</ExcludeAssets>
-      <Private>False</Private>
-    </ProjectReference>
+    <ProjectReference Include="..\..\VL.CEF.Renderer\VL.CEF.Renderer.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

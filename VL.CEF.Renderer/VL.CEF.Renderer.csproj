@@ -6,8 +6,6 @@
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
     <Platforms>x64;x86</Platforms>
     <SelfContained>false</SelfContained>
-    <OutputPath>..\VL.CEF\lib\$(TargetFramework)\renderer\</OutputPath>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     
     <!-- Disable pack warning about dlls being in wrong folder - this package delivers the whole renderer app -->
     <NoWarn>NU5128;NU5100</NoWarn>
@@ -17,7 +15,7 @@
   <ItemGroup>
     <None Include="$(SolutionDir)deps\cef\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
+      <LinkBase>renderer</LinkBase>
     </None>
   </ItemGroup>
 
@@ -47,16 +45,20 @@
     <ItemGroup>
       <!-- The dll of this project -->
       <TfmSpecificPackageFile Include="@(BuiltProjectOutputGroupOutput)">
-        <PackagePath>renderer</PackagePath>
+        <PackagePath>renderer-managed</PackagePath>
       </TfmSpecificPackageFile>
       <!-- The referenced dlls of this project -->
       <TfmSpecificPackageFile Include="@(ReferenceCopyLocalPaths)">
-        <PackagePath>renderer</PackagePath>
+        <PackagePath>renderer-managed</PackagePath>
       </TfmSpecificPackageFile>
-      <!-- The apphost.exe used as exe for this project as well as all files to be copied to output (native CEF dlls, see None include above) -->
-      <TfmSpecificPackageFile Include="@(AllItemsFullPathWithTargetPath)">
-        <PackagePath>renderer\%(AllItemsFullPathWithTargetPath.TargetPath)</PackagePath>
-      </TfmSpecificPackageFile>      
+      <!-- The apphost.exe used as exe for this project -->
+      <TfmSpecificPackageFile Include="@(AllItemsFullPathWithTargetPath)" Condition="$([System.String]::new('%(AllItemsFullPathWithTargetPath.TargetPath)').StartsWith('VL.CEF.Renderer'))">
+        <PackagePath>renderer-managed\%(AllItemsFullPathWithTargetPath.TargetPath)</PackagePath>
+      </TfmSpecificPackageFile>
+      <!-- The native dlls -->
+      <TfmSpecificPackageFile Include="$(SolutionDir)deps\cef\**">
+        <PackagePath>renderer-native</PackagePath>
+      </TfmSpecificPackageFile>
     </ItemGroup>
   </Target>
 

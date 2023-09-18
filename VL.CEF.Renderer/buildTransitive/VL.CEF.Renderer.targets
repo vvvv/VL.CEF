@@ -1,9 +1,12 @@
 ﻿<Project>
   
   <ItemGroup>
-    <!-- For all files in /contentFiles -->
-    <Content Include="$(MSBuildThisFileDirectory)..\renderer\**\*.*">
-      <!-- Copy to output directory on build -->
+    <!-- VL.CEF.Renderer.exe etc. -->
+    <Content Include="$(MSBuildThisFileDirectory)..\renderer-managed\**\*.*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <!-- libcef.dll etc. -->
+    <Content Include="$(MSBuildThisFileDirectory)..\renderer-native\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <LinkBase>renderer</LinkBase>
     </Content>
