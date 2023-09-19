@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="MLzy2Ilx953Pfn5zJRwtAu" LanguageVersion="2023.5.2" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2023.5.2" />
+  <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
+    <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="ItAje1kLzJDOOqVUrqgbKH">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <FullNameCategoryReference ID="Primitive" />
+      </p:NodeReference>
+      <Patch Id="H6UqjBkdWMTMU7AH469H7b">
+        <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
+          <Node Bounds="181,276,165,19" Id="T6EK0aeUpK8L42vEmISS7W">
+            <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Renderer" />
+              <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
+            </p:NodeReference>
+            <Pin Id="MaFDPFADn2NMBq2LZLTlHp" Name="Bounds" Kind="InputPin" DefaultValue="1091, 40, 795, 637">
+              <p:TypeAnnotation LastCategoryFullName="System.Drawing" LastDependency="System.Drawing.dll">
+                <Choice Kind="TypeFlag" Name="Rectangle" />
+              </p:TypeAnnotation>
+            </Pin>
+            <Pin Id="Hp5tDDGJi85Mw6j0l1jL0m" Name="Bound to Document" Kind="InputPin" DefaultValue="True" />
+            <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
+            <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
+            <Pin Id="OOGQG7BFIEtNLL3wzKPENq" Name="Clear" Kind="InputPin" />
+            <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin" />
+            <Pin Id="S94F0I4MRSDOmqXJETXtMl" Name="Show Cursor" Kind="InputPin" />
+            <Pin Id="MpoohInZy8NNDwShJ6Z6oY" Name="VSync" Kind="InputPin" />
+            <Pin Id="QSQDd262CNvPbpv6EkhAKI" Name="Enabled" Kind="InputPin" />
+            <Pin Id="KAJDRKkwVsGO9R5xXTyihC" Name="Form" Kind="OutputPin" />
+            <Pin Id="HPpjtVnWzz7OhpUCceYYRN" Name="ClientBounds" Kind="OutputPin" />
+            <Pin Id="RnoPyy9Gtl7QZhK4qZRKgz" Name="Render Time" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="222,166,71,19" Id="IMN6zSf42oOQZQDq6fQKlx">
+            <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
+            </p:NodeReference>
+            <Pin Id="KmxDcDJIL0ON5GdQldZhdQ" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
+            <Pin Id="MrPQX5zSAABQViiCSHAUER" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="MZhcStex7AcM8wApzFRvK1" Name="Enabled" Kind="InputPin" />
+            <Pin Id="GEaYnfy1wE1O3csVBan2pM" Name="Output" Kind="OutputPin" />
+            <Pin Id="VAAMuXnMHKTOHJQUEoQsM1" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="Ul5VFACwvp7M63CyKRElKW" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="Osw2o8okQEuQZwfcyUXIDI" Name="Error Text" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="222,217,70,19" Id="BcFRMmqe25vNuOWfGDwHd8">
+            <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Skia.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <FullNameCategoryReference ID="CEF" />
+              <Choice Kind="ProcessAppFlag" Name="ToSkiaLayer" />
+            </p:NodeReference>
+            <Pin Id="GbFtIGrk5pkMqbo0LwxPRa" Name="Browser" Kind="InputPin" />
+            <Pin Id="DwTr3OtvpTuMixklZywlr8" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="VKT0xEGwZJRLgXcDor18Zw" Bounds="358,226,298,19" ShowValueBox="true" isIOBox="true" Value="Red node? Ensure VL.CEF.Skia is installed!">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="HouQ1i6yBE7O7u19OwOcFp" Bounds="358,282,141,21" ShowValueBox="true" isIOBox="true" Value="No visible output? See">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="AZoZWOSnhjcOXjYqFkfb5A" Bounds="494,282,314,21" ShowValueBox="true" isIOBox="true" Value="https://github.com/vvvv/VL.CEF#troubleshooting">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+        </Canvas>
+        <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
+        <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
+        <ProcessDefinition Id="PJaJLRkmnnNNvvrJpKmAaL">
+          <Fragment Id="Ccrp0QpGYEKPqBSB8xuGew" Patch="Vnymg3KwFcqPuuJT3crEKr" Enabled="true" />
+          <Fragment Id="FS8SLTMVNnnMxuHsD4JK5c" Patch="T5DV0xifO78P27haBv56J1" Enabled="true" />
+        </ProcessDefinition>
+        <Link Id="N5bkXrOssj9PizORkS8j0D" Ids="DwTr3OtvpTuMixklZywlr8,MTDHVcEhKXPLq5yLm8QAE5" />
+        <Link Id="OEOsrwscmAIOnp0wcRnTXj" Ids="GEaYnfy1wE1O3csVBan2pM,GbFtIGrk5pkMqbo0LwxPRa" />
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2023.5.2" />
+  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
+  <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.0.0" />
+</Document>

@@ -161,7 +161,7 @@
           <Patch Id="T5PSbhoISlvLPQcianRAO2" Name="Create" />
           <Patch Id="Na21BT5OzIINceUwpblFz0" Name="Update">
             <Pin Id="JBlPW3f7YbmO8VUjsPGxzR" Name="Startup Url" Kind="InputPin" Bounds="656,173" DefaultValue="about:blank" />
-            <Pin Id="REltHYGz5R9NaMZUwlM3wm" Name="Shared Texture Enabled" Kind="InputPin" Bounds="558,161" DefaultValue="True" />
+            <Pin Id="REltHYGz5R9NaMZUwlM3wm" Name="Shared Texture Enabled" Kind="InputPin" Bounds="558,161" DefaultValue="True" Visibility="Optional" />
             <Pin Id="GO5myamixtKP5VH3tllA5n" Name="Query Handlers" Kind="InputPin" Bounds="843,158" />
             <Pin Id="Sg9nC59PDpZOuCuxCNJFXb" Name="Enabled" Kind="InputPin" Bounds="926,168" />
             <Pin Id="Fj0DIYjO9IhPPJ5eS3nqHt" Name="Output" Kind="OutputPin" Bounds="546,460" />

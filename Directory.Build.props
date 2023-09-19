@@ -11,7 +11,7 @@
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <Version>0.5.0-preview.5</Version>
+    <Version>0.5.0</Version>
 
     <!-- Package properties -->
     <Authors>vvvv group</Authors>
@@ -24,7 +24,7 @@
     <!-- Passed to vvvv.exe -->
     <LocalVLPackages>$(MsBuildThisFileDirectory)</LocalVLPackages>
     <PackageRepositories>$(LocalVLPackages)</PackageRepositories>
-    <OverviewPatch>$(MsBuildThisFileDirectory)VL.CEF\help\Explanation Overview.vl</OverviewPatch>
+    <OverviewPatch>$(MsBuildThisFileDirectory)VL.CEF\help\Explanation Overview Skia.vl</OverviewPatch>
     <OverviewPatchStride>$(MsBuildThisFileDirectory)VL.CEF\help\Explanation Overview Stride.vl</OverviewPatchStride>
   </PropertyGroup>
 </Project>
