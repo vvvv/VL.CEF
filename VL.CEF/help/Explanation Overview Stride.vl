@@ -62,7 +62,7 @@
             <Pin Id="I0Rz8HOQUlCO8IeKezuW6J" Name="Browser" Kind="InputPin" />
             <Pin Id="F28MEYORPwRPvWXuSJUg1W" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="LdFMHrecaGML7WG4OjvfVn" Bounds="413,220,298,19" ShowValueBox="true" isIOBox="true" Value="Red node? Ensure VL.CEF.Skia is installed!">
+          <Pad Id="LdFMHrecaGML7WG4OjvfVn" Bounds="413,220,298,19" ShowValueBox="true" isIOBox="true" Value="Red node? Ensure VL.CEF.Stride is installed!">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
