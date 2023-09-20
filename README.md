@@ -24,4 +24,4 @@ This is probably because your PC has multiple GPUs. In this case you'll need to 
 - Locate the added entry and under options choose the same as vvvv.exe has assigned. Most likely "High Performance"
 
 ### Videos not playing
-This is probably because by default CEF is not including proprietary audio and video codecs! For details, see [here](https://support.google.com/webdesigner/answer/10043691?hl=en). If you have licensing for those codecs sorted and need help compiling a build including proprietary codecs, don't hesitate to get in touch via [devvvvs@vvvv.org](mailto:devvvvs@vvvv.org).
+This is probably because by default CEF is not including proprietary audio and video codecs! For details, see [here](https://support.google.com/webdesigner/answer/10043691?hl=en) and [here](https://www.chromium.org/audio-video/). If you have licensing for those codecs sorted and need help compiling a build including proprietary codecs, don't hesitate to get in touch via [devvvvs@vvvv.org](mailto:devvvvs@vvvv.org).
