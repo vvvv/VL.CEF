@@ -113,6 +113,8 @@ namespace VL.CEF
             {
                 // Enable auto play (https://github.com/vvvv/VL.CEF/issues/12)
                 commandLine.AppendSwitch("autoplay-policy", "no-user-gesture-required");
+                //enable camera
+                commandLine.AppendSwitchWithValue("enable-media-stream","true");
 
                 base.OnBeforeCommandLineProcessing(processType, commandLine);
             }
