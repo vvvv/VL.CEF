@@ -11,16 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VL.Stride.Runtime" Version="$(VLVersion)" ExcludeAssets="build;buildTransitive" PrivateAssets="all">
-      <IncludeAssets>runtime; compile; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-
-    <!-- Reference Stride.Rendering so the package gets installed on the user machine. Needed by export (see issue #3). -->
-    <!-- We'd like to include this dependency through VL.Stride.Runtime by removing the private assets flag -->
-    <!-- but that pulls in a lot of packages some of which VL can't handle (as of 2020.2.2) -->
-    <PackageReference Include="Stride.Rendering" Version="4.1.0.1838">
-      <ExcludeAssets>build;buildTransitive</ExcludeAssets>
-    </PackageReference>
+    <PackageReference Include="VL.Stride.Runtime" Version="$(VLVersion)" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
