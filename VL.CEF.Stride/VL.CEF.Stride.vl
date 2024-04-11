@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="Le6ulaD4AYHNsgZQTPWgw1" LanguageVersion="2022.5.0-0683-g91567c285a" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2022.5.0-0683-g91567c285a" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="Le6ulaD4AYHNsgZQTPWgw1" LanguageVersion="2023.5.2" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2023.5.2" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -112,8 +112,8 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2022.5.0-0683-g91567c285a" />
-  <NugetDependency Id="IB2zAnzlQFnPHn5Uo120Vw" Location="Stride.Rendering" Version="4.1.0.1805" />
-  <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net6.0-windows/VL.CEF.Stride.dll" />
+  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2023.5.2" />
+  <NugetDependency Id="IB2zAnzlQFnPHn5Uo120Vw" Location="Stride.Rendering" Version="4.1.0.1838" />
+  <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net8.0-windows/VL.CEF.Stride.dll" />
   <NugetDependency Id="B2j9g6TO1esQANElMPYnOG" Location="VL.CEF" IsForward="true" Version="0.0.0" />
 </Document>

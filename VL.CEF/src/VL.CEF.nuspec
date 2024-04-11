@@ -11,13 +11,13 @@
     <copyright>$copyright$</copyright>
     <tags>$tags$</tags>
     <dependencies>
-      <group targetFramework="net6.0">
+      <group targetFramework="net8.0">
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="..\lib\net6.0\VL.CEF.dll" target="lib\net6.0" />
-    <file src="..\lib\net6.0\Xilium.CefGlue.dll" target="lib\net6.0" />
+    <file src="..\lib\net8.0\VL.CEF.dll" target="lib\net8.0" />
+    <file src="..\lib\net8.0\Xilium.CefGlue.dll" target="lib\net8.0" />
     <file src="..\*.vl" target="" />
     <file src="..\help\**" target="help" />
     <file src="..\..\VL.CEF.Renderer\bin\**" target="renderer" />

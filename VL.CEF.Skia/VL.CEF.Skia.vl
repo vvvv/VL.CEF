@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" Id="FgyU0uYKYnINLXJUYAW0B1" LanguageVersion="2022.5.0-0683-g91567c285a" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2022.5.0-0683-g91567c285a" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="FgyU0uYKYnINLXJUYAW0B1" LanguageVersion="2023.5.2" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2023.5.2" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -112,7 +112,7 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2022.5.0-0683-g91567c285a" />
-  <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net6.0-windows/VL.CEF.Skia.dll" />
+  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2023.5.2" />
+  <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net8.0-windows/VL.CEF.Skia.dll" />
   <NugetDependency Id="Knu810rkN45OuFmlmqfa99" Location="VL.CEF" IsForward="true" Version="0.0.0" />
 </Document>

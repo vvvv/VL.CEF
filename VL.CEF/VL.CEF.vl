@@ -283,6 +283,6 @@
       </Patch>
     </Node>
   </Patch>
-  <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net6.0/VL.CEF.dll" />
-  <PlatformDependency Id="Q0yqA5E83E6OSTFokLf2FS" Location="./lib/net6.0/Xilium.CefGlue.dll" />
+  <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net8.0/VL.CEF.dll" />
+  <PlatformDependency Id="Q0yqA5E83E6OSTFokLf2FS" Location="./lib/net8.0/Xilium.CefGlue.dll" />
 </Document>
