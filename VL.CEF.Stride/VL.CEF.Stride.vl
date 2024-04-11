@@ -115,5 +115,5 @@
   <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2022.5.0-0683-g91567c285a" />
   <NugetDependency Id="IB2zAnzlQFnPHn5Uo120Vw" Location="Stride.Rendering" Version="4.1.0.1805" />
   <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net6.0-windows/VL.CEF.Stride.dll" />
-  <NugetDependency Id="B2j9g6TO1esQANElMPYnOG" Location="VL.CEF" Version="0.0.0" />
+  <NugetDependency Id="B2j9g6TO1esQANElMPYnOG" Location="VL.CEF" IsForward="true" Version="0.0.0" />
 </Document>

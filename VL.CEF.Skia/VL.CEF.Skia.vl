@@ -114,5 +114,5 @@
   </Patch>
   <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2022.5.0-0683-g91567c285a" />
   <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net6.0-windows/VL.CEF.Skia.dll" />
-  <NugetDependency Id="Knu810rkN45OuFmlmqfa99" Location="VL.CEF" Version="0.0.0" />
+  <NugetDependency Id="Knu810rkN45OuFmlmqfa99" Location="VL.CEF" IsForward="true" Version="0.0.0" />
 </Document>
