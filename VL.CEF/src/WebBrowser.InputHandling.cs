@@ -1,6 +1,7 @@
 ﻿using Stride.Core.Mathematics;
 using System;
 using System.Diagnostics;
+using VL.Core;
 using VL.Lib.IO;
 using VL.Lib.IO.Notifications;
 using Xilium.CefGlue;
@@ -11,11 +12,11 @@ namespace VL.CEF
     {
         CefEventFlags mouseModifiers;
 
-        public bool SendNotification(INotification notification)
+        public bool SendNotification(INotification notification, Func<NotificationWithPosition, Vector2> getPosition)
         {
             if (notification is MouseNotification mouseNotification)
             {
-                HandleMouseNotification(mouseNotification);
+                HandleMouseNotification(mouseNotification, getPosition);
                 return true;
             }
             else if (notification is KeyNotification keyNotification)
@@ -25,15 +26,15 @@ namespace VL.CEF
             }
             else if (notification is TouchNotification touchNotification)
             {
-                HandleTouchNotification(touchNotification);
+                HandleTouchNotification(touchNotification, getPosition);
                 return true;
             }
             return false;
         }
 
-        private void HandleTouchNotification(TouchNotification n)
+        private void HandleTouchNotification(TouchNotification n, Func<NotificationWithPosition, Vector2> getPosition)
         {
-            var position = n.Position.DeviceToLogical(ScaleFactor);
+            var position = GetPositionInBrowserSpace(n, getPosition);
             var touchEvent = new CefTouchEvent()
             {
                 Id = n.Id,
@@ -104,7 +105,7 @@ namespace VL.CEF
         Vector2 lastPosition;
         Stopwatch stopwatch = Stopwatch.StartNew();
 
-        private void HandleMouseNotification(MouseNotification n)
+        private void HandleMouseNotification(MouseNotification n, Func<NotificationWithPosition, Vector2> getPosition)
         {
             if (n is MouseButtonNotification buttonNotification)
             {
@@ -142,7 +143,7 @@ namespace VL.CEF
             }
 
             {
-                var position = n.Position.DeviceToLogical(ScaleFactor);
+                var position = GetPositionInBrowserSpace(n, getPosition);
                 var mouseEvent = new CefMouseEvent((int)position.X, (int)position.Y, GetModifiers(n));
                 var browserHost = BrowserHost;
                 switch (n.Kind)
@@ -208,6 +209,11 @@ namespace VL.CEF
             if (n.CtrlKey)
                 result |= CefEventFlags.ControlDown | CefEventFlags.IsLeft;
             return result | mouseModifiers;
+        }
+
+        Vector2 GetPositionInBrowserSpace(NotificationWithPosition notification, Func<NotificationWithPosition, Vector2> getPosition)
+        {
+            return getPosition(notification).DeviceToLogical(ScaleFactor);
         }
     }
 }
