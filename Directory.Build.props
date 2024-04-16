@@ -6,7 +6,7 @@
     <PackageOutputPath>$(MsBuildThisFileDirectory)bin\</PackageOutputPath>
     
     <!-- Used VL version -->
-    <VLVersion>2024.6.0</VLVersion>
+    <VLVersion>2024.6.2</VLVersion>
     <VLShortVersion>$(VLVersion.Substring(5))</VLShortVersion>
 
     <!-- Version information -->
