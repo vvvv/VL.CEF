@@ -17,11 +17,11 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 [GitHubActions(
     "main", 
     GitHubActionsImage.WindowsLatest,
-    On = new[] { GitHubActionsTrigger.WorkflowDispatch, GitHubActionsTrigger.Push },
+    OnPushBranches = ["master"],
     Lfs = true,
     Submodules = GitHubActionsSubmodules.Recursive,
-    InvokedTargets = new[] { nameof(Deploy) },
-    ImportSecrets = new[] { nameof(NuGetApiKey) })]
+    InvokedTargets = [nameof(Deploy)],
+    ImportSecrets = [nameof(NuGetApiKey)])]
 class Build : NukeBuild
 {
     /// Support plugins are available for:

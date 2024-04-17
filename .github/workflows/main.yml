@@ -16,7 +16,10 @@
 
 name: main
 
-on: [workflow_dispatch, push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   windows-latest:
