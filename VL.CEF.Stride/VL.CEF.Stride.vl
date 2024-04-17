@@ -92,10 +92,10 @@
       </Node>
       <!--
 
-    ************************ WebRenderer ************************
+    ************************ WebRenderer (Experimental) ************************
 
 -->
-      <Node Name="WebRenderer" Bounds="440,447" Id="TVwAq493PamP7PW0sFOSsi">
+      <Node Name="WebRenderer (Experimental)" Bounds="440,447" Id="TVwAq493PamP7PW0sFOSsi">
         <p:NodeReference>
           <Choice Kind="ContainerDefinition" Name="Process" />
           <CategoryReference Kind="Category" Name="Primitive" />
