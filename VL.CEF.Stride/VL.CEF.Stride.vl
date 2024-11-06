@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="Le6ulaD4AYHNsgZQTPWgw1" LanguageVersion="2024.6.2" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2024.6.2" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="Le6ulaD4AYHNsgZQTPWgw1" LanguageVersion="2024.6.6" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2024.6.6" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -143,7 +143,7 @@
               <Pin Id="Nio4CxuxQuqO2fRBApX2qv" Name="Depth Format" Kind="InputPin" />
               <Pin Id="VSwHO7tUtXsMGKskYU4qkl" Name="Depth Shared" Kind="InputPin" IsHidden="true" />
               <Pin Id="AWPlebVHEWnNBzfbMJSxM4" Name="Clear Flags" Kind="InputPin" IsHidden="true" />
-              <Pin Id="S53nWmSIb4zPHkYk6rCFWy" Name="Clear Color" Kind="InputPin" />
+              <Pin Id="S53nWmSIb4zPHkYk6rCFWy" Name="Clear Color" Kind="InputPin" DefaultValue="0, 0, 0, 0" />
               <Pin Id="PIXebgWORy7L2N2PN211mg" Name="Clear Depth" Kind="InputPin" IsHidden="true" />
               <Pin Id="VFPeHUVUx37O9VW9ea9ri5" Name="Clear Stencil" Kind="InputPin" IsHidden="true" />
               <Pin Id="OiQVYBROAaCM7UtwWxSda5" Name="Clear" Kind="InputPin" />
@@ -672,6 +672,14 @@
               <Pin Id="SpzowalxQa2LkzSjHa1CkM" Name="Anchor" Kind="InputPin" />
               <Pin Id="HURZQalxq4GP1agPesiKOT" Name="Output" Kind="OutputPin" />
             </Node>
+            <Node Bounds="309,448,127,19" Id="LB1VLSL1UtQQK7PzOnotJe">
+              <p:NodeReference LastCategoryFullName="VL.Stride.Graphics.BlendStateDescriptions" LastDependency="VL.Stride.Runtime.dll">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <FullNameCategoryReference ID="VL.Stride.Graphics.BlendStateDescriptions" />
+                <Choice Kind="OperationCallFlag" Name="AlphaBlendPremultiplied" />
+              </p:NodeReference>
+              <Pin Id="PT86QGNrHGHOzmjlZPmQI1" Name="Alpha Blend Premultiplied" Kind="OutputPin" />
+            </Node>
           </Canvas>
           <ProcessDefinition Id="LTGCTWDF4N6NzYyNpfiLgG">
             <Fragment Id="Lzq7aSDVzJKPhx0HmobXsG" Patch="QQaRkVryBd2NLt9H4MMVb9" Enabled="true" />
@@ -772,6 +780,7 @@
           <Link Id="EEElcpSWjH7MEOgZwRsxzd" Ids="HURZQalxq4GP1agPesiKOT,Cfj3dJwehZJOAux1Ht1XjT" />
           <Link Id="Vv5avNhC86pNkM3p1DuABH" Ids="Is21159qEliQEwFhqQLEg7,G9WQuh1LhJ3OTbb66Qpm3T" />
           <Link Id="NmkaAwPbnnkNFNwTJ5rfHO" Ids="Dgai0JfGDz6QSkmVyZZpVv,An1YzbAmJcqOi6UQp2A8LV" />
+          <Link Id="L2AGYH3GlJiMwmykpvm6K1" Ids="PT86QGNrHGHOzmjlZPmQI1,SQ0wQOl5uofMR6eGqa78Pl" />
         </Patch>
       </Node>
     </Canvas>
@@ -796,10 +805,10 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2024.6.2" />
+  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2024.6.6" />
   <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net8.0-windows/VL.CEF.Stride.dll" />
   <NugetDependency Id="B2j9g6TO1esQANElMPYnOG" Location="VL.CEF" IsForward="true" Version="0.0.0" />
-  <NugetDependency Id="Vb5iWrVbmAYPsJrOMALfUj" Location="VL.Stride.TextureFX" Version="2024.6.2" />
+  <NugetDependency Id="Vb5iWrVbmAYPsJrOMALfUj" Location="VL.Stride.TextureFX" Version="2024.6.6" />
   <PlatformDependency Id="ViUsdYZNo6zMR12kZHvhgu" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/packs/dependencies/VL.Stride.Runtime.dll" />
   <PlatformDependency Id="NSgPiKUlW6LO3vCfs7blGd" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/packs/dependencies/Stride.Rendering.dll" />
   <PlatformDependency Id="JtCQYWZYZPwMQ9AXhloaPz" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/Stride.Core.dll" />
