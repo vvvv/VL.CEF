@@ -15,7 +15,11 @@ and/or
 
 ## Troubleshooting
 ### No output at all
-This is probably because your PC has multiple GPUs. In this case you'll need to manually tell the chromium process to run on the same GPU that vvvv is running on:
+This is probably because your PC has multiple GPUs. There are two ways to work around this issue:
+
+1) On the WebBrowser node activate the optional "Shared Texture Enabled" input and deactivate it  
+or
+3) Tell the chromium process to run on the same GPU that vvvv is running on:
 
 - vvvv: Quad menu -> Manage NuGets -> Show Installed
 - Navigate to VL.CEF.x.y.z\renderer and Shift+Rightclick "VL.CEF.Renderer.exe" -> Copy as Path
