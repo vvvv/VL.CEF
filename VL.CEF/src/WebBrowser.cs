@@ -68,8 +68,6 @@ namespace VL.CEF
 
         internal event AcceleratedPaintHandler AcceleratedPaint;
 
-        internal event AcceleratedPaint2Handler AcceleratedPaint2;
-
         internal CefBrowserHost BrowserHost => FBrowserHost;
 
         internal void Attach(CefBrowser browser)

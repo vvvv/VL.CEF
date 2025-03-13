@@ -63,7 +63,6 @@ namespace VL.CEF
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;
-                    cefSettings.PackLoadingDisabled = false;
                     cefSettings.MultiThreadedMessageLoop = true;
                     cefSettings.BrowserSubprocessPath = resolvedRendererPath;
                     cefSettings.CommandLineArgsDisabled = false;
