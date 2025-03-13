@@ -7,8 +7,11 @@ using Vector2 = Stride.Core.Mathematics.Vector2;
 using VL.Skia.Egl;
 using SharpDX.DXGI;
 using Device = SharpDX.Direct3D11.Device;
+using Device1 = SharpDX.Direct3D11.Device1;
 using System.Threading;
 using Stride.Core.Mathematics;
+using System.Collections.Concurrent;
+using VL.Core.Utils;
 
 namespace VL.CEF
 {
@@ -17,10 +20,9 @@ namespace VL.CEF
         private readonly object syncRoot = new object();
 
         private readonly RenderContext renderContext;
-        private readonly Device device;
         private SKImage rasterImage, textureImage;
-        private Texture2D sharedTexture;
-        private IntPtr sharedHandle;
+        private readonly Device1 device;
+        private BlockingCollection<Texture2D> sharedTextures = new BlockingCollection<Texture2D>(boundedCapacity: 1);
         private WebBrowser browser;
 
         public SkiaRenderHandler(WebBrowser browser)
@@ -29,22 +31,23 @@ namespace VL.CEF
             renderContext = RenderContext.ForCurrentThread();
             if (renderContext.EglContext.Dislpay.TryGetD3D11Device(out var d3dDevice))
             {
-                device = new Device(d3dDevice);
+                using var device = new Device(d3dDevice);
+                this.device = device.QueryInterface<Device1>();
             }
             browser.Paint += OnPaint;
             browser.AcceleratedPaint += OnAcceleratedPaint;
-            browser.AcceleratedPaint2 += OnAcceleratedPaint2;
         }
 
         public void Dispose()
         {
             browser.Paint -= OnPaint;
             browser.AcceleratedPaint -= OnAcceleratedPaint;
-            browser.AcceleratedPaint2 -= OnAcceleratedPaint2;
 
             rasterImage?.Dispose();
             textureImage?.Dispose();
-            sharedTexture?.Dispose();
+            sharedTextures.CompleteAdding();
+            foreach (var t in sharedTextures)
+                t.Dispose();
             renderContext.Dispose();
         }
 
@@ -58,28 +61,17 @@ namespace VL.CEF
             }
         }
 
-        private void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+        private void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, CefAcceleratedPaintInfo info)
         {
             lock (syncRoot)
             {
-                if (sharedHandle != this.sharedHandle)
+                //if (info.SharedTextureHandle != this.sharedHandle)
                 {
-                    this.sharedHandle = sharedHandle;
-                    sharedTexture?.Dispose();
-                    sharedTexture = device?.OpenSharedResource<Texture2D>(sharedHandle);
-                }
-            }
-        }
-
-        private void OnAcceleratedPaint2(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle, int newTexture)
-        {
-            lock (syncRoot)
-            {
-                if (newTexture != 0)
-                {
-                    sharedTexture?.Dispose();
-                    var device1 = device.QueryInterface<SharpDX.Direct3D11.Device1>();
-                    sharedTexture = device1?.OpenSharedResource1<Texture2D>(sharedHandle);
+                    //this.sharedHandle = info.SharedTextureHandle;
+                    //sharedTexture?.Dispose();
+                    var sharedTexture = device.OpenSharedResource1<Texture2D>(info.SharedTextureHandle);
+                    if (!sharedTextures.TryAddSafe(sharedTexture, millisecondsTimeout: 16))
+                        sharedTexture.Dispose();
                 }
             }
         }
@@ -96,8 +88,7 @@ namespace VL.CEF
             lock (syncRoot)
             {
                 // Transfer ownership
-                var texture = Interlocked.Exchange(ref sharedTexture, null);
-                if (texture != null)
+                if (sharedTextures.TryTake(out var texture, millisecondsTimeout: 16))
                 {
                     textureImage?.Dispose();
                     textureImage = ToImage(texture);
@@ -144,7 +135,7 @@ namespace VL.CEF
             var image = SKImage.FromTexture(
                 renderContext.SkiaContext,
                 backendTexture,
-                GRSurfaceOrigin.BottomLeft,
+                GRSurfaceOrigin.TopLeft,
                 colorType,
                 SKAlphaType.Premul,
                 colorspace: SKColorSpace.CreateSrgb(),

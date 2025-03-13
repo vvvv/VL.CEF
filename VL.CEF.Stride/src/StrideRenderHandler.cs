@@ -17,34 +17,70 @@ using VL.Stride;
 using VL.Stride.Input;
 using Xilium.CefGlue;
 using System.Reflection;
+using SharpDX.DXGI;
+using Device1 = SharpDX.Direct3D11.Device1;
+using Device = SharpDX.Direct3D11.Device;
+using System.Collections.Concurrent;
+using VL.Core.Utils;
+using SharpDX;
+using DataBox = Stride.Graphics.DataBox;
+using System.Threading;
+using System.Diagnostics;
 
 namespace VL.CEF
 {
     public sealed partial class StrideRenderHandler : RendererBase
     {
+        struct CopyOperation(SharpDX.DXGI.Resource Resource, uint FenceValue)
+        {
+            public SharpDX.DXGI.Resource Resource = Resource;
+            public uint FenceValue = FenceValue;
+        }
+
         private readonly object syncRoot = new object();
         private readonly IResourceHandle<Game> gameHandle;
         private readonly WebBrowser browser;
+        private readonly Device5 producerDevice;
+        private readonly DeviceContext4 producerContext;
+        private readonly Fence copyFence;
+        private readonly nint copyFenceHandle;
+        private readonly Fence copyFenceStride;
+        private readonly AutoResetEvent m = new(false);
+        private readonly AutoResetEvent m2 = new(false);
+        private uint copyFenceValue;
+        private readonly BlockingCollection<CopyOperation> queue = new(boundedCapacity: 2);
         private Texture surface;
         private bool needsConversion;
 
         public StrideRenderHandler(WebBrowser browser)
         {
             this.browser = browser;
+
+            using var producerDevice = new Device(SharpDX.Direct3D.DriverType.Hardware);
+            this.producerDevice = producerDevice.QueryInterface<Device5>();
+            this.producerContext = producerDevice.ImmediateContext.QueryInterface<DeviceContext4>();
+            this.copyFence = new Fence(this.producerDevice, copyFenceValue, FenceFlags.Shared);
+            this.copyFenceHandle = copyFence.CreateSharedHandle(default, 0x10000000, null);
+
             gameHandle = ServiceRegistry.Current.GetGameHandle();
+
             var renderContext = RenderContext.GetShared(gameHandle.Resource.Services);
             Initialize(renderContext);
 
+            {
+                var strideDevice = SharpDXInterop.GetNativeDevice(renderContext.GraphicsDevice) as Device;
+                using var strideDevice5 = strideDevice.QueryInterface<Device5>();
+                this.copyFenceStride = strideDevice5.OpenSharedFence(copyFenceHandle);
+            }
+
             browser.Paint += OnPaint;
             browser.AcceleratedPaint += OnAcceleratedPaint;
-            browser.AcceleratedPaint2 += OnAcceleratedPaint2;
         }
 
         protected override void Destroy()
         {
             browser.Paint -= OnPaint;
             browser.AcceleratedPaint -= OnAcceleratedPaint;
-            browser.AcceleratedPaint2 -= OnAcceleratedPaint2;
 
             surface?.Dispose();
             base.Destroy();
@@ -68,95 +104,47 @@ namespace VL.CEF
             needsConversion = false;
         }
 
-        void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+        void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, CefAcceleratedPaintInfo info)
         {
             try
             {
+                var sharedHandle = info.SharedTextureHandle;
                 if (sharedHandle == IntPtr.Zero)
                     return;
 
-                var d3dDevice = SharpDXInterop.GetNativeDevice(GraphicsDevice) as Device;
-                if (d3dDevice is null)
+                using var texture = producerDevice.OpenSharedResource1<Texture2D>(sharedHandle);
+                if (texture is null)
                     return;
 
-                var d3dTexture = d3dDevice.OpenSharedResource<Texture2D>(sharedHandle);
-                if (d3dTexture is null)
-                    return;
-
-                var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
-                lock (syncRoot)
+                using var targetTexture = new Texture2D(producerDevice, new()
                 {
-                    surface?.Dispose();
-                    surface = strideTexture;
-                }
+                    ArraySize = texture.Description.ArraySize,
+                    BindFlags = BindFlags.ShaderResource,
+                    CpuAccessFlags = CpuAccessFlags.None,
+                    Format = texture.Description.Format,
+                    Height = texture.Description.Height,
+                    Width = texture.Description.Width,
+                    MipLevels = texture.Description.MipLevels,
+                    OptionFlags = ResourceOptionFlags.Shared,
+                    SampleDescription = new(1, 0),
+                    Usage = ResourceUsage.Default
+                });
+                producerContext.CopyResource(texture, targetTexture);
+                var fenceValue = ++copyFenceValue;
+                producerContext.Signal(copyFence, fenceValue);
+                copyFence.SetEventOnCompletion(fenceValue, m2.Handle);
+                //producerContext.Flush();
+                var resource = targetTexture.QueryInterface<SharpDX.DXGI.Resource>();
+                if (queue.TryAddSafe(new(resource, fenceValue), millisecondsTimeout: 100))
+                    m2.WaitOne();
+                else
+                    resource.Dispose();
+
                 needsConversion = true;
             }
             catch (Exception e)
             {
                 RuntimeGraph.ReportException(e);
-            }
-        }
-
-        void OnAcceleratedPaint2(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle, int newTexture)
-        {
-            try
-            {
-                if (sharedHandle == IntPtr.Zero)
-                    return;
-
-                var d3dDevice = SharpDXInterop.GetNativeDevice(GraphicsDevice) as Device;
-                if (d3dDevice is null)
-                    return;
-
-                var d3dDevice1 = d3dDevice.QueryInterface<SharpDX.Direct3D11.Device1>();
-                if (d3dDevice1 is null)
-                    return;
-
-                var d3dTexture = d3dDevice1.OpenSharedResource1<Texture2D>(sharedHandle);
-                if (d3dTexture is null)
-                    return;
-
-                // Doesn't work - Stride can't deal with the options flags of the texture description, therefor set up the Stride wrapper manually
-                // once this PR is merged https://github.com/stride3d/stride/pull/1759  this hack won't be needed anymore:
-                var strideTexture = CreateTextureFromNativeImpl(GraphicsDevice, d3dTexture, takeOwnership: true);
-                 //var strideTexture = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, d3dTexture, takeOwnership: true);
-                lock (syncRoot)
-                {
-                    surface?.Dispose();
-                    surface = strideTexture;
-                }
-                needsConversion = true;
-            }
-            catch (Exception e)
-            {
-                RuntimeGraph.ReportException(e);
-            }
-
-            static Texture CreateTextureFromNativeImpl(GraphicsDevice device, Texture2D dxTexture2D, bool takeOwnership, bool isSRgb = false)
-            {
-                var tex = (Texture)Activator.CreateInstance(typeof(Texture), BindingFlags.Instance | BindingFlags.NonPublic, null, new[] { device }, null);
-
-                if (takeOwnership)
-                {
-                    var unknown = dxTexture2D as SharpDX.IUnknown;
-                    unknown.AddReference();
-                }
-
-                var nativeDeviceChild = typeof(GraphicsResourceBase).GetProperty("NativeDeviceChild", BindingFlags.Instance | BindingFlags.NonPublic);
-                nativeDeviceChild.SetValue(tex, dxTexture2D);
-
-                TextureDescription textureDescription = (TextureDescription)typeof(Texture).GetMethod("ConvertFromNativeDescription", BindingFlags.NonPublic | BindingFlags.Static).Invoke(null, new object[] { dxTexture2D.Description });
-                textureDescription.Options = TextureOptions.SharedNthandle | TextureOptions.SharedKeyedmutex;
-
-                if (isSRgb)
-                {
-                    textureDescription.Format = textureDescription.Format.ToSRgb();
-                }
-
-                var InitializeFrom = typeof(Texture).GetMethod("InitializeFrom", BindingFlags.Instance | BindingFlags.NonPublic, new Type[] { typeof(TextureDescription), typeof(DataBox[]) });
-                InitializeFrom.Invoke(tex, new object[] { textureDescription, null });
-
-                return tex;
             }
         }
 
@@ -174,6 +162,24 @@ namespace VL.CEF
 
             // Ensure we render in the proper size
             browser.Size = commandList.Viewport.Size;
+
+            if (queue.TryTake(out var copyOperation))
+            {
+                surface?.Dispose();
+
+                var device = (Device)SharpDXInterop.GetNativeDevice(GraphicsDevice);
+                //copyFenceStride.SetEventOnCompletion(copyOperation.FenceValue, m.Handle);
+                //m.WaitOne();
+                var texture2D = device.OpenSharedResource<Texture2D>(copyOperation.Resource.SharedHandle);
+                copyOperation.Resource.Dispose();
+                surface = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, texture2D, takeOwnership: false);
+                // Undo the ref count increment of an internal QueryInterface call
+                (texture2D as IUnknown).Release();
+            }
+            else
+            {
+                Trace.TraceInformation("No copy operation");
+            }
 
             lock (syncRoot)
             {
@@ -228,8 +234,7 @@ shader WebRendererShader : ImageEffectShader
 {
 stage override float4 Shading()
 {
-    float2 samplePosition = float2(streams.TexCoord.x, 1 - streams.TexCoord.y);
-    float4 color = Texture0.Sample(PointSampler, samplePosition);
+    float4 color = Texture0.Sample(PointSampler, streams.TexCoord);
 
     // The render pipeline expects a linear color space
     return float4(ToLinear(color.r), ToLinear(color.g), ToLinear(color.b), color.a);

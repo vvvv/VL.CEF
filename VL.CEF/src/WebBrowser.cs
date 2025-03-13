@@ -46,7 +46,7 @@ namespace VL.CEF
             // - WebSecurity was disabled but that's not available anymore
 
             var windowInfo = CefWindowInfo.Create();
-            windowInfo.ExternalBeginFrameEnabled = true;
+            windowInfo.ExternalBeginFrameEnabled = false;
             windowInfo.SharedTextureEnabled = sharedTextureEnabled;
             windowInfo.SetAsWindowless(IntPtr.Zero, true);
 
@@ -74,6 +74,7 @@ namespace VL.CEF
         {
             FBrowser = browser;
             FBrowserHost = browser.GetHost();
+            FBrowserHost.SetWindowlessFrameRate(60);
             FBrowserAttachedEvent.Set();
         }
 

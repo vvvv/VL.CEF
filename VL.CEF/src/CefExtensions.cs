@@ -69,7 +69,7 @@ namespace VL.CEF
                     //// We do not meet the requirements - see cef_sandbox_win.h
                     //cefSettings.NoSandbox = true;
 #if DEBUG
-                    cefSettings.LogSeverity = CefLogSeverity.Error;
+                    cefSettings.LogSeverity = CefLogSeverity.Verbose;
 #else
             cefSettings.LogSeverity = CefLogSeverity.Disable;
 #endif
