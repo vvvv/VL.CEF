@@ -26,15 +26,17 @@ using SharpDX;
 using DataBox = Stride.Graphics.DataBox;
 using System.Threading;
 using System.Diagnostics;
+using Stride.Core;
+using ServiceRegistry = VL.Core.ServiceRegistry;
 
 namespace VL.CEF
 {
     public sealed partial class StrideRenderHandler : RendererBase
     {
-        struct CopyOperation(SharpDX.DXGI.Resource Resource, uint FenceValue)
+        struct Frame(SharpDX.DXGI.Resource resource, long fenceValue)
         {
-            public SharpDX.DXGI.Resource Resource = Resource;
-            public uint FenceValue = FenceValue;
+            public SharpDX.DXGI.Resource Resource = resource;
+            public long FenceValue = fenceValue;
         }
 
         private readonly object syncRoot = new object();
@@ -44,17 +46,18 @@ namespace VL.CEF
         private readonly DeviceContext4 producerContext;
         private readonly Fence copyFence;
         private readonly nint copyFenceHandle;
-        private readonly Fence copyFenceStride;
-        private readonly AutoResetEvent m = new(false);
-        private readonly AutoResetEvent m2 = new(false);
-        private uint copyFenceValue;
-        private readonly BlockingCollection<CopyOperation> queue = new(boundedCapacity: 2);
+        private long copyFenceValue;
+        private readonly AutoResetEvent copyEvent = new(false);
+        private readonly BlockingCollection<Frame> queue = new(boundedCapacity: 1);
+        private readonly bool needsRefCountFix;
         private Texture surface;
-        private bool needsConversion;
 
         public StrideRenderHandler(WebBrowser browser)
         {
             this.browser = browser;
+
+            var strideVersion = typeof(RenderContext).Assembly.GetName().Version;
+            needsRefCountFix = strideVersion > new Version(4, 2, 0, 1) && strideVersion < new Version(4, 2, 0, 2293);
 
             using var producerDevice = new Device(SharpDX.Direct3D.DriverType.Hardware);
             this.producerDevice = producerDevice.QueryInterface<Device5>();
@@ -82,6 +85,17 @@ namespace VL.CEF
             browser.Paint -= OnPaint;
             browser.AcceleratedPaint -= OnAcceleratedPaint;
 
+            queue.CompleteAdding();
+            foreach (var item in queue)
+                item.Resource.Dispose();
+
+            copyEvent.Set();
+            copyEvent.Dispose();
+            copyFence.Dispose();
+            copyFenceStride.Dispose();
+            producerContext.Dispose();
+            producerDevice.Dispose();
+
             surface?.Dispose();
             base.Destroy();
             gameHandle.Dispose();
@@ -100,8 +114,6 @@ namespace VL.CEF
                 this.surface?.Dispose();
                 this.surface = surface;
             }
-
-            needsConversion = false;
         }
 
         void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, CefAcceleratedPaintInfo info)
@@ -121,7 +133,7 @@ namespace VL.CEF
                     ArraySize = texture.Description.ArraySize,
                     BindFlags = BindFlags.ShaderResource,
                     CpuAccessFlags = CpuAccessFlags.None,
-                    Format = texture.Description.Format,
+                    Format = GraphicsDevice.ColorSpace == ColorSpace.Linear ? Format.B8G8R8A8_UNorm_SRgb : Format.B8G8R8A8_UNorm,
                     Height = texture.Description.Height,
                     Width = texture.Description.Width,
                     MipLevels = texture.Description.MipLevels,
@@ -129,18 +141,30 @@ namespace VL.CEF
                     SampleDescription = new(1, 0),
                     Usage = ResourceUsage.Default
                 });
-                producerContext.CopyResource(texture, targetTexture);
-                var fenceValue = ++copyFenceValue;
-                producerContext.Signal(copyFence, fenceValue);
-                copyFence.SetEventOnCompletion(fenceValue, m2.Handle);
-                //producerContext.Flush();
-                var resource = targetTexture.QueryInterface<SharpDX.DXGI.Resource>();
-                if (queue.TryAddSafe(new(resource, fenceValue), millisecondsTimeout: 100))
-                    m2.WaitOne();
-                else
-                    resource.Dispose();
 
-                needsConversion = true;
+                // Tell GPU to copy the texture
+                producerContext.CopyResource(texture, targetTexture);
+                // Prepare next fence
+                var nextFenceValue = ++copyFenceValue;
+                // Once GPU reaches next fence, set wait event to signaled (unblocks waiting thread)
+                copyFence.SetEventOnCompletion(nextFenceValue, copyEvent.Handle);
+                // Inject next fence into command list of GPU
+                producerContext.Signal(copyFence, nextFenceValue);
+                // Ensure commands (COPY, SIGNAL) get uploaded to GPU
+                producerContext.Flush();
+
+                var resource = targetTexture.QueryInterface<SharpDX.DXGI.Resource>();
+                if (queue.TryAddSafe(new Frame(resource, nextFenceValue), millisecondsTimeout: 100))
+                {
+                    // Render thread just opened the target texture. It uses the same fence to tell the GPU about the copy operation.
+                    // But here on our end we'll need to block until texture copy on GPU is truly finished, or CEF would start rendering
+                    // into our texture again.
+                    copyEvent.WaitOne();
+                }
+                else
+                {
+                    resource.Dispose();
+                }
             }
             catch (Exception e)
             {
@@ -163,22 +187,26 @@ namespace VL.CEF
             // Ensure we render in the proper size
             browser.Size = commandList.Viewport.Size;
 
-            if (queue.TryTake(out var copyOperation))
+            if (queue.TryTake(out var frame))
             {
                 surface?.Dispose();
 
                 var device = (Device)SharpDXInterop.GetNativeDevice(GraphicsDevice);
-                //copyFenceStride.SetEventOnCompletion(copyOperation.FenceValue, m.Handle);
-                //m.WaitOne();
-                var texture2D = device.OpenSharedResource<Texture2D>(copyOperation.Resource.SharedHandle);
-                copyOperation.Resource.Dispose();
+                var resource = frame.Resource;
+                var texture2D = device.OpenSharedResource<Texture2D>(resource.SharedHandle);
+                resource.Dispose();
+
                 surface = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, texture2D, takeOwnership: false);
-                // Undo the ref count increment of an internal QueryInterface call
-                (texture2D as IUnknown).Release();
-            }
-            else
-            {
-                Trace.TraceInformation("No copy operation");
+
+                if (needsRefCountFix)
+                {
+                    // Undo the ref count increment of an internal QueryInterface call
+                    (texture2D as IUnknown).Release();
+                }
+
+                // Ensure GPU waits on copy operation to finish
+                using var deviceContext = ((DeviceContext)SharpDXInterop.GetNativeDeviceContext(GraphicsDevice)).QueryInterface<DeviceContext4>();
+                deviceContext.Wait(copyFenceStride, frame.FenceValue);
             }
 
             lock (syncRoot)
@@ -186,135 +214,12 @@ namespace VL.CEF
                 var renderTarget = commandList.RenderTarget;
                 if (surface != null && renderTarget != null)
                 {
-                    if (needsConversion)
-                    {
-                        shader.SetInput(surface);
-                        shader.SetOutput(renderTarget);
-                        shader.Draw(context);
-                    }
-                    else
-                    {
-                        context.GraphicsContext.DrawTexture(surface, BlendStates.AlphaBlend);
-                    }
+                    context.GraphicsContext.DrawTexture(surface, BlendStates.AlphaBlend);
                 }
             }
         }
         private readonly SerialDisposable inputSubscription = new SerialDisposable();
+        private readonly Fence copyFenceStride;
         private IInputSource lastInputSource;
-
-        protected override void InitializeCore()
-        {
-            base.InitializeCore();
-
-            // Setup our own effect compiler
-            using var fileProvider = new InMemoryFileProvider(EffectSystem.FileProvider);
-            fileProvider.Register("shaders/WebRendererShader.sdsl", GetShaderSource());
-            using var compiler = new EffectCompiler(fileProvider);
-            compiler.SourceDirectories.Add("shaders");
-
-            // Switch effect compiler
-            var currentCompiler = EffectSystem.Compiler;
-            EffectSystem.Compiler = compiler;
-            try
-            {
-                shader = ToLoadAndUnload(new ImageEffectShader("WebRendererShader"));
-                // The incoming texture uses premultiplied alpha
-                shader.BlendState = BlendStates.AlphaBlend;
-                shader.EffectInstance.UpdateEffect(GraphicsDevice);
-            }
-            finally
-            {
-                EffectSystem.Compiler = currentCompiler;
-            }
-
-            string GetShaderSource()
-            {
-                return @"
-shader WebRendererShader : ImageEffectShader
-{
-stage override float4 Shading()
-{
-    float4 color = Texture0.Sample(PointSampler, streams.TexCoord);
-
-    // The render pipeline expects a linear color space
-    return float4(ToLinear(color.r), ToLinear(color.g), ToLinear(color.b), color.a);
-}
-
-// There're faster approximations, see http://chilliant.blogspot.com/2012/08/srgb-approximations-for-hlsl.html
-float ToLinear(float C_srgb)
-{
-    if (C_srgb <= 0.04045)
-        return C_srgb / 12.92;
-    else
-        return pow(abs((C_srgb + 0.055) / 1.055), 2.4);
-}
-};
-";
-            }
-        }
-        ImageEffectShader shader;
-
-        // See https://github.com/vvvv/VL.Devices.DeckLink/blob/master/src/VL.Devices.DeckLink/VideoIn.cs
-        class InMemoryFileProvider : VirtualFileProviderBase, IDisposable
-        {
-            readonly Dictionary<string, byte[]> inMemory = new Dictionary<string, byte[]>();
-            readonly HashSet<string> tempFiles = new HashSet<string>();
-            readonly IVirtualFileProvider virtualFileProvider;
-
-            public InMemoryFileProvider(IVirtualFileProvider baseFileProvider) : base(baseFileProvider.RootPath)
-            {
-                virtualFileProvider = baseFileProvider;
-            }
-
-            public void Register(string url, string content)
-            {
-                inMemory[url] = Encoding.Default.GetBytes(content);
-
-                // The effect system assumes there is a /path - doesn't do a FileExists check first :/
-                var path = GetTempFileName();
-                tempFiles.Add(path);
-                File.WriteAllText(path, content);
-                inMemory[$"{url}/path"] = Encoding.Default.GetBytes(path);
-            }
-
-            // Don't use Path.GetTempFileName() where we can run into overflow issue (had it during development)
-            // https://stackoverflow.com/questions/18350699/system-io-ioexception-the-file-exists-when-using-system-io-path-gettempfilena
-            private string GetTempFileName()
-            {
-                return Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            }
-
-            public new void Dispose()
-            {
-                try
-                {
-                    foreach (var f in tempFiles)
-                        File.Delete(f);
-                }
-                catch (Exception)
-                {
-                    // Ignore
-                }
-                base.Dispose();
-            }
-
-            public override bool FileExists(string url)
-            {
-                if (inMemory.ContainsKey(url))
-                    return true;
-
-                return virtualFileProvider.FileExists(url);
-            }
-
-            public override Stream OpenStream(string url, VirtualFileMode mode, VirtualFileAccess access, VirtualFileShare share = VirtualFileShare.Read, StreamFlags streamFlags = StreamFlags.None)
-            {
-                if (inMemory.TryGetValue(url, out var bytes))
-                {
-                    return new MemoryStream(bytes);
-                }
-
-                return virtualFileProvider.OpenStream(url, mode, access, share, streamFlags);
-            }
-        }
     }
 }
