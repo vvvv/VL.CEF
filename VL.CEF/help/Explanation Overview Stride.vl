@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="PQrNVFUfCwxLCZ1fNYBsdJ" LanguageVersion="2024.6.6" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2024.6.6" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="PQrNVFUfCwxLCZ1fNYBsdJ" LanguageVersion="2025.7.0-0233-g62969fb108" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0233-g62969fb108" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -21,7 +21,7 @@
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
             </p:NodeReference>
             <Pin Id="GoSrw5VpF5BNdBjq8kL2hK" Name="Node Context" Kind="InputPin" IsHidden="true" />
-            <Pin Id="QcPjJBovtk2LuDGuHRdYFG" Name="Startup Url" Kind="InputPin" DefaultValue="https://www.shadertoy.com/view/Mly3WV" />
+            <Pin Id="QcPjJBovtk2LuDGuHRdYFG" Name="Startup Url" Kind="InputPin" DefaultValue="https://www.testufo.com/animation-time-graph#indicator=0" />
             <Pin Id="RY0V5Cz56B1LcuQnNXUKrL" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
             <Pin Id="Csnq1j80EmFLS9SJRLQxEI" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="U0aCmQoBWQTQU2Bh1ZZ5k0" Name="Enabled" Kind="InputPin" />
@@ -47,6 +47,7 @@
             <Pin Id="D7GPuIl5z9xLU3ap0NaeyP" Name="Back Buffer Format" Kind="InputPin" IsHidden="true" />
             <Pin Id="S2iD2qqcq6QLfbAJn0ndrU" Name="Depth Buffer Format" Kind="InputPin" IsHidden="true" />
             <Pin Id="NuHihpQ97M7LOHMQxQSvzT" Name="Multisample Count" Kind="InputPin" IsHidden="true" />
+            <Pin Id="E5keZsOPHxrLBChV4yOaDE" Name="Input Priority" Kind="InputPin" IsHidden="true" />
             <Pin Id="IrHM3qJHybXP5MARtaKMSV" Name="Input" Kind="InputPin" />
             <Pin Id="SZFUMQVtcpGOXJxVQINokU" Name="Render View" Kind="InputPin" />
             <Pin Id="QhIXD9hgn1mNG7Rj8mxrRP" Name="Title" Kind="InputPin" />
@@ -65,6 +66,7 @@
             <Pin Id="Hu9ffk9kHf8OK3p9lawkZK" Name="Input Source" Kind="OutputPin" />
             <Pin Id="SpdwgJfCMaJOIViUln9v8d" Name="Back Buffer" Kind="OutputPin" />
             <Pin Id="G2JBz0k6SshPaVFwUIaehP" Name="Depth Buffer" Kind="OutputPin" />
+            <Pin Id="R20V9kw4LfcNsZkb6inyFC" Name="Present Call Intercept" Kind="InputPin" IsHidden="true" />
           </Node>
           <Node Bounds="241,211,95,19" Id="Njg0Wem0LbSL54eR6IxD8d">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Stride.vl">
@@ -131,7 +133,7 @@
     </Node>
   </Patch>
   <DocumentDependency Id="JUwSZblEMtfK95E86fZfKG" Location="../VL.CEF.vl" />
-  <NugetDependency Id="CETLk4zmNbMLwrgwX3i4PN" Location="VL.Stride" Version="2024.6.6" />
+  <NugetDependency Id="CETLk4zmNbMLwrgwX3i4PN" Location="VL.Stride" Version="2025.7.0-0233-g62969fb108" />
   <NugetDependency Id="ASnlOjg87TIN6xYzD3AqNt" Location="VL.CEF.Stride" Version="0.0.0" />
-  <NugetDependency Id="JaraQnHieFhOBoudoN5pdM" Location="VL.Stride.TextureFX" Version="2024.6.6" />
+  <NugetDependency Id="JaraQnHieFhOBoudoN5pdM" Location="VL.Stride.TextureFX" Version="2025.7.0-0233-g62969fb108" />
 </Document>

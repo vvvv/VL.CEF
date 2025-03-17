@@ -6,8 +6,8 @@
     <PackageOutputPath>$(MsBuildThisFileDirectory)bin\</PackageOutputPath>
     
     <!-- Used VL version -->
-    <VLVersion>2024.6.6</VLVersion>
-    <VLShortVersion>$(VLVersion.Substring(5))</VLShortVersion>
+    <VLVersion>2025.7.0-0233-g62969fb108</VLVersion>
+    <VLShortVersion>$(VLVersion.Substring(5))-win-x64</VLShortVersion>
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="MLzy2Ilx953Pfn5zJRwtAu" LanguageVersion="2024.6.6" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2024.6.6" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="MLzy2Ilx953Pfn5zJRwtAu" LanguageVersion="2025.7.0-0233-g62969fb108" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0233-g62969fb108" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -15,7 +15,7 @@
       </p:NodeReference>
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
-          <Node Bounds="181,276,165,19" Id="T6EK0aeUpK8L42vEmISS7W">
+          <Node Bounds="181,276,185,19" Id="T6EK0aeUpK8L42vEmISS7W">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
@@ -31,11 +31,12 @@
             <Pin Id="Cim7mYTtd10MvSsAm82Iyh" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="Ej3DcReZzUtMEw0VU67AdP" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
             <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
+            <Pin Id="I3EeUpudnslMekXxZbk5br" Name="Title" Kind="InputPin" />
             <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
             <Pin Id="OOGQG7BFIEtNLL3wzKPENq" Name="Clear" Kind="InputPin" />
             <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin" />
             <Pin Id="S94F0I4MRSDOmqXJETXtMl" Name="Show Cursor" Kind="InputPin" />
-            <Pin Id="MpoohInZy8NNDwShJ6Z6oY" Name="VSync" Kind="InputPin" DefaultValue="False" />
+            <Pin Id="MpoohInZy8NNDwShJ6Z6oY" Name="VSync" Kind="InputPin" DefaultValue="True" />
             <Pin Id="ASwYUUdqze9Pv0t5jn0hE7" Name="Commands" Kind="InputPin" IsHidden="true" />
             <Pin Id="PVycuEyb5dYPQr0nfuG5XO" Name="Enable Keyboard Shortcuts" Kind="InputPin" IsHidden="true" />
             <Pin Id="QSQDd262CNvPbpv6EkhAKI" Name="Enabled" Kind="InputPin" />
@@ -50,7 +51,7 @@
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
             </p:NodeReference>
             <Pin Id="EYG6UXHO8RVNzXYM6Uqu8Z" Name="Node Context" Kind="InputPin" IsHidden="true" />
-            <Pin Id="KmxDcDJIL0ON5GdQldZhdQ" Name="Startup Url" Kind="InputPin" DefaultValue="https://www.shadertoy.com/view/Mly3WV" />
+            <Pin Id="KmxDcDJIL0ON5GdQldZhdQ" Name="Startup Url" Kind="InputPin" DefaultValue="https://www.shadertoy.com/view/4tXSzM" />
             <Pin Id="T9YTBsxLMdTNTSxqhkdDeI" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
             <Pin Id="MrPQX5zSAABQViiCSHAUER" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="MZhcStex7AcM8wApzFRvK1" Name="Enabled" Kind="InputPin" />
@@ -96,6 +97,22 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
+          <Node Bounds="363,380,61,19" Id="L36UxCeXj39OH0jGy4HDhV">
+            <p:NodeReference LastCategoryFullName="System.Application" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="MainLoop" />
+            </p:NodeReference>
+            <Pin Id="O0uAWUWlRDOMzqlNkDMGUh" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="LyLqm5xkh3mP5pOnpaD24J" Name="Input" Kind="InputPin" IsHidden="true" />
+            <Pin Id="SOO3u3wn1a7LtVuRblGkQl" Name="Max FPS" Kind="InputPin" DefaultValue="0" />
+            <Pin Id="NSgC18ePAhlNJjx3Iux6Z3" Name="Is Incremental" Kind="InputPin" />
+            <Pin Id="NbBvoVcJMsfPPrpseDHWp1" Name="Incremental FPS" Kind="InputPin" />
+            <Pin Id="HiRHtJqPH3WPVq6EtQ9yrS" Name="Max FPS" Kind="OutputPin" />
+            <Pin Id="LFZELs92O0WMyBikP3hXqY" Name="Is Incremental" Kind="OutputPin" />
+            <Pin Id="K1vcWF75CrQOOl6NvJzkcR" Name="Incremental FPS" Kind="OutputPin" />
+            <Pin Id="F7Vzt5Scsf5Phlgsf6onhd" Name="Wait Accuracy" Kind="InputPin" IsHidden="true" />
+            <Pin Id="PXXphl5JeWVLUOpQK2XLvH" Name="Wait Accuracy" Kind="OutputPin" IsHidden="true" />
+          </Node>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -108,7 +125,7 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2024.6.6" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0233-g62969fb108" />
   <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
   <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.0.0" />
 </Document>
