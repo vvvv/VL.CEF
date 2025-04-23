@@ -7,8 +7,11 @@ using Vector2 = Stride.Core.Mathematics.Vector2;
 using VL.Skia.Egl;
 using SharpDX.DXGI;
 using Device = SharpDX.Direct3D11.Device;
-using System.Threading;
+using Device1 = SharpDX.Direct3D11.Device1;
 using Stride.Core.Mathematics;
+using System.Collections.Concurrent;
+using VL.Core.Utils;
+using VL.Core;
 
 namespace VL.CEF
 {
@@ -17,10 +20,11 @@ namespace VL.CEF
         private readonly object syncRoot = new object();
 
         private readonly RenderContext renderContext;
-        private readonly Device device;
         private SKImage rasterImage, textureImage;
-        private Texture2D sharedTexture;
-        private IntPtr sharedHandle;
+        private readonly Device1 device;
+        private readonly Device5 producerDevice;
+        private readonly DeviceContext4 producerContext;
+        private BlockingCollection<SharpDX.DXGI.Resource> queue = new BlockingCollection<SharpDX.DXGI.Resource>(boundedCapacity: 1);
         private WebBrowser browser;
 
         public SkiaRenderHandler(WebBrowser browser)
@@ -29,23 +33,32 @@ namespace VL.CEF
             renderContext = RenderContext.ForCurrentThread();
             if (renderContext.EglContext.Dislpay.TryGetD3D11Device(out var d3dDevice))
             {
-                device = new Device(d3dDevice);
+                using var device = new Device(d3dDevice);
+                this.device = device.QueryInterface<Device1>();
+
+                using var producerDevice = new Device(SharpDX.Direct3D.DriverType.Hardware);
+                this.producerDevice = producerDevice.QueryInterface<Device5>();
+                this.producerContext = producerDevice.ImmediateContext.QueryInterface<DeviceContext4>();
             }
             browser.Paint += OnPaint;
             browser.AcceleratedPaint += OnAcceleratedPaint;
-            browser.AcceleratedPaint2 += OnAcceleratedPaint2;
         }
 
         public void Dispose()
         {
             browser.Paint -= OnPaint;
             browser.AcceleratedPaint -= OnAcceleratedPaint;
-            browser.AcceleratedPaint2 -= OnAcceleratedPaint2;
 
             rasterImage?.Dispose();
             textureImage?.Dispose();
-            sharedTexture?.Dispose();
+            queue.CompleteAdding();
+            foreach (var t in queue)
+                t.Dispose();
             renderContext.Dispose();
+
+            device?.Dispose();
+            producerContext?.Dispose();
+            producerDevice?.Dispose();
         }
 
         private void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
@@ -58,29 +71,42 @@ namespace VL.CEF
             }
         }
 
-        private void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
+        private void OnAcceleratedPaint(CefPaintElementType type, CefRectangle[] dirtyRects, CefAcceleratedPaintInfo info)
         {
-            lock (syncRoot)
+            try
             {
-                if (sharedHandle != this.sharedHandle)
-                {
-                    this.sharedHandle = sharedHandle;
-                    sharedTexture?.Dispose();
-                    sharedTexture = device?.OpenSharedResource<Texture2D>(sharedHandle);
-                }
-            }
-        }
+                var sharedHandle = info.SharedTextureHandle;
+                if (sharedHandle == IntPtr.Zero)
+                    return;
 
-        private void OnAcceleratedPaint2(CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle, int newTexture)
-        {
-            lock (syncRoot)
-            {
-                if (newTexture != 0)
+                using var texture = producerDevice.OpenSharedResource1<Texture2D>(sharedHandle);
+                if (texture is null)
+                    return;
+
+                using var targetTexture = new Texture2D(producerDevice, new()
                 {
-                    sharedTexture?.Dispose();
-                    var device1 = device.QueryInterface<SharpDX.Direct3D11.Device1>();
-                    sharedTexture = device1?.OpenSharedResource1<Texture2D>(sharedHandle);
-                }
+                    ArraySize = texture.Description.ArraySize,
+                    BindFlags = BindFlags.ShaderResource,
+                    CpuAccessFlags = CpuAccessFlags.None,
+                    Format = Format.B8G8R8A8_UNorm,
+                    Height = texture.Description.Height,
+                    Width = texture.Description.Width,
+                    MipLevels = texture.Description.MipLevels,
+                    OptionFlags = ResourceOptionFlags.Shared,
+                    SampleDescription = new(1, 0),
+                    Usage = ResourceUsage.Default
+                });
+
+                producerContext.CopyResource(texture, targetTexture);
+                producerContext.Flush();
+
+                var resource = targetTexture.QueryInterface<SharpDX.DXGI.Resource>();
+                if (!queue.TryAddSafe(resource, millisecondsTimeout: 50))
+                    resource.Dispose();
+            }
+            catch (Exception e)
+            {
+                RuntimeGraph.ReportException(e);
             }
         }
 
@@ -96,11 +122,15 @@ namespace VL.CEF
             lock (syncRoot)
             {
                 // Transfer ownership
-                var texture = Interlocked.Exchange(ref sharedTexture, null);
-                if (texture != null)
+                if (queue.TryTake(out var resource))
                 {
                     textureImage?.Dispose();
-                    textureImage = ToImage(texture);
+
+                    using (resource)
+                    {
+                        using var texture = device.OpenSharedResource<Texture2D>(resource.SharedHandle);
+                        textureImage = ToImage(texture);
+                    }
                 }
 
                 var image = textureImage ?? rasterImage;
@@ -117,7 +147,7 @@ namespace VL.CEF
             const int GL_TEXTURE_BINDING_2D = 0x8069;
 
             var eglContext = renderContext.EglContext;
-            var eglImage = eglContext.CreateImageFromD3D11Texture(texture.NativePointer);
+            using var eglImage = eglContext.CreateImageFromD3D11Texture(texture.NativePointer);
 
             uint textureId = 0;
             NativeGles.glGenTextures(1, ref textureId);
@@ -135,7 +165,7 @@ namespace VL.CEF
                 target: NativeGles.GL_TEXTURE_2D,
                 format: colorType.ToGlSizedFormat());
 
-            var backendTexture = new GRBackendTexture(
+            using var backendTexture = new GRBackendTexture(
                 width: description.Width,
                 height: description.Height,
                 mipmapped: false,
@@ -144,18 +174,13 @@ namespace VL.CEF
             var image = SKImage.FromTexture(
                 renderContext.SkiaContext,
                 backendTexture,
-                GRSurfaceOrigin.BottomLeft,
+                GRSurfaceOrigin.TopLeft,
                 colorType,
                 SKAlphaType.Premul,
                 colorspace: SKColorSpace.CreateSrgb(),
                 releaseProc: _ =>
                 {
-                    renderContext.MakeCurrent();
-
-                    backendTexture.Dispose();
                     NativeGles.glDeleteTextures(1, ref textureId);
-                    eglImage.Dispose();
-                    texture.Dispose();
                 });
 
             return image;

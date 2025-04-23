@@ -38,6 +38,7 @@ namespace VL.CEF
             var settings = new CefBrowserSettings();
             settings.RemoteFonts = CefState.Enabled;
             settings.WebGL = CefState.Enabled;
+            settings.WindowlessFrameRate = int.MaxValue;
             // Some parameters are gone here compared to old version:
             // - FileAccessFromFileUrls & UniversalAccessFromFileUrls seem related to LoadString baseUrl
             // this is probably now accessible through the new api: ResourceManager which is not available
@@ -67,8 +68,6 @@ namespace VL.CEF
         internal event PaintHandler Paint;
 
         internal event AcceleratedPaintHandler AcceleratedPaint;
-
-        internal event AcceleratedPaint2Handler AcceleratedPaint2;
 
         internal CefBrowserHost BrowserHost => FBrowserHost;
 
@@ -149,6 +148,7 @@ namespace VL.CEF
                 ComittedSize = Size;
                 FBrowserHost.WasResized();
             }
+
             FBrowserHost.SendExternalBeginFrame();
         }
 

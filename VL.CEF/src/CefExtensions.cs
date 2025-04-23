@@ -63,14 +63,13 @@ namespace VL.CEF
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;
-                    cefSettings.PackLoadingDisabled = false;
                     cefSettings.MultiThreadedMessageLoop = true;
                     cefSettings.BrowserSubprocessPath = resolvedRendererPath;
                     cefSettings.CommandLineArgsDisabled = false;
                     //// We do not meet the requirements - see cef_sandbox_win.h
                     //cefSettings.NoSandbox = true;
 #if DEBUG
-                    cefSettings.LogSeverity = CefLogSeverity.Error;
+                    cefSettings.LogSeverity = CefLogSeverity.Verbose;
 #else
             cefSettings.LogSeverity = CefLogSeverity.Disable;
 #endif

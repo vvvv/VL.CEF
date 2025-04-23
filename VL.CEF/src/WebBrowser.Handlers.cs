@@ -68,16 +68,10 @@ namespace VL.CEF
 
             }
 
-            protected override void OnAcceleratedPaint2(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle, int newTexture)
+            protected override void OnAcceleratedPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, CefAcceleratedPaintInfo info)
             {
                 if (renderer.Enabled && type == CefPaintElementType.View)
-                    renderer.AcceleratedPaint2?.Invoke(type, dirtyRects, sharedHandle, newTexture);
-            }
-
-            protected override void OnAcceleratedPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr sharedHandle)
-            {
-                if (renderer.Enabled && type == CefPaintElementType.View)
-                    renderer.AcceleratedPaint?.Invoke(type, dirtyRects, sharedHandle);
+                    renderer.AcceleratedPaint?.Invoke(type, dirtyRects, info);
             }
 
             protected override void OnPaint(CefBrowser browser, CefPaintElementType type, CefRectangle[] dirtyRects, IntPtr buffer, int width, int height)
@@ -130,7 +124,7 @@ namespace VL.CEF
                 this.renderer = renderer;
             }
 
-            protected override bool OnBeforePopup(CefBrowser browser, CefFrame frame, string targetUrl, string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture, CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings, ref CefDictionaryValue extraInfo, ref bool noJavascriptAccess)
+            protected override bool OnBeforePopup(CefBrowser browser, CefFrame frame, int popupId, string targetUrl, string targetFrameName, CefWindowOpenDisposition targetDisposition, bool userGesture, CefPopupFeatures popupFeatures, CefWindowInfo windowInfo, ref CefClient client, CefBrowserSettings settings, ref CefDictionaryValue extraInfo, ref bool noJavascriptAccess)
             {
                 renderer.LoadUrl(targetUrl);
                 return true;
