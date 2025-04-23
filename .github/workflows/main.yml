@@ -42,7 +42,7 @@ jobs:
         env:
           NuGetApiKey: ${{ secrets.NUGET_API_KEY }}
       - name: 'Publish: bin'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bin
           path: bin
