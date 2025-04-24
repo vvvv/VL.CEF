@@ -31,7 +31,7 @@ namespace VL.CEF
         private readonly bool needsRefCountFix;
         private Texture surface;
 
-        public StrideRenderHandler(WebBrowser browser)
+        public StrideRenderHandler(NodeContext nodeContext, WebBrowser browser)
         {
             this.browser = browser;
 
@@ -42,7 +42,7 @@ namespace VL.CEF
             this.producerDevice = producerDevice.QueryInterface<Device5>();
             this.producerContext = producerDevice.ImmediateContext.QueryInterface<DeviceContext4>();
 
-            gameHandle = ServiceRegistry.Current.GetGameHandle();
+            gameHandle = nodeContext.AppHost.Services.GetGameHandle();
 
             var renderContext = RenderContext.GetShared(gameHandle.Resource.Services);
             Initialize(renderContext);

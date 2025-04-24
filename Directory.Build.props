@@ -20,6 +20,7 @@
     <PackageProjectUrl>http://vvvv.org</PackageProjectUrl>
     <RepositoryUrl>https://github.com/vvvv/VL.CEF</RepositoryUrl>
     <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <!-- Passed to vvvv.exe -->
     <LocalVLPackages>$(MsBuildThisFileDirectory)</LocalVLPackages>
@@ -27,4 +28,8 @@
     <OverviewPatch>$(MsBuildThisFileDirectory)VL.CEF\help\Explanation Overview Skia.vl</OverviewPatch>
     <OverviewPatchStride>$(MsBuildThisFileDirectory)VL.CEF\help\Explanation Overview Stride.vl</OverviewPatchStride>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(MsBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 </Project>

@@ -59,7 +59,7 @@ namespace VL.CEF
 
                 if (Interlocked.Increment(ref initCount) == 1)
                 {
-                    CefRuntime.Load(Path.GetDirectoryName(resolvedRendererPath));
+                    CefRuntime.Load(Path.GetDirectoryName(resolvedRendererPath)!);
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;
@@ -79,7 +79,7 @@ namespace VL.CEF
                     CefRuntime.Initialize(mainArgs, cefSettings, application: new App(), windowsSandboxInfo: default);
 
                     var schemeName = "cef";
-                    if (!CefRuntime.RegisterSchemeHandlerFactory(SchemeHandlerFactory.SCHEME_NAME, null, new SchemeHandlerFactory()))
+                    if (!CefRuntime.RegisterSchemeHandlerFactory(SchemeHandlerFactory.SCHEME_NAME, null!, new SchemeHandlerFactory()))
                         throw new Exception(string.Format("Couldn't register custom scheme factory for '{0}'.", schemeName));
 
                     //return Disposable.Create(() => CefRuntime.Shutdown());

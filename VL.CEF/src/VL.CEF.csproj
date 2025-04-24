@@ -37,6 +37,7 @@
         license=$(PackageLicenseExpression);
         description=$(PackageDescription);
         projecturl=$(PackageProjectUrl);
+        repositoryurl=$(RepositoryUrl);
       </NuspecProperties>
     </PropertyGroup>
   </Target>
