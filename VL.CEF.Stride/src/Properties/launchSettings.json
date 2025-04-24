@@ -2,7 +2,7 @@
   "profiles": {
     "VL.CEF.Stride": {
       "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_$(VLShortVersion)\\vvvv.exe",
+      "executablePath": "C:\\Program Files\\vvvv\\vvvv_gamma_$(VVVVVersion)\\vvvv.exe",
       "commandLineArgs": "--package-repositories $(PackageRepositories) --export-package-sources $(PackageOutputPath) --editable-packages VL.CEF"
     }
   }

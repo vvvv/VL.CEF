@@ -5,9 +5,9 @@
 
     <PackageOutputPath>$(MsBuildThisFileDirectory)bin\</PackageOutputPath>
     
-    <!-- Used VL version -->
-    <VLVersion>2024.6.7</VLVersion>
-    <VLShortVersion>$(VLVersion.Substring(5))</VLShortVersion>
+    <!-- Used VL version - watch out, newer versions have Stride update which causes unknown crash in asset compiler when running github action -->
+    <VLVersion>2024.6.2</VLVersion>
+    <VVVVVersion>6.7</VVVVVersion>
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
