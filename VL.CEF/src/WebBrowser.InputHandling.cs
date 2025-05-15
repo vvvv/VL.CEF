@@ -55,7 +55,7 @@ namespace VL.CEF
                 Id = n.Id,
                 Modifiers = GetModifiers(n),
                 PointerType = CefPointerType.Touch,
-                Pressure = 1f,
+                Pressure = 0f,
                 RadiusX = n.ContactArea.X,
                 RadiusY = n.ContactArea.Y,
                 RotationAngle = 0,

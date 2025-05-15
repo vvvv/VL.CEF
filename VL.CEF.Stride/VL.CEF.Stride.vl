@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="Le6ulaD4AYHNsgZQTPWgw1" LanguageVersion="2024.6.6" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2024.6.6" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="Le6ulaD4AYHNsgZQTPWgw1" LanguageVersion="2024.6.7" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2024.6.7" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -46,6 +46,7 @@
                         <Choice Kind="OperationCallFlag" Name="Create" />
                         <CategoryReference Kind="AssemblyCategory" Name="StrideRenderHandler" NeedsToBeDirectParent="true" />
                       </p:NodeReference>
+                      <Pin Id="JJRPVMqUiWwQF2RZsX0HFQ" Name="Node Context" Kind="InputPin" />
                       <Pin Id="SsYIpdtfMv2QDNNxVDxsE9" Name="Browser" Kind="InputPin" />
                       <Pin Id="QaDoLp1NrU5O8WKQWxbpfQ" Name="Output" Kind="StateOutputPin" />
                     </Node>
@@ -154,7 +155,7 @@
             </Node>
             <ControlPoint Id="Lf4Eetgt55cO6hdvl7t7RS" Bounds="317,224" />
             <ControlPoint Id="JYkfxndntlgNGYISxY57uc" Bounds="373,223" />
-            <Node Bounds="330,998,115,95" Id="Oc3GJOnzAQQN5ZZrhX0XeY">
+            <Node Bounds="330,998,115,166" Id="Oc3GJOnzAQQN5ZZrhX0XeY">
               <p:NodeReference LastCategoryFullName="Reactive" LastDependency="VL.CoreLib.vl">
                 <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
                 <CategoryReference Kind="Category" Name="Reactive" NeedsToBeDirectParent="true" />
@@ -171,7 +172,7 @@
                   <Pin Id="GHUBiyGv246P43r0THIN3g" Name="Output" Kind="OutputPin" />
                 </Patch>
                 <ControlPoint Id="LxrmVIiPwrwPPHrdk2BQne" Bounds="337,1006" />
-                <ControlPoint Id="Ti64QC2y5cHOqJEIkH4nEn" Bounds="337,1086" />
+                <ControlPoint Id="Ti64QC2y5cHOqJEIkH4nEn" Bounds="337,1157" />
                 <Node Bounds="342,1038,91,26" Id="RTx3HnM3lyrLOx1C4zpBuw">
                   <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
                     <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -183,6 +184,16 @@
                   <Pin Id="MmFhmwTw7TNMuFKEWtfFzb" Name="Get Position" Kind="InputPin" />
                   <Pin Id="L9fIW4fV4jqLolcPoDpSpA" Name="Output" Kind="StateOutputPin" />
                   <Pin Id="B9X6T0vC07QNvpaP1VYOa4" Name="Result" Kind="OutputPin" />
+                </Node>
+                <Node Bounds="365,1083,68,26" Id="ReGA0PeVTCjO9uygButnbW">
+                  <p:NodeReference LastCategoryFullName="IO.INotification" LastDependency="VL.CoreLib.vl">
+                    <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                    <CategoryReference Kind="4034920448" Name="INotification" />
+                    <Choice Kind="OperationCallFlag" Name="SetHandled" />
+                  </p:NodeReference>
+                  <Pin Id="URCovo2VXOUPm3F4hZOclI" Name="Input" Kind="StateInputPin" />
+                  <Pin Id="C681nXf7KGuOXG70hNFx9p" Name="Value" Kind="InputPin" />
+                  <Pin Id="Dwc1XeJYxE1QRk8KusVDNO" Name="Output" Kind="OutputPin" IsHidden="true" />
                 </Node>
               </Patch>
             </Node>
@@ -781,6 +792,8 @@
           <Link Id="Vv5avNhC86pNkM3p1DuABH" Ids="Is21159qEliQEwFhqQLEg7,G9WQuh1LhJ3OTbb66Qpm3T" />
           <Link Id="NmkaAwPbnnkNFNwTJ5rfHO" Ids="Dgai0JfGDz6QSkmVyZZpVv,An1YzbAmJcqOi6UQp2A8LV" />
           <Link Id="L2AGYH3GlJiMwmykpvm6K1" Ids="PT86QGNrHGHOzmjlZPmQI1,SQ0wQOl5uofMR6eGqa78Pl" />
+          <Link Id="B9QptzOvdQoNAAD2alfe3j" Ids="LxrmVIiPwrwPPHrdk2BQne,URCovo2VXOUPm3F4hZOclI" />
+          <Link Id="Hgx0qWjyhzENvNSl4yTJY6" Ids="B9X6T0vC07QNvpaP1VYOa4,C681nXf7KGuOXG70hNFx9p" />
         </Patch>
       </Node>
     </Canvas>
@@ -805,10 +818,10 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2024.6.6" />
+  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2024.6.7" />
   <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net8.0-windows/VL.CEF.Stride.dll" />
   <NugetDependency Id="B2j9g6TO1esQANElMPYnOG" Location="VL.CEF" IsForward="true" Version="0.0.0" />
-  <NugetDependency Id="Vb5iWrVbmAYPsJrOMALfUj" Location="VL.Stride.TextureFX" Version="2024.6.6" />
+  <NugetDependency Id="Vb5iWrVbmAYPsJrOMALfUj" Location="VL.Stride.TextureFX" Version="2024.6.7" />
   <PlatformDependency Id="ViUsdYZNo6zMR12kZHvhgu" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/packs/dependencies/VL.Stride.Runtime.dll" />
   <PlatformDependency Id="NSgPiKUlW6LO3vCfs7blGd" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/packs/dependencies/Stride.Rendering.dll" />
   <PlatformDependency Id="JtCQYWZYZPwMQ9AXhloaPz" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/Stride.Core.dll" />
