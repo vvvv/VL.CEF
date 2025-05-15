@@ -11,7 +11,7 @@
 
     <!-- Version information -->
     <Year>$([System.DateTime]::Now.ToString('yyyy'))</Year>
-    <Version>0.7.0-preview</Version>
+    <Version>0.7.1-preview</Version>
 
     <!-- Package properties -->
     <Authors>vvvv group</Authors>
