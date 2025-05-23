@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="J2YDKosADjGK9tEVmtMxzT" LanguageVersion="2025.7.0-0357-gd997588cb6" Version="0.128">
+  <NugetDependency Id="FdvXZOaf341NuMbEYIlKzV" Location="VL.CoreLib" Version="2025.7.0-0357-gd997588cb6" />
+  <Patch Id="AbeRAKvovXQLrrZgJWZjNa">
+    <Canvas Id="UkEUMxAS6lUO1EexKPOzK8" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="EVKatrHsZYqQBP5iHUzZT7">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <CategoryReference Kind="Category" Name="Primitive" />
+      </p:NodeReference>
+      <Patch Id="SOup4hU1KRLPFRL07gX8Bo">
+        <Canvas Id="FCsrqXPZwmOMgDe2xgxy5s" CanvasType="Group">
+          <Node Bounds="142,120,71,19" Id="G9hm3ZvVV17LRYjznJoQ9l">
+            <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="Category" Name="CEF" />
+              <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="TctllN4v1FSNRdNQHFEb1R" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="R2XowezvGViPVX9E9y8KDE" Name="Startup Url" Kind="InputPin" />
+            <Pin Id="KIjP2rNqyipLqwqoH0k1IK" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
+            <Pin Id="OZVhTd0F1TlMBjOD17YsEe" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="OxuoXeskuclMRaV8YndCGy" Name="Enabled" Kind="InputPin" />
+            <Pin Id="TThV5OZVSEZNUvpuxcJ5bl" Name="Output" Kind="OutputPin" />
+            <Pin Id="CYiwCWN3CWPPwGgI63yfHw" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="OZxHaQrUyOMMzDqt8wGGgO" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="Ff9uPKBfHjfOeoMnf8ODjQ" Name="Error Text" Kind="OutputPin" />
+          </Node>
+          <Pad Id="LXTyRZQb4yHLLpiEdJ0MS7" Comment="Loaded" Bounds="166,190,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="DNzIfH9AjEZQMhXmVRD42l" Comment="Is Loading" Bounds="188,230,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="CQ3LnDUAX5FOVTYvp2Usmf" Comment="Error Text" Bounds="210,160,174,16" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="DPaCIZIQt4oL2oHVbFfedg" Comment="Startup Url" Bounds="144,50,150,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="FaXcDDoxGkbQIuDfsjsQiY" Comment="Enabled" Bounds="210,91,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Toggle</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="142,550,81,26" Id="NIryx2vGMkYQNcAqZ8Nwqd">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="DocumentSize" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="KAcfBVyeLwzMcZh8luMFnh" Name="Input" Kind="StateInputPin" />
+            <Pin Id="NbLP1bLBiXsNTduHguWapr" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="B1L0TNL70vYOe4wZtIUEcF" Name="Document Size" Kind="OutputPin" />
+          </Node>
+          <Pad Id="UbqiIej3RaGMAXGOdrlZrG" Comment="Document Size" Bounds="220,600,83,45" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="567,620,65,26" Id="K8yBgsFMcUVLKzNNOh5E8d">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="LoadString" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="GgJ7ng4z8JANTZJr4Ux49c" Name="Input" Kind="StateInputPin" />
+            <Pin Id="AnSc2KIt0dVNg5eJgrKwFN" Name="Content" Kind="InputPin" DefaultValue="" />
+            <Pin Id="LuKdg1IZUmtP4GJSREjREG" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="UI42gdwHQo3MWlvGdG6rKP" Name="Apply" Kind="InputPin" DefaultValue="False" />
+          </Node>
+          <Node Bounds="567,390,65,26" Id="QN4IK8r17R7P4QwpJIpR9r">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="LoadUrl" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="GGo5F6BO5JUPXf0Xiwo5ds" Name="Input" Kind="StateInputPin" />
+            <Pin Id="NfCao8DKXbANN7hl0bD44w" Name="Url" Kind="InputPin" />
+            <Pin Id="LKlJI67hPZROOB68ubT09C" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="NDnHo61l5YtP5TSoM5puPM" Name="Apply" Kind="InputPin" />
+          </Node>
+          <Pad Id="Fcbs5584TDoQUprR6DC6YQ" Comment="Apply" Bounds="650,369,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GHWZc7YrfzmLL1rdjiWYKa" Comment="Apply" Bounds="664,590,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="567,470,60,26" Id="Q8miWeblRXvMap3B3qxQY9">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="Reload" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="NOkba82sROjPXCBOZM9a5C" Name="Input" Kind="StateInputPin" />
+            <Pin Id="Dcrs3BF5eftPOLog0krRLH" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="BoRo02eaerOMUVtUHTibWP" Name="Apply" Kind="InputPin" />
+          </Node>
+          <Pad Id="UNDG68RVxliNJiQmV54CUn" Comment="Apply" Bounds="651,441,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="142,660,67,26" Id="Ai6UfWg7Z4uNbBCazy4Eyi">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="ScaleFactor" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="SEtVL29CClIQdhqJlH7vwm" Name="Input" Kind="StateInputPin" />
+            <Pin Id="LjgA8K6y5bNN7EpzuSoQDv" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="LpDUbpuQJyCOpKNZpCY4nc" Name="Scale Factor" Kind="OutputPin" />
+          </Node>
+          <Pad Id="FW5xe8kgcRALBpxrsYCNJ6" Comment="Scale Factor" Bounds="206,700,35,15" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="567,700,81,26" Id="Nwed9qDjXaCPe9HDTepm7H">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="SetScaleFactor" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="LrcYjhcQvXdOJcMa6zXfuv" Name="Input" Kind="StateInputPin" />
+            <Pin Id="Dl0bOou0QDNNu7Or4dHOaA" Name="Value" Kind="InputPin" />
+            <Pin Id="UIR1hUacurhMEooS1uLnME" Name="Output" Kind="StateOutputPin" />
+          </Node>
+          <Node Bounds="567,840,85,26" Id="P1m6Aud58tvPbXv8tPnVV8">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="SetAudioMuted" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="RI0KCKehJpiPutzAM8BBkV" Name="Input" Kind="StateInputPin" />
+            <Pin Id="DpYG0nn6Ju5LxcStIDWQIF" Name="Value" Kind="InputPin" />
+            <Pin Id="SqhAwuFbCzuMgeD8BTvHN6" Name="Output" Kind="StateOutputPin" />
+          </Node>
+          <Node Bounds="567,770,79,26" Id="Uo1khR8c5u7PO48r8qFPwI">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="SetZoomLevel" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="BoGqtrluPqbL7gTuiCW0mD" Name="Input" Kind="StateInputPin" />
+            <Pin Id="QFK1QWqxjgrMF1ntq0aDTN" Name="Value" Kind="InputPin" />
+            <Pin Id="TCwlzXk7nL9QGize7VfASq" Name="Output" Kind="StateOutputPin" />
+          </Node>
+          <Node Bounds="142,750,65,26" Id="ACheXsLUIw9L0BdqvRDoRc">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="ZoomLevel" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="IeO2hZXmfrGM2esiMWDaUU" Name="Input" Kind="StateInputPin" />
+            <Pin Id="L9MKOqTA7YVOZu3pntTMSL" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="BwH4hYJ3v3aLYsb71nylPm" Name="Zoom Level" Kind="OutputPin" />
+          </Node>
+          <Pad Id="K5MBTZGuUcnPUH3Hqi4qp5" Comment="Zoom Level" Bounds="204,791,35,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Oyvv3TmuhxbNSvJk6903cx" Comment="" Bounds="643,751,35,15" ShowValueBox="true" isIOBox="true" Value="1">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="MXiSwRTG3bGLII19H3NqLm" Comment="" Bounds="645,680,35,15" ShowValueBox="true" isIOBox="true" Value="1">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="Float32" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Node Bounds="142,440,60,26" Id="D4KPaEy1hspOy6r3leSbOX">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+              <Choice Kind="OperationCallFlag" Name="Url" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="VDIaQAvRdm3O8uWLiBMPzV" Name="Input" Kind="StateInputPin" />
+            <Pin Id="LdtEMLPqY0IPItuF2TlKRk" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="ObpJ7fXyivZPkKMxzqbMnb" Name="Url" Kind="OutputPin" />
+          </Node>
+          <Pad Id="APalORTuqc7NBI7sV6EVIT" Comment="Url" Bounds="199,491,130,15" ShowValueBox="true" isIOBox="true" Value="https://thegraybook.vvvv.org/" />
+          <Pad Id="IHWxwaX9SNVOkEyzQuZ9SX" Comment="Url" Bounds="599,341,156,15" ShowValueBox="true" isIOBox="true" Value="https://thegraybook.vvvv.org/">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="PUQHvIH78GQQJeUluwoNTX" Comment="Content" Bounds="599,530,106,50" ShowValueBox="true" isIOBox="true" Value="&lt;!DOCTYPE html&gt;&#xD;&#xA;&lt;html&gt;&#xD;&#xA;&lt;head&gt;&#xD;&#xA;&lt;style&gt;&#xD;&#xA;body {&#xD;&#xA;background-color: #d24dff&#xD;&#xA;}&#xD;&#xA;&lt;/style&gt;&#xD;&#xA;&lt;/head&gt;&#xD;&#xA;&lt;/html&gt;">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="I9XxDVTcJVfNF6d4tgxLf6" Comment="" Bounds="670,820,35,35" ShowValueBox="true" isIOBox="true" Value="False">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Toggle</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Overlay Id="CbecJkZduqDM5cp2rjl1FF" Name="Manipulating the WebBrowser" Bounds="508,280,327,606" />
+          <Pad Id="DdZe2NjXO8uNxLHTkXhWEa" Bounds="62,113,64,52" ShowValueBox="true" isIOBox="true" Value="➡️">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">25</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Overlay Id="IQXk6hPsybMM9k0iinu3tn" Name="Reading from the WebBrowser" Bounds="93,280,370,608" />
+          <Pad Id="N3zIb28PviIMV8KPdW2Jw1" Bounds="515,57,217,77" ShowValueBox="true" isIOBox="true" Value="The WebBrowser node is the main node. It can be manipulated via nodes found in the WebBrowser category.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="LnPqkLDfRI8LM94T6iCkbS" Bounds="515,160,115,19" ShowValueBox="true" isIOBox="true" Value="For rendering see:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="DGCTnxnw5idM0rScLFfN3m" Bounds="540,184,193,21" ShowValueBox="true" isIOBox="true" Value="./Explanation Overview Skia.vl">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="MLCWm6DCNwTOmOYv18dWv8" Bounds="540,209,208,21" ShowValueBox="true" isIOBox="true" Value="./Explanation Overview Stride.vl">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Node Bounds="142,350,86,26" Id="KnARWWNoU6aPqqsjZuIni9">
+            <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="OperationCallFlag" Name="ChromeVersion" />
+            </p:NodeReference>
+            <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
+            <Pin Id="KskvF8RBxh6OVM2vB2jf64" Name="Input" Kind="StateInputPin" />
+            <Pin Id="Q0ZBkw5QYu1MqLKBqIacqr" Name="Output" Kind="StateOutputPin" />
+            <Pin Id="VeBZOuD0OmJPK4QlQ8SIs6" Name="Result" Kind="OutputPin" />
+          </Node>
+          <Pad Id="AC73RiM9hWYNvjQ3XxEo2T" Comment="" Bounds="225,399,87,15" ShowValueBox="true" isIOBox="true" />
+        </Canvas>
+        <Patch Id="RkxlGoyP2LbMZLWtkb6e5i" Name="Create" />
+        <Patch Id="KEevPOLxyYANnaLumTZ9Gn" Name="Update" />
+        <ProcessDefinition Id="Kx0rtBJDjK8MsuzNo9w3ZJ">
+          <Fragment Id="GINa3B65oyXOrHC8rRIJGP" Patch="RkxlGoyP2LbMZLWtkb6e5i" Enabled="true" />
+          <Fragment Id="MAAJtPAFiteNIi0KkzLlKd" Patch="KEevPOLxyYANnaLumTZ9Gn" Enabled="true" />
+        </ProcessDefinition>
+        <Link Id="VO7cNvYHG32QK6VghbVlrv" Ids="CYiwCWN3CWPPwGgI63yfHw,LXTyRZQb4yHLLpiEdJ0MS7" />
+        <Link Id="V8M5IFkmgYHLFZF87ppOHp" Ids="OZxHaQrUyOMMzDqt8wGGgO,DNzIfH9AjEZQMhXmVRD42l" />
+        <Link Id="EbashY6Fp9tOfZqlqg3TJq" Ids="Ff9uPKBfHjfOeoMnf8ODjQ,CQ3LnDUAX5FOVTYvp2Usmf" />
+        <Link Id="FreReOwHpXPQQ9mR2tWRtx" Ids="DPaCIZIQt4oL2oHVbFfedg,R2XowezvGViPVX9E9y8KDE" />
+        <Link Id="JD86l9ejIoPMo3frgsENvp" Ids="FaXcDDoxGkbQIuDfsjsQiY,OxuoXeskuclMRaV8YndCGy" />
+        <Link Id="Dy9ftKuQoX7MWKTI5Nth3v" Ids="B1L0TNL70vYOe4wZtIUEcF,UbqiIej3RaGMAXGOdrlZrG" />
+        <Link Id="FbsktXcpj9lP7dHMzctiyo" Ids="Fcbs5584TDoQUprR6DC6YQ,NDnHo61l5YtP5TSoM5puPM" />
+        <Link Id="IC1p6zYGLVbLx5Nlwajfkq" Ids="GHWZc7YrfzmLL1rdjiWYKa,UI42gdwHQo3MWlvGdG6rKP" />
+        <Link Id="CvVC9A8VOXqPPA4PsMAqSJ" Ids="UNDG68RVxliNJiQmV54CUn,BoRo02eaerOMUVtUHTibWP" />
+        <Link Id="Ixr3tImaDcePcQQOyDFWKQ" Ids="LpDUbpuQJyCOpKNZpCY4nc,FW5xe8kgcRALBpxrsYCNJ6" />
+        <Link Id="O4H697rtElUOrlY8pAyfug" Ids="BwH4hYJ3v3aLYsb71nylPm,K5MBTZGuUcnPUH3Hqi4qp5" />
+        <Link Id="RM7ERxdjM2yNEIopMCvC6a" Ids="Oyvv3TmuhxbNSvJk6903cx,QFK1QWqxjgrMF1ntq0aDTN" />
+        <Link Id="I9JxFPN5jwxOAaNPmd6ozb" Ids="MXiSwRTG3bGLII19H3NqLm,Dl0bOou0QDNNu7Or4dHOaA" />
+        <Link Id="IlDp4traSVpN9vG318WEHj" Ids="ObpJ7fXyivZPkKMxzqbMnb,APalORTuqc7NBI7sV6EVIT" />
+        <Link Id="MUDcFCI7lEbPqVMiyCuEoC" Ids="LKlJI67hPZROOB68ubT09C,NOkba82sROjPXCBOZM9a5C" />
+        <Link Id="HpXSiiv8qBYO1XMPRCrrs0" Ids="IHWxwaX9SNVOkEyzQuZ9SX,NfCao8DKXbANN7hl0bD44w" />
+        <Link Id="R575h1ouzqkOqYJqp01Kyu" Ids="Dcrs3BF5eftPOLog0krRLH,GgJ7ng4z8JANTZJr4Ux49c" />
+        <Link Id="VZFYQrLbvZLLcRMsGZarXQ" Ids="PUQHvIH78GQQJeUluwoNTX,AnSc2KIt0dVNg5eJgrKwFN" />
+        <Link Id="BCD5PapThsrOOdjO9eH3j9" Ids="I9XxDVTcJVfNF6d4tgxLf6,DpYG0nn6Ju5LxcStIDWQIF" />
+        <Link Id="FlQ7GJKAP79LFVhCudbZlz" Ids="TThV5OZVSEZNUvpuxcJ5bl,GGo5F6BO5JUPXf0Xiwo5ds" />
+        <Link Id="PujX9Y7HEcyPJ3BAYwPtkd" Ids="LuKdg1IZUmtP4GJSREjREG,LrcYjhcQvXdOJcMa6zXfuv" />
+        <Link Id="MPkAav89KPGNv1aenYGNha" Ids="UIR1hUacurhMEooS1uLnME,BoGqtrluPqbL7gTuiCW0mD" />
+        <Link Id="TSbL6Z1EZgRQPard0RKsmn" Ids="TCwlzXk7nL9QGize7VfASq,RI0KCKehJpiPutzAM8BBkV" />
+        <Link Id="IaKORUoRoxMLhjNY0HBCSq" Ids="NbLP1bLBiXsNTduHguWapr,SEtVL29CClIQdhqJlH7vwm" />
+        <Link Id="QU0cNp8a13ZNUtMTFxC1sX" Ids="LjgA8K6y5bNN7EpzuSoQDv,IeO2hZXmfrGM2esiMWDaUU" />
+        <Link Id="PemQJiwm1r4Ok9NWsS8WZ5" Ids="VeBZOuD0OmJPK4QlQ8SIs6,AC73RiM9hWYNvjQ3XxEo2T" />
+        <Link Id="TWpgTwdZAe9O6POJQTb4zo" Ids="TThV5OZVSEZNUvpuxcJ5bl,KskvF8RBxh6OVM2vB2jf64" />
+        <Link Id="Ff4fssggrKpNoxfphMnHuA" Ids="Q0ZBkw5QYu1MqLKBqIacqr,VDIaQAvRdm3O8uWLiBMPzV" />
+        <Link Id="VEsfDWy3fknPygHFu83bcm" Ids="LdtEMLPqY0IPItuF2TlKRk,KAcfBVyeLwzMcZh8luMFnh" />
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="B531dern6gkQY6xYwYCAZw" Location="VL.CEF" Version="0.0.0" />
+</Document>

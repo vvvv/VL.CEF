@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Pack>
+  <Topic title="General">
+    <VLDocument link="Explanation Overview.vl" />
+	<VLDocument link="HowTo Interact with JavaScript.vl" />
+  </Topic>
+  <Topic title="Skia">
+    <VLDocument link="Explanation Overview Skia.vl" />
+	<VLDocument link="HowTo Inject Notifications.vl" />
+  </Topic>
+  <Topic title="Stride">
+	<VLDocument link="Explanation Overview Stride.vl" />
+  </Topic>
+</Pack>

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2023.5.2" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2023.5.2" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2025.7.0-0357-gd997588cb6" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2025.7.0-0357-gd997588cb6" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -32,7 +32,7 @@
         </p:NodeReference>
         <Patch Id="IvCHUDjKMpoL8CIjFziCH2">
           <Canvas Id="F1rA8SSweF1QHbtoRTnp1R" CanvasType="Group">
-            <Node Bounds="532,218,88,89" Id="OJ5KF9gf1HTNy0Ethg51s2">
+            <Node Bounds="532,224,84,83" Id="OJ5KF9gf1HTNy0Ethg51s2">
               <p:NodeReference LastCategoryFullName="Primitive" LastDependency="Builtin">
                 <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
                 <Choice Kind="ProcessStatefulRegion" Name="Cache" />
@@ -41,9 +41,9 @@
               <Pin Id="Apyyx2FEy5JOf4JDcOrzMz" Name="Force" Kind="InputPin" />
               <Pin Id="LL4j6GNOkx4LVOZM2xKcno" Name="Dispose Cached Outputs" Kind="InputPin" DefaultValue="True" />
               <Pin Id="CltZu6Fb7diOilbjjLpQtl" Name="Has Changed" Kind="OutputPin" />
-              <ControlPoint Id="JuMgtFAvqKLQWRLxdcvmxG" Bounds="605,224" Alignment="Top" />
+              <ControlPoint Id="JuMgtFAvqKLQWRLxdcvmxG" Bounds="601,230" Alignment="Top" />
               <ControlPoint Id="Ks4mXiHorckLfwe9W1mZ3S" Bounds="546,301" Alignment="Bottom" />
-              <ControlPoint Id="BK0RlC5kikWPvm1t6TOBOf" Bounds="548,224" Alignment="Top" />
+              <ControlPoint Id="BK0RlC5kikWPvm1t6TOBOf" Bounds="546,230" Alignment="Top" />
               <Patch Id="Sr9b85xW0C0Nhef2nqnapm" ManuallySortedPins="true">
                 <Patch Id="H6sKf6qf0ukOpVCyEAWuST" Name="Create" ManuallySortedPins="true" />
                 <Patch Id="VhtDpFlluiKLYvkrDsfXAd" Name="Then" ManuallySortedPins="true" />
@@ -59,8 +59,8 @@
                 </Node>
               </Patch>
             </Node>
-            <ControlPoint Id="PeeixwhNmshMtRjSeeTHHG" Bounds="547,174" />
-            <Node Bounds="546,437,60,26" Id="VbotLgnAyX8OrEyXIM3wS0">
+            <ControlPoint Id="PeeixwhNmshMtRjSeeTHHG" Bounds="624,180" />
+            <Node Bounds="544,437,60,26" Id="VbotLgnAyX8OrEyXIM3wS0">
               <p:NodeReference LastCategoryFullName="VL.CEF.WebBrowser" LastDependency="VL.CEF.dll">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 <CategoryReference Kind="AssemblyCategory" Name="WebBrowser" />
@@ -70,8 +70,8 @@
               <Pin Id="LZuySlgUXGxMoujcoPxXW7" Name="Output" Kind="StateOutputPin" />
               <Pin Id="Dwqf8LPycBcLRNPFMjdE4s" Name="Apply" Kind="InputPin" />
             </Node>
-            <ControlPoint Id="AKXataZblxiMuYZghVF0ek" Bounds="548,544" />
-            <Node Bounds="630,488,60,26" Id="HbCdcESbzVXNoQPHtZU6Pg">
+            <ControlPoint Id="AKXataZblxiMuYZghVF0ek" Bounds="546,550" />
+            <Node Bounds="628,490,60,26" Id="HbCdcESbzVXNoQPHtZU6Pg">
               <p:NodeReference LastCategoryFullName="VL.CEF.WebBrowser" LastDependency="VL.CEF.dll">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 <CategoryReference Kind="AssemblyCategory" Name="WebBrowser" />
@@ -81,7 +81,7 @@
               <Pin Id="AIAtYozr1M3QTaQFr4ZsD8" Name="Output" Kind="StateOutputPin" />
               <Pin Id="Icp5onyTtF6PwpLyf8zwTL" Name="Loaded" Kind="OutputPin" />
             </Node>
-            <Node Bounds="721,488,60,26" Id="RUx0EoQHm1SPh86UbzcnMB">
+            <Node Bounds="719,490,60,26" Id="RUx0EoQHm1SPh86UbzcnMB">
               <p:NodeReference LastCategoryFullName="VL.CEF.WebBrowser" LastDependency="VL.CEF.dll">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 <CategoryReference Kind="AssemblyCategory" Name="WebBrowser" />
@@ -91,7 +91,7 @@
               <Pin Id="SenMgG5m9LLP9TGG9QLUju" Name="Output" Kind="StateOutputPin" />
               <Pin Id="PwPXyboW3xjLxT4dzgsDnb" Name="Is Loading" Kind="OutputPin" />
             </Node>
-            <Node Bounds="815,489,60,26" Id="Ce39V5boOMVOCTtLLaZ6ex">
+            <Node Bounds="813,491,60,26" Id="Ce39V5boOMVOCTtLLaZ6ex">
               <p:NodeReference LastCategoryFullName="VL.CEF.WebBrowser" LastDependency="VL.CEF.dll">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 <CategoryReference Kind="AssemblyCategory" Name="WebBrowser" />
@@ -101,10 +101,10 @@
               <Pin Id="AhVDw5xhnuZOEXnBtU7Qnz" Name="Output" Kind="StateOutputPin" />
               <Pin Id="BRHZfePN17cPmZ4L4kTHBa" Name="Error Text" Kind="OutputPin" />
             </Node>
-            <ControlPoint Id="NdBGxBKMlFeQR934FKG4LD" Bounds="687,544" />
-            <ControlPoint Id="HKrv1laygS4ODx5iDRZ85B" Bounds="778,544" />
-            <ControlPoint Id="AJWlqRlphopPYTcJxKRSsY" Bounds="872,544" />
-            <Node Bounds="545,338,97,26" Id="GA2FDBrU52gOk8UQQraq7M">
+            <ControlPoint Id="NdBGxBKMlFeQR934FKG4LD" Bounds="685,550" />
+            <ControlPoint Id="HKrv1laygS4ODx5iDRZ85B" Bounds="776,550" />
+            <ControlPoint Id="AJWlqRlphopPYTcJxKRSsY" Bounds="870,550" />
+            <Node Bounds="544,338,97,26" Id="GA2FDBrU52gOk8UQQraq7M">
               <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 <FullNameCategoryReference ID="CEF.WebBrowser" />
@@ -114,8 +114,8 @@
               <Pin Id="QJ873F16F2GO4dzdfamCpJ" Name="Value" Kind="InputPin" />
               <Pin Id="SJvjHPrSplqOVouR3Solrc" Name="Output" Kind="StateOutputPin" />
             </Node>
-            <ControlPoint Id="OhYqa3yg8CeOh2txkV2bRm" Bounds="684,172" />
-            <ControlPoint Id="M5o039r6pbXNWHkwkzBRTy" Bounds="469,174" />
+            <ControlPoint Id="OhYqa3yg8CeOh2txkV2bRm" Bounds="761,180" />
+            <ControlPoint Id="M5o039r6pbXNWHkwkzBRTy" Bounds="546,180" />
             <Node Bounds="544,391,66,26" Id="SMAeJiw1YrmLpY5J0BDp4v">
               <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -126,7 +126,7 @@
               <Pin Id="NIOEzWrOPslLRbdqdCiTgT" Name="Value" Kind="InputPin" />
               <Pin Id="MYt7iH0SXVIMYKx2H4zzDf" Name="Output" Kind="StateOutputPin" />
             </Node>
-            <ControlPoint Id="JMDImo28QtmLxK6qw1rsh1" Bounds="799,171" />
+            <ControlPoint Id="JMDImo28QtmLxK6qw1rsh1" Bounds="876,180" />
           </Canvas>
           <ProcessDefinition Id="PrNChA4ZJuHOJjA2NOnViF">
             <Fragment Id="VuTHLX3LPrlMcSVez5Za9g" Patch="T5PSbhoISlvLPQcianRAO2" Enabled="true" />
@@ -177,13 +177,13 @@
     ************************ QueryHandler ************************
 
 -->
-        <Node Name="QueryHandler" Bounds="479,198" Id="UzDTZ04zPtCMwlitu1wHle" Summary="Handles a JavaScript query started via the window.vvvvQuery function" Tags="javascript,js,binding">
+        <Node Name="QueryHandler" Bounds="330,200" Id="UzDTZ04zPtCMwlitu1wHle" Summary="Handles a JavaScript query started via the window.vvvvQuery function" Tags="javascript,js,binding">
           <p:NodeReference LastCategoryFullName="Primitive" LastDependency="builtin">
             <Choice Kind="ContainerDefinition" Name="Process" />
           </p:NodeReference>
           <Patch Id="Unk0NbKg8LrORGZkUgzANs">
             <Canvas Id="BV9vyPeAvOgLZN3cHpW4gq" CanvasType="Group">
-              <Node Bounds="456,254,89,111" Id="QEiFq9p0YOwLZeamBYoeC8">
+              <Node Bounds="456,264,89,101" Id="QEiFq9p0YOwLZeamBYoeC8">
                 <p:NodeReference LastCategoryFullName="Primitive" LastDependency="Builtin">
                   <Choice Kind="StatefulRegion" Name="Region (Stateful)" Fixed="true" />
                   <Choice Kind="ProcessStatefulRegion" Name="Cache" />
@@ -192,7 +192,7 @@
                 <Pin Id="Ualqji09Sp4PRzHHIp06VY" Name="Force" Kind="InputPin" />
                 <Pin Id="GqycxClECIdQTef8sKONU7" Name="Dispose Cached Outputs" Kind="InputPin" />
                 <Pin Id="Sv47mH8i9rfLaRRZf1XEy1" Name="Has Changed" Kind="OutputPin" />
-                <ControlPoint Id="OZynb0E2pFiQJPtxsMPXg0" Bounds="469,260" Alignment="Top" />
+                <ControlPoint Id="OZynb0E2pFiQJPtxsMPXg0" Bounds="470,270" Alignment="Top" />
                 <ControlPoint Id="RHy40tAqakUNtZzS1VIeka" Bounds="470,359" Alignment="Bottom" />
                 <Patch Id="SylaFHUVJ6fOQqNXPeGk4T" ManuallySortedPins="true">
                   <Patch Id="TMq3W5Of7S5P1di2yI2PEy" Name="Create" ManuallySortedPins="true" />
@@ -209,15 +209,17 @@
                   </Node>
                 </Patch>
               </Node>
-              <ControlPoint Id="StchUEoEbOZPEhAFRCRNux" Bounds="469,190" />
-              <ControlPoint Id="TCoMnqqxvMNNJwRdLbL0KU" Bounds="546,187" />
-              <ControlPoint Id="FDJS329H1L5LzP49I4VlQq" Bounds="472,403" />
-              <Node Bounds="544,215,42,19" Id="SxpSl2YIYt9MEEXb2szVkO">
+              <ControlPoint Id="StchUEoEbOZPEhAFRCRNux" Bounds="470,220" />
+              <ControlPoint Id="TCoMnqqxvMNNJwRdLbL0KU" Bounds="575,222" />
+              <ControlPoint Id="FDJS329H1L5LzP49I4VlQq" Bounds="470,391" />
+              <Node Bounds="573,250,42,19" Id="SxpSl2YIYt9MEEXb2szVkO">
                 <p:NodeReference LastCategoryFullName="Primitive.Delegates.Proxies" LastDependency="VL.CoreLib.vl">
                   <Choice Kind="ProcessAppFlag" Name="Proxy (1 -&gt; 1)" />
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 </p:NodeReference>
+                <Pin Id="ARl0SyoC8wDM1ZZzmt37ge" Name="Node Context" Kind="InputPin" IsHidden="true" />
                 <Pin Id="FQ8rn0GIl1DNIggxJkHGsq" Name="Delegate" Kind="InputPin" />
+                <Pin Id="PYhY3bD0dktQXPwTNn4yjx" Name="Output" Kind="OutputPin" IsHidden="true" />
                 <Pin Id="UlKZLWK1F4nMydC7YVIjZT" Name="Result" Kind="OutputPin" />
               </Node>
             </Canvas>
@@ -247,7 +249,7 @@
     ************************ CefTextInputMode ************************
 
 -->
-        <Node Name="CefTextInputMode" Bounds="477,264" Id="DKpkyb9IsQJPElyvJJJxgV">
+        <Node Name="CefTextInputMode" Bounds="328,266" Id="DKpkyb9IsQJPElyvJJJxgV">
           <p:NodeReference>
             <Choice Kind="ForwardRecordDefinition" Name="Immutable Forward" />
             <FullNameCategoryReference ID="Primitive" />
@@ -256,7 +258,7 @@
             <Choice Kind="TypeFlag" Name="CefTextInputMode" />
           </p:TypeAnnotation>
           <Patch Id="MHSdTktoLHVMHdfs1sdNTb">
-            <Canvas Id="Orf71cHsfvfNTtrCucswbY" BordersChecked="false" CanvasType="Group" />
+            <Canvas Id="Orf71cHsfvfNTtrCucswbY" CanvasType="Group" />
             <ProcessDefinition Id="Lo9RNtRVDCzLgPWuys3DBN" IsHidden="true" />
           </Patch>
         </Node>
