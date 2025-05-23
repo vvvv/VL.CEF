@@ -30,10 +30,12 @@ namespace VL.CEF
         private readonly CefKeyboardHandler keyboardHandler;
         private readonly CefDisplayHandler displayHandler;
         private readonly CefContextMenuHandler contextMenuHandler;
+        private readonly string chromeVersion;
 
         public WebBrowser(string url = "about:blank", bool sharedTextureEnabled = true)
         {
             FRuntimeHandle = CefExtensions.GetRuntimeProvider().GetHandle();
+            chromeVersion = CefExtensions.ChromeVersion;
 
             var settings = new CefBrowserSettings();
             settings.RemoteFonts = CefState.Enabled;
@@ -93,6 +95,11 @@ namespace VL.CEF
             FBrowserDetachedEvent.Dispose();
             FRequestContext.Dispose();
             FRuntimeHandle.Dispose();
+        }
+
+        public string ChromeVersion()
+        {
+            return chromeVersion;
         }
 
         /// <summary>

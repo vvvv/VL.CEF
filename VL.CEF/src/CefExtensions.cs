@@ -50,6 +50,8 @@ namespace VL.CEF
             }
         }
 
+        public static string ChromeVersion => CefRuntime.ChromeVersion;
+
         public static IResourceProvider<IDisposable> GetRuntimeProvider()
         {
             return ResourceProvider.New(() =>
