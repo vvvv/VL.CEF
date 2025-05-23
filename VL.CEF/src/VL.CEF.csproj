@@ -7,7 +7,7 @@
     
     <!-- Package properties -->
     <NoWarn>NU5100</NoWarn>
-    <Description>Chromium Embedded Framework (CEF) for VL</Description>
+    <Description>Core package of the Chromium Embedded Framework (CEF) for VL. Requires either VL.CEF.Skia and VL.CEF.Stride for actual rendering!</Description>
     <PackageReleaseNotes>Popular nodes: WebRenderer</PackageReleaseNotes>
     <PackageTags>VL;web;html;texture;vvvv</PackageTags>
 
