@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:p="property" xmlns:r="reflection" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2025.7.0-0359-gbbb0444d86" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0359-gbbb0444d86" />
+  <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
+    <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
+    <!--
+
+    ************************ Application ************************
+
+-->
+    <Node Name="Application" Bounds="100,100" Id="ItAje1kLzJDOOqVUrqgbKH">
+      <p:NodeReference>
+        <Choice Kind="ContainerDefinition" Name="Process" />
+        <FullNameCategoryReference ID="Primitive" />
+      </p:NodeReference>
+      <Patch Id="H6UqjBkdWMTMU7AH469H7b">
+        <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
+          <Node Bounds="117,260,145,19" Id="T6EK0aeUpK8L42vEmISS7W">
+            <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="Renderer" />
+              <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
+            </p:NodeReference>
+            <Pin Id="GmTTYzgJ0r6N5DGkOWFQed" Name="Bounds" Kind="InputPin" DefaultValue="1301, 20, 616, 439" IsHidden="true" />
+            <Pin Id="JrTczJQ00CBNhr7HEcbgTI" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
+            <Pin Id="VXS756FzRgGMdoylHBIjTq" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
+            <Pin Id="NBcYHpzFFa8PM5JcgXsVlf" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="M0b3ag9wY8WQH0ntiDDodw" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
+            <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
+            <Pin Id="AmHZTRSFijrL7FInCugi0Z" Name="Title" Kind="InputPin" />
+            <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
+            <Pin Id="OOGQG7BFIEtNLL3wzKPENq" Name="Clear" Kind="InputPin" />
+            <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin" />
+            <Pin Id="S94F0I4MRSDOmqXJETXtMl" Name="Show Cursor" Kind="InputPin" />
+            <Pin Id="MpoohInZy8NNDwShJ6Z6oY" Name="VSync" Kind="InputPin" />
+            <Pin Id="FCxyA7DV9hqQdFLwJys9oH" Name="Commands" Kind="InputPin" IsHidden="true" />
+            <Pin Id="PQjwgrFiVEWQaOMZBBRmKL" Name="Enable Keyboard Shortcuts" Kind="InputPin" IsHidden="true" />
+            <Pin Id="QSQDd262CNvPbpv6EkhAKI" Name="Enabled" Kind="InputPin" />
+            <Pin Id="Bu5iJK73WlINzKLrMmFf9x" Name="Form Bounds Notifications" Kind="OutputPin" IsHidden="true" />
+            <Pin Id="KAJDRKkwVsGO9R5xXTyihC" Name="Form" Kind="OutputPin" />
+            <Pin Id="HPpjtVnWzz7OhpUCceYYRN" Name="ClientBounds" Kind="OutputPin" />
+            <Pin Id="RnoPyy9Gtl7QZhK4qZRKgz" Name="Render Time" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="117,140,85,19" Id="BjQ2f8e6YnlLOUaMfsxFwp">
+            <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
+            </p:NodeReference>
+            <Pin Id="An0kkr6odT2OCKXQfY9mDb" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="Jm5yfWec8R5PbSHWywwVmh" Name="Startup Url" Kind="InputPin" />
+            <Pin Id="HDTvGxCDSdNM492QEopH2k" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
+            <Pin Id="TWenFyNM9aQLl3qcBgqNFR" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="FXV1P35jZZBNfrRshjq5Eo" Name="Enabled" Kind="InputPin" />
+            <Pin Id="PIxysgcPsV4N2bHonHN4ER" Name="Output" Kind="OutputPin" />
+            <Pin Id="TfhI4W342auNsLkTBfbXec" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="DQFU2kqvnnXLO4jFiez8fv" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="AKoqcWo54KGQXynJS3EqPa" Name="Chrome Version" Kind="OutputPin" />
+            <Pin Id="BO9n3pxVSScL1KNn5YdsrK" Name="Error Text" Kind="OutputPin" />
+          </Node>
+          <Node Bounds="117,226,70,19" Id="JjkOjSub4cSOapZoOUNFEm">
+            <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Skia.vl">
+              <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+              <FullNameCategoryReference ID="CEF" />
+              <Choice Kind="ProcessAppFlag" Name="ToSkiaLayer" />
+            </p:NodeReference>
+            <Pin Id="UR85SkOCF9eLw9m0eqcyXN" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="QtWsMFVTovoMnvw8ZvIIhz" Name="Browser" Kind="InputPin" />
+            <Pin Id="CuGbX9ElZdkOBmvW8Pb4Pr" Name="Output" Kind="OutputPin" />
+          </Node>
+          <Pad Id="RRnqIsapH7RPglDounqQt7" Comment="Startup Url" Bounds="119,95,55,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="UgWqRJcR6AIPMAdDpFTz4T" Comment="Chrome Version" Bounds="179,186,83,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="JLSSq2VnigoL0fuVqkYqjO" Bounds="413,96,303,19" ShowValueBox="true" isIOBox="true" Value="1) Run vvvv.exe with the commandline argument:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="C8PFamTyAJyLISvTXJZZ5h" Bounds="443,121,204,19" ShowValueBox="true" isIOBox="true" Value="--remote-debugging-port=9090">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="R8hAH9xhpGMMOu9qXl0UAA" Bounds="413,156,264,19" ShowValueBox="true" isIOBox="true" Value="2) Open Chrome/Edge and navigate to:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="RtmFCNrV3lJLVKVgxbQDre" Bounds="443,183,111,19" ShowValueBox="true" isIOBox="true" Value="chrome://inspect">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GSg79FiSNFoO6nILb3xY6m" Bounds="413,219,274,42" ShowValueBox="true" isIOBox="true" Value="3) Click on the button &quot;Configure...&quot; next to the &quot;Discover network targets&quot; checkbox">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="AtxGOPevbUBOSZs1rKGtuC" Bounds="413,279,198,19" ShowValueBox="true" isIOBox="true" Value="4) Add a new entry to the list:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="AU6NvU1ndILLQIi9Zg9i4T" Bounds="443,306,95,19" ShowValueBox="true" isIOBox="true" Value="localhost:9090">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="GANKJhVEGs8QWu7yIZQ6sL" Bounds="413,339,287,63" ShowValueBox="true" isIOBox="true" Value="5) The WebBrowser instance should now show up under the &quot;Remote Target&quot; section where you can click the &quot;Inspect&quot; button ">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+        </Canvas>
+        <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
+        <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
+        <ProcessDefinition Id="PJaJLRkmnnNNvvrJpKmAaL">
+          <Fragment Id="Ccrp0QpGYEKPqBSB8xuGew" Patch="Vnymg3KwFcqPuuJT3crEKr" Enabled="true" />
+          <Fragment Id="FS8SLTMVNnnMxuHsD4JK5c" Patch="T5DV0xifO78P27haBv56J1" Enabled="true" />
+        </ProcessDefinition>
+        <Link Id="PQNPo1D0kyrLDo7VShY3KB" Ids="CuGbX9ElZdkOBmvW8Pb4Pr,MTDHVcEhKXPLq5yLm8QAE5" />
+        <Link Id="Tm83S52dW4EOiw8shKehIv" Ids="RRnqIsapH7RPglDounqQt7,Jm5yfWec8R5PbSHWywwVmh" />
+        <Link Id="A63x19CgwRnPa6AFX4oVtD" Ids="PIxysgcPsV4N2bHonHN4ER,QtWsMFVTovoMnvw8ZvIIhz" />
+        <Link Id="As0yBvqBr4bLEeMT3Civts" Ids="AKoqcWo54KGQXynJS3EqPa,UgWqRJcR6AIPMAdDpFTz4T" />
+      </Patch>
+    </Node>
+  </Patch>
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0359-gbbb0444d86" />
+  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
+  <NugetDependency Id="LqyVuFUURQmNkHJ02LQA9V" Location="VL.CEF.Skia" Version="0.0.0" />
+</Document>
