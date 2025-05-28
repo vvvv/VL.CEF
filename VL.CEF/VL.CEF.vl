@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2025.7.0-0357-gd997588cb6" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2025.7.0-0357-gd997588cb6" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2025.7.0-0359-gbbb0444d86" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2025.7.0-0359-gbbb0444d86" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -91,7 +91,7 @@
               <Pin Id="SenMgG5m9LLP9TGG9QLUju" Name="Output" Kind="StateOutputPin" />
               <Pin Id="PwPXyboW3xjLxT4dzgsDnb" Name="Is Loading" Kind="OutputPin" />
             </Node>
-            <Node Bounds="813,491,60,26" Id="Ce39V5boOMVOCTtLLaZ6ex">
+            <Node Bounds="1008,490,60,26" Id="Ce39V5boOMVOCTtLLaZ6ex">
               <p:NodeReference LastCategoryFullName="VL.CEF.WebBrowser" LastDependency="VL.CEF.dll">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 <CategoryReference Kind="AssemblyCategory" Name="WebBrowser" />
@@ -103,7 +103,7 @@
             </Node>
             <ControlPoint Id="NdBGxBKMlFeQR934FKG4LD" Bounds="685,550" />
             <ControlPoint Id="HKrv1laygS4ODx5iDRZ85B" Bounds="776,550" />
-            <ControlPoint Id="AJWlqRlphopPYTcJxKRSsY" Bounds="870,550" />
+            <ControlPoint Id="AJWlqRlphopPYTcJxKRSsY" Bounds="1065,550" />
             <Node Bounds="544,338,97,26" Id="GA2FDBrU52gOk8UQQraq7M">
               <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -127,6 +127,17 @@
               <Pin Id="MYt7iH0SXVIMYKx2H4zzDf" Name="Output" Kind="StateOutputPin" />
             </Node>
             <ControlPoint Id="JMDImo28QtmLxK6qw1rsh1" Bounds="876,180" />
+            <Node Bounds="840,490,86,26" Id="ELDcOXkRCQGNwCFVglY0XV">
+              <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
+                <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
+                <CategoryReference Kind="ClassType" Name="WebBrowser" NeedsToBeDirectParent="true" />
+                <Choice Kind="OperationCallFlag" Name="ChromeVersion" />
+              </p:NodeReference>
+              <Pin Id="EVpjuhpPHJEMRT8pO9Ji8h" Name="Input" Kind="StateInputPin" />
+              <Pin Id="HvTEQeY3XP8L0bpHeIJ3y7" Name="Output" Kind="StateOutputPin" />
+              <Pin Id="QD8OJbC5vqkMSOmmi74ylU" Name="Result" Kind="OutputPin" />
+            </Node>
+            <ControlPoint Id="TPd1cnVCEaQPOSMCY2ZtO8" Bounds="923,550" />
           </Canvas>
           <ProcessDefinition Id="PrNChA4ZJuHOJjA2NOnViF">
             <Fragment Id="VuTHLX3LPrlMcSVez5Za9g" Patch="T5PSbhoISlvLPQcianRAO2" Enabled="true" />
@@ -168,7 +179,11 @@
             <Pin Id="CDmJcqrKVqrP6KzELSrx4L" Name="Loaded" Kind="OutputPin" Bounds="685,454" />
             <Pin Id="ANlpV3c0EBBObj45vfPmty" Name="Is Loading" Kind="OutputPin" Bounds="776,444" />
             <Pin Id="Es7UDt4uNUTPMSCIufVH6U" Name="Error Text" Kind="OutputPin" Bounds="872,432" />
+            <Pin Id="NIMz7ny0rC8PNAAUd09z6Y" Name="Chrome Version" Kind="OutputPin" />
           </Patch>
+          <Link Id="KqqNjJrHTFpOBPUMRgt19L" Ids="LZuySlgUXGxMoujcoPxXW7,EVpjuhpPHJEMRT8pO9Ji8h" />
+          <Link Id="DwQNBWpFY31LQ6iLJ8a3kV" Ids="QD8OJbC5vqkMSOmmi74ylU,TPd1cnVCEaQPOSMCY2ZtO8" />
+          <Link Id="Ods0iSPpo0oLKinCI8Lou7" Ids="TPd1cnVCEaQPOSMCY2ZtO8,NIMz7ny0rC8PNAAUd09z6Y" IsHidden="true" />
         </Patch>
       </Node>
       <Canvas Id="QgcvLxh3SGOOssrV89WXRQ" Name="Advanced" Position="434,161">

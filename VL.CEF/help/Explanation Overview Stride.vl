@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="MLzy2Ilx953Pfn5zJRwtAu" LanguageVersion="2024.6.7" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2024.6.7" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="MLzy2Ilx953Pfn5zJRwtAu" LanguageVersion="2025.7.0-0359-gbbb0444d86" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0359-gbbb0444d86" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -15,7 +15,7 @@
       </p:NodeReference>
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
-          <Node Bounds="137,200,71,19" Id="IMN6zSf42oOQZQDq6fQKlx">
+          <Node Bounds="137,170,85,19" Id="IMN6zSf42oOQZQDq6fQKlx">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
@@ -28,9 +28,10 @@
             <Pin Id="GEaYnfy1wE1O3csVBan2pM" Name="Output" Kind="OutputPin" />
             <Pin Id="VAAMuXnMHKTOHJQUEoQsM1" Name="Loaded" Kind="OutputPin" />
             <Pin Id="Ul5VFACwvp7M63CyKRElKW" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="BaIP2HWSX99PkbPJTcozco" Name="Chrome Version" Kind="OutputPin" />
             <Pin Id="Osw2o8okQEuQZwfcyUXIDI" Name="Error Text" Kind="OutputPin" />
           </Node>
-          <Node Bounds="137,284,95,19" Id="BcFRMmqe25vNuOWfGDwHd8">
+          <Node Bounds="137,344,95,19" Id="BcFRMmqe25vNuOWfGDwHd8">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <FullNameCategoryReference ID="CEF" />
@@ -41,7 +42,7 @@
             <Pin Id="GbFtIGrk5pkMqbo0LwxPRa" Name="Browser" Kind="InputPin" />
             <Pin Id="DwTr3OtvpTuMixklZywlr8" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="HouQ1i6yBE7O7u19OwOcFp" Bounds="321,428,141,21" ShowValueBox="true" isIOBox="true" Value="No visible output? See:">
+          <Pad Id="HouQ1i6yBE7O7u19OwOcFp" Bounds="321,488,141,21" ShowValueBox="true" isIOBox="true" Value="No visible output? See:">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -50,7 +51,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="AZoZWOSnhjcOXjYqFkfb5A" Bounds="334,447,314,21" ShowValueBox="true" isIOBox="true" Value="https://github.com/vvvv/VL.CEF#troubleshooting">
+          <Pad Id="AZoZWOSnhjcOXjYqFkfb5A" Bounds="334,507,314,21" ShowValueBox="true" isIOBox="true" Value="https://github.com/vvvv/VL.CEF#troubleshooting">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -59,7 +60,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Node Bounds="137,420,165,19" Id="UDjgcN0IFPtNGzrJkstp5m">
+          <Node Bounds="137,480,165,19" Id="UDjgcN0IFPtNGzrJkstp5m">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="RenderWindow" />
@@ -72,6 +73,7 @@
             <Pin Id="DLHjL6RH5bIMr4jp8C5uK3" Name="Back Buffer Format" Kind="InputPin" IsHidden="true" />
             <Pin Id="Knijq4Dn63TPsYM9ewx5XC" Name="Depth Buffer Format" Kind="InputPin" IsHidden="true" />
             <Pin Id="LnFWesJyrjnNeAf6iUZcqN" Name="Multisample Count" Kind="InputPin" IsHidden="true" />
+            <Pin Id="EMgju39jVt6LrdQDvtXFi9" Name="Input Priority" Kind="InputPin" IsHidden="true" />
             <Pin Id="PHf7zX7KQRoL8t5fe1KENy" Name="Input" Kind="InputPin" />
             <Pin Id="FJ9y8EVmyP9QKnHvIdq8Bn" Name="Render View" Kind="InputPin" />
             <Pin Id="EYXcEmwLJE8QVjGG32xjGd" Name="Title" Kind="InputPin" />
@@ -90,13 +92,14 @@
             <Pin Id="MAf7zkPH5xJL7hZ5s7czNA" Name="Input Source" Kind="OutputPin" />
             <Pin Id="Aoyf4OOVjTtNOQSvQJwqSb" Name="Back Buffer" Kind="OutputPin" />
             <Pin Id="R24AQ9Xl1soMbBZegwSvlJ" Name="Depth Buffer" Kind="OutputPin" />
+            <Pin Id="H17mY7qyWRoO6fowBeu2SH" Name="Present Call Intercept" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Pad Id="HtRWAqRZeXvO5cS96PTWbv" Comment="Startup Url" Bounds="139,164,76,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
+          <Pad Id="HtRWAqRZeXvO5cS96PTWbv" Comment="Startup Url" Bounds="139,134,76,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="810,238,125,19" Id="OCdZkMJdNm6QdJzMjHaHZy">
+          <Node Bounds="810,238,145,19" Id="OCdZkMJdNm6QdJzMjHaHZy">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Stride.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="WebRenderer" />
@@ -108,9 +111,11 @@
             <Pin Id="OEWfbsDp9C1PGMgGW7UG9K" Name="Transformation" Kind="InputPin" />
             <Pin Id="NshWU8lhftcPR1GhdiiEIH" Name="Aspect Ratio Correction Mode" Kind="InputPin" DefaultValue="FitIn" />
             <Pin Id="PAQdkFPR9tqP70AZP9nocy" Name="Anchor" Kind="InputPin" />
+            <Pin Id="QT93L8v5GypNnNzlzQP3bI" Name="Pos In" Kind="InputPin" />
             <Pin Id="Tn7rspC6ucQLFEcnPpZPHp" Name="Enabled" Kind="InputPin" />
             <Pin Id="O800jq0G8HZOIoLEImlwJS" Name="Output" Kind="OutputPin" />
             <Pin Id="H074uy7Bz37PuRB7dEqJIU" Name="Browser" Kind="OutputPin" />
+            <Pin Id="Er1aorRApk4NrOlVyqiaV2" Name="Ray" Kind="InputPin" />
           </Node>
           <Node Bounds="858,202,80,19" Id="DsKwmOpScVCNXX1IK1s7Qn">
             <p:NodeReference LastCategoryFullName="2D.Transform" LastDependency="VL.CoreLib.vl">
@@ -153,6 +158,7 @@
             <Pin Id="SwKTuxYuvPBOj8sfJuvw00" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="FyD5bfDeGGhN6iI2Og6ipH" Name="Back Buffer Format" Kind="InputPin" IsHidden="true" />
             <Pin Id="DPZNX5rTJDxOZOUp0fJuuE" Name="Depth Buffer Format" Kind="InputPin" IsHidden="true" />
+            <Pin Id="I4XYJY52xBsMHjj9fbPNd1" Name="Input Priority" Kind="InputPin" IsHidden="true" />
             <Pin Id="BDKXD9AQ2JoMRA5bPszcOe" Name="Input" Kind="InputPin" />
             <Pin Id="Cvlhm6dwMQtNODTB0zdHir" Name="Camera" Kind="InputPin" />
             <Pin Id="PZ9Cwyh4ljtO7cdlro5RSF" Name="Enable Default Camera" Kind="InputPin" />
@@ -180,6 +186,7 @@
             <Pin Id="G5G32YlIIMtM5BSZ6lkbv0" Name="Input Source" Kind="OutputPin" />
             <Pin Id="DmTRXGbxvH0PplPLIMFwh9" Name="Back Buffer" Kind="OutputPin" IsHidden="true" />
             <Pin Id="HHF5ipgQKXsPOWUdY36nVr" Name="Depth Buffer" Kind="OutputPin" IsHidden="true" />
+            <Pin Id="CT9QWIDRi0EPuAZ95LZ2Mm" Name="Present Call Intercept" Kind="InputPin" IsHidden="true" />
           </Node>
           <Node Bounds="790,394,63,19" Id="P4VLkrwTl2ZOLAsvrY6bwK">
             <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
@@ -207,7 +214,7 @@
             <Pin Id="C6H1wPVUWXOLEMy5AhbcUt" Name="Show Helper" Kind="InputPin" />
             <Pin Id="PzfnBkKnkEYLFKGdlYzdBr" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="Fx1iiSFIdW2McoPsaMRi0N" Bounds="179,334,177,35" ShowValueBox="true" isIOBox="true" Value="^ Red node? &#xD;&#xA;Make sure VL.CEF.Stride is installed!">
+          <Pad Id="Fx1iiSFIdW2McoPsaMRi0N" Bounds="179,394,177,35" ShowValueBox="true" isIOBox="true" Value="^ Red node? &#xD;&#xA;Make sure VL.CEF.Stride is installed!">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -216,7 +223,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="FJcrgSIQCEONfLtYEUhgPb" Bounds="239,288,264,38" ShowValueBox="true" isIOBox="true" Value="&lt; If you need to render content fullscreen, use this node.">
+          <Pad Id="FJcrgSIQCEONfLtYEUhgPb" Bounds="239,348,264,38" ShowValueBox="true" isIOBox="true" Value="&lt; If you need to render content fullscreen, use this node.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -244,6 +251,10 @@
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
+          <Pad Id="SAMFYgXe0GAPnwh7AzbUlU" Comment="Chrome Version" Bounds="199,210,81,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Mxd0PWDxp5xN1AEHB9qhO9" Comment="Error Text" Bounds="219,230,107,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="S9wBT8XeyqSM7X1gtiW41m" Comment="Loaded" Bounds="159,258,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="IfH0qW7W1LMNftovNp9825" Comment="Is Loading" Bounds="179,302,35,35" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -261,10 +272,14 @@
         <Link Id="Q7ABH91u4YeOoXUKGpU1P9" Ids="PzfnBkKnkEYLFKGdlYzdBr,Cvlhm6dwMQtNODTB0zdHir" />
         <Link Id="PiqgVJ88NMsOY9VMLR8BzU" Ids="EKdrUxFRtF3NeVp0zQH8gB,HRXLnKr2FdzP3VUFfihB5L" />
         <Link Id="BSB9fmZHhDvOPKkKLnVdkS" Ids="IhGKAs1CfQvLc1pk92FJmT,CXNmKHwr8Y9OpX5KtP6HA5" />
+        <Link Id="DPj5nEDg5eoMf5cqPsfTrj" Ids="BaIP2HWSX99PkbPJTcozco,SAMFYgXe0GAPnwh7AzbUlU" />
+        <Link Id="HFseIOGhGbJL4Zhv8lwtBu" Ids="Osw2o8okQEuQZwfcyUXIDI,Mxd0PWDxp5xN1AEHB9qhO9" />
+        <Link Id="CgZ2yZva0MMNwJm76wvLge" Ids="VAAMuXnMHKTOHJQUEoQsM1,S9wBT8XeyqSM7X1gtiW41m" />
+        <Link Id="G0fDAPUyjKENg0ijLN2wxa" Ids="Ul5VFACwvp7M63CyKRElKW,IfH0qW7W1LMNftovNp9825" />
       </Patch>
     </Node>
   </Patch>
   <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
   <NugetDependency Id="NH1sH8tKoUIPRo02T9WtjU" Location="VL.CEF.Stride" Version="0.0.0" />
-  <NugetDependency Id="KIKjHNalBZiP1cLak5Tof9" Location="VL.Stride" Version="2024.6.7" />
+  <NugetDependency Id="KIKjHNalBZiP1cLak5Tof9" Location="VL.Stride" Version="2025.7.0-0359-gbbb0444d86" />
 </Document>

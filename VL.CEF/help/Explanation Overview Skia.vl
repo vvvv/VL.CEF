@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="KlOLYJdau2VNs5OXrxQIzk" LanguageVersion="2024.6.7" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2024.6.7" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="KlOLYJdau2VNs5OXrxQIzk" LanguageVersion="2025.7.0-0359-gbbb0444d86" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0359-gbbb0444d86" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -15,7 +15,7 @@
       </p:NodeReference>
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
-          <Node Bounds="222,166,71,19" Id="IMN6zSf42oOQZQDq6fQKlx">
+          <Node Bounds="222,166,85,19" Id="IMN6zSf42oOQZQDq6fQKlx">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
@@ -28,6 +28,7 @@
             <Pin Id="GEaYnfy1wE1O3csVBan2pM" Name="Output" Kind="OutputPin" />
             <Pin Id="VAAMuXnMHKTOHJQUEoQsM1" Name="Loaded" Kind="OutputPin" />
             <Pin Id="Ul5VFACwvp7M63CyKRElKW" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="DSt6edurNPILpxL0Gn6J1S" Name="Chrome Version" Kind="OutputPin" />
             <Pin Id="Osw2o8okQEuQZwfcyUXIDI" Name="Error Text" Kind="OutputPin" />
           </Node>
           <Node Bounds="222,397,70,19" Id="BcFRMmqe25vNuOWfGDwHd8">
@@ -79,6 +80,7 @@
             <Pin Id="STVruwCE5SDMOTao7snWw6" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="BBbYrXOSz2wO88t7x3uEaV" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
             <Pin Id="PHf7zX7KQRoL8t5fe1KENy" Name="Input" Kind="InputPin" />
+            <Pin Id="Bm4pKS4bF43MPknMQFq5ys" Name="Title" Kind="InputPin" />
             <Pin Id="IU7mbcV4GirLQuFl6YM657" Name="Color" Kind="InputPin" />
             <Pin Id="LTJ6LYUb5mBQZfmeQNO3tI" Name="Clear" Kind="InputPin" />
             <Pin Id="Pl0sAdhz6KdPrjvQ1iR4JZ" Name="Space" Kind="InputPin" />
@@ -97,9 +99,9 @@
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="Aa9Iyi10CNwN4jXXLrJ1hX" Comment="Loaded" Bounds="246,240,35,35" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="RldLmDw4S2RQHKdQ5NuVRv" Comment="Is Loading" Bounds="268,280,35,35" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="VrXhR0Xx6dtQMvJQRuhGUJ" Comment="Error Text" Bounds="290,210,138,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Aa9Iyi10CNwN4jXXLrJ1hX" Comment="Loaded" Bounds="244,250,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="RldLmDw4S2RQHKdQ5NuVRv" Comment="Is Loading" Bounds="264,290,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="VrXhR0Xx6dtQMvJQRuhGUJ" Comment="Error Text" Bounds="304,230,138,15" ShowValueBox="true" isIOBox="true" />
           <Node Bounds="756,467,145,19" Id="FEQU4gSD9iXPIklqTDeN0d">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -112,6 +114,7 @@
             <Pin Id="O2ym4ClLqQMMe0PjkQXPiI" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="ABgTdBvP8iDN0OGLOiDAtW" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
             <Pin Id="Ikl7Ew1HVN0O7gnNt0g2rs" Name="Input" Kind="InputPin" />
+            <Pin Id="B3s42OAnLnlLtoGY2lh00v" Name="Title" Kind="InputPin" />
             <Pin Id="VY6ymcfaPYbLdFHm1udfCD" Name="Color" Kind="InputPin" />
             <Pin Id="RnJYaN1BefkLJL54fOoQpx" Name="Clear" Kind="InputPin" />
             <Pin Id="OUv3KJC7NMCQdQSFsZRwaK" Name="Space" Kind="InputPin" />
@@ -189,6 +192,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
+          <Pad Id="Vq3rcvQYiYQO23dmAbSlsf" Comment="Chrome Version" Bounds="284,203,84,15" ShowValueBox="true" isIOBox="true" />
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -207,10 +211,11 @@
         <Link Id="PVXrrp2m2I3PBIVWYexfhI" Ids="LkGIqutOClsMxdHLWYCbqb,Emb4sOTGf32PjOIdbjHQvZ" />
         <Link Id="Kuh5vkqtRpfOziOb1q8RG6" Ids="KokIvP3nyWaMlasRXAwTAr,TDi9hP3Vz48LzmxjAFXjIo" />
         <Link Id="GRsATpjE9K2M7SEoMZ1Qg4" Ids="RYmXmyqCvVfPNz2KhfuTPN,SVEGSrKqNTFNgqSD2VpziZ" />
+        <Link Id="DZNhhwhT2uZMqXfXAO02mz" Ids="DSt6edurNPILpxL0Gn6J1S,Vq3rcvQYiYQO23dmAbSlsf" />
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2024.6.7" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0359-gbbb0444d86" />
   <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
   <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.0.0" />
 </Document>
