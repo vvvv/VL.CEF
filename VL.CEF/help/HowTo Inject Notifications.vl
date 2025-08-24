@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="V10gnviHZZSQG4JtXfC79o" LanguageVersion="2024.6.7" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2024.6.7" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="V10gnviHZZSQG4JtXfC79o" LanguageVersion="2025.7.0-0563-g4c826503f6" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0563-g4c826503f6" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" CanvasType="FullCategory" />
     <!--
@@ -15,18 +15,21 @@
       </p:NodeReference>
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
-          <Node Bounds="188,602,125,19" Id="T6EK0aeUpK8L42vEmISS7W">
+          <Node Bounds="188,602,145,19" Id="T6EK0aeUpK8L42vEmISS7W">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
               <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
             </p:NodeReference>
-            <Pin Id="DQwtKOvAScFPsp7xbDIzl2" Name="Bounds" Kind="InputPin" DefaultValue="1033, 50, 758, 689" IsHidden="true" />
+            <Pin Id="BZslemt0IPcLhe5HvvEWv3" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="DQwtKOvAScFPsp7xbDIzl2" Name="Bounds" Kind="InputPin" DefaultValue="1032, 50, 758, 688" IsHidden="true" />
             <Pin Id="NquKn4wR4RNLwzhbPc97ey" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="Su0j3XQoQtAN7AaLTKuwbf" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
-            <Pin Id="BZslemt0IPcLhe5HvvEWv3" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="KpDTT44ILnwLzNXNfyAFir" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
+            <Pin Id="QeVHPEJk5ZjMhyZTvdutCm" Name="Always On Top" Kind="InputPin" IsHidden="true" />
+            <Pin Id="TrS2pw8OJW7LXcZQ1nFtTb" Name="Extend Into Title Bar" Kind="InputPin" IsHidden="true" />
             <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
+            <Pin Id="AmIReYyPeuKNH8nG0J6Prb" Name="Title" Kind="InputPin" />
             <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
             <Pin Id="OOGQG7BFIEtNLL3wzKPENq" Name="Clear" Kind="InputPin" />
             <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin" DefaultValue="Normalized" />
@@ -73,6 +76,7 @@
                   <Pin Id="UjHHtQM9TN2NRj8T0qx1Es" Name="Value" Kind="InputPin" />
                   <Pin Id="MqBA3VhqgckO50HfA5zfIn" Name="Output" Kind="OutputPin" />
                   <Pin Id="ThlYFRGjd3cMyfeMnkOvj6" Name="Value" Kind="OutputPin" />
+                  <Pin Id="UqHpIaV1k0zLGpGQ7S5Xzw" Name="Author" Kind="InputPin" IsHidden="true" />
                 </Node>
                 <ControlPoint Id="MVO6NMaB7EIMfm6AeWI9ok" Bounds="59,501" />
                 <Node Bounds="221,127,188,209" Id="UJ1aCLkByZXMlJq66QTuUz">
@@ -431,7 +435,7 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Press</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="Bwd8EmoPIcRNxm9nX3sorG" Comment="Button" Bounds="669,409,65,15" ShowValueBox="true" isIOBox="true" Value="Left">
+          <Pad Id="Bwd8EmoPIcRNxm9nX3sorG" Comment="Button" Bounds="669,409,71,15" ShowValueBox="true" isIOBox="true" Value="Left">
             <p:TypeAnnotation LastCategoryFullName="IO.Mouse" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="MouseButtons" />
             </p:TypeAnnotation>
@@ -481,6 +485,7 @@
                   <Pin Id="PeFf6T3voEeL1HRwXz8Gq9" Name="Value" Kind="InputPin" />
                   <Pin Id="HD7KGoIoYRDNuGAUtMSdAR" Name="Output" Kind="OutputPin" />
                   <Pin Id="Pg1LkBgNHNHN3bdWPkh9JT" Name="Value" Kind="OutputPin" />
+                  <Pin Id="AbZmSTSLT6BNnwhY2rG9xL" Name="Author" Kind="InputPin" IsHidden="true" />
                 </Node>
                 <Node Bounds="515,392,239,266" Id="A7PhOTj4uzkPa96RtTBCtU">
                   <p:NodeReference LastCategoryFullName="Primitive" LastDependency="Builtin">
@@ -641,6 +646,33 @@
             <Pin Id="MpFI39nmdOKMHnU7HsXfCo" Name="Output Maximum" Kind="InputPin" DefaultValue="0.7, 0.7" />
             <Pin Id="BKXsJyIN7VrQQ5lgZNGeff" Name="Output" Kind="OutputPin" />
           </Node>
+          <Pad Id="An3bKRA44qXLUGmVvNHFxE" Bounds="171,94,106,103" ShowValueBox="true" isIOBox="true" Value="⚠️">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">50</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="KVYDnr7JEYYLaZ6P6JjnnF" Bounds="270,124,167,19" ShowValueBox="true" isIOBox="true" Value="Doesn't seem to work? See:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="RbErcdQEX2aPdJalQs33jV" Bounds="270,148,208,19" ShowValueBox="true" isIOBox="true" Value="https://github.com/vvvv/VL.CEF?tab=readme-ov-file#troubleshooting">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -665,8 +697,8 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2024.6.7" />
-  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
-  <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.0.0" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0563-g4c826503f6" />
+  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.7.1" />
+  <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.7.1" />
   <PlatformDependency Id="Q6uL7yNhiMIPvYMGoHnxN2" Location="SkiaSharp.dll" />
 </Document>

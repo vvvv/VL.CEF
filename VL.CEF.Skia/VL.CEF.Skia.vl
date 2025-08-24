@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="FgyU0uYKYnINLXJUYAW0B1" LanguageVersion="2024.6.7" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2024.6.7" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="FgyU0uYKYnINLXJUYAW0B1" LanguageVersion="2025.7.0-0563-g4c826503f6" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2025.7.0-0563-g4c826503f6" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -102,19 +102,20 @@
         </p:NodeReference>
         <Patch Id="Hf8fAROkdXoMs4ehyAVfP3">
           <Canvas Id="EdhL9jsCsKaMz6QR9TBwAJ" CanvasType="Group">
-            <Node Bounds="231,143,71,19" Id="AAcn8NdJPGxMSlUqCQcgHg">
+            <Node Bounds="231,143,340,19" Id="AAcn8NdJPGxMSlUqCQcgHg">
               <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
               </p:NodeReference>
               <Pin Id="GcoO2lU28o7MCO0NsLGJnq" Name="Node Context" Kind="InputPin" IsHidden="true" />
               <Pin Id="R4KSaaAC1qYLoWoYzm1uDk" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
-              <Pin Id="NMT2dVN5Dz3PbzTfuRm7W5" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
+              <Pin Id="NMT2dVN5Dz3PbzTfuRm7W5" Name="Shared Texture Enabled" Kind="InputPin" />
               <Pin Id="Tm7GgRYLonyOyVCHCfFQmK" Name="Query Handlers" Kind="InputPin" />
               <Pin Id="CRRxSeTWLeWNm7oA7Bwqk0" Name="Enabled" Kind="InputPin" />
               <Pin Id="SFiNe5y0YjLNehHoR9ebFx" Name="Output" Kind="OutputPin" />
               <Pin Id="RBMWVthI9L2PmKd31hh0WB" Name="Loaded" Kind="OutputPin" />
               <Pin Id="GeUrYUNabomNM4HdzH3151" Name="Is Loading" Kind="OutputPin" />
+              <Pin Id="DMsPOcQYayLN5sFeKkGWEh" Name="Chrome Version" Kind="OutputPin" />
               <Pin Id="SB7LaWFv9VtQWH4J2oXR5u" Name="Error Text" Kind="OutputPin" />
             </Node>
             <Node Bounds="231,294,70,19" Id="Huw7vnU6GifQOjRiR1mU3x">
@@ -128,7 +129,7 @@
               <Pin Id="D9QNAzT5uMnNq4hfieJsD9" Name="Output" Kind="OutputPin" />
             </Node>
             <ControlPoint Id="HT8rXBuBatHMb0hUeaMEbt" Bounds="233,90" />
-            <ControlPoint Id="QQZrMV9buLVOFop3NgJRbM" Bounds="663,90" />
+            <ControlPoint Id="QQZrMV9buLVOFop3NgJRbM" Bounds="568,110" />
             <Node Bounds="231,332,165,19" Id="DrRKOndbdZwNH9mfo7O4gf">
               <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -155,6 +156,7 @@
               <Pin Id="EFl5Vz1F3o2MgXYWKk3h8z" Name="Node Context" Kind="InputPin" IsHidden="true" />
               <Pin Id="Qj2MYua6R9tLbL8njSPjwN" Name="Messages" Kind="InputPin" />
               <Pin Id="M8JghHegDg3Lj6y72N8D81" Name="Reset" Kind="InputPin" />
+              <Pin Id="PUotXLrvAyNL2Qx69u2SS1" Name="Output" Kind="OutputPin" IsHidden="true" />
               <Pin Id="VcLPRjtRNWaOoZqTcG7GMi" Name="Result" Kind="OutputPin" />
               <Patch Id="GWt8STZw8RKN0wMAizAYOk" ManuallySortedPins="true">
                 <Patch Id="PDpJSG49w0TLwFWDWKscrP" Name="Create" ManuallySortedPins="true" />
@@ -212,6 +214,7 @@
                 <Choice Kind="ProcessAppFlag" Name="Console" />
               </p:NodeReference>
               <Pin Id="Uvh8tLGJ7ihQY0bVNRC5cu" Name="Node Context" Kind="InputPin" IsHidden="true" />
+              <Pin Id="ALnpeyuWccgLM9MlHEE8qV" Name="State Output" Kind="OutputPin" IsHidden="true" />
               <Pin Id="PBMF4v1KP3eNvj1H3pbCb7" Name="Output" Kind="OutputPin" />
               <Pin Id="ONIeGOxaV1hNIhQziFbWkp" Name="Mouse" Kind="OutputPin" />
               <Pin Id="ShgVnhLtVGSP4j9txceUeU" Name="Keyboard" Kind="OutputPin" />
@@ -296,7 +299,7 @@
               <Pin Id="DgniXPjDfgRMCBGPcadLTl" Name="Y" Kind="InputPin" />
               <Pin Id="KTX6Uos2uKOLfFbZGxQg21" Name="Output" Kind="StateOutputPin" />
             </Node>
-            <ControlPoint Id="VfEw8JDRMCQL5KCnYqdil5" Bounds="286,186" />
+            <ControlPoint Id="VfEw8JDRMCQL5KCnYqdil5" Bounds="258,200" />
             <Node Bounds="311,270,34,19" Id="DGHvPTWOwPYPCHtKsYY8Fv">
               <p:NodeReference LastCategoryFullName="Primitive.Int2" LastDependency="VL.CoreLib.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -307,6 +310,12 @@
               <Pin Id="MjOCLwCLwACM0ewSrpvdSE" Name="Y" Kind="OutputPin" />
             </Node>
             <ControlPoint Id="Hg4DHMElZ6DNZH9praSpR1" Bounds="313,230" />
+            <ControlPoint Id="CAAqWVZz9KJL6IJhK6mITH" Bounds="344,90" />
+            <ControlPoint Id="OfrkiLlUBalMI6CD2EjsnO" Bounds="456,110" />
+            <ControlPoint Id="MSif4wNFFtrNfqEM6vCVC1" Bounds="317,190" />
+            <ControlPoint Id="Iibx8BbwZupP3tTcetz5pJ" Bounds="401,190" />
+            <ControlPoint Id="Kr3L4RFKpqUM6fBX8JkSFy" Bounds="484,180" />
+            <ControlPoint Id="DfnqMhHT4XkOePYDi9xpxn" Bounds="585,180" />
           </Canvas>
           <ProcessDefinition Id="FySD2wXdnZOOwbfnkvQspj">
             <Fragment Id="RiIt5C5unIXNWMz2Yvjwrm" Patch="KxMIXzVQMkqM4gp0SZ52y5" Enabled="true" />
@@ -344,15 +353,21 @@
           <Link Id="TUbIQBKcQu8QMUepeG9u8n" Ids="ORvFyuOwvo2PdCrVuW64oy,CZmQDZ4jtjOLN7qRr9OVbA" />
           <Link Id="VmHYJ5q0af5NFnFn2J61Tg" Ids="ORvFyuOwvo2PdCrVuW64oy,VHWds0dpjyQN2o6tqPmJck" />
           <Patch Id="KxMIXzVQMkqM4gp0SZ52y5" Name="Create" />
-          <Patch Id="QFFP33BVxHKPgET33SGJs3" Name="Update">
+          <Patch Id="QFFP33BVxHKPgET33SGJs3" Name="Update" ManuallySortedPins="true">
             <Pin Id="KSg8ypncMAvNWZvOYOaCvz" Name="Startup Url" Kind="InputPin" />
             <Pin Id="RUGF3SQTTS7PlCLgIldjDw" Name="Render Size" Kind="InputPin" DefaultValue="1280, 720" />
             <Pin Id="FGWQWHFyWbCMM7uPAJk4qK" Name="Draw Bounds" Kind="InputPin" />
-            <Pin Id="BA5phK8M7aqOnFtCVCFIEk" Name="Draw Size Mode" Kind="InputPin" />
             <Pin Id="LhAfXl5fPDhOzDyCrgdSxO" Name="Anchor" Kind="InputPin" />
-            <Pin Id="B62sverPV0ePwNNa76Koj5" Name="Enabled" Kind="InputPin" />
             <Pin Id="Tt8ts8QVjWLPk99Kqp5YMf" Name="Output" Kind="OutputPin" />
             <Pin Id="LIfI7etWgsFPVsM4qWjoIO" Name="Browser" Kind="OutputPin" />
+            <Pin Id="KkP5TLvgNRsNjopYOlbf9I" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="VtXtGLgviTEPF7yJKSSQNn" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="E5SZt7BKVcLQXhKRaAmt2B" Name="Chrome Version" Kind="OutputPin" />
+            <Pin Id="MoaG6VcAPisNnW7KyJcwrN" Name="Error Text" Kind="OutputPin" />
+            <Pin Id="BA5phK8M7aqOnFtCVCFIEk" Name="Draw Size Mode" Kind="InputPin" />
+            <Pin Id="ARxXTLiTkukMv1Gffp4PlT" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="QLSxnPAMrbVMMSKTg9xgRO" Name="Shared Texture Enabled" Kind="InputPin" Visibility="Optional" />
+            <Pin Id="B62sverPV0ePwNNa76Koj5" Name="Enabled" Kind="InputPin" />
           </Patch>
           <Link Id="LxRLtfbsjCMLvYaOdFDDZl" Ids="OtybskPoxYLPzm0x0jDCH8,UXPx9fuBs9gPcPPfBHO6yM" />
           <Link Id="Sc2Wb1frTmKLpe4Qymhk9x" Ids="VHhqcWTTZY0OMaGSUJ1UVL,SxiGfRjcIh8OJIDAHvlLAq" />
@@ -367,6 +382,18 @@
           <Link Id="Qs2M3re4quBQRhxJxxLbOF" Ids="MjOCLwCLwACM0ewSrpvdSE,DgniXPjDfgRMCBGPcadLTl" />
           <Link Id="NSlSe6B1hhYL2duBg5GAc4" Ids="Hg4DHMElZ6DNZH9praSpR1,R489laSPDhTOk7h7Gva64G" />
           <Link Id="OO7B0bCz94jLsKUXCQzip9" Ids="RUGF3SQTTS7PlCLgIldjDw,Hg4DHMElZ6DNZH9praSpR1" IsHidden="true" />
+          <Link Id="SIQJzyLGwEROkfdSYW1q6c" Ids="CAAqWVZz9KJL6IJhK6mITH,NMT2dVN5Dz3PbzTfuRm7W5" />
+          <Link Id="LGDw1cTNG0JM3GCIdFFuvU" Ids="QLSxnPAMrbVMMSKTg9xgRO,CAAqWVZz9KJL6IJhK6mITH" IsHidden="true" />
+          <Link Id="DhuVdgxVjGnMoKIMN69kKf" Ids="OfrkiLlUBalMI6CD2EjsnO,Tm7GgRYLonyOyVCHCfFQmK" />
+          <Link Id="E5u1x29CmpGMbaELgsNBKm" Ids="ARxXTLiTkukMv1Gffp4PlT,OfrkiLlUBalMI6CD2EjsnO" IsHidden="true" />
+          <Link Id="A3zU0s4KQ7SMZC7tcdvYah" Ids="RBMWVthI9L2PmKd31hh0WB,MSif4wNFFtrNfqEM6vCVC1" />
+          <Link Id="VmZ3MPSoaJ3Ldl3LVqd4aq" Ids="MSif4wNFFtrNfqEM6vCVC1,KkP5TLvgNRsNjopYOlbf9I" IsHidden="true" />
+          <Link Id="U28rf7ZmyRpMi21n3j1Yet" Ids="GeUrYUNabomNM4HdzH3151,Iibx8BbwZupP3tTcetz5pJ" />
+          <Link Id="Na31LOuBODBPO76yCDR4jr" Ids="Iibx8BbwZupP3tTcetz5pJ,VtXtGLgviTEPF7yJKSSQNn" IsHidden="true" />
+          <Link Id="DTIWDPQYHpfL0oU8xGleue" Ids="DMsPOcQYayLN5sFeKkGWEh,Kr3L4RFKpqUM6fBX8JkSFy" />
+          <Link Id="REycgsOmtebLEW1GYRjplJ" Ids="Kr3L4RFKpqUM6fBX8JkSFy,E5SZt7BKVcLQXhKRaAmt2B" IsHidden="true" />
+          <Link Id="GrgF3MgKR8SOhPqSJZjdOL" Ids="SB7LaWFv9VtQWH4J2oXR5u,DfnqMhHT4XkOePYDi9xpxn" />
+          <Link Id="BvXXQJxr2JtOt2C348iSWD" Ids="DfnqMhHT4XkOePYDi9xpxn,MoaG6VcAPisNnW7KyJcwrN" IsHidden="true" />
         </Patch>
       </Node>
     </Canvas>
@@ -391,7 +418,7 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2024.6.7" />
+  <NugetDependency Id="Pa4n9gMiHfyPAmP1MTQUEf" Location="VL.Skia" Version="2025.7.0-0563-g4c826503f6" />
   <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net8.0-windows/VL.CEF.Skia.dll" />
   <NugetDependency Id="Knu810rkN45OuFmlmqfa99" Location="VL.CEF" IsForward="true" Version="0.0.0" />
   <NugetDependency Id="SsKgvCunaC8OTTX6hVcABP" Location="VL.CEF.Skia" Version="0.0.0" />

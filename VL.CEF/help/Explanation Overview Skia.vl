@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="KlOLYJdau2VNs5OXrxQIzk" LanguageVersion="2025.7.0-0359-gbbb0444d86" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0359-gbbb0444d86" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="KlOLYJdau2VNs5OXrxQIzk" LanguageVersion="2025.7.0-0563-g4c826503f6" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0563-g4c826503f6" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -15,7 +15,7 @@
       </p:NodeReference>
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
-          <Node Bounds="222,166,85,19" Id="IMN6zSf42oOQZQDq6fQKlx">
+          <Node Bounds="222,271,85,19" Id="IMN6zSf42oOQZQDq6fQKlx">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
@@ -31,7 +31,7 @@
             <Pin Id="DSt6edurNPILpxL0Gn6J1S" Name="Chrome Version" Kind="OutputPin" />
             <Pin Id="Osw2o8okQEuQZwfcyUXIDI" Name="Error Text" Kind="OutputPin" />
           </Node>
-          <Node Bounds="222,397,70,19" Id="BcFRMmqe25vNuOWfGDwHd8">
+          <Node Bounds="222,502,70,19" Id="BcFRMmqe25vNuOWfGDwHd8">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <FullNameCategoryReference ID="CEF" />
@@ -42,7 +42,7 @@
             <Pin Id="GbFtIGrk5pkMqbo0LwxPRa" Name="Browser" Kind="InputPin" />
             <Pin Id="DwTr3OtvpTuMixklZywlr8" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="VKT0xEGwZJRLgXcDor18Zw" Bounds="244,447,170,32" ShowValueBox="true" isIOBox="true" Value="^ Red node? &#xD;&#xA;Make sure VL.CEF.Skia is installed!">
+          <Pad Id="VKT0xEGwZJRLgXcDor18Zw" Bounds="244,552,170,32" ShowValueBox="true" isIOBox="true" Value="^ Red node? &#xD;&#xA;Make sure VL.CEF.Skia is installed!">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -51,34 +51,18 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="HouQ1i6yBE7O7u19OwOcFp" Bounds="382,514,141,21" ShowValueBox="true" isIOBox="true" Value="No visible output? See:">
-            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
-              <Choice Kind="TypeFlag" Name="String" />
-            </p:TypeAnnotation>
-            <p:ValueBoxSettings>
-              <p:fontsize p:Type="Int32">9</p:fontsize>
-              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
-            </p:ValueBoxSettings>
-          </Pad>
-          <Pad Id="AZoZWOSnhjcOXjYqFkfb5A" Bounds="395,533,314,21" ShowValueBox="true" isIOBox="true" Value="https://github.com/vvvv/VL.CEF#troubleshooting">
-            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
-              <Choice Kind="TypeFlag" Name="String" />
-            </p:TypeAnnotation>
-            <p:ValueBoxSettings>
-              <p:fontsize p:Type="Int32">9</p:fontsize>
-              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
-            </p:ValueBoxSettings>
-          </Pad>
-          <Node Bounds="222,506,145,19" Id="UDjgcN0IFPtNGzrJkstp5m">
+          <Node Bounds="222,611,145,19" Id="UDjgcN0IFPtNGzrJkstp5m">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
             </p:NodeReference>
-            <Pin Id="Nt7akwmP77sO6eOngkjYl6" Name="Bounds" Kind="InputPin" DefaultValue="1306, 24, 613, 430" IsHidden="true" />
+            <Pin Id="STVruwCE5SDMOTao7snWw6" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="Nt7akwmP77sO6eOngkjYl6" Name="Bounds" Kind="InputPin" DefaultValue="1306, 24, 612, 430" IsHidden="true" />
             <Pin Id="EyfB4yknK9TPmD5g3HncJu" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="ChmsyAPWVmGLbmxyY4x7zT" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
-            <Pin Id="STVruwCE5SDMOTao7snWw6" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="BBbYrXOSz2wO88t7x3uEaV" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
+            <Pin Id="EB5Ry8eW4sTLEm20wYah5J" Name="Always On Top" Kind="InputPin" IsHidden="true" />
+            <Pin Id="HNZzVkO21hLOpPNyMyz4b4" Name="Extend Into Title Bar" Kind="InputPin" IsHidden="true" />
             <Pin Id="PHf7zX7KQRoL8t5fe1KENy" Name="Input" Kind="InputPin" />
             <Pin Id="Bm4pKS4bF43MPknMQFq5ys" Name="Title" Kind="InputPin" />
             <Pin Id="IU7mbcV4GirLQuFl6YM657" Name="Color" Kind="InputPin" />
@@ -94,25 +78,27 @@
             <Pin Id="LHD0k7kIc6tQINGUKGamKc" Name="ClientBounds" Kind="OutputPin" />
             <Pin Id="AqzRbyIHhvVPFHsJ2Um0N6" Name="Render Time" Kind="OutputPin" />
           </Node>
-          <Pad Id="HtRWAqRZeXvO5cS96PTWbv" Comment="Startup Url" Bounds="224,130,76,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
+          <Pad Id="HtRWAqRZeXvO5cS96PTWbv" Comment="Startup Url" Bounds="224,235,76,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="Aa9Iyi10CNwN4jXXLrJ1hX" Comment="Loaded" Bounds="244,250,35,35" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="RldLmDw4S2RQHKdQ5NuVRv" Comment="Is Loading" Bounds="264,290,35,35" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="VrXhR0Xx6dtQMvJQRuhGUJ" Comment="Error Text" Bounds="304,230,138,15" ShowValueBox="true" isIOBox="true" />
-          <Node Bounds="756,467,145,19" Id="FEQU4gSD9iXPIklqTDeN0d">
+          <Pad Id="Aa9Iyi10CNwN4jXXLrJ1hX" Comment="Loaded" Bounds="244,355,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="RldLmDw4S2RQHKdQ5NuVRv" Comment="Is Loading" Bounds="264,395,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="VrXhR0Xx6dtQMvJQRuhGUJ" Comment="Error Text" Bounds="304,335,138,15" ShowValueBox="true" isIOBox="true" />
+          <Node Bounds="756,572,145,19" Id="FEQU4gSD9iXPIklqTDeN0d">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
               <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
             </p:NodeReference>
-            <Pin Id="J97cfdh6MwXL7eaUoEJatq" Name="Bounds" Kind="InputPin" DefaultValue="1301, 460, 613, 437" IsHidden="true" />
+            <Pin Id="O2ym4ClLqQMMe0PjkQXPiI" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="J97cfdh6MwXL7eaUoEJatq" Name="Bounds" Kind="InputPin" DefaultValue="1300, 460, 612, 436" IsHidden="true" />
             <Pin Id="CVEmnj9XhuvO2miAZcNLVJ" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="SQnrVxVE2CgLBK25PBfK0J" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
-            <Pin Id="O2ym4ClLqQMMe0PjkQXPiI" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="ABgTdBvP8iDN0OGLOiDAtW" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
+            <Pin Id="TQbR6Tosc19LcAgxXzOboB" Name="Always On Top" Kind="InputPin" IsHidden="true" />
+            <Pin Id="Am2YqBIpjlqLyEujbIKyOW" Name="Extend Into Title Bar" Kind="InputPin" IsHidden="true" />
             <Pin Id="Ikl7Ew1HVN0O7gnNt0g2rs" Name="Input" Kind="InputPin" />
             <Pin Id="B3s42OAnLnlLtoGY2lh00v" Name="Title" Kind="InputPin" />
             <Pin Id="VY6ymcfaPYbLdFHm1udfCD" Name="Color" Kind="InputPin" />
@@ -128,7 +114,7 @@
             <Pin Id="T1RszAvZX10QDAercbv4Jn" Name="ClientBounds" Kind="OutputPin" />
             <Pin Id="USUZSJetiF1Odfrqtkh9Xf" Name="Render Time" Kind="OutputPin" />
           </Node>
-          <Node Bounds="756,272,105,19" Id="F95FHldkcfEMrruszV7mYW">
+          <Node Bounds="756,377,125,19" Id="F95FHldkcfEMrruszV7mYW">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="WebLayer" />
@@ -138,13 +124,19 @@
             <Pin Id="SVEGSrKqNTFNgqSD2VpziZ" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
             <Pin Id="TDi9hP3Vz48LzmxjAFXjIo" Name="Render Size" Kind="InputPin" />
             <Pin Id="MAmltelqwa8O1j5A1zT952" Name="Draw Bounds" Kind="InputPin" />
-            <Pin Id="UOLZgIpg5WCPiENNnM6mtV" Name="Draw Size Mode" Kind="InputPin" DefaultValue="AutoWidth" />
             <Pin Id="UuteWcG1I3ePaStGHG1GsI" Name="Anchor" Kind="InputPin" />
-            <Pin Id="GFFfUG7md8FMa6h5c5Oh1M" Name="Enabled" Kind="InputPin" DefaultValue="True" />
             <Pin Id="A2RbHWfu6NzOyclH4t5AP7" Name="Output" Kind="OutputPin" />
             <Pin Id="Bu8uFBp1HluQRH5IhbZ3Zq" Name="Browser" Kind="OutputPin" />
+            <Pin Id="BDHGZ8aT2sFPTYGzczdFdc" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="Cm2hm2LjJiVM72PPwwwIr7" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="K9oQLr04ImMPjMOaYIL23q" Name="Chrome Version" Kind="OutputPin" />
+            <Pin Id="L9t7VajAuYMN5qDivRjhz6" Name="Error Text" Kind="OutputPin" />
+            <Pin Id="UOLZgIpg5WCPiENNnM6mtV" Name="Draw Size Mode" Kind="InputPin" DefaultValue="AutoWidth" />
+            <Pin Id="PXR1tB1lxwgOpSdsTQrqdz" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="Fsli4GOpVlpPAEYmN4frxx" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
+            <Pin Id="GFFfUG7md8FMa6h5c5Oh1M" Name="Enabled" Kind="InputPin" DefaultValue="True" />
           </Node>
-          <Node Bounds="756,410,80,19" Id="M5cyaU6GIoFM5VxHWMRe0U">
+          <Node Bounds="756,515,80,19" Id="M5cyaU6GIoFM5VxHWMRe0U">
             <p:NodeReference LastCategoryFullName="Graphics.Skia.Transform" LastDependency="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <CategoryReference Kind="Category" Name="Transform" NeedsToBeDirectParent="true">
@@ -159,31 +151,22 @@
             <Pin Id="G8DF6Ohxh9yMyiJJeDNWYB" Name="Translation" Kind="InputPin" />
             <Pin Id="PKkpRlWGM0zMBib2TeBbuX" Name="Output" Kind="OutputPin" />
           </Node>
-          <Pad Id="LkGIqutOClsMxdHLWYCbqb" Comment="Rotation" Bounds="808,390,35,15" ShowValueBox="true" isIOBox="true" Value="0.14">
+          <Pad Id="LkGIqutOClsMxdHLWYCbqb" Comment="Rotation" Bounds="808,495,35,15" ShowValueBox="true" isIOBox="true" Value="0.14">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Float32" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="KokIvP3nyWaMlasRXAwTAr" Comment="Render Size" Bounds="778,180,35,28" ShowValueBox="true" isIOBox="true" Value="1024, 768">
+          <Pad Id="KokIvP3nyWaMlasRXAwTAr" Comment="Render Size" Bounds="778,285,35,28" ShowValueBox="true" isIOBox="true" Value="1024, 768">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="Int2" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="RYmXmyqCvVfPNz2KhfuTPN" Comment="Startup Url" Bounds="758,140,64,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
+          <Pad Id="RYmXmyqCvVfPNz2KhfuTPN" Comment="Startup Url" Bounds="758,245,64,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="MxeSYSC2G1kNEJHazdpgAw" Bounds="304,401,264,38" ShowValueBox="true" isIOBox="true" Value="&lt; If you need to render content fullscreen, use this node.">
-            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
-              <Choice Kind="TypeFlag" Name="String" />
-            </p:TypeAnnotation>
-            <p:ValueBoxSettings>
-              <p:fontsize p:Type="Int32">9</p:fontsize>
-              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
-            </p:ValueBoxSettings>
-          </Pad>
-          <Pad Id="AYELu2WuNL9PEoax4BrUat" Bounds="867,276,234,62" ShowValueBox="true" isIOBox="true" Value="&lt; If you need to render content as a transformable layer and keep mouse interaction working, use this node.">
+          <Pad Id="MxeSYSC2G1kNEJHazdpgAw" Bounds="304,506,264,38" ShowValueBox="true" isIOBox="true" Value="&lt; If you need to render content fullscreen, use this node.">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -192,7 +175,43 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="Vq3rcvQYiYQO23dmAbSlsf" Comment="Chrome Version" Bounds="284,203,84,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="AYELu2WuNL9PEoax4BrUat" Bounds="889,383,234,62" ShowValueBox="true" isIOBox="true" Value="&lt; If you need to render content as a transformable layer and keep mouse interaction working, use this node.">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="Vq3rcvQYiYQO23dmAbSlsf" Comment="Chrome Version" Bounds="284,308,84,15" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="RbuFgTsHZ6oPo0vmcEZlmR" Bounds="205,62,108,103" ShowValueBox="true" isIOBox="true" Value="⚠️">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">50</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="DwOAnsjmyd1OSnT8HTPRZo" Bounds="304,92,167,19" ShowValueBox="true" isIOBox="true" Value="Doesn't seem to work? See:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="DC0SgmJfqXxPuTssXrWsJy" Bounds="304,116,140,19" ShowValueBox="true" isIOBox="true" Value="https://github.com/vvvv/VL.CEF?tab=readme-ov-file#troubleshooting">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -215,7 +234,7 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0359-gbbb0444d86" />
-  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
-  <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.0.0" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0563-g4c826503f6" />
+  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.7.1" />
+  <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.7.1" />
 </Document>

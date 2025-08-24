@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="Le6ulaD4AYHNsgZQTPWgw1" LanguageVersion="2024.6.7" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2024.6.7" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="Le6ulaD4AYHNsgZQTPWgw1" LanguageVersion="2025.7.0-0563-g4c826503f6" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2025.7.0-0563-g4c826503f6" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -103,19 +103,20 @@
         </p:NodeReference>
         <Patch Id="RSIGr7y0yXRLNBhoJz7Of3">
           <Canvas Id="FcRI2cCARP9QL2J2qOpIjq" CanvasType="Group">
-            <Node Bounds="231,143,71,19" Id="BX7jWeZRB1rN1ZlXxfz82v">
+            <Node Bounds="231,143,340,19" Id="BX7jWeZRB1rN1ZlXxfz82v">
               <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                 <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
               </p:NodeReference>
               <Pin Id="T26dkI0mA0dL16iMEyni47" Name="Node Context" Kind="InputPin" IsHidden="true" />
               <Pin Id="SUM9ExIa5ifNMUDskQxJnq" Name="Startup Url" Kind="InputPin" DefaultValue="vvvv.org" />
-              <Pin Id="OwiHRp79mulQcsM6BZMntU" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
+              <Pin Id="OwiHRp79mulQcsM6BZMntU" Name="Shared Texture Enabled" Kind="InputPin" />
               <Pin Id="ItC5etDWSlpLiXYnoKLIwp" Name="Query Handlers" Kind="InputPin" />
               <Pin Id="AdEHGUe0SFEMNC7YjBCfV9" Name="Enabled" Kind="InputPin" />
               <Pin Id="EsgEcCvJpBDPoR6eRCgpTO" Name="Output" Kind="OutputPin" />
               <Pin Id="EimKNWIOOWtNWPjI0dXHvE" Name="Loaded" Kind="OutputPin" />
               <Pin Id="QoXpllcyoqlOMhIsGvpB2e" Name="Is Loading" Kind="OutputPin" />
+              <Pin Id="ViYVHSkfHcXPQ4n0MLzIDl" Name="Chrome Version" Kind="OutputPin" />
               <Pin Id="PJWqE1DCNKgMm7tgouaxPy" Name="Error Text" Kind="OutputPin" />
             </Node>
             <Node Bounds="231,294,95,19" Id="RFPmj6Y7rOXOdfIZRNOAqp">
@@ -129,7 +130,7 @@
               <Pin Id="NyXxcrAmq8tMoIDWYJV3Vl" Name="Output" Kind="OutputPin" />
             </Node>
             <ControlPoint Id="L4vsAvmsoOlOvQlSAS74oT" Bounds="233,90" />
-            <ControlPoint Id="I1jsveHgUWsMq1ZbWaYyF2" Bounds="663,90" />
+            <ControlPoint Id="I1jsveHgUWsMq1ZbWaYyF2" Bounds="568,110" />
             <Node Bounds="231,332,185,19" Id="FHHNUCGMi7xL5FAMODnhF2">
               <p:NodeReference LastCategoryFullName="Stride" LastDependency="VL.Stride.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -162,6 +163,7 @@
               <Pin Id="QjytscOrFbgOa6QDLXnGVF" Name="Node Context" Kind="InputPin" IsHidden="true" />
               <Pin Id="FpJXfJjPdIFONzK4O372MW" Name="Messages" Kind="InputPin" />
               <Pin Id="P7AqXEaJSioPCPhcaftRhf" Name="Reset" Kind="InputPin" />
+              <Pin Id="Ja0G7aT8yoCPD4Slmd2a78" Name="Output" Kind="OutputPin" IsHidden="true" />
               <Pin Id="Sul6P9LJTizM6QMwujta6w" Name="Result" Kind="OutputPin" />
               <Patch Id="EnzCyjd4IlAMh9jQTtMJKJ" ManuallySortedPins="true">
                 <Patch Id="HqbhojPPIzuLSRwP2xW4q3" Name="Create" ManuallySortedPins="true" />
@@ -303,7 +305,7 @@
               <Pin Id="Cfj3dJwehZJOAux1Ht1XjT" Name="Input" Kind="StateInputPin" />
               <Pin Id="UxOPfVysD9XPQ33BUpUnJ7" Name="Top Right" Kind="OutputPin" />
             </Node>
-            <ControlPoint Id="QGVZUur5JWrNlZuSXT0URo" Bounds="286,186" />
+            <ControlPoint Id="QGVZUur5JWrNlZuSXT0URo" Bounds="256,190" />
             <Node Bounds="215,574,121,19" Id="T1iYEdvXqABOpG3ECm1aOz">
               <p:NodeReference LastCategoryFullName="Stride.Rendering" LastDependency="VL.Stride.vl">
                 <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
@@ -454,6 +456,7 @@
               <Pin Id="Fu8gZWIUBDjQDOAsFCmHhQ" Name="Value" Kind="InputPin" />
               <Pin Id="V8OVkPMBLPhOvD6NdVDzmS" Name="Output" Kind="OutputPin" />
               <Pin Id="PoLegHu4K9hNnFF8lmDbVv" Name="Value" Kind="OutputPin" />
+              <Pin Id="Kx3ha7P05jAPmg4fqjbrqa" Name="Author" Kind="InputPin" IsHidden="true" />
             </Node>
             <Node Bounds="897,540,53,19" Id="OV5qKmKdczLOpmYvm7wMSS">
               <p:NodeReference LastCategoryFullName="Reactive" LastDependency="VL.CoreLib.vl">
@@ -466,6 +469,7 @@
               <Pin Id="ITpyc1M9uiUMpBJ45ctYzs" Name="Value" Kind="InputPin" />
               <Pin Id="ROKrBrKZOHfLT7uSmakFbd" Name="Output" Kind="OutputPin" />
               <Pin Id="Dgai0JfGDz6QSkmVyZZpVv" Name="Value" Kind="OutputPin" />
+              <Pin Id="CDFWdHNLmouQPWo4T8GSHt" Name="Author" Kind="InputPin" IsHidden="true" />
             </Node>
             <Pad Id="V5kKC0ovOUyN9l6F8zP1Fv" Bounds="1056,527,105,19" ShowValueBox="true" isIOBox="true" Value="View Projection ">
               <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
@@ -544,10 +548,10 @@
             </Node>
             <!--
 
-    ************************ GetAspectRatio ************************
+    ************************ GetAspectRatio (Internal) ************************
 
 -->
-            <Node Name="GetAspectRatio" Bounds="948,132,280,329" Id="SCTbXNKP10MOhtaVCcjXHm">
+            <Node Name="GetAspectRatio (Internal)" Bounds="948,132,280,329" Id="SCTbXNKP10MOhtaVCcjXHm">
               <p:NodeReference>
                 <Choice Kind="OperationDefinition" />
               </p:NodeReference>
@@ -679,6 +683,12 @@
               <Pin Id="QUOFBrxM7qnNJaKiGAyGD1" Name="Result" Kind="OutputPin" />
             </Node>
             <ControlPoint Id="OW2ztB0eAN3NuOYrz8jzSL" Bounds="370,245" />
+            <ControlPoint Id="PW8vkbcp6TuOB0d0NQqlRQ" Bounds="345,100" />
+            <ControlPoint Id="O48O4BZnM9TMXMsmi1uPVR" Bounds="456,120" />
+            <ControlPoint Id="JkjcE92k3HWLxjRKfnKUZw" Bounds="317,190" />
+            <ControlPoint Id="MHSbCnxAkKUMWNlei1cAHu" Bounds="401,180" />
+            <ControlPoint Id="P614ZIJmIfEPMqU4lK77mI" Bounds="484,180" />
+            <ControlPoint Id="AErEd3gkJ1SPW4EPqGNSZj" Bounds="581,180" />
           </Canvas>
           <ProcessDefinition Id="LTGCTWDF4N6NzYyNpfiLgG">
             <Fragment Id="Lzq7aSDVzJKPhx0HmobXsG" Patch="QQaRkVryBd2NLt9H4MMVb9" Enabled="true" />
@@ -713,19 +723,25 @@
           <Link Id="FTJtNURKdopOuscUzKJIUM" Ids="SlA24KegRaZMQzFucN7A9S,Is21159qEliQEwFhqQLEg7" IsHidden="true" />
           <Link Id="KkJy2TwMHWVPxQkxhLPIQP" Ids="GO3ymRMs1LDPYVVGhUEeoc,Vt19BmTWvEVPdJhFt7sk1i" IsHidden="true" />
           <Patch Id="QQaRkVryBd2NLt9H4MMVb9" Name="Create" />
-          <Patch Id="IpatLzk0amnLV84I6BaHRQ" Name="Update">
+          <Patch Id="IpatLzk0amnLV84I6BaHRQ" Name="Update" ManuallySortedPins="true">
             <Pin Id="TauinipzjqaOMa7UYSRv8c" Name="Startup Url" Kind="InputPin" />
-            <Pin Id="HOIEWG0hOAUNjxf1qEsh1s" Name="Render Size" Kind="InputPin" DefaultValue="1280, 720" />
             <Pin Id="SlA24KegRaZMQzFucN7A9S" Name="Transformation" Kind="InputPin" />
-            <Pin Id="GO3ymRMs1LDPYVVGhUEeoc" Name="Aspect Ratio Correction Mode" Kind="InputPin" />
+            <Pin Id="HOIEWG0hOAUNjxf1qEsh1s" Name="Render Size" Kind="InputPin" DefaultValue="1280, 720" />
             <Pin Id="J6bjDCG4JCIONLtMdpUft9" Name="Anchor" Kind="InputPin" />
-            <Pin Id="GOC7sn2jINaO8g3oxxkYFu" Name="Enabled" Kind="InputPin" />
             <Pin Id="QprmdTSyyhROVJGKZt1Htl" Name="Output" Kind="OutputPin">
               <p:TypeAnnotation LastCategoryFullName="Stride.API.Rendering" LastDependency="VL.Stride.vl">
                 <Choice Kind="TypeFlag" Name="IRenderer" />
               </p:TypeAnnotation>
             </Pin>
             <Pin Id="QKcgwbMkTLKPeekzrGudEo" Name="Browser" Kind="OutputPin" />
+            <Pin Id="OEsDcVgL90zMbScP7voVOD" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="OeL28EPDuZxPuBxIyPc6EA" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="U6uacVVgitoP7tDYtZgQJM" Name="Chrome Version" Kind="OutputPin" />
+            <Pin Id="PeSbH5bVa4mNBPwODCxtu8" Name="Error Text" Kind="OutputPin" />
+            <Pin Id="OGDaVplZy9XOj1PBZ7S5rK" Name="Query Handlers" Kind="InputPin" />
+            <Pin Id="GO3ymRMs1LDPYVVGhUEeoc" Name="Aspect Ratio Correction Mode" Kind="InputPin" />
+            <Pin Id="QSGTVbEo893PK7XFaQJmQn" Name="Shared Texture Enabled" Kind="InputPin" Visibility="Optional" />
+            <Pin Id="GOC7sn2jINaO8g3oxxkYFu" Name="Enabled" Kind="InputPin" />
           </Patch>
           <Link Id="ItdFNFXwKlUNMilar1OIlv" Ids="UxcnpF9tUOMMZD9rGEFtWD,Savikr7iJ9fMCglq6FWIGI" IsHidden="true" />
           <Link Id="PkiyBrSLZqNOMAv7urgPC9" Ids="Savikr7iJ9fMCglq6FWIGI,BIDHI2C9eL0MyBK2Xr8BxK" />
@@ -777,6 +793,18 @@
           <Link Id="T2qE154ScTsLcXTAicxYrG" Ids="HOIEWG0hOAUNjxf1qEsh1s,OW2ztB0eAN3NuOYrz8jzSL" IsHidden="true" />
           <Link Id="MyCedbtcSJHQUdOqkCaaBC" Ids="OW2ztB0eAN3NuOYrz8jzSL,T4IQbpqNxn0OxiebDScOoM" />
           <Link Id="K2G8fxaKl84O132pL25vBk" Ids="QUOFBrxM7qnNJaKiGAyGD1,OsiyS72SO2EMROPDzzJ4Py" />
+          <Link Id="Qcav2dGVHMrPbGWQyPeMii" Ids="PW8vkbcp6TuOB0d0NQqlRQ,OwiHRp79mulQcsM6BZMntU" />
+          <Link Id="ORP75H4G5yYNHo4H1mjtWw" Ids="QSGTVbEo893PK7XFaQJmQn,PW8vkbcp6TuOB0d0NQqlRQ" IsHidden="true" />
+          <Link Id="TFNWrREoV27Ne2vsdoH705" Ids="O48O4BZnM9TMXMsmi1uPVR,ItC5etDWSlpLiXYnoKLIwp" />
+          <Link Id="Kwv2rzNvJ3WLypxU5hKuPH" Ids="OGDaVplZy9XOj1PBZ7S5rK,O48O4BZnM9TMXMsmi1uPVR" IsHidden="true" />
+          <Link Id="Ou7XwYHL348P6gGLcbj2ZU" Ids="EimKNWIOOWtNWPjI0dXHvE,JkjcE92k3HWLxjRKfnKUZw" />
+          <Link Id="TatXqR5mCc3NpsgrA2f32j" Ids="JkjcE92k3HWLxjRKfnKUZw,OEsDcVgL90zMbScP7voVOD" IsHidden="true" />
+          <Link Id="KDBCXxJsCvUPx8QYoLFxiu" Ids="QoXpllcyoqlOMhIsGvpB2e,MHSbCnxAkKUMWNlei1cAHu" />
+          <Link Id="NlZLreYSmZvOUCaA3cxyVP" Ids="MHSbCnxAkKUMWNlei1cAHu,OeL28EPDuZxPuBxIyPc6EA" IsHidden="true" />
+          <Link Id="Uw8Ov6p5Z8ZPueBsWh6CsR" Ids="ViYVHSkfHcXPQ4n0MLzIDl,P614ZIJmIfEPMqU4lK77mI" />
+          <Link Id="KqjwXQUWVTDMCtCoeguj9I" Ids="P614ZIJmIfEPMqU4lK77mI,U6uacVVgitoP7tDYtZgQJM" IsHidden="true" />
+          <Link Id="GnjFzf7Os9rLzL1ZkCWNCk" Ids="PJWqE1DCNKgMm7tgouaxPy,AErEd3gkJ1SPW4EPqGNSZj" />
+          <Link Id="RXu7OSW0EXfMeXip59IgEp" Ids="AErEd3gkJ1SPW4EPqGNSZj,PeSbH5bVa4mNBPwODCxtu8" IsHidden="true" />
         </Patch>
       </Node>
     </Canvas>
@@ -801,10 +829,10 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2024.6.7" />
+  <NugetDependency Id="HPbFYrmwgPhPvXgZqFEIvs" Location="VL.Stride" Version="2025.7.0-0563-g4c826503f6" />
   <PlatformDependency Id="V00Dw32yWnSOJVwytTbLQb" Location="./lib/net8.0-windows/VL.CEF.Stride.dll" />
   <NugetDependency Id="B2j9g6TO1esQANElMPYnOG" Location="VL.CEF" IsForward="true" Version="0.0.0" />
-  <NugetDependency Id="Vb5iWrVbmAYPsJrOMALfUj" Location="VL.Stride.TextureFX" Version="2024.6.7" />
+  <NugetDependency Id="Vb5iWrVbmAYPsJrOMALfUj" Location="VL.Stride.TextureFX" Version="2025.7.0-0563-g4c826503f6" />
   <PlatformDependency Id="ViUsdYZNo6zMR12kZHvhgu" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/packs/dependencies/VL.Stride.Runtime.dll" />
   <PlatformDependency Id="NSgPiKUlW6LO3vCfs7blGd" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/packs/dependencies/Stride.Rendering.dll" />
   <PlatformDependency Id="JtCQYWZYZPwMQ9AXhloaPz" Location="../../../../../../Program Files/vvvv/vvvv_gamma_6.2/Stride.Core.dll" />

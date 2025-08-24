@@ -17,7 +17,7 @@ and/or
 ### No output at all
 This is probably because your PC has multiple GPUs. There are two ways to work around this issue:
 
-1) On the WebBrowser node activate the optional "Shared Texture Enabled" input and deactivate it  
+1) On the WebBrowser/WebLayer/WebRenderer node configure to show the optional "Shared Texture Enabled" input and deactivate it  
 or
 3) Tell the chromium process to run on the same GPU that vvvv is running on:
 

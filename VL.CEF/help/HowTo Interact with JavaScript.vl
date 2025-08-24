@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2025.7.0-0357-gd997588cb6" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0357-gd997588cb6" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2025.7.0-0563-g4c826503f6" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0563-g4c826503f6" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -15,17 +15,19 @@
       </p:NodeReference>
       <Patch Id="H6UqjBkdWMTMU7AH469H7b">
         <Canvas Id="OhBUmBYuG4sOq5YWTAPRVM" CanvasType="Group">
-          <Node Bounds="308,850,145,19" Id="T6EK0aeUpK8L42vEmISS7W">
+          <Node Bounds="388,953,145,19" Id="T6EK0aeUpK8L42vEmISS7W">
             <p:NodeReference LastCategoryFullName="Graphics.Skia" LastDependency="VL.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Renderer" />
               <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
             </p:NodeReference>
-            <Pin Id="GmTTYzgJ0r6N5DGkOWFQed" Name="Bounds" Kind="InputPin" DefaultValue="1301, 20, 616, 439" IsHidden="true" />
+            <Pin Id="NBcYHpzFFa8PM5JcgXsVlf" Name="Node Context" Kind="InputPin" IsHidden="true" />
+            <Pin Id="GmTTYzgJ0r6N5DGkOWFQed" Name="Bounds" Kind="InputPin" DefaultValue="1300, 20, 616, 438" IsHidden="true" />
             <Pin Id="JrTczJQ00CBNhr7HEcbgTI" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="VXS756FzRgGMdoylHBIjTq" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
-            <Pin Id="NBcYHpzFFa8PM5JcgXsVlf" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="M0b3ag9wY8WQH0ntiDDodw" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
+            <Pin Id="QZBVv94glrkPq8m9SToHqv" Name="Always On Top" Kind="InputPin" IsHidden="true" />
+            <Pin Id="EEZWNmipuVaP6o9vajtmK9" Name="Extend Into Title Bar" Kind="InputPin" IsHidden="true" />
             <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
             <Pin Id="AmHZTRSFijrL7FInCugi0Z" Name="Title" Kind="InputPin" />
             <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
@@ -41,12 +43,12 @@
             <Pin Id="HPpjtVnWzz7OhpUCceYYRN" Name="ClientBounds" Kind="OutputPin" />
             <Pin Id="RnoPyy9Gtl7QZhK4qZRKgz" Name="Render Time" Kind="OutputPin" />
           </Node>
-          <Pad Id="NRQ0mANvc1oQNCzUx0wAy8" Comment="Content" Bounds="340,-10,338,432" ShowValueBox="true" isIOBox="true" Value="&lt;html&gt;&#xD;&#xA;&lt;body bgcolor=&quot;#ffffff&quot;&gt;&#xD;&#xA;&lt;h1&gt;Passing messages between JS and VL&lt;/h1&gt;&#xD;&#xA;&lt;p id=&quot;p1&quot;&gt;No value&lt;/p&gt;&#xD;&#xA;&lt;p id=&quot;p2&quot;&gt;Hover this line to send the mouse position to the patch&lt;/p&gt;&#xD;&#xA;&lt;/body&gt;&#xD;&#xA;&#xD;&#xA;&lt;script&gt;&#xD;&#xA;var p1 = document.getElementById(&quot;p1&quot;);&#xD;&#xA;window.setInterval(function()&#xD;&#xA;{&#xD;&#xA;  window.vvvvQuery(&#xD;&#xA;  { &#xD;&#xA;    request: 'getCurrentLFOValue',&#xD;&#xA;    onSuccess: function(response) {&#xD;&#xA;      p1.innerHTML = response;&#xD;&#xA;    }&#xD;&#xA;  });&#xD;&#xA;}, 33);&#xD;&#xA;&#xD;&#xA;var p2 = document.getElementById(&quot;p2&quot;);&#xD;&#xA;p2.addEventListener(&quot;mousemove&quot;, function(event)&#xD;&#xA;{&#xD;&#xA;  window.vvvvQuery(&#xD;&#xA;  { &#xD;&#xA;    request: 'sendToVL',&#xD;&#xA;    arguments: { X: event.clientX, Y: event.clientY }&#xD;&#xA;  });&#xD;&#xA;});&#xD;&#xA;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;/html&gt;">
+          <Pad Id="NRQ0mANvc1oQNCzUx0wAy8" Comment="Content" Bounds="420,93,338,432" ShowValueBox="true" isIOBox="true" Value="&lt;html&gt;&#xD;&#xA;&lt;body bgcolor=&quot;#ffffff&quot;&gt;&#xD;&#xA;&lt;h1&gt;Passing messages between JS and VL&lt;/h1&gt;&#xD;&#xA;&lt;p id=&quot;p1&quot;&gt;No value&lt;/p&gt;&#xD;&#xA;&lt;p id=&quot;p2&quot;&gt;Hover this line to send the mouse position to the patch&lt;/p&gt;&#xD;&#xA;&lt;/body&gt;&#xD;&#xA;&#xD;&#xA;&lt;script&gt;&#xD;&#xA;var p1 = document.getElementById(&quot;p1&quot;);&#xD;&#xA;window.setInterval(function()&#xD;&#xA;{&#xD;&#xA;  window.vvvvQuery(&#xD;&#xA;  { &#xD;&#xA;    request: 'getCurrentLFOValue',&#xD;&#xA;    onSuccess: function(response) {&#xD;&#xA;      p1.innerHTML = response;&#xD;&#xA;    }&#xD;&#xA;  });&#xD;&#xA;}, 33);&#xD;&#xA;&#xD;&#xA;var p2 = document.getElementById(&quot;p2&quot;);&#xD;&#xA;p2.addEventListener(&quot;mousemove&quot;, function(event)&#xD;&#xA;{&#xD;&#xA;  window.vvvvQuery(&#xD;&#xA;  { &#xD;&#xA;    request: 'sendToVL',&#xD;&#xA;    arguments: { X: event.clientX, Y: event.clientY }&#xD;&#xA;  });&#xD;&#xA;});&#xD;&#xA;&lt;/script&gt;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&lt;/html&gt;">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="670,464,195,204" Id="ShleX6AL5d9NT843PScqk7">
+          <Node Bounds="750,567,195,204" Id="ShleX6AL5d9NT843PScqk7">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
               <Choice Kind="ProcessAppFlag" Name="QueryHandler" />
               <Choice Kind="RegionFlag" Name="Region (Stateless)" Fixed="true" />
@@ -57,9 +59,9 @@
             <Patch Id="Uv1CyPHFIFGNGYFPQzKi7y" Name="Handler" ManuallySortedPins="true">
               <Pin Id="DKx5lzK8ZgALQLzin3TfuQ" Name="Input" Kind="InputPin" />
               <Pin Id="HLzzQBqqfRCNkdtf1IB5OG" Name="Result" Kind="OutputPin" />
-              <ControlPoint Id="B260kgpgnEeOjOTlTwMGSp" Bounds="674,472" />
-              <ControlPoint Id="CqCbnHIpjNFPg3PeugG2Od" Bounds="677,657" />
-              <Node Bounds="753,531,50,19" Id="SQ1KudY3UFdPMi66ywS3Nc">
+              <ControlPoint Id="B260kgpgnEeOjOTlTwMGSp" Bounds="754,575" />
+              <ControlPoint Id="CqCbnHIpjNFPg3PeugG2Od" Bounds="757,760" />
+              <Node Bounds="833,634,50,19" Id="SQ1KudY3UFdPMi66ywS3Nc">
                 <p:NodeReference LastCategoryFullName="Collections.Dictionary" LastDependency="VL.CoreLib.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <Choice Kind="OperationCallFlag" Name="Decons" />
@@ -69,7 +71,7 @@
                 <Pin Id="DeDqayrFMuyMtNeA0PNz4E" Name="X" Kind="OutputPin" PinGroupName="Output" />
                 <Pin Id="QtS5if7IyDyL1bFbdfpKdk" Name="Y" Kind="OutputPin" PinGroupName="Output" />
               </Node>
-              <Node Bounds="753,503,48,19" Id="LJbtLVSOMLYMKWIjSqqiun">
+              <Node Bounds="833,606,48,19" Id="LJbtLVSOMLYMKWIjSqqiun">
                 <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <Choice Kind="OperationCallFlag" Name="CastAs" />
@@ -79,7 +81,7 @@
                 <Pin Id="MINaQ0LYWOiLAqu1cVAHAr" Name="Result" Kind="OutputPin" />
                 <Pin Id="KHx1US9VJXxOvm3Yqdax2r" Name="Success" Kind="OutputPin" />
               </Node>
-              <Node Bounds="753,585,46,19" Id="I76xnjtI5D7M7nwHIWy1c5">
+              <Node Bounds="833,688,46,19" Id="I76xnjtI5D7M7nwHIWy1c5">
                 <p:NodeReference LastCategoryFullName="Primitive.Int2" LastDependency="VL.CoreLib.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <Choice Kind="OperationCallFlag" Name="Int2 (Create)" />
@@ -88,7 +90,7 @@
                 <Pin Id="FPioJKbr7QpQDoxCPjDipA" Name="Y" Kind="InputPin" />
                 <Pin Id="OObWRqjHgwzPnkAhuoaOTS" Name="Output" Kind="StateOutputPin" />
               </Node>
-              <Node Bounds="753,558,48,19" Id="Rh0MZkuNmGFOGq9Ucsc4WS">
+              <Node Bounds="833,661,48,19" Id="Rh0MZkuNmGFOGq9Ucsc4WS">
                 <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <Choice Kind="OperationCallFlag" Name="CastAs" />
@@ -98,7 +100,7 @@
                 <Pin Id="T3DMQ4mB9UmMK56LpECycl" Name="Result" Kind="OutputPin" />
                 <Pin Id="Ih5mwDWqopCN3n9T1c320S" Name="Success" Kind="OutputPin" />
               </Node>
-              <Node Bounds="805,557,48,19" Id="I1EdDwdPZRsP5wd2l69MAa">
+              <Node Bounds="885,660,48,19" Id="I1EdDwdPZRsP5wd2l69MAa">
                 <p:NodeReference LastCategoryFullName="Primitive.Object" LastDependency="VL.CoreLib.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <Choice Kind="OperationCallFlag" Name="CastAs" />
@@ -108,7 +110,7 @@
                 <Pin Id="TMUi8Pk0FzTNA5QqiIdPaU" Name="Result" Kind="OutputPin" />
                 <Pin Id="SmqTorZaJ2rNkMTUsWSnxH" Name="Success" Kind="OutputPin" />
               </Node>
-              <Node Bounds="728,622,55,26" Id="ND84He56ahjMJxxWJWHrAu">
+              <Node Bounds="808,725,55,26" Id="ND84He56ahjMJxxWJWHrAu">
                 <p:NodeReference LastCategoryFullName="Reactive.Channel" LastDependency="VL.CoreLib.vl">
                   <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
                   <CategoryReference Kind="MutableInterfaceType" Name="Channel" />
@@ -122,7 +124,7 @@
               </Node>
             </Patch>
           </Node>
-          <Node Bounds="425,678,250,19" Id="OSHRYQBzIuFOVWNatfrJcb">
+          <Node Bounds="505,781,250,19" Id="OSHRYQBzIuFOVWNatfrJcb">
             <p:NodeReference LastCategoryFullName="Collections.Spread" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="Cons" />
@@ -132,12 +134,12 @@
             <Pin Id="CV1gNKCzjZoMgLm9hnxe6N" Name="Result" Kind="OutputPin" />
             <Pin Id="RJC5JzKF9B2QVzUCPA9X9M" Name="Input 2" Kind="InputPin" />
           </Node>
-          <Pad Id="Szbrm1wiVbTOxvbuoHIbeQ" Comment="Name" Bounds="672,440,58,16" ShowValueBox="true" isIOBox="true" Value="sendToVL">
+          <Pad Id="Szbrm1wiVbTOxvbuoHIbeQ" Comment="Name" Bounds="752,543,58,16" ShowValueBox="true" isIOBox="true" Value="sendToVL">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="425,542,79,95" Id="NLKCxk3uYZcOGgtfEP2LOC">
+          <Node Bounds="505,645,79,95" Id="NLKCxk3uYZcOGgtfEP2LOC">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
               <Choice Kind="ProcessAppFlag" Name="QueryHandler" />
               <Choice Kind="RegionFlag" Name="Region (Stateless)" Fixed="true" />
@@ -149,16 +151,16 @@
             <Patch Id="OpPDq4dETBULbSxeiaH8B6" Name="Handler" ManuallySortedPins="true">
               <Pin Id="E9LyqQgbyssOuVpziaaAgX" Name="Input" Kind="InputPin" />
               <Pin Id="VbhIpNscUzlPsa8vXLFgOI" Name="Result" Kind="OutputPin" />
-              <ControlPoint Id="STFpW4JohSeNYnV8IQKWDT" Bounds="439,550" />
-              <ControlPoint Id="NKLizQBC2sILNwM6EfrwrG" Bounds="439,630" />
+              <ControlPoint Id="STFpW4JohSeNYnV8IQKWDT" Bounds="519,653" />
+              <ControlPoint Id="NKLizQBC2sILNwM6EfrwrG" Bounds="519,733" />
             </Patch>
           </Node>
-          <Pad Id="J18YgjB3NIrNLzJ1uKDrfD" Comment="Name" Bounds="427,511,108,18" ShowValueBox="true" isIOBox="true" Value="getCurrentLFOValue">
+          <Pad Id="J18YgjB3NIrNLzJ1uKDrfD" Comment="Name" Bounds="507,614,108,18" ShowValueBox="true" isIOBox="true" Value="getCurrentLFOValue">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="519,570,45,19" Id="B86eH311oM5MJgtalXfeu1">
+          <Node Bounds="599,673,45,19" Id="B86eH311oM5MJgtalXfeu1">
             <p:NodeReference LastCategoryFullName="Animation" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="LFO" />
@@ -173,8 +175,8 @@
             <Pin Id="CIqDuGG4MA0L0LDo1wOmwu" Name="On New Cycle" Kind="OutputPin" />
             <Pin Id="DZAhE432namLQwu1bHImQL" Name="Cycles" Kind="OutputPin" />
           </Node>
-          <Pad Id="CNwuLqNpjboMiFYtbztZHB" Comment="Mouse Coords" Bounds="778,416,35,28" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="Ja3MvzrQQi1QT4dMg4vmLJ" Bounds="875,547,260,64" ShowValueBox="true" isIOBox="true" Value="&lt; The output names must match the JS property names (change via rightclick -&gt; Configure on the Decons node)">
+          <Pad Id="CNwuLqNpjboMiFYtbztZHB" Comment="Mouse Coords" Bounds="858,519,35,28" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="Ja3MvzrQQi1QT4dMg4vmLJ" Bounds="955,650,260,64" ShowValueBox="true" isIOBox="true" Value="&lt; The output names must match the JS property names (change via rightclick -&gt; Configure on the Decons node)">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -183,7 +185,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="NInokK7DYz9QUcB8dplG7Y" Bounds="875,500,205,41" ShowValueBox="true" isIOBox="true" Value="&lt; JS objects are represented as Dictionary&lt;string, object&gt;">
+          <Pad Id="NInokK7DYz9QUcB8dplG7Y" Bounds="955,603,205,41" ShowValueBox="true" isIOBox="true" Value="&lt; JS objects are represented as Dictionary&lt;string, object&gt;">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -192,7 +194,7 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Node Bounds="308,715,71,19" Id="BjQ2f8e6YnlLOUaMfsxFwp">
+          <Node Bounds="388,818,85,19" Id="BjQ2f8e6YnlLOUaMfsxFwp">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="WebBrowser" />
@@ -205,9 +207,10 @@
             <Pin Id="PIxysgcPsV4N2bHonHN4ER" Name="Output" Kind="OutputPin" />
             <Pin Id="TfhI4W342auNsLkTBfbXec" Name="Loaded" Kind="OutputPin" />
             <Pin Id="DQFU2kqvnnXLO4jFiez8fv" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="E2apHAIdVZOOwHPkdmNRex" Name="Chrome Version" Kind="OutputPin" />
             <Pin Id="BO9n3pxVSScL1KNn5YdsrK" Name="Error Text" Kind="OutputPin" />
           </Node>
-          <Node Bounds="308,777,65,26" Id="E8WeI8gKNUGPvhVpDZlyem">
+          <Node Bounds="388,880,65,26" Id="E8WeI8gKNUGPvhVpDZlyem">
             <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <FullNameCategoryReference ID="CEF.WebBrowser" />
@@ -218,7 +221,7 @@
             <Pin Id="Dahba5LskWvMMSdMm0TUps" Name="Apply" Kind="InputPin" />
             <Pin Id="L5k7WTdKJxjNDczrpbQO54" Name="Output" Kind="StateOutputPin" />
           </Node>
-          <Node Bounds="308,816,70,19" Id="JjkOjSub4cSOapZoOUNFEm">
+          <Node Bounds="388,919,70,19" Id="JjkOjSub4cSOapZoOUNFEm">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <FullNameCategoryReference ID="CEF" />
@@ -228,7 +231,7 @@
             <Pin Id="QtWsMFVTovoMnvw8ZvIIhz" Name="Browser" Kind="InputPin" />
             <Pin Id="CuGbX9ElZdkOBmvW8Pb4Pr" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="368,750,54,19" Id="U1NfsVhDCm2PEYcpA0kHmp">
+          <Node Bounds="448,853,54,19" Id="U1NfsVhDCm2PEYcpA0kHmp">
             <p:NodeReference LastCategoryFullName="Control" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="OnOpen" />
@@ -237,7 +240,7 @@
             <Pin Id="Hk12Z91QwZEPmeDiHKouFj" Name="Simulate" Kind="InputPin" DefaultValue="False" />
             <Pin Id="DILzRnsHEcKOSP1VZOTMkv" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="728,375,53,19" Id="Ach55je8cavNDGDNsOkZ3w">
+          <Node Bounds="808,478,53,19" Id="Ach55je8cavNDGDNsOkZ3w">
             <p:NodeReference LastCategoryFullName="Reactive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Channel" />
@@ -247,8 +250,9 @@
             <Pin Id="CVWMv45Prb2NqTZ2aYeoDD" Name="Value" Kind="InputPin" />
             <Pin Id="EdgwdEII0WiMeryJ7Vwgxu" Name="Output" Kind="OutputPin" />
             <Pin Id="FEt1zjPfitBOtgle3TiZkA" Name="Value" Kind="OutputPin" />
+            <Pin Id="BSHlUXZbOLPOQ0Cc47Mh2K" Name="Author" Kind="InputPin" IsHidden="true" />
           </Node>
-          <Node Bounds="574,820,95,26" Id="TEChOjNWkD7OJFxPUitcti">
+          <Node Bounds="654,923,95,26" Id="TEChOjNWkD7OJFxPUitcti">
             <p:NodeReference LastCategoryFullName="CEF.WebBrowser" LastDependency="VL.CEF.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="OperationCallFlag" Name="ExecuteJavaScript" />
@@ -259,7 +263,7 @@
             <Pin Id="Bamqek2mZ4eLqK8MIlPVaL" Name="Output" Kind="StateOutputPin" />
             <Pin Id="VdqTHROvfuYPi10z130h1p" Name="Apply" Kind="InputPin" />
           </Node>
-          <Pad Id="Iqh8lnUL9xqM6Y41qFQ1L7" Comment="Apply" Bounds="666,780,35,35" ShowValueBox="true" isIOBox="true" Value="false">
+          <Pad Id="Iqh8lnUL9xqM6Y41qFQ1L7" Comment="Apply" Bounds="746,883,35,35" ShowValueBox="true" isIOBox="true" Value="false">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
             </p:TypeAnnotation>
@@ -267,10 +271,37 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Bang</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="JlAXwxaIrs2NMGVDZYe4hk" Comment="Java Script" Bounds="621,750,270,15" ShowValueBox="true" isIOBox="true" Value="document.body.style.backgroundColor=&quot;red&quot;;">
+          <Pad Id="JlAXwxaIrs2NMGVDZYe4hk" Comment="Java Script" Bounds="701,853,270,15" ShowValueBox="true" isIOBox="true" Value="document.body.style.backgroundColor=&quot;red&quot;;">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
+          </Pad>
+          <Pad Id="FFLVqiKJzmrO0QKiQRZhGZ" Bounds="79,100,106,103" ShowValueBox="true" isIOBox="true" Value="⚠️">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">50</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="TM9HTyT13gcNhT2x2rOkQY" Bounds="178,130,167,19" ShowValueBox="true" isIOBox="true" Value="Doesn't seem to work? See:">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="M5vlDbqtvScLcwFOVY0Urm" Bounds="178,154,208,19" ShowValueBox="true" isIOBox="true" Value="https://github.com/vvvv/VL.CEF?tab=readme-ov-file#troubleshooting">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
+            </p:ValueBoxSettings>
           </Pad>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
@@ -309,7 +340,7 @@
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0357-gd997588cb6" />
-  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.0.7-stride" />
-  <NugetDependency Id="LqyVuFUURQmNkHJ02LQA9V" Location="VL.CEF.Skia" Version="0.0.0" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0563-g4c826503f6" />
+  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.7.1" />
+  <NugetDependency Id="LqyVuFUURQmNkHJ02LQA9V" Location="VL.CEF.Skia" Version="0.7.1" />
 </Document>
