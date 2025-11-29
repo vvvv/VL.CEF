@@ -353,3 +353,6 @@ MigrationBackup/
 /lib/net472/
 /lib/
 */lib/
+
+# Visual Studio launch settings (user-specific)
+**/Properties/launchSettings.json
