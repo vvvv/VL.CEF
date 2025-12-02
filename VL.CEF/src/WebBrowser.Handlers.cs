@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xilium.CefGlue;
 using System.Diagnostics;
 using Stride.Core.Mathematics;
@@ -383,7 +383,7 @@ namespace VL.CEF
                     {
                         var x = new SpreadBuilder<object>(list.Count);
                         for (int i = 0; i < list.Count; i++)
-                            x.Add(ToValue(list.GetValue(i)));
+                            x.Add(ToObject(list.GetValue(i)));
                         return x.ToSpread();
                     }
                 }
