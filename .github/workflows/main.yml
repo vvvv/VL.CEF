@@ -40,7 +40,7 @@ jobs:
       - name: 'Run: Deploy'
         run: ./build.cmd Deploy
         env:
-          NuGetApiKey: ${{ secrets.NUGET_API_KEY }}
+          VvvvOrgNugetKey: ${{ secrets.VVVV_ORG_NUGET_KEY }}
       - name: 'Publish: bin'
         uses: actions/upload-artifact@v4
         with:

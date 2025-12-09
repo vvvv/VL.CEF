@@ -20,7 +20,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
     Lfs = true,
     Submodules = GitHubActionsSubmodules.Recursive,
     InvokedTargets = [nameof(Deploy)],
-    ImportSecrets = [nameof(NuGetApiKey)])]
+    ImportSecrets = [nameof(VvvvOrgNugetKey)])]
 class Build : NukeBuild
 {
     /// Support plugins are available for:
@@ -35,7 +35,7 @@ class Build : NukeBuild
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Parameter][Secret] 
-    readonly string NuGetApiKey;
+    readonly string VvvvOrgNugetKey;
 
     AbsolutePath PackagesDirectory => RootDirectory / "bin";
 
@@ -55,14 +55,14 @@ class Build : NukeBuild
 
     Target Deploy => _ => _
         .DependsOn(Pack)
-        .Requires(() => NuGetApiKey)
+        .Requires(() => VvvvOrgNugetKey)
         .Executes(() =>
         {
             foreach (var file in PackagesDirectory.GetFiles("*.nupkg"))
             {
                 DotNetNuGetPush(_ => _
                     .SetTargetPath(file)
-                    .SetApiKey(NuGetApiKey)
+                    .SetApiKey(VvvvOrgNugetKey)
                     .SetSource("nuget.org"));
             }
         });
