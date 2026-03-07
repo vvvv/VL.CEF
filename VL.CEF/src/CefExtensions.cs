@@ -84,10 +84,10 @@ namespace VL.CEF
                     if (!CefRuntime.RegisterSchemeHandlerFactory(SchemeHandlerFactory.SCHEME_NAME, null!, new SchemeHandlerFactory()))
                         throw new Exception(string.Format("Couldn't register custom scheme factory for '{0}'.", schemeName));
 
-                    //return Disposable.Create(() => CefRuntime.Shutdown());
-                }
-                else
-                {
+                    // Shutdown must happen exactly once, at process exit. Tying it to the last
+                    // WebBrowser disposal would break re-use within the same process lifetime
+                    // because CEF cannot be re-initialized after Shutdown.
+                    AppDomain.CurrentDomain.ProcessExit += (_, _) => CefRuntime.Shutdown();
                 }
                 return Disposable.Empty;
             }).ShareInParallel();
