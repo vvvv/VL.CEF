@@ -5,6 +5,7 @@ using Stride.Input;
 using Stride.Rendering;
 using System;
 using System.Reactive.Disposables;
+using System.Runtime.InteropServices;
 using VL.Core;
 using VL.Lib.Basics.Resources;
 using VL.Stride;
@@ -22,14 +23,26 @@ namespace VL.CEF
 {
     public sealed partial class StrideRenderHandler : RendererBase
     {
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool CloseHandle(IntPtr handle);
+
+        private record struct QueueItem(SharpDX.DXGI.Resource Resource, long FenceValue);
+
         private readonly object syncRoot = new object();
         private readonly IResourceHandle<Game> gameHandle;
         private readonly WebBrowser browser;
         private readonly Device5 producerDevice;
         private readonly DeviceContext4 producerContext;
-        private readonly BlockingCollection<SharpDX.DXGI.Resource> queue = new(boundedCapacity: 1);
+        private readonly Fence producerFence;
+        private readonly IntPtr sharedFenceHandle;
+        private long fenceValue;
+        private readonly BlockingCollection<QueueItem> queue = new(boundedCapacity: 1);
         private readonly bool needsRefCountFix;
         private Texture surface;
+        // Consumer-side fence infrastructure
+        private readonly Device5 consumerDevice;
+        private readonly DeviceContext4 consumerContext;
+        private readonly Fence consumerFence;
 
         public StrideRenderHandler(NodeContext nodeContext, WebBrowser browser)
         {
@@ -42,10 +55,18 @@ namespace VL.CEF
             this.producerDevice = producerDevice.QueryInterface<Device5>();
             this.producerContext = producerDevice.ImmediateContext.QueryInterface<DeviceContext4>();
 
+            producerFence = new Fence(this.producerDevice, 0, FenceFlags.Shared);
+            sharedFenceHandle = producerFence.CreateSharedHandle(null, unchecked((int)0x10000000L), null);
+
             gameHandle = nodeContext.AppHost.Services.GetGameHandle();
 
             var renderContext = RenderContext.GetShared(gameHandle.Resource.Services);
             Initialize(renderContext);
+
+            var consumerDevice = (Device)SharpDXInterop.GetNativeDevice(GraphicsDevice);
+            this.consumerDevice = consumerDevice.QueryInterface<Device5>();
+            this.consumerContext = consumerDevice.ImmediateContext.QueryInterface<DeviceContext4>();
+            this.consumerFence = this.consumerDevice.OpenSharedFence(sharedFenceHandle);
 
             browser.Paint += OnPaint;
             browser.AcceleratedPaint += OnAcceleratedPaint;
@@ -58,10 +79,16 @@ namespace VL.CEF
 
             queue.CompleteAdding();
             foreach (var item in queue)
-                item.Dispose();
+                item.Resource.Dispose();
 
             producerContext.Dispose();
+            producerFence.Dispose();
             producerDevice.Dispose();
+
+            consumerFence.Dispose();
+            consumerContext.Dispose();
+            consumerDevice.Dispose();
+            CloseHandle(sharedFenceHandle);
 
             surface?.Dispose();
             base.Destroy();
@@ -110,10 +137,14 @@ namespace VL.CEF
                 });
 
                 producerContext.CopyResource(texture, targetTexture);
-                producerContext.Flush();
 
                 var resource = targetTexture.QueryInterface<SharpDX.DXGI.Resource>();
-                if (!queue.TryAddSafe(resource, millisecondsTimeout: 50))
+                var value = ++fenceValue;
+                producerContext.Signal(producerFence, value);
+                producerContext.Flush();
+
+                var queueItem = new QueueItem(resource, value);
+                if (!queue.TryAddSafe(queueItem, millisecondsTimeout: 50))
                     resource.Dispose();
             }
             catch (Exception e)
@@ -137,14 +168,18 @@ namespace VL.CEF
             // Ensure we render in the proper size
             browser.Size = commandList.Viewport.Size;
 
-            if (queue.TryTake(out var resource))
+            if (queue.TryTake(out var item))
             {
                 surface?.Dispose();
 
                 var device = (Device)SharpDXInterop.GetNativeDevice(GraphicsDevice);
-                using (resource)
+
+                // Block the GPU (not the CPU) until the producer has finished the copy.
+                consumerContext.Wait(consumerFence, item.FenceValue);
+
+                using (item.Resource)
                 {
-                    var texture2D = device.OpenSharedResource<Texture2D>(resource.SharedHandle);
+                    var texture2D = device.OpenSharedResource<Texture2D>(item.Resource.SharedHandle);
 
                     surface = SharpDXInterop.CreateTextureFromNative(GraphicsDevice, texture2D, takeOwnership: false);
 

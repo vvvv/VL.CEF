@@ -1,6 +1,7 @@
 ﻿using SharpDX.Direct3D11;
 using SkiaSharp;
 using System;
+using System.Runtime.InteropServices;
 using VL.Skia;
 using Xilium.CefGlue;
 using Vector2 = Stride.Core.Mathematics.Vector2;
@@ -17,6 +18,11 @@ namespace VL.CEF
 {
     public partial class SkiaRenderHandler : ILayer
     {
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool CloseHandle(IntPtr handle);
+
+        private record struct QueueItem(SharpDX.DXGI.Resource Resource, long FenceValue);
+
         private readonly object syncRoot = new object();
 
         private readonly RenderContext renderContext;
@@ -24,7 +30,13 @@ namespace VL.CEF
         private readonly Device1 device;
         private readonly Device5 producerDevice;
         private readonly DeviceContext4 producerContext;
-        private BlockingCollection<SharpDX.DXGI.Resource> queue = new BlockingCollection<SharpDX.DXGI.Resource>(boundedCapacity: 1);
+        private readonly Fence producerFence;
+        private readonly IntPtr sharedFenceHandle;
+        private long fenceValue;
+        private readonly Device5 consumerDevice;
+        private readonly DeviceContext4 consumerContext;
+        private readonly Fence consumerFence;
+        private BlockingCollection<QueueItem> queue = new BlockingCollection<QueueItem>(boundedCapacity: 1);
         private WebBrowser browser;
 
         public SkiaRenderHandler(WebBrowser browser)
@@ -39,6 +51,13 @@ namespace VL.CEF
                 using var producerDevice = new Device(SharpDX.Direct3D.DriverType.Hardware);
                 this.producerDevice = producerDevice.QueryInterface<Device5>();
                 this.producerContext = producerDevice.ImmediateContext.QueryInterface<DeviceContext4>();
+
+                producerFence = new Fence(this.producerDevice, 0, FenceFlags.Shared);
+                sharedFenceHandle = producerFence.CreateSharedHandle(null, unchecked((int)0x10000000L), null);
+
+                this.consumerDevice = this.device.QueryInterface<Device5>();
+                this.consumerContext = this.device.ImmediateContext.QueryInterface<DeviceContext4>();
+                this.consumerFence = this.consumerDevice.OpenSharedFence(sharedFenceHandle);
             }
             browser.Paint += OnPaint;
             browser.AcceleratedPaint += OnAcceleratedPaint;
@@ -52,13 +71,21 @@ namespace VL.CEF
             rasterImage?.Dispose();
             textureImage?.Dispose();
             queue.CompleteAdding();
-            foreach (var t in queue)
-                t.Dispose();
+            foreach (var item in queue)
+                item.Resource.Dispose();
             renderContext.Dispose();
 
-            device?.Dispose();
             producerContext?.Dispose();
+            producerFence?.Dispose();
             producerDevice?.Dispose();
+
+            consumerFence?.Dispose();
+            consumerContext?.Dispose();
+            consumerDevice?.Dispose();
+            if (sharedFenceHandle != IntPtr.Zero)
+                CloseHandle(sharedFenceHandle);
+
+            device?.Dispose();
         }
 
         private void OnPaint(CefPaintElementType type, CefRectangle[] cefRects, IntPtr buffer, int width, int height)
@@ -98,10 +125,14 @@ namespace VL.CEF
                 });
 
                 producerContext.CopyResource(texture, targetTexture);
-                producerContext.Flush();
 
                 var resource = targetTexture.QueryInterface<SharpDX.DXGI.Resource>();
-                if (!queue.TryAddSafe(resource, millisecondsTimeout: 50))
+                var value = ++fenceValue;
+                producerContext.Signal(producerFence, value);
+                producerContext.Flush();
+
+                var queueItem = new QueueItem(resource, value);
+                if (!queue.TryAddSafe(queueItem, millisecondsTimeout: 50))
                     resource.Dispose();
             }
             catch (Exception e)
@@ -122,13 +153,14 @@ namespace VL.CEF
             lock (syncRoot)
             {
                 // Transfer ownership
-                if (queue.TryTake(out var resource))
+                if (queue.TryTake(out var item))
                 {
                     textureImage?.Dispose();
 
-                    using (resource)
+                    using (item.Resource)
                     {
-                        using var texture = device.OpenSharedResource<Texture2D>(resource.SharedHandle);
+                        consumerContext.Wait(consumerFence, item.FenceValue);
+                        using var texture = device.OpenSharedResource<Texture2D>(item.Resource.SharedHandle);
                         textureImage = ToImage(texture);
                     }
                 }
