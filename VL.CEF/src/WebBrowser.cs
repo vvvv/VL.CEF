@@ -32,9 +32,9 @@ namespace VL.CEF
         private readonly CefContextMenuHandler contextMenuHandler;
         private readonly string chromeVersion;
 
-        public WebBrowser(string url = "about:blank", bool sharedTextureEnabled = true)
+        public WebBrowser(NodeContext nodeContext, string url = "about:blank", bool sharedTextureEnabled = true)
         {
-            FRuntimeHandle = CefExtensions.GetRuntimeProvider().GetHandle();
+            FRuntimeHandle = CefExtensions.GetRuntimeProvider(nodeContext.AppHost).GetHandle();
             chromeVersion = CefExtensions.ChromeVersion;
 
             var settings = new CefBrowserSettings();

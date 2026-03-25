@@ -7,14 +7,35 @@
     <OutputPath>bin</OutputPath>
 
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <IsPackable>false</IsPackable>
-    
+
+    <!-- Only pack when PlatformPackage is set (platform-specific packages) -->
+    <IsPackable Condition="'$(PlatformPackage)' == ''">false</IsPackable>
+    <IsPackable Condition="'$(PlatformPackage)' != ''">true</IsPackable>
+
     <!-- Disable pack warning about dlls being in wrong folder - this package delivers the whole renderer app -->
     <NoWarn>NU5128;NU5100</NoWarn>
+
+    <!-- Use custom nuspec file based on PlatformPackage property -->
+    <NuspecFile Condition="'$(PlatformPackage)' == ''">VL.CEF.Renderer.nuspec</NuspecFile>
+    <NuspecFile Condition="'$(PlatformPackage)' == 'win-x64'">VL.CEF.win-x64.nuspec</NuspecFile>
+    <NuspecFile Condition="'$(PlatformPackage)' == 'win-arm64'">VL.CEF.win-arm64.nuspec</NuspecFile>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\deps\cef_glue\CefGlue\CefGlue.csproj" PrivateAssets="all" />
   </ItemGroup>
+
+  <Target Name="SetNuspecProperties" BeforeTargets="GenerateNuspec">
+    <PropertyGroup>
+      <NuspecProperties>
+        version=$(Version);
+        authors=$(Authors);
+        license=$(PackageLicenseExpression);
+        projectUrl=$(PackageProjectUrl);
+        repositoryurl=$(RepositoryUrl);
+        copyright=$(Copyright)
+      </NuspecProperties>
+    </PropertyGroup>
+  </Target>
 
 </Project>

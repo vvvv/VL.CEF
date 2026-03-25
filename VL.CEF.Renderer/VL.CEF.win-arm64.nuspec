@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>VL.CEF.win-arm64</id>
+    <version>$version$</version>
+    <authors>$authors$</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">$license$</license>
+    <projectUrl>$projectUrl$</projectUrl>
+    <repository type="git" url="$repositoryurl$" />
+    <description>Windows ARM64 native renderer binaries for VL.CEF. This package is automatically referenced by VL.CEF and should not be referenced directly.</description>
+    <copyright>$copyright$</copyright>
+    <dependencies>
+      <group targetFramework="net8.0">
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\runtimes\win-arm64\**" target="renderer\runtimes\win-arm64" />
+    <file src="buildTransitive\VL.CEF.win-arm64.targets" target="buildTransitive\VL.CEF.win-arm64.targets" />
+  </files>
+</package>

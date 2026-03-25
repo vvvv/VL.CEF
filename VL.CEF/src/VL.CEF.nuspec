@@ -13,6 +13,8 @@
     <tags>VL;web;html;texture;vvvv</tags>
     <dependencies>
       <group targetFramework="net8.0">
+        <dependency id="VL.CEF.win-x64" version="$version$" />
+        <dependency id="VL.CEF.win-arm64" version="$version$" />
       </group>
     </dependencies>
   </metadata>
@@ -21,7 +23,7 @@
     <file src="..\lib\net8.0\Xilium.CefGlue.dll" target="lib\net8.0" />
     <file src="..\*.vl" target="" />
     <file src="..\help\**" target="help" />
-    <file src="..\..\VL.CEF.Renderer\bin\**" target="renderer" />
+    <file src="..\..\VL.CEF.Renderer\bin\*.*" target="renderer" />
     <file src="buildTransitive\**" target="buildTransitive" />
     <file src="..\..\README.md" target="" />
   </files>

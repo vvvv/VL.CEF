@@ -50,7 +50,23 @@ class Build : NukeBuild
         .Produces(PackagesDirectory / "*.nupkg")
         .Executes(() =>
         {
+            // Pack main VL.CEF package (which now includes shared renderer files)
             DotNetPack(_ => _.SetConfiguration(Configuration));
+
+            // Pack platform-specific renderer packages
+            var rendererProject = RootDirectory / "VL.CEF.Renderer" / "VL.CEF.Renderer.csproj";
+
+            DotNetPack(_ => _
+                .SetConfiguration(Configuration)
+                .SetProject(rendererProject)
+                .SetProperty("PlatformPackage", "win-x64")
+                .SetNoBuild(false));
+
+            DotNetPack(_ => _
+                .SetConfiguration(Configuration)
+                .SetProject(rendererProject)
+                .SetProperty("PlatformPackage", "win-arm64")
+                .SetNoBuild(false));
         });
 
     Target Deploy => _ => _

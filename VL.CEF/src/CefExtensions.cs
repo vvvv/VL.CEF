@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Stride.Core.Mathematics;
+using VL.Core;
 using VL.Lib.Basics.Resources;
 using Xilium.CefGlue;
 
@@ -18,21 +19,21 @@ namespace VL.CEF
 {
     public static class CefExtensions
     {
-        static string? resolvedRendererPath;
         static int initCount;
 
-        static CefExtensions()
+        static string? ResolvePathToRendererExe(AppHost appHost)
         {
-            foreach (var rendererExe in GetPotentialRendererExeLocations())
+            foreach (var rendererExe in GetPotentialRendererExeLocations(appHost))
             {
                 if (File.Exists(rendererExe))
                 {
-                    resolvedRendererPath = Path.GetFullPath(rendererExe);
-                    break;
+                    return Path.GetFullPath(rendererExe);
                 }
             }
 
-            static IEnumerable<string> GetPotentialRendererExeLocations()
+            return null;
+
+            static IEnumerable<string> GetPotentialRendererExeLocations(AppHost appHost)
             {
                 // Exported app?
                 var processDir = Path.GetDirectoryName(Environment.ProcessPath);
@@ -44,33 +45,81 @@ namespace VL.CEF
                 {
                     // Source package?
                     yield return Path.Combine(assemblyDir, "..", "..", "..", "VL.CEF.Renderer", "bin", "VL.CEF.Renderer.exe");
-                    // Installed package?
-                    yield return Path.Combine(assemblyDir, "..", "..", "renderer", "VL.CEF.Renderer.exe");
+                    // Installed package? Renderer exe is in main VL.CEF package
+                    var cefPackagePath = appHost.GetPackagePath("VL.CEF");
+                    if (cefPackagePath != null)
+                        yield return Path.Combine(cefPackagePath, "renderer", "VL.CEF.Renderer.exe");
+                }
+            }
+        }
 
+        static string? ResolvePathToNativeLibs(AppHost appHost)
+        {
+            foreach (var nativeLibPath in GetPotentialNativeLibLocations(appHost))
+            {
+                if (Directory.Exists(nativeLibPath))
+                {
+                    return Path.GetFullPath(nativeLibPath);
+                }
+            }
+
+            return null;
+
+            static IEnumerable<string> GetPotentialNativeLibLocations(AppHost appHost)
+            {
+                // Exported app?
+                var processDir = Path.GetDirectoryName(Environment.ProcessPath);
+                if (processDir != null)
+                {
+                    var nativeLibPath = Path.Combine(processDir, "renderer", "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
+                    yield return nativeLibPath;
+                }
+
+                var assemblyDir = Path.GetDirectoryName(typeof(CefExtensions).Assembly.Location);
+                if (assemblyDir != null)
+                {
+                    // Source package?
+                    var sourceNativeLibPath = Path.Combine(assemblyDir, "..", "..", "..", "VL.CEF.Renderer", "bin", "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
+                    yield return sourceNativeLibPath;
+
+                    // Installed package? Native libs are in platform-specific package
+                    var platformPackagePath = appHost.GetPackagePath($"VL.CEF.{RuntimeInformation.RuntimeIdentifier}");
+                    if (platformPackagePath != null)
+                    {
+                        var installedNativeLibPath = Path.Combine(platformPackagePath, "renderer", "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
+                        yield return installedNativeLibPath;
+                    }
                 }
             }
         }
 
         public static string ChromeVersion => CefRuntime.ChromeVersion;
 
-        public static IResourceProvider<IDisposable> GetRuntimeProvider()
+        public static IResourceProvider<IDisposable> GetRuntimeProvider(AppHost appHost)
         {
             return ResourceProvider.New(() =>
             {
+                var resolvedRendererPath = ResolvePathToRendererExe(appHost);
                 if (resolvedRendererPath is null)
                     throw new FileNotFoundException("Can't find VL.CEF.Renderer.exe");
 
+                var libCefDir = ResolvePathToNativeLibs(appHost);
+                if (libCefDir is null)
+                    throw new DirectoryNotFoundException($"Can't find native CEF libraries for {RuntimeInformation.RuntimeIdentifier}");
+
                 if (Interlocked.Increment(ref initCount) == 1)
                 {
-                    // libcef is in rendererDir/runtimes/{arch}/native
-                    var resolvedRendererDir = Path.GetDirectoryName(resolvedRendererPath)!;
-                    var libCefDir = Path.Combine(resolvedRendererDir, "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
                     CefRuntime.Load(libCefDir);
+
+                    // Set environment variable so the renderer subprocess can find the native libraries
+                    Environment.SetEnvironmentVariable("VL_CEF_NATIVE_LIB_PATH", libCefDir);
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;
                     cefSettings.MultiThreadedMessageLoop = true;
                     cefSettings.BrowserSubprocessPath = resolvedRendererPath;
+
+                    var resolvedRendererDir = Path.GetDirectoryName(resolvedRendererPath)!;
                     cefSettings.RootCachePath = Path.Combine(resolvedRendererDir, "user_data");
                     //cefSettings.ResourcesDirPath = Path.GetDirectoryName(resolvedRendererPath)!;
                     //cefSettings.LocalesDirPath = Path.Combine(Path.GetDirectoryName(resolvedRendererPath)!, "locales");
