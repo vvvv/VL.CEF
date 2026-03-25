@@ -23,7 +23,6 @@
     <file src="..\lib\net8.0\Xilium.CefGlue.dll" target="lib\net8.0" />
     <file src="..\*.vl" target="" />
     <file src="..\help\**" target="help" />
-    <file src="..\..\VL.CEF.Renderer\bin\*.*" target="renderer" />
     <file src="buildTransitive\**" target="buildTransitive" />
     <file src="..\..\README.md" target="" />
   </files>

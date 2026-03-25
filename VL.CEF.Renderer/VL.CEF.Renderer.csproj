@@ -4,7 +4,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <SelfContained>false</SelfContained>
-    <Prefer32Bit>false</Prefer32Bit>
 
     <!-- Set RuntimeIdentifier based on PlatformPackage property -->
     <RuntimeIdentifier Condition="'$(PlatformPackage)' == 'win-x64'">win-x64</RuntimeIdentifier>
@@ -14,6 +13,9 @@
     <OutputPath Condition="'$(PlatformPackage)' == ''">bin</OutputPath>
     <OutputPath Condition="'$(PlatformPackage)' == 'win-x64'">bin\win-x64</OutputPath>
     <OutputPath Condition="'$(PlatformPackage)' == 'win-arm64'">bin\win-arm64</OutputPath>
+
+    <!-- Use RID-specific intermediate output paths to avoid apphost caching issues -->
+    <IntermediateOutputPath Condition="'$(RuntimeIdentifier)' != ''">obj\$(Configuration)\$(RuntimeIdentifier)\</IntermediateOutputPath>
 
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 
