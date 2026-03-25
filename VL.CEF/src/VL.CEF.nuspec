@@ -10,7 +10,7 @@
     <repository type="git" url="$repositoryurl$" />
     <description>$description$</description>
     <copyright>$copyright$</copyright>
-    <tags>$tags$</tags>
+    <tags>VL;web;html;texture;vvvv</tags>
     <dependencies>
       <group targetFramework="net8.0">
       </group>
