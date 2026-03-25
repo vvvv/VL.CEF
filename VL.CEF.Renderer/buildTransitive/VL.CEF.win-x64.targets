@@ -1,10 +1,11 @@
 <Project>
-  
+
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)..\renderer\runtimes\win-x64\**\*.*">
+    <!-- Copy all renderer files (including .exe, .dll, .runtimeconfig.json, .deps.json, native libs) -->
+    <Content Include="$(MSBuildThisFileDirectory)..\renderer\win-x64\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <LinkBase>renderer\runtimes\win-x64</LinkBase>
+      <LinkBase>renderer\win-x64</LinkBase>
     </Content>
   </ItemGroup>
-  
+
 </Project>

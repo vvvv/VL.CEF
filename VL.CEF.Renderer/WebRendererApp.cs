@@ -18,14 +18,8 @@ namespace VL.CEF
         [STAThread]
         public static int Main(string[] args)
         {
-            // Try to get native lib path from environment variable (set by parent process)
-            var libCefPath = Environment.GetEnvironmentVariable("VL_CEF_NATIVE_LIB_PATH");
-
-            // Fall back to local path if environment variable is not set
-            if (string.IsNullOrEmpty(libCefPath))
-            {
-                libCefPath = Path.Combine(AppContext.BaseDirectory, "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
-            }
+            // Native libs are in the 'native' subfolder relative to this executable
+            var libCefPath = Path.Combine(AppContext.BaseDirectory, "native");
 
             CefRuntime.Load(libCefPath);
 

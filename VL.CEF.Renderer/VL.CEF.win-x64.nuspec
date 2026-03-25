@@ -16,7 +16,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\runtimes\win-x64\**" target="renderer\runtimes\win-x64" />
+    <file src="bin\win-x64\**\*.*" target="renderer\win-x64" />
     <file src="buildTransitive\VL.CEF.win-x64.targets" target="buildTransitive\VL.CEF.win-x64.targets" />
   </files>
 </package>

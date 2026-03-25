@@ -27,11 +27,17 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
-# Exception: keep VL.CEF.Renderer runtimes folder only
+# Exception: keep VL.CEF.Renderer native folders only (not build outputs)
 !VL.CEF.Renderer/bin/
 VL.CEF.Renderer/bin/*
-!VL.CEF.Renderer/bin/runtimes/
-!VL.CEF.Renderer/bin/runtimes/**
+!VL.CEF.Renderer/bin/win-x64/
+VL.CEF.Renderer/bin/win-x64/*
+!VL.CEF.Renderer/bin/win-x64/native/
+!VL.CEF.Renderer/bin/win-x64/native/**
+!VL.CEF.Renderer/bin/win-arm64/
+VL.CEF.Renderer/bin/win-arm64/*
+!VL.CEF.Renderer/bin/win-arm64/native/
+!VL.CEF.Renderer/bin/win-arm64/native/**
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/

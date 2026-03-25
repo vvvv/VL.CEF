@@ -35,20 +35,23 @@ namespace VL.CEF
 
             static IEnumerable<string> GetPotentialRendererExeLocations(AppHost appHost)
             {
+                var rid = RuntimeInformation.RuntimeIdentifier;
+
                 // Exported app?
                 var processDir = Path.GetDirectoryName(Environment.ProcessPath);
                 if (processDir != null)
-                    yield return Path.Combine(processDir, "renderer", "VL.CEF.Renderer.exe");
+                    yield return Path.Combine(processDir, "renderer", rid, "VL.CEF.Renderer.exe");
 
                 var assemblyDir = Path.GetDirectoryName(typeof(CefExtensions).Assembly.Location);
                 if (assemblyDir != null)
                 {
-                    // Source package?
+                    // Source package? Builds without RID, exe is using the host's architecture
                     yield return Path.Combine(assemblyDir, "..", "..", "..", "VL.CEF.Renderer", "bin", "VL.CEF.Renderer.exe");
-                    // Installed package? Renderer exe is in main VL.CEF package
-                    var cefPackagePath = appHost.GetPackagePath("VL.CEF");
-                    if (cefPackagePath != null)
-                        yield return Path.Combine(cefPackagePath, "renderer", "VL.CEF.Renderer.exe");
+
+                    // Installed package? Renderer exe is now in platform-specific package
+                    var platformPackagePath = appHost.GetPackagePath($"VL.CEF.{rid}");
+                    if (platformPackagePath != null)
+                        yield return Path.Combine(platformPackagePath, "renderer", rid, "VL.CEF.Renderer.exe");
                 }
             }
         }
@@ -67,11 +70,13 @@ namespace VL.CEF
 
             static IEnumerable<string> GetPotentialNativeLibLocations(AppHost appHost)
             {
+                var rid = RuntimeInformation.RuntimeIdentifier;
+
                 // Exported app?
                 var processDir = Path.GetDirectoryName(Environment.ProcessPath);
                 if (processDir != null)
                 {
-                    var nativeLibPath = Path.Combine(processDir, "renderer", "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
+                    var nativeLibPath = Path.Combine(processDir, "renderer", rid, "native");
                     yield return nativeLibPath;
                 }
 
@@ -79,14 +84,14 @@ namespace VL.CEF
                 if (assemblyDir != null)
                 {
                     // Source package?
-                    var sourceNativeLibPath = Path.Combine(assemblyDir, "..", "..", "..", "VL.CEF.Renderer", "bin", "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
+                    var sourceNativeLibPath = Path.Combine(assemblyDir, "..", "..", "..", "VL.CEF.Renderer", "bin", rid, "native");
                     yield return sourceNativeLibPath;
 
                     // Installed package? Native libs are in platform-specific package
-                    var platformPackagePath = appHost.GetPackagePath($"VL.CEF.{RuntimeInformation.RuntimeIdentifier}");
+                    var platformPackagePath = appHost.GetPackagePath($"VL.CEF.{rid}");
                     if (platformPackagePath != null)
                     {
-                        var installedNativeLibPath = Path.Combine(platformPackagePath, "renderer", "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
+                        var installedNativeLibPath = Path.Combine(platformPackagePath, "renderer", rid, "native");
                         yield return installedNativeLibPath;
                     }
                 }
@@ -110,9 +115,6 @@ namespace VL.CEF
                 if (Interlocked.Increment(ref initCount) == 1)
                 {
                     CefRuntime.Load(libCefDir);
-
-                    // Set environment variable so the renderer subprocess can find the native libraries
-                    Environment.SetEnvironmentVariable("VL_CEF_NATIVE_LIB_PATH", libCefDir);
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;
