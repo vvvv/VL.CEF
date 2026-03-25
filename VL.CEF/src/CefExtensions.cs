@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Runtime.Loader;
 using System.Text;
 using System.Threading;
@@ -61,12 +62,18 @@ namespace VL.CEF
 
                 if (Interlocked.Increment(ref initCount) == 1)
                 {
-                    CefRuntime.Load(Path.GetDirectoryName(resolvedRendererPath)!);
+                    // libcef is in rendererDir/runtimes/{arch}/native
+                    var resolvedRendererDir = Path.GetDirectoryName(resolvedRendererPath)!;
+                    var libCefDir = Path.Combine(resolvedRendererDir, "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
+                    CefRuntime.Load(libCefDir);
 
                     var cefSettings = new CefSettings();
                     cefSettings.WindowlessRenderingEnabled = true;
                     cefSettings.MultiThreadedMessageLoop = true;
                     cefSettings.BrowserSubprocessPath = resolvedRendererPath;
+                    cefSettings.RootCachePath = Path.Combine(resolvedRendererDir, "user_data");
+                    //cefSettings.ResourcesDirPath = Path.GetDirectoryName(resolvedRendererPath)!;
+                    //cefSettings.LocalesDirPath = Path.Combine(Path.GetDirectoryName(resolvedRendererPath)!, "locales");
                     cefSettings.CommandLineArgsDisabled = false;
                     //// We do not meet the requirements - see cef_sandbox_win.h
                     //cefSettings.NoSandbox = true;

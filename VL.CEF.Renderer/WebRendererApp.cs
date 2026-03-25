@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +18,9 @@ namespace VL.CEF
         [STAThread]
         public static int Main(string[] args)
         {
-            CefRuntime.Load();
+            // libcef.dll is in runtimes/{arch}/native
+            var libCefPath = Path.Combine(AppContext.BaseDirectory, "runtimes", RuntimeInformation.RuntimeIdentifier, "native");
+            CefRuntime.Load(libCefPath);
 
             var app = new WebRendererApp();
             var mainArgs = new CefMainArgs(args);
