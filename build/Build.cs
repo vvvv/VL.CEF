@@ -60,13 +60,13 @@ class Build : NukeBuild
             DotNetPack(_ => _
                 .SetConfiguration(Configuration)
                 .SetProject(rendererProject)
-                .SetProperty("PlatformPackage", "win-x64"));
+                .SetProperty("RuntimeIdentifier", "win-x64"));
 
             // Pack win-arm64
             DotNetPack(_ => _
                 .SetConfiguration(Configuration)
                 .SetProject(rendererProject)
-                .SetProperty("PlatformPackage", "win-arm64"));
+                .SetProperty("RuntimeIdentifier", "win-arm64"));
         });
 
     Target Deploy => _ => _

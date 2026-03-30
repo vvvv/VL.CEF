@@ -4,32 +4,29 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <SelfContained>false</SelfContained>
-
-    <!-- Set RuntimeIdentifier based on PlatformPackage property -->
-    <RuntimeIdentifier Condition="'$(PlatformPackage)' == 'win-x64'">win-x64</RuntimeIdentifier>
-    <RuntimeIdentifier Condition="'$(PlatformPackage)' == 'win-arm64'">win-arm64</RuntimeIdentifier>
-
-    <!-- Output to bin/{RID} when building platform packages, otherwise bin/ -->
-    <OutputPath Condition="'$(PlatformPackage)' == ''">bin</OutputPath>
-    <OutputPath Condition="'$(PlatformPackage)' == 'win-x64'">bin\win-x64</OutputPath>
-    <OutputPath Condition="'$(PlatformPackage)' == 'win-arm64'">bin\win-arm64</OutputPath>
-
-    <!-- Use RID-specific intermediate output paths to avoid apphost caching issues -->
-    <IntermediateOutputPath Condition="'$(RuntimeIdentifier)' != ''">obj\$(Configuration)\$(RuntimeIdentifier)\</IntermediateOutputPath>
-
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-
-    <!-- Only pack when PlatformPackage is set (platform-specific packages) -->
-    <IsPackable Condition="'$(PlatformPackage)' == ''">false</IsPackable>
-    <IsPackable Condition="'$(PlatformPackage)' != ''">true</IsPackable>
 
     <!-- Disable pack warning about dlls being in wrong folder - this package delivers the whole renderer app -->
     <NoWarn>NU5128;NU5100</NoWarn>
 
-    <!-- Use custom nuspec file based on PlatformPackage property -->
-    <NuspecFile Condition="'$(PlatformPackage)' == ''">VL.CEF.Renderer.nuspec</NuspecFile>
-    <NuspecFile Condition="'$(PlatformPackage)' == 'win-x64'">VL.CEF.win-x64.nuspec</NuspecFile>
-    <NuspecFile Condition="'$(PlatformPackage)' == 'win-arm64'">VL.CEF.win-arm64.nuspec</NuspecFile>
+    <!-- Set RuntimeIdentifier based on PlatformPackage property -->
+    <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+
+    <!-- Use host RuntimeIdentifier if not explicitly set -->
+    <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifier>
+
+    <!-- Set output path based on RID -->
+    <OutputPath>bin\$(RuntimeIdentifier)\</OutputPath>
+    <!-- Use RID-specific intermediate output paths to avoid apphost caching issues -->
+    <IntermediateOutputPath Condition="'$(RuntimeIdentifier)' != ''">obj\$(Configuration)\$(RuntimeIdentifier)\</IntermediateOutputPath>
+
+    <!-- Only pack when RuntimeIdentifier is set (platform-specific packages) -->
+    <IsPackable Condition="'$(RuntimeIdentifier)' == ''">false</IsPackable>
+    <IsPackable Condition="'$(RuntimeIdentifier)' != ''">true</IsPackable>
+
+    <!-- Use custom nuspec file based on RuntimeIdentifier property -->
+    <NuspecFile Condition="'$(RuntimeIdentifier)' == 'win-x64'">VL.CEF.win-x64.nuspec</NuspecFile>
+    <NuspecFile Condition="'$(RuntimeIdentifier)' == 'win-arm64'">VL.CEF.win-arm64.nuspec</NuspecFile>
   </PropertyGroup>
 
   <ItemGroup>

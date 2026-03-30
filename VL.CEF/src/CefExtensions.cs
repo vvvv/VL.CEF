@@ -45,8 +45,8 @@ namespace VL.CEF
                 var assemblyDir = Path.GetDirectoryName(typeof(CefExtensions).Assembly.Location);
                 if (assemblyDir != null)
                 {
-                    // Source package? Builds without RID, exe is using the host's architecture
-                    yield return Path.Combine(assemblyDir, "..", "..", "..", "VL.CEF.Renderer", "bin", "VL.CEF.Renderer.exe");
+                    // Source package?
+                    yield return Path.Combine(assemblyDir, "..", "..", "..", "VL.CEF.Renderer", "bin", rid, "VL.CEF.Renderer.exe");
 
                     // Installed package? Renderer exe is now in platform-specific package
                     var platformPackagePath = appHost.GetPackagePath($"VL.CEF.{rid}");
