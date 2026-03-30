@@ -25,5 +25,6 @@
     <file src="..\help\**" target="help" />
     <file src="buildTransitive\**" target="buildTransitive" />
     <file src="..\..\README.md" target="" />
+    <file src="..\vl.subs.json" target ="" />
   </files>
 </package>
