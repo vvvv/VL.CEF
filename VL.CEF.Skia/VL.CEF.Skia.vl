@@ -355,6 +355,7 @@
           <Patch Id="KxMIXzVQMkqM4gp0SZ52y5" Name="Create" />
           <Patch Id="QFFP33BVxHKPgET33SGJs3" Name="Update" ManuallySortedPins="true">
             <Pin Id="KSg8ypncMAvNWZvOYOaCvz" Name="Startup Url" Kind="InputPin" />
+            <Pin Id="QLSxnPAMrbVMMSKTg9xgRO" Name="Shared Texture Enabled" Kind="InputPin" />
             <Pin Id="RUGF3SQTTS7PlCLgIldjDw" Name="Render Size" Kind="InputPin" DefaultValue="1280, 720" />
             <Pin Id="FGWQWHFyWbCMM7uPAJk4qK" Name="Draw Bounds" Kind="InputPin" />
             <Pin Id="LhAfXl5fPDhOzDyCrgdSxO" Name="Anchor" Kind="InputPin" />
@@ -366,7 +367,6 @@
             <Pin Id="MoaG6VcAPisNnW7KyJcwrN" Name="Error Text" Kind="OutputPin" />
             <Pin Id="BA5phK8M7aqOnFtCVCFIEk" Name="Draw Size Mode" Kind="InputPin" />
             <Pin Id="ARxXTLiTkukMv1Gffp4PlT" Name="Query Handlers" Kind="InputPin" />
-            <Pin Id="QLSxnPAMrbVMMSKTg9xgRO" Name="Shared Texture Enabled" Kind="InputPin" Visibility="Optional" />
             <Pin Id="B62sverPV0ePwNNa76Koj5" Name="Enabled" Kind="InputPin" />
           </Patch>
           <Link Id="LxRLtfbsjCMLvYaOdFDDZl" Ids="OtybskPoxYLPzm0x0jDCH8,UXPx9fuBs9gPcPPfBHO6yM" />
