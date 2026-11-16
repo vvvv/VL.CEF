@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2025.7.0-0563-g4c826503f6" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0563-g4c826503f6" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="Gr1oDHhlEBxMggqt2iy7cg" LanguageVersion="2025.7.4" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.4" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -22,7 +22,7 @@
               <CategoryReference Kind="Category" Name="Skia" NeedsToBeDirectParent="true" />
             </p:NodeReference>
             <Pin Id="NBcYHpzFFa8PM5JcgXsVlf" Name="Node Context" Kind="InputPin" IsHidden="true" />
-            <Pin Id="GmTTYzgJ0r6N5DGkOWFQed" Name="Bounds" Kind="InputPin" DefaultValue="1300, 20, 616, 438" IsHidden="true" />
+            <Pin Id="GmTTYzgJ0r6N5DGkOWFQed" Name="Bounds" Kind="InputPin" DefaultValue="1644, 63, 616, 438" IsHidden="true" />
             <Pin Id="JrTczJQ00CBNhr7HEcbgTI" Name="Save Bounds" Kind="InputPin" IsHidden="true" />
             <Pin Id="VXS756FzRgGMdoylHBIjTq" Name="Bound to Document" Kind="InputPin" IsHidden="true" />
             <Pin Id="M0b3ag9wY8WQH0ntiDDodw" Name="Dialog If Document Changed" Kind="InputPin" IsHidden="true" />
@@ -30,6 +30,7 @@
             <Pin Id="EEZWNmipuVaP6o9vajtmK9" Name="Extend Into Title Bar" Kind="InputPin" IsHidden="true" />
             <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
             <Pin Id="AmHZTRSFijrL7FInCugi0Z" Name="Title" Kind="InputPin" />
+            <Pin Id="ULgA1dJ179MNsXpk9xFeua" Name="Title Bar Interaction Width" Kind="InputPin" IsHidden="true" />
             <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
             <Pin Id="OOGQG7BFIEtNLL3wzKPENq" Name="Clear" Kind="InputPin" />
             <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin" />
@@ -160,7 +161,7 @@
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Node Bounds="599,673,45,19" Id="B86eH311oM5MJgtalXfeu1">
+          <Node Bounds="605,670,45,19" Id="B86eH311oM5MJgtalXfeu1">
             <p:NodeReference LastCategoryFullName="Animation" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="LFO" />
@@ -175,7 +176,11 @@
             <Pin Id="CIqDuGG4MA0L0LDo1wOmwu" Name="On New Cycle" Kind="OutputPin" />
             <Pin Id="DZAhE432namLQwu1bHImQL" Name="Cycles" Kind="OutputPin" />
           </Node>
-          <Pad Id="CNwuLqNpjboMiFYtbztZHB" Comment="Mouse Coords" Bounds="858,519,35,28" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="CNwuLqNpjboMiFYtbztZHB" Comment="Mouse Coords" Bounds="858,381,49,57" ShowValueBox="true" isIOBox="true">
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">14</p:fontsize>
+            </p:ValueBoxSettings>
+          </Pad>
           <Pad Id="Ja3MvzrQQi1QT4dMg4vmLJ" Bounds="955,650,260,64" ShowValueBox="true" isIOBox="true" Value="&lt; The output names must match the JS property names (change via rightclick -&gt; Configure on the Decons node)">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
@@ -201,9 +206,9 @@
             </p:NodeReference>
             <Pin Id="An0kkr6odT2OCKXQfY9mDb" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="Jm5yfWec8R5PbSHWywwVmh" Name="Startup Url" Kind="InputPin" />
-            <Pin Id="HDTvGxCDSdNM492QEopH2k" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
+            <Pin Id="HDTvGxCDSdNM492QEopH2k" Name="Shared Texture Enabled" Kind="InputPin" />
             <Pin Id="TWenFyNM9aQLl3qcBgqNFR" Name="Query Handlers" Kind="InputPin" />
-            <Pin Id="FXV1P35jZZBNfrRshjq5Eo" Name="Enabled" Kind="InputPin" />
+            <Pin Id="FXV1P35jZZBNfrRshjq5Eo" Name="Enabled" Kind="InputPin" DefaultValue="True" />
             <Pin Id="PIxysgcPsV4N2bHonHN4ER" Name="Output" Kind="OutputPin" />
             <Pin Id="TfhI4W342auNsLkTBfbXec" Name="Loaded" Kind="OutputPin" />
             <Pin Id="DQFU2kqvnnXLO4jFiez8fv" Name="Is Loading" Kind="OutputPin" />
@@ -240,7 +245,7 @@
             <Pin Id="Hk12Z91QwZEPmeDiHKouFj" Name="Simulate" Kind="InputPin" DefaultValue="False" />
             <Pin Id="DILzRnsHEcKOSP1VZOTMkv" Name="Output" Kind="OutputPin" />
           </Node>
-          <Node Bounds="808,478,53,19" Id="Ach55je8cavNDGDNsOkZ3w">
+          <Node Bounds="808,340,53,19" Id="Ach55je8cavNDGDNsOkZ3w">
             <p:NodeReference LastCategoryFullName="Reactive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="Channel" />
@@ -303,6 +308,23 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
+          <Pad Id="ETitWiAm1cYO29UydBSsBb" Comment="Shared Texture Enabled" Bounds="231,751,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Toggle</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="KxDAn0oCTiNPUEWHBXJoNf" Bounds="272,769,35,19" ShowValueBox="true" isIOBox="true" Value="⚠️">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -337,10 +359,11 @@
         <Link Id="D2reMMjZ83bNESzRULG9ic" Ids="PIxysgcPsV4N2bHonHN4ER,NHQbIBxiV8IPTfFQU7Z7lW" />
         <Link Id="BOZoWdZUrPtOQlp61O2fsb" Ids="JlAXwxaIrs2NMGVDZYe4hk,EYYiNIPQzTsLOIOKb73U5B" />
         <Link Id="RQMVY19VSD9LY46JFNIWxd" Ids="CV1gNKCzjZoMgLm9hnxe6N,TWenFyNM9aQLl3qcBgqNFR" />
+        <Link Id="CycHiliUuXXNXLTJyXDQ4s" Ids="ETitWiAm1cYO29UydBSsBb,HDTvGxCDSdNM492QEopH2k" />
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0563-g4c826503f6" />
-  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.7.1" />
-  <NugetDependency Id="LqyVuFUURQmNkHJ02LQA9V" Location="VL.CEF.Skia" Version="0.7.1" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.4" />
+  <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" />
+  <NugetDependency Id="LqyVuFUURQmNkHJ02LQA9V" Location="VL.CEF.Skia" />
 </Document>

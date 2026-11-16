@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2025.7.0-0359-gbbb0444d86" Version="0.128">
-  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2025.7.0-0359-gbbb0444d86" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="UdoRCqSpxMEMbo74f4XZWO" LanguageVersion="2025.7.4" Version="0.128">
+  <NugetDependency Id="A2Y9F8qzKsrNqR2gVhultA" Location="VL.CoreLib" Version="2025.7.4" />
   <Patch Id="BZs5A6rRdrDOhDYS793S2G">
     <Canvas Id="R7DKrVtvAwqMt5QhpdeTYK" DefaultCategory="CEF" CanvasType="FullCategory">
       <!--
@@ -53,6 +53,7 @@
                     <CategoryReference Kind="AssemblyCategory" Name="WebBrowser" />
                     <Choice Kind="OperationCallFlag" Name="Create" />
                   </p:NodeReference>
+                  <Pin Id="U8UEIB6qr3dLcx5IfzNH7Y" Name="Node Context" Kind="InputPin" />
                   <Pin Id="MH4C0ZTa2qFMl56pvXCDmQ" Name="Url" Kind="InputPin" />
                   <Pin Id="Q89mbgNPMtWLBLSac452AE" Name="Shared Texture Enabled" Kind="InputPin" />
                   <Pin Id="O1fMQSwTPUTM9OSoFTa3iz" Name="Output" Kind="StateOutputPin" />
@@ -172,14 +173,14 @@
           <Patch Id="T5PSbhoISlvLPQcianRAO2" Name="Create" />
           <Patch Id="Na21BT5OzIINceUwpblFz0" Name="Update">
             <Pin Id="JBlPW3f7YbmO8VUjsPGxzR" Name="Startup Url" Kind="InputPin" Bounds="656,173" DefaultValue="about:blank" />
-            <Pin Id="REltHYGz5R9NaMZUwlM3wm" Name="Shared Texture Enabled" Kind="InputPin" Bounds="558,161" DefaultValue="True" Visibility="Optional" />
+            <Pin Id="REltHYGz5R9NaMZUwlM3wm" Name="Shared Texture Enabled" Kind="InputPin" Bounds="558,161" DefaultValue="True" />
             <Pin Id="GO5myamixtKP5VH3tllA5n" Name="Query Handlers" Kind="InputPin" Bounds="843,158" />
             <Pin Id="Sg9nC59PDpZOuCuxCNJFXb" Name="Enabled" Kind="InputPin" Bounds="926,168" />
             <Pin Id="Fj0DIYjO9IhPPJ5eS3nqHt" Name="Output" Kind="OutputPin" Bounds="546,460" />
             <Pin Id="CDmJcqrKVqrP6KzELSrx4L" Name="Loaded" Kind="OutputPin" Bounds="685,454" />
             <Pin Id="ANlpV3c0EBBObj45vfPmty" Name="Is Loading" Kind="OutputPin" Bounds="776,444" />
-            <Pin Id="Es7UDt4uNUTPMSCIufVH6U" Name="Error Text" Kind="OutputPin" Bounds="872,432" />
             <Pin Id="NIMz7ny0rC8PNAAUd09z6Y" Name="Chrome Version" Kind="OutputPin" />
+            <Pin Id="Es7UDt4uNUTPMSCIufVH6U" Name="Error Text" Kind="OutputPin" Bounds="872,432" />
           </Patch>
           <Link Id="KqqNjJrHTFpOBPUMRgt19L" Ids="LZuySlgUXGxMoujcoPxXW7,EVpjuhpPHJEMRT8pO9Ji8h" />
           <Link Id="DwQNBWpFY31LQ6iLJ8a3kV" Ids="QD8OJbC5vqkMSOmmi74ylU,TPd1cnVCEaQPOSMCY2ZtO8" />

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="J2YDKosADjGK9tEVmtMxzT" LanguageVersion="2025.7.0-0357-gd997588cb6" Version="0.128">
-  <NugetDependency Id="FdvXZOaf341NuMbEYIlKzV" Location="VL.CoreLib" Version="2025.7.0-0357-gd997588cb6" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="J2YDKosADjGK9tEVmtMxzT" LanguageVersion="2025.7.4" Version="0.128">
+  <NugetDependency Id="FdvXZOaf341NuMbEYIlKzV" Location="VL.CoreLib" Version="2025.7.4" />
   <Patch Id="AbeRAKvovXQLrrZgJWZjNa">
     <Canvas Id="UkEUMxAS6lUO1EexKPOzK8" DefaultCategory="Main" BordersChecked="false" CanvasType="FullCategory" />
     <!--
@@ -24,23 +24,24 @@
             <p:HelpFocus p:Assembly="VL.Lang" p:Type="VL.Model.HelpPriority">High</p:HelpFocus>
             <Pin Id="TctllN4v1FSNRdNQHFEb1R" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="R2XowezvGViPVX9E9y8KDE" Name="Startup Url" Kind="InputPin" />
-            <Pin Id="KIjP2rNqyipLqwqoH0k1IK" Name="Shared Texture Enabled" Kind="InputPin" IsHidden="true" />
+            <Pin Id="KIjP2rNqyipLqwqoH0k1IK" Name="Shared Texture Enabled" Kind="InputPin" />
             <Pin Id="OZVhTd0F1TlMBjOD17YsEe" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="OxuoXeskuclMRaV8YndCGy" Name="Enabled" Kind="InputPin" />
             <Pin Id="TThV5OZVSEZNUvpuxcJ5bl" Name="Output" Kind="OutputPin" />
             <Pin Id="CYiwCWN3CWPPwGgI63yfHw" Name="Loaded" Kind="OutputPin" />
             <Pin Id="OZxHaQrUyOMMzDqt8wGGgO" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="KBGLBQgBfhVPt5jlmfoOYK" Name="Chrome Version" Kind="OutputPin" />
             <Pin Id="Ff9uPKBfHjfOeoMnf8ODjQ" Name="Error Text" Kind="OutputPin" />
           </Node>
-          <Pad Id="LXTyRZQb4yHLLpiEdJ0MS7" Comment="Loaded" Bounds="166,190,35,35" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="DNzIfH9AjEZQMhXmVRD42l" Comment="Is Loading" Bounds="188,230,35,35" ShowValueBox="true" isIOBox="true" />
-          <Pad Id="CQ3LnDUAX5FOVTYvp2Usmf" Comment="Error Text" Bounds="210,160,174,16" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="LXTyRZQb4yHLLpiEdJ0MS7" Comment="Loaded" Bounds="164,190,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="DNzIfH9AjEZQMhXmVRD42l" Comment="Is Loading" Bounds="184,230,35,35" ShowValueBox="true" isIOBox="true" />
+          <Pad Id="CQ3LnDUAX5FOVTYvp2Usmf" Comment="Error Text" Bounds="224,160,174,16" ShowValueBox="true" isIOBox="true" />
           <Pad Id="DPaCIZIQt4oL2oHVbFfedg" Comment="Startup Url" Bounds="144,50,150,15" ShowValueBox="true" isIOBox="true" Value="vvvv.org">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
           </Pad>
-          <Pad Id="FaXcDDoxGkbQIuDfsjsQiY" Comment="Enabled" Bounds="210,91,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+          <Pad Id="FaXcDDoxGkbQIuDfsjsQiY" Comment="Enabled" Bounds="224,91,35,35" ShowValueBox="true" isIOBox="true" Value="True">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
             </p:TypeAnnotation>

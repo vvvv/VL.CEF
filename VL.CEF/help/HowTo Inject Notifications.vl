@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Document xmlns:p="property" xmlns:r="reflection" Id="V10gnviHZZSQG4JtXfC79o" LanguageVersion="2025.7.0-0563-g4c826503f6" Version="0.128">
-  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.0-0563-g4c826503f6" />
+<Document xmlns:p="property" xmlns:r="reflection" Id="V10gnviHZZSQG4JtXfC79o" LanguageVersion="2025.7.4" Version="0.128">
+  <NugetDependency Id="IXpvYU0bJ4lOHBFloTLTjW" Location="VL.CoreLib" Version="2025.7.4" />
   <Patch Id="NFjsKs2YB4bM7oG09u4OFJ">
     <Canvas Id="TrXH3OWIXRsNQKxRH5EEpq" DefaultCategory="Main" CanvasType="FullCategory" />
     <!--
@@ -30,6 +30,7 @@
             <Pin Id="TrS2pw8OJW7LXcZQ1nFtTb" Name="Extend Into Title Bar" Kind="InputPin" IsHidden="true" />
             <Pin Id="MTDHVcEhKXPLq5yLm8QAE5" Name="Input" Kind="InputPin" />
             <Pin Id="AmIReYyPeuKNH8nG0J6Prb" Name="Title" Kind="InputPin" />
+            <Pin Id="THZmtQc7b4lP9XQhmhx02t" Name="Title Bar Interaction Width" Kind="InputPin" IsHidden="true" />
             <Pin Id="VXrY0OIA8nnQLaZktioNax" Name="Color" Kind="InputPin" />
             <Pin Id="OOGQG7BFIEtNLL3wzKPENq" Name="Clear" Kind="InputPin" />
             <Pin Id="NXnkl2RKmagNF0WBso2ho2" Name="Space" Kind="InputPin" DefaultValue="Normalized" />
@@ -435,7 +436,7 @@
               <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Press</p:buttonmode>
             </p:ValueBoxSettings>
           </Pad>
-          <Pad Id="Bwd8EmoPIcRNxm9nX3sorG" Comment="Button" Bounds="669,409,71,15" ShowValueBox="true" isIOBox="true" Value="Left">
+          <Pad Id="Bwd8EmoPIcRNxm9nX3sorG" Comment="Button" Bounds="669,409,72,15" ShowValueBox="true" isIOBox="true" Value="Left">
             <p:TypeAnnotation LastCategoryFullName="IO.Mouse" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="MouseButtons" />
             </p:TypeAnnotation>
@@ -614,22 +615,28 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
-          <Node Bounds="188,370,105,19" Id="UeqDQizKLUrP7CrtIFlSaI">
+          <Node Bounds="188,370,145,19" Id="UeqDQizKLUrP7CrtIFlSaI">
             <p:NodeReference LastCategoryFullName="CEF" LastDependency="VL.CEF.Skia.vl">
               <Choice Kind="NodeFlag" Name="Node" Fixed="true" />
               <Choice Kind="ProcessAppFlag" Name="WebLayer" />
             </p:NodeReference>
             <Pin Id="VnDxCHniLXNQbmL4KVbjZK" Name="Node Context" Kind="InputPin" IsHidden="true" />
             <Pin Id="DQPFqH396f0OwAT6bs0M5D" Name="Startup Url" Kind="InputPin" DefaultValue="http://www.brenz.net/snippets/xy.asp" />
+            <Pin Id="A7IIPSjQknQOGJzLYGF7yk" Name="Shared Texture Enabled" Kind="InputPin" />
             <Pin Id="Vgra1f5kDWZLoA7uegDfil" Name="Render Size" Kind="InputPin" />
             <Pin Id="RAMyrK6pI26MLyDWX2oGcc" Name="Draw Bounds" Kind="InputPin" />
-            <Pin Id="B9dFOAeDa6FQOpfS4XoBOL" Name="Draw Size Mode" Kind="InputPin" DefaultValue="AutoWidth" />
             <Pin Id="A89QXAL7I4BPcCiAQEmYuE" Name="Anchor" Kind="InputPin" />
+            <Pin Id="B9dFOAeDa6FQOpfS4XoBOL" Name="Draw Size Mode" Kind="InputPin" DefaultValue="AutoWidth" />
+            <Pin Id="DomUi6vRhltOQw3cECpUpb" Name="Query Handlers" Kind="InputPin" />
             <Pin Id="CQLbm4syFMdOVAouvhh2ik" Name="Enabled" Kind="InputPin" />
             <Pin Id="LunfD0Dd2ilNXVmOBl7pOP" Name="Output" Kind="OutputPin" />
             <Pin Id="SPL3zp66JdnO4QjDNkXbVb" Name="Browser" Kind="OutputPin" />
+            <Pin Id="RZGVg5vxWl3MFGxMddeXTk" Name="Loaded" Kind="OutputPin" />
+            <Pin Id="DNq5N96MgSTOU7YWNgdRD8" Name="Is Loading" Kind="OutputPin" />
+            <Pin Id="HxTtvHFwY0gQD2DYmnd2E3" Name="Chrome Version" Kind="OutputPin" />
+            <Pin Id="IESn0bDxTFAPHyUzljZope" Name="Error Text" Kind="OutputPin" />
           </Node>
-          <Pad Id="Fd4rD2yiTWePh197VsqmZy" Comment="Startup Url" Bounds="190,332,140,15" ShowValueBox="true" isIOBox="true" Value="http://www.brenz.net/snippets/xy.asp">
+          <Pad Id="Fd4rD2yiTWePh197VsqmZy" Comment="Startup Url" Bounds="190,261,140,15" ShowValueBox="true" isIOBox="true" Value="http://www.brenz.net/snippets/xy.asp">
             <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
               <Choice Kind="TypeFlag" Name="String" />
             </p:TypeAnnotation>
@@ -673,6 +680,23 @@
               <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Link</p:stringtype>
             </p:ValueBoxSettings>
           </Pad>
+          <Pad Id="STWyWO2tnUeOcFqaSlX4f0" Comment="Shared Texture Enabled" Bounds="210,300,35,35" ShowValueBox="true" isIOBox="true" Value="True">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="ImmutableTypeFlag" Name="Boolean" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:buttonmode p:Assembly="VL.UI.Forms" p:Type="VL.HDE.PatchEditor.Editors.ButtonModeEnum">Toggle</p:buttonmode>
+            </p:ValueBoxSettings>
+          </Pad>
+          <Pad Id="BUju5rNpJXrLnzgEOLD03H" Bounds="250,317,35,19" ShowValueBox="true" isIOBox="true" Value="⚠️">
+            <p:TypeAnnotation LastCategoryFullName="Primitive" LastDependency="VL.CoreLib.vl">
+              <Choice Kind="TypeFlag" Name="String" />
+            </p:TypeAnnotation>
+            <p:ValueBoxSettings>
+              <p:fontsize p:Type="Int32">9</p:fontsize>
+              <p:stringtype p:Assembly="VL.Core" p:Type="VL.Core.StringType">Comment</p:stringtype>
+            </p:ValueBoxSettings>
+          </Pad>
         </Canvas>
         <Patch Id="Vnymg3KwFcqPuuJT3crEKr" Name="Create" />
         <Patch Id="T5DV0xifO78P27haBv56J1" Name="Update" />
@@ -694,10 +718,11 @@
         <Link Id="RkZ894HQGMRLiWDY2C29Hi" Ids="Fd4rD2yiTWePh197VsqmZy,DQPFqH396f0OwAT6bs0M5D" />
         <Link Id="BjRMvlbPCxPQBkdHjU6u5R" Ids="Mlj5fsGJOqFMigdKxd9Bbv,OfR8OumCY1GMOzjGcLLlKG" />
         <Link Id="SXmYOcLyXobN8tUZaMmUHx" Ids="BKXsJyIN7VrQQ5lgZNGeff,PwZfzStL0c3LByg1nCWSrb" />
+        <Link Id="T2EWEg2MxjKMbwIH2W9xig" Ids="STWyWO2tnUeOcFqaSlX4f0,A7IIPSjQknQOGJzLYGF7yk" />
       </Patch>
     </Node>
   </Patch>
-  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.0-0563-g4c826503f6" />
+  <NugetDependency Id="NuYLEQ0WDI9N3hrAMKw70y" Location="VL.Skia" Version="2025.7.4" />
   <NugetDependency Id="FL35SaOgQvGMscHvsJeJDr" Location="VL.CEF" Version="0.7.1" />
   <NugetDependency Id="Elv50JcA1FaMlliyRjQBo8" Location="VL.CEF.Skia" Version="0.7.1" />
   <PlatformDependency Id="Q6uL7yNhiMIPvYMGoHnxN2" Location="SkiaSharp.dll" />
