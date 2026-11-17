@@ -1,4 +1,5 @@
-﻿using Stride.Core.Mathematics;
+﻿#nullable enable
+using Stride.Core.Mathematics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +18,17 @@ namespace VL.CEF
 
         CefEventFlags mouseModifiers;
 
+        public bool SendNotification(INotification notification)
+        {
+            if (notification is MouseNotification mouseNotification)
+                return HandleMouseNotification(mouseNotification, null);
+            if (notification is KeyNotification keyNotification)
+                return HandleKeyNotification(keyNotification);
+            if (notification is TouchNotification touchNotification)
+                return HandleTouchNotification(touchNotification, null);
+            return false;
+        }
+
         public bool SendNotification(INotification notification, Func<NotificationWithPosition, Vector2> getPosition)
         {
             if (notification is MouseNotification mouseNotification)
@@ -28,9 +40,9 @@ namespace VL.CEF
             return false;
         }
 
-        private bool HandleTouchNotification(TouchNotification n, Func<NotificationWithPosition, Vector2> getPosition)
+        private bool HandleTouchNotification(TouchNotification n, Func<NotificationWithPosition, Vector2>? getPosition)
         {
-            var position = getPosition(n);
+            var position = getPosition != null ? getPosition(n) : n.Position;
             if (n.Kind == TouchNotificationKind.TouchDown)
             {
                 if (!Bounds.Contains(position))
@@ -91,13 +103,13 @@ namespace VL.CEF
             switch (n.Kind)
             {
                 case KeyNotificationKind.KeyDown:
-                    var keyDown = n as KeyDownNotification;
+                    var keyDown = (KeyDownNotification)n;
                     keyEvent.EventType = CefKeyEventType.KeyDown;
                     keyEvent.WindowsKeyCode = (int)keyDown.KeyCode;
                     keyEvent.NativeKeyCode = (int)keyDown.KeyCode;
                     break;
                 case KeyNotificationKind.KeyPress:
-                    var keyPress = n as KeyPressNotification;
+                    var keyPress = (KeyPressNotification)n;
                     keyEvent.EventType = CefKeyEventType.Char;
                     keyEvent.Character = keyPress.KeyChar;
                     keyEvent.UnmodifiedCharacter = keyPress.KeyChar;
@@ -105,7 +117,7 @@ namespace VL.CEF
                     keyEvent.NativeKeyCode = (int)keyPress.KeyChar;
                     break;
                 case KeyNotificationKind.KeyUp:
-                    var keyUp = n as KeyUpNotification;
+                    var keyUp = (KeyUpNotification)n;
                     keyEvent.EventType = CefKeyEventType.KeyUp;
                     keyEvent.WindowsKeyCode = (int)keyUp.KeyCode;
                     keyEvent.NativeKeyCode = (int)keyUp.KeyCode;
@@ -122,7 +134,7 @@ namespace VL.CEF
         Vector2 lastPosition;
         Stopwatch stopwatch = Stopwatch.StartNew();
 
-        private bool HandleMouseNotification(MouseNotification n, Func<NotificationWithPosition, Vector2> getPosition)
+        private bool HandleMouseNotification(MouseNotification n, Func<NotificationWithPosition, Vector2>? getPosition)
         {
             if (n is MouseButtonNotification buttonNotification)
             {
@@ -160,14 +172,14 @@ namespace VL.CEF
             }
 
             {
-                var position = getPosition(n);
+                var position = getPosition != null ? getPosition(n) : n.Position;
                 var browserPosition = position.DeviceToLogical(ScaleFactor);
                 var mouseEvent = new CefMouseEvent((int)browserPosition.X, (int)browserPosition.Y, GetModifiers(n));
                 var browserHost = BrowserHost;
                 switch (n.Kind)
                 {
                     case MouseNotificationKind.MouseDown:
-                        var mouseDown = n as MouseDownNotification;
+                        var mouseDown = (MouseDownNotification)n;
                         if (Bounds.Contains(position))
                         {
                             downButtons.Add(mouseDown.Buttons);
@@ -176,7 +188,7 @@ namespace VL.CEF
                         }
                         return false;
                     case MouseNotificationKind.MouseUp:
-                        var mouseUp = n as MouseUpNotification;
+                        var mouseUp = (MouseUpNotification)n;
                         if (downButtons.Contains(mouseUp.Buttons))
                         {
                             downButtons.Remove(mouseUp.Buttons);
@@ -191,14 +203,14 @@ namespace VL.CEF
                         if (!Bounds.Contains(position))
                             return false;
 
-                        var mouseWheel = n as MouseWheelNotification;
+                        var mouseWheel = (MouseWheelNotification)n;
                         browserHost.SendMouseWheelEvent(mouseEvent, 0, mouseWheel.WheelDelta);
                         return true;
                     case MouseNotificationKind.MouseHorizontalWheel:
                         if (!Bounds.Contains(position))
                             return false;
 
-                        var mouseHWheel = n as MouseHorizontalWheelNotification;
+                        var mouseHWheel = (MouseHorizontalWheelNotification)n;
                         browserHost.SendMouseWheelEvent(mouseEvent, mouseHWheel.WheelDelta, 0);
                         return true;
                     case MouseNotificationKind.DeviceLost:
